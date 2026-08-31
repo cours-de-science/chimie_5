@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapitre 1 — Les propriétés chimiques des gaz | Chimie Sec. 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo-dark: #241b45;
+    --indigo-mid:  #3d2d72;
+    --indigo-light:#7d63b8;
+    --amber:       #e8a93b;
+    --amber-dim:   #b8842a;
+    --flame:       #d5472d;
+    --bg:          #f6f3ee;
+    --surface:     #ffffff;
+    --text:        #221c33;
+    --muted:       #6f6480;
+    --border:      #ddd6e6;
+    --sidebar-w:   268px;
+    --mono:        'JetBrains Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  #sidebar { width: var(--sidebar-w); background: var(--indigo-dark); position: fixed; top: 0; left: 0; bottom: 0; overflow-y: auto; display: flex; flex-direction: column; z-index: 100; transition: transform .3s ease; }
+  .sidebar-header { background: var(--amber); padding: 20px 18px 16px; flex-shrink: 0; }
+  .back-to-index { display: flex; align-items: center; gap: 5px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--indigo-dark); text-decoration: none; opacity: .65; margin-bottom: 12px; transition: opacity .15s; }
+  .back-to-index:hover { opacity: 1; text-decoration: underline; }
+  .sidebar-header .label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--indigo-dark); }
+  .sidebar-header .chap-num { font-family: 'Barlow Condensed', sans-serif; font-size: 58px; font-weight: 800; line-height: 1; color: var(--indigo-dark); }
+  .sidebar-header .chap-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--indigo-dark); margin-top: 4px; }
+  .toc-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--indigo-light); padding: 20px 18px 8px; }
+  #sidebar nav ul { list-style: none; }
+  #sidebar nav ul li a { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.75); text-decoration: none; border-left: 3px solid transparent; transition: background .15s, color .15s, border-color .15s; line-height: 1.35; }
+  #sidebar nav ul li a:hover, #sidebar nav ul li a.active { background: rgba(255,255,255,.08); color: #fff; border-left-color: var(--amber); }
+  #sidebar nav ul li a .num { font-family: var(--mono); font-size: 11px; color: var(--amber); flex-shrink: 0; margin-top: 1px; font-weight: 600; }
+  #sidebar nav ul li a.disabled { opacity: .4; pointer-events: none; }
+  .sidebar-footer { margin-top: auto; padding: 16px 18px; font-size: 11px; color: rgba(255,255,255,.3); border-top: 1px solid rgba(255,255,255,.1); }
+  .sidebar-footer button { background: none; border: none; cursor: pointer; font-size: 11px; color: rgba(255,255,255,.3); padding: 0; text-align: left; width: 100%; transition: color .15s; }
+  .sidebar-footer button:hover { color: rgba(255,255,255,.6); }
+  .attrib-popover { display: none; position: absolute; bottom: 60px; left: 14px; width: 230px; background: #fff; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,.18); padding: 14px 16px; font-size: 12px; color: var(--text); line-height: 1.6; z-index: 200; }
+  .attrib-popover::after { content: ''; position: absolute; bottom: -7px; left: 20px; width: 14px; height: 14px; background: #fff; transform: rotate(45deg); box-shadow: 2px 2px 4px rgba(0,0,0,.08); }
+  .attrib-popover.visible { display: block; }
+
+  /* ── MAIN ── */
+  #main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
+
+  .hero { background: linear-gradient(135deg, var(--indigo-dark) 0%, var(--indigo-mid) 60%, var(--indigo-light) 100%); padding: 60px 56px 48px; color: #fff; position: relative; overflow: hidden; }
+  .hero::before { content: '1'; position: absolute; right: 40px; top: -10px; font-family: 'Barlow Condensed', sans-serif; font-size: 260px; font-weight: 800; color: rgba(255,255,255,.06); line-height: 1; pointer-events: none; }
+  .hero .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+  .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(36px, 5vw, 56px); font-weight: 800; text-transform: uppercase; letter-spacing: .02em; line-height: 1.05; margin-bottom: 20px; }
+  .hero p { max-width: 600px; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,.82); }
+
+  .search-bar-wrap { background: var(--indigo-dark); padding: 14px 56px; display: flex; align-items: center; gap: 12px; border-bottom: 3px solid var(--amber); }
+  .search-bar-wrap label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.5); white-space: nowrap; letter-spacing: .06em; text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif; }
+  #search-input { flex: 1; max-width: 440px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 6px; padding: 8px 14px; font-size: 14px; color: #fff; font-family: 'Inter', sans-serif; outline: none; transition: background .2s, border-color .2s; }
+  #search-input::placeholder { color: rgba(255,255,255,.4); }
+  #search-input:focus { background: rgba(255,255,255,.16); border-color: var(--amber); }
+  #search-count { font-size: 12px; color: var(--amber); font-family: var(--mono); min-width: 90px; }
+
+  .content { padding: 48px 56px 80px; max-width: 880px; }
+
+  .section-card { background: var(--surface); border-radius: 10px; border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .section-toggle { width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left; display: block; }
+  .section-header { display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; background: var(--surface); transition: background .15s; border-bottom: 1px solid transparent; }
+  .section-num { margin-top: 2px; }
+  .section-toggle:hover .section-header, .section-toggle[aria-expanded="true"] .section-header { background: #f4f1fa; border-bottom-color: var(--border); }
+  .section-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--amber-dim); background: var(--indigo-dark); padding: 4px 9px; border-radius: 5px; letter-spacing: .04em; flex-shrink: 0; }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--indigo-dark); flex: 1; }
+  .chevron { width: 20px; height: 20px; color: var(--muted); transition: transform .25s ease; flex-shrink: 0; margin-top: 2px; }
+  .section-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+  .section-body { display: none; padding: 28px 28px 32px; border-top: 2px solid var(--amber); }
+  .section-body.open { display: block; }
+
+  .subsection { margin-bottom: 32px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection-title { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--indigo-mid); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .subsection-title::before { content: ''; display: inline-block; width: 4px; height: 18px; background: var(--amber); border-radius: 2px; flex-shrink: 0; }
+
+  p { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  ul.content-list { padding-left: 20px; margin-bottom: 14px; }
+  ul.content-list li { font-size: 15px; line-height: 1.7; margin-bottom: 6px; }
+
+  .def-box { background: linear-gradient(135deg, #f1eef8, #f6f2fb); border-left: 4px solid var(--indigo-light); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 16px 0; }
+  .def-box .def-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--indigo-light); margin-bottom: 6px; }
+  .def-box p { font-size: 14px; margin: 0 0 6px; color: var(--indigo-dark); }
+  .def-box p:last-child { margin: 0; }
+  .def-box strong { color: var(--indigo-dark); font-weight: 600; }
+
+  .note-box { background: #fdf6e6; border-left: 4px solid var(--amber-dim); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; font-size: 14px; color: #4a3410; line-height: 1.65; }
+  .note-box .note-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--amber-dim); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .note-label .icon-sm { width: 13px; height: 13px; flex-shrink: 0; }
+  .note-bar { width: 100%; display: flex; align-items: flex-start; gap: 6px; background: none; border: none; cursor: pointer; padding: 0; text-align: left; font-family: inherit; color: inherit; }
+  .note-bar .chevron-n { margin-left: auto; width: 15px; height: 15px; transition: transform .2s; flex-shrink: 0; color: var(--amber-dim); }
+  .note-bar[aria-expanded="true"] .chevron-n { transform: rotate(180deg); }
+  .note-body { display: none; margin-top: 8px; }
+  .note-bar[aria-expanded="true"] + .note-body { display: block; }
+
+  .formula { font-family: var(--mono); background: var(--indigo-dark); color: var(--amber); padding: 14px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; margin: 16px 0; letter-spacing: .04em; text-align: center; overflow-x: auto; }
+  .formula-caption { font-size: 12px; color: var(--muted); text-align: center; margin-top: -10px; margin-bottom: 14px; }
+
+  .kw { background: rgba(232,169,59,.28); color: var(--indigo-dark); padding: 1px 4px; border-radius: 3px; font-weight: 600; }
+
+  mark.sh { background: #f6d187; color: var(--text); border-radius: 2px; padding: 0 2px; }
+  mark.sh.current { background: var(--flame); color: #fff; box-shadow: 0 0 0 2px var(--flame); }
+
+  .rappel-card { background: linear-gradient(120deg, var(--indigo-dark), var(--indigo-mid)); border-radius: 10px; padding: 24px 28px; color: rgba(255,255,255,.88); margin-bottom: 24px; }
+  .rappel-card h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--amber); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; }
+  .rappel-card h2 svg { margin-top: 3px; flex-shrink: 0; }
+  .rappel-card p { color: rgba(255,255,255,.82); font-size: 14px; margin-bottom: 10px; }
+  .rappel-card p:last-child { margin-bottom: 0; }
+  .rappel-ref { display: inline-block; font-family: var(--mono); font-size: 11px; color: var(--amber); opacity: .85; text-decoration: none; border-bottom: 1px dotted currentColor; transition: opacity .15s; }
+  .rappel-ref:hover, .rappel-ref:focus-visible { opacity: 1; }
+
+  /* Équations chimiques : amélioration du sous-texte pour les indices (g), (l), (aq) */
+  .formula sub { font-size: 72%; }
+
+  /* Flash Chimie */
+  .flash-box { background: linear-gradient(135deg, #faf8fd, #f3eefa); border: 1.5px solid var(--indigo-light); border-radius: 10px; padding: 20px 22px; margin: 22px 0; }
+  .flash-box .flash-tag { display: inline-flex; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
+  .flash-box .flash-tag span { padding: 3px 10px; }
+  .flash-box .flash-tag .f1 { background: var(--indigo-dark); color: #fff; border-radius: 4px 0 0 4px; }
+  .flash-box .flash-tag .f2 { background: var(--flame); color: #fff; border-radius: 0 4px 4px 0; }
+  .flash-box h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--indigo-dark); margin-bottom: 12px; }
+  .flash-box p { font-size: 13.5px; line-height: 1.65; margin-bottom: 10px; color: var(--text); }
+  .flash-box p:last-child { margin-bottom: 0; }
+
+  /* Diagramme triangle du feu */
+  .triangle-label-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 12.5px; letter-spacing: .03em; }
+  .triangle-label-sub { font-family: 'Inter', sans-serif; font-size: 9.5px; }
+
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  .data-table th { background: var(--indigo-dark); color: var(--amber); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; padding: 10px 14px; text-align: left; }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: #f6f4fa; }
+  .data-table td strong { color: var(--indigo-dark); }
+  .data-table td.formula-cell { color: var(--indigo-dark); font-family: var(--mono); font-weight: 700; font-size: 14.5px; }
+
+  .fig-block { margin: 18px 0; background: #faf9fc; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; text-align: center; }
+  .fig-block .fig-inner { padding: 20px; }
+  .fig-block figcaption { font-size: 12.5px; color: var(--muted); padding: 10px 16px 14px; border-top: 1px solid var(--border); line-height: 1.5; font-style: italic; text-align: left; }
+
+  .compare-block { display: flex; gap: 2px; margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .compare-col { flex: 1; padding: 18px 20px; }
+  .compare-col--a { background: linear-gradient(135deg, #f1eef8, #e8e1f5); }
+  .compare-col--b { background: linear-gradient(135deg, #fdf1ee, #fbe2da); }
+  .compare-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--indigo-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .compare-col--b .compare-label { color: var(--flame); }
+  .compare-col p { font-size: 13.5px; line-height: 1.6; margin: 0 0 8px; color: var(--text); }
+  .compare-col p:last-child { margin-bottom: 0; }
+  .compare-col svg.bond-fig { width: 100%; max-width: 180px; height: auto; margin: 4px auto 10px; display: block; }
+
+  .cause-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0 22px; }
+  .cause-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 16px 14px; }
+  .cause-card .cause-icon { width: 30px; height: 30px; color: var(--indigo-mid); margin-bottom: 8px; }
+  .cause-card .cause-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--indigo-dark); margin-bottom: 4px; line-height: 1.25; }
+  .cause-card p { font-size: 12.5px; color: var(--muted); margin: 0; line-height: 1.5; }
+  @media (max-width: 768px) { .cause-grid { grid-template-columns: 1fr; } }
+
+  /* Grille des domaines d'application (Section 2) */
+  .usage-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 18px 0 22px; }
+  .usage-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .usage-card .usage-icon { width: 26px; height: 26px; color: var(--indigo-mid); margin-bottom: 8px; }
+  .usage-card .usage-title { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--indigo-dark); margin-bottom: 10px; }
+  .usage-card ul.content-list { margin-bottom: 0; }
+  .usage-card ul.content-list li { font-size: 13.5px; }
+  .usage-card .usage-fig-ref { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 8px; }
+  @media (max-width: 768px) { .usage-grid { grid-template-columns: 1fr; } }
+
+  #to-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; background: var(--indigo-dark); color: var(--amber); border: 2px solid var(--amber); border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 200; }
+  #to-top.visible { opacity: 1; pointer-events: auto; }
+
+  #menu-toggle { display: none; position: fixed; top: 14px; left: 14px; z-index: 150; background: var(--indigo-dark); border: 2px solid var(--amber); color: var(--amber); width: 40px; height: 40px; border-radius: 8px; font-size: 20px; cursor: pointer; align-items: center; justify-content: center; }
+
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    #menu-toggle { display: flex; }
+    .hero { padding: 60px 24px 36px; }
+    .search-bar-wrap { padding: 12px 24px; }
+    .content { padding: 28px 20px 60px; }
+    .compare-block { flex-direction: column; }
+  }
+
+  /* ── QUIZ ── */
+  .quiz-block { margin-top: 36px; margin-bottom: 32px; border-top: 2px solid var(--amber); border-bottom: 2px solid var(--amber); padding-top: 24px; padding-bottom: 24px; }
+  .quiz-block-bar { width: 100%; display: flex; align-items: flex-start; gap: 10px; background: var(--indigo-dark); border: none; border-radius: 10px; cursor: pointer; padding: 14px 18px; margin-bottom: 6px; text-align: left; transition: background .15s; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .quiz-block-bar:hover { background: var(--indigo-mid); }
+  .quiz-block-bar .quiz-block-icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--amber); margin-top: 2px; }
+  .quiz-block-title { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .quiz-block-subtitle { font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: rgba(255,255,255,.72); margin-left: 2px; }
+  .quiz-block-bar .chevron-q { margin-left: auto; width: 20px; height: 20px; transition: transform .2s; flex-shrink: 0; color: #fff; margin-top: 2px; }
+  .quiz-block-bar[aria-expanded="true"] .chevron-q { transform: rotate(180deg); }
+  .quiz-body { display: none; }
+  .quiz-block-bar[aria-expanded="true"] + .quiz-body { display: block; padding-top: 14px; }
+  .quiz-intro { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+  .quiz-score-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; font-size: 13px; color: var(--muted); }
+  .quiz-score-bar progress { flex: 1; height: 6px; border-radius: 3px; appearance: none; -webkit-appearance: none; }
+  .quiz-score-bar progress::-webkit-progress-bar { background: var(--border); border-radius: 3px; }
+  .quiz-score-bar progress::-webkit-progress-value { background: var(--indigo-mid); border-radius: 3px; transition: width .4s; }
+
+  .quiz-q { background: var(--bg); border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; border: 1.5px solid var(--border); transition: border-color .2s; }
+  .quiz-q.answered { border-color: transparent; }
+  .quiz-q-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
+  .quiz-q-text { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 14px; }
+
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-option { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border-radius: 8px; border: 1.5px solid var(--border); background: #fff; cursor: pointer; font-size: 14px; color: var(--text); transition: background .15s, border-color .15s; text-align: left; width: 100%; line-height: 1.45; }
+  .quiz-option:hover:not(:disabled) { background: #f1eef8; border-color: var(--indigo-mid); }
+  .quiz-option .opt-letter { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted); flex-shrink: 0; margin-top: 1px; }
+  .quiz-option:disabled { cursor: default; }
+  .quiz-option.correct { background: #e8f8ef; border-color: #2da262; color: #1a6640; }
+  .quiz-option.correct .opt-letter { color: #2da262; }
+  .quiz-option.wrong { background: #fdecea; border-color: #d94f3d; color: #8b2218; }
+  .quiz-option.wrong .opt-letter { color: #d94f3d; }
+  .quiz-option.reveal { background: #e8f8ef; border-color: #2da262; color: #1a6640; opacity: .7; }
+  .quiz-option.reveal .opt-letter { color: #2da262; }
+
+  .quiz-feedback { margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 13.5px; line-height: 1.55; display: none; }
+  .quiz-feedback.show { display: flex; gap: 8px; align-items: flex-start; }
+  .quiz-feedback .icon-sm { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
+  .quiz-feedback.ok { background: #e8f8ef; color: #1a6640; }
+  .quiz-feedback.ko { background: #fdecea; color: #8b2218; }
+  .quiz-result-msg { margin-top: 16px; padding: 14px 18px; border-radius: 10px; font-size: 14px; font-weight: 500; text-align: center; display: none; align-items: center; justify-content: center; gap: 8px; }
+  .quiz-result-msg.show { display: flex; }
+  .quiz-result-msg .icon-sm { width: 18px; height: 18px; flex-shrink: 0; }
+  .quiz-result-msg.great { background: #e8f8ef; color: #1a6640; }
+  .quiz-result-msg.good { background: #fdf6e3; color: #7a5c00; }
+  .quiz-result-msg.poor { background: #fdecea; color: #8b2218; }
+
+  .quiz-reset { margin-top: 20px; padding: 9px 20px; border-radius: 8px; border: 1.5px solid var(--indigo-mid); background: #fff; color: var(--indigo-dark); font-size: 13px; font-weight: 600; cursor: pointer; transition: background .15s; display: none; }
+  .quiz-reset:hover { background: #f1eef8; }
+
+  /* === ACTIVITÉ SUGGÉRÉE === */
+  .icon-sm { display: inline-block; vertical-align: middle; width: 14px; height: 14px; flex-shrink: 0; }
+  .activity-block { margin: 22px 0; border: 1.5px solid var(--flame); border-radius: 10px; overflow: hidden; background: #fdf6f4; }
+  .activity-bar { width: 100%; display: flex; align-items: flex-start; gap: 10px; padding: 11px 16px; background: #fbe2da; border: none; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--flame); text-align: left; transition: background .15s; line-height: 1.35; }
+  .activity-bar:hover { background: #f8d3c7; }
+  .activity-bar .activity-icon { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+  .activity-bar .chevron-a { margin-left: auto; width: 16px; height: 16px; transition: transform .2s; flex-shrink: 0; margin-top: 1px; }
+  .activity-bar[aria-expanded="true"] .chevron-a { transform: rotate(180deg); }
+  .activity-content { display: none; padding: 16px 18px 18px; }
+  .activity-bar[aria-expanded="true"] + .activity-content { display: block; }
+  .activity-question { font-size: 14.5px; color: var(--text); line-height: 1.6; font-style: italic; }
+  .activity-hint-toggle { margin-top: 12px; font-size: 12px; font-weight: 600; color: var(--indigo-mid); background: none; border: none; cursor: pointer; padding: 0; text-decoration: underline; }
+  .activity-hint { display: none; margin-top: 8px; font-size: 13px; color: var(--muted); background: var(--bg); border-radius: 6px; padding: 10px 12px; line-height: 1.55; }
+  .activity-hint.show { display: block; }
+</style>
+</head>
+<body>
+
+<button id="menu-toggle" aria-label="Menu" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<aside id="sidebar" role="navigation" aria-label="Table des matières">
+  <div class="sidebar-header">
+    <a href="index.html" class="back-to-index" title="Retour à la table des matières du cours">
+      <svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Tous les chapitres
+    </a>
+    <div class="label">Chimie Sec. 5 · Module 1 · Chapitre</div>
+    <div class="chap-num">1</div>
+    <div class="chap-title">Les propriétés chimiques des gaz</div>
+  </div>
+  <div class="toc-label">Table des matières</div>
+  <nav>
+    <ul>
+      <li><a href="#rappel" class="toc-link"><span class="num">—</span> Rappel</a></li>
+      <li><a href="#section-1-1" class="toc-link"><span class="num">1.1</span> Les causes de la réactivité</a></li>
+      <li><a href="#section-1-2" class="toc-link"><span class="num">1.2</span> Les gaz combustibles</a></li>
+      <li><a href="#section-1-3" class="toc-link"><span class="num">1.3</span> Les gaz comburants</a></li>
+      <li><a href="#" class="disabled"><span class="num">1.4</span> Utilisation au quotidien</a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-footer">
+    <button onclick="document.getElementById('attrib-pop').classList.toggle('visible')" title="À propos de ce document" style="display:flex;align-items:center;gap:6px;"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.5" r="0.6" fill="currentColor" stroke="none"/></svg> À propos de ce document</button>
+    <div class="attrib-popover" id="attrib-pop">
+      Matériel préparé par M. Raphaël Sylvestre Bouchard, à l'aide du manuel <em>Delta</em>, Secondaire 5 (TC Média Livres inc.).
+    </div>
+  </div>
+</aside>
+
+<main id="main">
+  <div class="hero">
+    <div class="eyebrow">Chimie · Secondaire 5 · Module 1 — Les gaz</div>
+    <h1>Les propriétés<br>chimiques des gaz</h1>
+    <p>Certains gaz dorment tranquillement dans leur bonbonne pendant des années. D'autres s'enflamment à la moindre étincelle, ou rongent le métal qu'ils touchent. Ce chapitre explique pourquoi — à travers la réactivité chimique des gaz, leur rôle comme combustibles ou comburants, et leurs usages bien réels dans notre quotidien.</p>
+  </div>
+
+  <div class="search-bar-wrap">
+    <label for="search-input">🔍 Recherche rapide</label>
+    <input type="text" id="search-input" placeholder="Ex : réactivité, octet, énergie de liaison, gaz noble…" oninput="doSearch(this.value)">
+    <span id="search-count"></span>
+  </div>
+
+  <div class="content">
+
+    <!-- RAPPEL -->
+    <div id="rappel" class="rappel-card">
+      <h2><svg class="icon-sm" aria-hidden="true" style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg> Rappel — Ce qu'on sait déjà (Sec. 4)</h2>
+      <p>Avant de comprendre pourquoi certains gaz réagissent plus facilement que d'autres, trois notions du secondaire 4 valent la peine d'être ravivées :</p>
+      <p>• <strong>La règle de l'octet</strong> — un atome cherche à compléter sa couche de valence à huit électrons (deux seulement pour l'hydrogène et l'hélium), la configuration la plus stable qui soit. <a class="rappel-ref" href="../science-sec4/chapitre1.html#section-1-1" title="Revoir : Sec. 4, chapitre 1, section 1.1 — Les modèles atomiques">↳ Sec. 4 · ch. 1, §1.1</a></p>
+      <p>• <strong>Le tableau périodique et ses familles</strong>, dont celle des gaz nobles (colonne 18) — des éléments dont la couche de valence est déjà complète à l'état naturel. <a class="rappel-ref" href="../science-sec4/chapitre1.html#section-1-3" title="Revoir : Sec. 4, chapitre 1, section 1.3 — Le tableau périodique des éléments">↳ Sec. 4 · ch. 1, §1.3</a></p>
+      <p>• <strong>Les liaisons chimiques</strong>, covalentes ou ioniques — la façon dont les atomes s'unissent pour atteindre une configuration plus stable. <a class="rappel-ref" href="../science-sec4/chapitre1.html#section-1-4" title="Revoir : Sec. 4, chapitre 1, section 1.4 — Les molécules">↳ Sec. 4 · ch. 1, §1.4</a></p>
+    </div>
+
+    <!-- SECTION 1.1 -->
+    <div class="section-card" id="section-1-1">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">1.1</span>
+          <span class="section-title">Les causes de la réactivité chimique des gaz</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>Un gaz peut sembler inerte à l'œil : invisible, souvent inodore, occupant sans effort tout l'espace qu'on lui offre. Sa réactivité chimique — sa capacité à se transformer au contact d'un autre élément — varie pourtant énormément d'un gaz à l'autre. Le dihydrogène s'enflamme au moindre contact avec une étincelle ; l'hélium, lui, ne réagit avec à peu près rien, même porté à très haute température. D'où vient cette différence?</p>
+
+        <div class="def-box">
+          <div class="def-label">Définition</div>
+          <p><strong>Réactivité chimique :</strong> la tendance d'une substance à subir une transformation chimique sous l'effet d'un facteur externe — la chaleur, la lumière, ou le contact avec une autre substance.</p>
+        </div>
+
+        <p>Trois éléments, tous liés à la structure électronique des atomes, déterminent à quel point un gaz est réactif :</p>
+
+        <div class="cause-grid">
+          <div class="cause-card">
+            <svg class="cause-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"/></svg>
+            <div class="cause-title">Attraction noyau–électrons</div>
+            <p>La force avec laquelle le noyau retient ses électrons de valence.</p>
+          </div>
+          <div class="cause-card">
+            <svg class="cause-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="3.4"/><circle cx="19" cy="12" r="3.4"/><path d="M9 9c3-4 7-4 9 0"/><path d="M17 8.3l1 .9-1.3.4"/></svg>
+            <div class="cause-title">Tendance à gagner ou céder des e⁻</div>
+            <p>La facilité avec laquelle l'atome peut atteindre une configuration stable.</p>
+          </div>
+          <div class="cause-card">
+            <svg class="cause-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="3.5" cy="12" r="2.2"/><circle cx="20.5" cy="12" r="2.2"/><path d="M6 12l2.5-3 2.5 6 2.5-6 2.5 6 2.5-3"/></svg>
+            <div class="cause-title">Force des liaisons</div>
+            <p>L'énergie nécessaire pour briser les liaisons d'une molécule gazeuse.</p>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Le comportement électronique des atomes</div>
+
+          <p>Les deux premières causes sont intimement liées à une seule et même idée, déjà rencontrée l'an dernier : un atome est chimiquement stable lorsque sa couche de valence est complète. Deux éléments favorisent cette stabilité naturelle : une forte attraction entre le noyau et les électrons de valence, et une couche de valence déjà près d'être complète. Plus un atome réunit ces deux conditions, moins il a besoin de réagir avec autre chose pour devenir stable.</p>
+
+          <div class="compare-block">
+            <div class="compare-col compare-col--a">
+              <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Les gaz nobles</div>
+              <p>He, Ne, Ar, Kr, Xe et Rn possèdent déjà une couche de valence complète — huit électrons (deux pour l'hélium). Ils n'ont donc <strong>aucune tendance</strong> à gagner, céder ou partager des électrons.</p>
+              <p>Résultat : ce sont les gaz les moins réactifs qui soient. Ils existent à l'état d'<strong>atomes libres</strong>, sans jamais se lier entre eux ni avec d'autres éléments.</p>
+            </div>
+            <div class="compare-col compare-col--b">
+              <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="12" r="4"/><circle cx="16" cy="12" r="4"/></svg> Les autres gaz</div>
+              <p>Le chlore (Cl), l'oxygène (O), l'azote (N), le fluor (F) et l'hydrogène (H) ont une couche de valence <strong>incomplète</strong> à l'état d'atome.</p>
+              <p>Pour se stabiliser, deux atomes du même élément partagent des électrons par liaison covalente. C'est pourquoi ces éléments existent dans la nature sous forme de <strong>molécules diatomiques</strong> : Cl₂, O₂, N₂, F₂, H₂.</p>
+            </div>
+          </div>
+
+          <figure class="fig-block">
+            <div class="fig-inner">
+              <svg viewBox="0 0 240 240" style="width:220px;height:220px;" role="img" aria-label="Diagramme de l'atome de néon : deux électrons sur la couche interne, huit électrons sur la couche de valence externe, qui est donc complète.">
+                <circle cx="120" cy="120" r="85" fill="none" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 4"/>
+                <circle cx="120" cy="120" r="45" fill="none" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 4"/>
+                <circle cx="120" cy="120" r="20" fill="var(--indigo-dark)"/>
+                <text x="120" y="126" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="17" fill="var(--amber)">Ne</text>
+                <circle cx="165" cy="120" r="5.5" fill="var(--indigo-mid)"/>
+                <circle cx="75" cy="120" r="5.5" fill="var(--indigo-mid)"/>
+                <circle cx="205" cy="120" r="5.5" fill="var(--flame)"/>
+                <circle cx="180" cy="180" r="5.5" fill="var(--flame)"/>
+                <circle cx="120" cy="205" r="5.5" fill="var(--flame)"/>
+                <circle cx="60" cy="180" r="5.5" fill="var(--flame)"/>
+                <circle cx="35" cy="120" r="5.5" fill="var(--flame)"/>
+                <circle cx="60" cy="60" r="5.5" fill="var(--flame)"/>
+                <circle cx="120" cy="35" r="5.5" fill="var(--flame)"/>
+                <circle cx="180" cy="60" r="5.5" fill="var(--flame)"/>
+              </svg>
+            </div>
+            <figcaption>Le néon (Ne) : 2 électrons sur la première couche, 8 sur la seconde — une couche de valence déjà complète. Aucune tendance à réagir.</figcaption>
+          </figure>
+
+          <div class="note-box">
+            <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin</span>
+              <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="note-body">
+              <p>« Presque inertes » n'est pas tout à fait « parfaitement inertes ». Sous des conditions extrêmes, le xénon (Xe) — dont les électrons de valence sont plus loin du noyau et donc moins fermement retenus — peut être forcé à former quelques composés, comme le XeF₂ ou le XeF₄, en présence de fluor très réactif. Ces cas restent l'exception qui confirme la règle : plus un gaz noble est gros, plus il est (très légèrement) susceptible de réagir.</p>
+            </div>
+          </div>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">Pourquoi l'hélium n'a-t-il jamais formé de composé chimique stable connu à ce jour, alors que le fluor — juste à côté de lui dans le tableau périodique — est l'un des éléments les plus réactifs qui soit?</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">Compare leur configuration électronique : l'hélium a déjà 2 électrons sur sa seule couche de valence (couche complète), alors que le fluor n'en a que 7 sur 8 — il ne lui en manque qu'un seul pour devenir stable, ce qui le rend extrêmement « avide » d'électrons.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">La force des liaisons chimiques</div>
+
+          <p>Pour les gaz qui existent sous forme moléculaire, un troisième facteur entre en jeu. Lorsqu'une molécule réagit, les liaisons qui unissent ses atomes doivent d'abord se briser avant que de nouvelles liaisons puissent se former dans les produits. Or, briser une liaison exige toujours un apport d'énergie — cette quantité d'énergie, propre à chaque type de liaison, porte le nom d'<span class="kw">énergie de liaison</span>.</p>
+
+          <div class="def-box">
+            <div class="def-label">À retenir</div>
+            <p>Plus l'énergie nécessaire pour briser les liaisons d'un gaz est <strong>faible</strong>, plus ce gaz est <strong>réactif</strong> — ses liaisons cèdent plus facilement, ce qui laisse ses atomes libres de former de nouveaux liens.</p>
+          </div>
+
+          <p>Le difluor (F₂) et le diazote (N₂) illustrent bien ce principe. Les deux sont des molécules diatomiques, mais leur réactivité n'a rien de comparable :</p>
+
+          <div class="compare-block">
+            <div class="compare-col compare-col--a">
+              <div class="compare-label">Difluor (F₂)</div>
+              <svg class="bond-fig" viewBox="0 0 200 100" role="img" aria-label="Deux atomes de fluor reliés par une liaison simple.">
+                <circle cx="55" cy="50" r="24" fill="var(--indigo-light)"/>
+                <text x="55" y="56" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="18" fill="#fff">F</text>
+                <circle cx="145" cy="50" r="24" fill="var(--indigo-light)"/>
+                <text x="145" y="56" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="18" fill="#fff">F</text>
+                <line x1="80" y1="50" x2="120" y2="50" stroke="var(--flame)" stroke-width="4"/>
+              </svg>
+              <p>Liaison <strong>simple</strong> — environ <strong>159 kJ/mol</strong> suffisent à la briser.</p>
+              <p>C'est l'un des gaz les plus réactifs connus : il attaque même le verre et l'eau.</p>
+            </div>
+            <div class="compare-col compare-col--b">
+              <div class="compare-label">Diazote (N₂)</div>
+              <svg class="bond-fig" viewBox="0 0 200 100" role="img" aria-label="Deux atomes d'azote reliés par une liaison triple.">
+                <circle cx="55" cy="50" r="24" fill="var(--indigo-mid)"/>
+                <text x="55" y="56" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="18" fill="#fff">N</text>
+                <circle cx="145" cy="50" r="24" fill="var(--indigo-mid)"/>
+                <text x="145" y="56" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="18" fill="#fff">N</text>
+                <line x1="80" y1="42" x2="120" y2="42" stroke="var(--flame)" stroke-width="3"/>
+                <line x1="80" y1="50" x2="120" y2="50" stroke="var(--flame)" stroke-width="3"/>
+                <line x1="80" y1="58" x2="120" y2="58" stroke="var(--flame)" stroke-width="3"/>
+              </svg>
+              <p>Liaison <strong>triple</strong> — il faut environ <strong>945 kJ/mol</strong> pour la briser.</p>
+              <p>C'est l'une des liaisons covalentes les plus fortes connues — ce qui explique pourquoi le N₂ compose 78 % de l'atmosphère sans jamais s'y « épuiser ».</p>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin</span>
+              <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="note-body">
+              <p>Pour l'instant, retiens seulement la tendance : liaison faible → gaz réactif. On reviendra sur l'énergie de liaison de façon beaucoup plus rigoureuse — avec des calculs précis — au module 2, lorsqu'on abordera l'enthalpie et le bilan énergétique des réactions chimiques.</p>
+            </div>
+          </div>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">Le dichlore (Cl₂) possède une seule liaison Cl–Cl, dont l'énergie de liaison est d'environ 242 kJ/mol. En te basant uniquement sur ce facteur, le dichlore devrait-il être plus réactif ou moins réactif que le difluor (F₂, 159 kJ/mol)? Et par rapport au diazote (N₂, 945 kJ/mol)?</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">Classe les trois énergies de liaison en ordre croissant : 159 (F₂) &lt; 242 (Cl₂) &lt; 945 (N₂). Une énergie de liaison plus faible signifie une liaison plus facile à briser, donc un gaz plus réactif. Le dichlore devrait donc être moins réactif que le difluor, mais beaucoup plus réactif que le diazote — ce qui correspond bien à la réalité observée en laboratoire.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Synthèse — Section 1.1</div>
+          <div class="def-box">
+            <div class="def-label">À retenir</div>
+            <p>• La <strong>réactivité chimique</strong> d'un gaz est sa tendance à se transformer sous l'effet de la chaleur, de la lumière ou du contact avec une autre substance.</p>
+            <p>• Elle dépend de trois facteurs liés à la structure électronique : l'attraction noyau–électrons de valence, la tendance à gagner ou céder des électrons, et la force des liaisons de la molécule.</p>
+            <p>• Les <strong>gaz nobles</strong> ont une couche de valence complète → très peu réactifs → existent à l'état d'atomes libres.</p>
+            <p>• Les autres éléments gazeux ont une couche incomplète → existent sous forme de <strong>molécules diatomiques</strong> (Cl₂, O₂, N₂, F₂, H₂).</p>
+            <p>• Plus l'<strong>énergie de liaison</strong> est faible, plus le gaz est réactif — comme le montre le contraste entre le difluor (très réactif) et le diazote (très stable).</p>
+          </div>
+        </div>
+
+        <div class="quiz-block" data-quiz="q11">
+          <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
+            <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Section 1.1<span class="quiz-block-subtitle">Clique pour t'exercer</span></span>
+            <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="quiz-body">
+          <p class="quiz-intro">Clique sur une réponse pour la valider. La bonne réponse s'affiche immédiatement.</p>
+          <div class="quiz-score-bar">
+            <span class="quiz-score-label">0 / 6</span>
+            <progress class="quiz-progress" value="0" max="6"></progress>
+          </div>
+
+          <div class="quiz-q" data-qi="0">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Les gaz nobles sont parmi les gaz les moins réactifs qui soient.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Les gaz nobles ont déjà une couche de valence complète, ils comptent donc parmi les substances les moins réactives qui soient.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : les gaz nobles ont une couche de valence déjà complète (8 électrons, 2 pour l'hélium), ce qui en fait au contraire les gaz les MOINS réactifs qui soient.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="1">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Pourquoi le dichlore (Cl₂) existe-t-il sous forme de molécule plutôt que d'atomes libres de chlore (Cl)?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> Parce qu'un atome de Cl a une couche de valence incomplète, et que le partage d'électrons avec un autre atome de Cl lui permet de la compléter</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Parce que le chlore est un gaz noble</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Parce que le chlore est radioactif</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Parce qu'aucune configuration électronique stable n'est possible pour le chlore</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. L'atome de chlore n'a que 7 électrons de valence — il lui en manque un seul pour l'octet. En partageant un électron avec un autre atome de Cl (liaison covalente), les deux atomes complètent leur couche de valence. C'est pourquoi le chlore existe naturellement sous forme de Cl₂, jamais de Cl seul.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : un atome de chlore a 7 électrons de valence, il lui en manque un pour compléter l'octet. En partageant un électron par liaison covalente avec un autre atome de Cl, les deux complètent leur couche — d'où la molécule Cl₂.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="2">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Plus l'énergie de liaison d'un gaz est élevée, plus ce gaz est réactif.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact — c'est l'inverse. Une énergie de liaison élevée signifie qu'il faut beaucoup d'énergie pour briser la liaison, ce qui rend le gaz plus stable, donc moins réactif.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : la relation est inverse. Une énergie de liaison élevée (comme les 945 kJ/mol du N₂) signifie une liaison difficile à briser, donc un gaz peu réactif. C'est une énergie de liaison FAIBLE qui rend un gaz réactif.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="3">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Le dibrome (Br₂, liaison simple, énergie de liaison ≈ 193 kJ/mol) et le diazote (N₂, liaison triple, ≈ 945 kJ/mol) : lequel des deux devrait être le plus réactif, en tenant compte seulement de la force de leur liaison?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Le diazote (N₂), parce que sa liaison est triple, donc plus forte</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Les deux devraient être également réactifs</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">C</span> Le dibrome (Br₂), parce que son énergie de liaison est beaucoup plus faible</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Impossible à déterminer sans connaître leur masse molaire</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Une énergie de liaison de 193 kJ/mol (Br₂) est beaucoup plus facile à franchir que 945 kJ/mol (N₂) — le dibrome devrait donc être nettement plus réactif, ce qui correspond à la réalité observée.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est le dibrome (Br₂) : son énergie de liaison, beaucoup plus faible (193 kJ/mol contre 945 kJ/mol pour N₂), signifie que sa liaison cède plus facilement — donc il est plus réactif.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="4">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">L'hydrogène (H) existe naturellement sous forme de molécules H₂ plutôt que d'atomes libres.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Un atome d'hydrogène n'a qu'un seul électron sur sa couche de valence — il lui en manque un pour atteindre la stabilité de l'hélium (2 électrons). En partageant un électron avec un autre atome de H, les deux se stabilisent, formant H₂.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai : un atome de H isolé n'a qu'un électron de valence, une couche incomplète. En partageant un électron avec un autre atome de H, les deux atteignent la configuration stable de l'hélium (2 électrons) — d'où la molécule H₂.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="5">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Un élève affirme : « Le xénon (Xe) ne forme jamais aucun composé chimique, sous aucune condition. » Cette affirmation est-elle juste?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Oui, les gaz nobles ne réagissent jamais, sans exception</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Oui, car le xénon a une couche de valence incomplète</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Non, parce que le xénon n'est pas vraiment un gaz noble</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">D</span> Non — sous des conditions extrêmes, un gros gaz noble comme le xénon peut former quelques composés (ex. XeF₂), car ses électrons de valence sont plus loin du noyau et moins fermement retenus</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. C'est la nuance vue dans la note « Pour aller plus loin » : plus un gaz noble est gros (comme le xénon), plus ses électrons de valence externes sont loin du noyau et faiblement retenus, ce qui permet — sous des conditions extrêmes — la formation de quelques composés comme XeF₂ ou XeF₄.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Cette affirmation est trop absolue. Sous des conditions extrêmes, un gros gaz noble comme le xénon peut former quelques composés (XeF₂, XeF₄) parce que ses électrons de valence, plus loin du noyau, sont moins fermement retenus. Ce sont des exceptions rares, mais elles existent.</span></div>
+          </div>
+
+          <div class="quiz-result-msg" id="result-q11"></div>
+          <button class="quiz-reset" id="reset-q11">↺ Recommencer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 1.2 -->
+    <div class="section-card" id="section-1-2">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">1.2</span>
+          <span class="section-title">Les gaz combustibles</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>Le vrombissement d'un moteur à essence, la flamme bleue d'une cuisinière au gaz, l'étincelle d'un briquet : trois scènes ordinaires, mais une seule et même question chimique derrière chacune d'elles. Qu'est-ce qui fait qu'un gaz peut brûler? La réponse tient en trois ingrédients précis — et il suffit d'en retirer un seul pour que le feu s'éteigne.</p>
+
+        <div class="def-box">
+          <div class="def-label">Définition</div>
+          <p><strong>Combustion :</strong> réaction chimique exothermique d'oxydation entre un combustible et un comburant, amorcée dès que le mélange atteint son point d'ignition.</p>
+        </div>
+
+        <p>On représente traditionnellement ces trois conditions par le <strong>triangle du feu</strong> — une image aussi utile pour comprendre une combustion que pour l'éteindre : il suffit de retirer un seul des trois sommets pour que la réaction cesse.</p>
+
+        <figure class="fig-block">
+          <div class="fig-inner">
+            <svg viewBox="0 0 320 305" style="width:290px;max-width:100%;height:auto;" role="img" aria-label="Le triangle du feu : le combustible, le comburant et le point d'ignition doivent tous les trois être réunis pour qu'une combustion se produise.">
+              <line x1="160" y1="75" x2="66" y2="225" stroke="var(--border)" stroke-width="2.5"/>
+              <line x1="160" y1="75" x2="254" y2="225" stroke="var(--border)" stroke-width="2.5"/>
+              <line x1="66" y1="225" x2="254" y2="225" stroke="var(--border)" stroke-width="2.5"/>
+
+              <g transform="translate(160,168)">
+                <path d="M0,-13 C5,-6 6,1 3,6 C4,-1 0,-3 0,2 C-3,-1 -4,-6 0,-13Z" fill="var(--flame)"/>
+              </g>
+              <text x="160" y="196" text-anchor="middle" class="triangle-label-sub" fill="var(--muted)" letter-spacing="0.08em">COMBUSTION</text>
+
+              <circle cx="160" cy="75" r="32" fill="var(--amber)"/>
+              <g transform="translate(160,75)" fill="#fff">
+                <path d="M-3,-11 L2,-2 L-1,-2 L3,11 L-4,1 L-1,1 Z"/>
+              </g>
+              <text x="160" y="16" text-anchor="middle" class="triangle-label-main" fill="var(--indigo-dark)">POINT D'IGNITION</text>
+              <text x="160" y="30" text-anchor="middle" class="triangle-label-sub" fill="var(--muted)">Amorce la réaction</text>
+
+              <circle cx="66" cy="225" r="32" fill="var(--indigo-mid)"/>
+              <g transform="translate(66,225)" fill="#fff">
+                <path d="M0,-13 C5,-6 6,1 3,6 C4,-1 0,-3 0,2 C-3,-1 -4,-6 0,-13Z"/>
+              </g>
+              <text x="66" y="275" text-anchor="middle" class="triangle-label-main" fill="var(--indigo-dark)">COMBUSTIBLE</text>
+              <text x="66" y="289" text-anchor="middle" class="triangle-label-sub" fill="var(--muted)">La substance qui brûle</text>
+
+              <circle cx="254" cy="225" r="32" fill="var(--flame)"/>
+              <circle cx="247" cy="225" r="5.5" fill="#fff"/>
+              <circle cx="261" cy="225" r="5.5" fill="#fff"/>
+              <line x1="252.5" y1="225" x2="255.5" y2="225" stroke="#fff" stroke-width="2"/>
+              <text x="254" y="275" text-anchor="middle" class="triangle-label-main" fill="var(--indigo-dark)">COMBURANT</text>
+              <text x="254" y="289" text-anchor="middle" class="triangle-label-sub" fill="var(--muted)">Permet la combustion</text>
+            </svg>
+          </div>
+          <figcaption>Le triangle du feu : combustible, comburant et point d'ignition doivent être réunis pour qu'une combustion s'amorce. Retirer un seul de ces trois éléments suffit à l'éteindre — c'est le principe derrière tous les extincteurs.</figcaption>
+        </figure>
+
+        <p>Le <strong>comburant</strong> le plus commun est le dioxygène (O₂) — celui-là même dont on a vu, à la section précédente, qu'il existe sous forme de <a href="#section-1-1" onclick="var t=document.getElementById('section-1-1');var btn=t.querySelector('.section-toggle');if(btn.getAttribute('aria-expanded')==='false')btn.click();setTimeout(()=>t.scrollIntoView({behavior:'smooth',block:'start'}),80);return false;" style="color:var(--indigo-mid);font-weight:600;">molécule diatomique →</a>, et qui compose environ 21 % de l'atmosphère terrestre. Le <strong>point d'ignition</strong>, quant à lui, varie d'un combustible à l'autre : le butane s'enflamme à une température beaucoup plus basse que le méthane, par exemple, ce qui explique pourquoi on le retrouve dans les briquets plutôt que le méthane.</p>
+
+        <div class="subsection-title">Les hydrocarbures gazeux</div>
+
+        <p>Parmi les combustibles gazeux les plus répandus figurent les <strong>hydrocarbures</strong> — des molécules composées uniquement d'atomes de carbone et d'hydrogène. Aux conditions ambiantes de température et de pression, quatre d'entre eux existent à l'état gazeux :</p>
+
+        <table class="data-table">
+          <thead><tr><th>Nom</th><th>Formule</th><th>Usage courant</th></tr></thead>
+          <tbody>
+            <tr><td>Méthane</td><td class="formula-cell">CH₄</td><td>Composant principal du gaz naturel (chauffage, cuisinière)</td></tr>
+            <tr><td>Éthane</td><td class="formula-cell">C₂H₆</td><td>Sous-produit du gaz naturel; matière première de l'industrie pétrochimique</td></tr>
+            <tr><td>Propane</td><td class="formula-cell">C₃H₈</td><td>Barbecues, chaufferettes, chauffage en région rurale</td></tr>
+            <tr><td>Butane</td><td class="formula-cell">C₄H₁₀</td><td>Briquets, cartouches de camping</td></tr>
+          </tbody>
+        </table>
+
+        <p>Lorsqu'un hydrocarbure brûle <strong>complètement</strong> dans le dioxygène, les seuls produits sont le dioxyde de carbone et l'eau. C'est exactement ce qui se produit chaque fois qu'on actionne un briquet au butane :</p>
+
+        <div class="formula">2 C₄H₁₀<sub>(g)</sub> + 13 O₂<sub>(g)</sub> → 8 CO₂<sub>(g)</sub> + 10 H₂O<sub>(g)</sub></div>
+        <p class="formula-caption">La combustion du butane contenu dans un briquet — le CO₂ produit est un gaz à effet de serre.</p>
+
+        <div class="note-box">
+          <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+            <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin</span>
+            <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="note-body">
+            <p>L'équation ci-dessus suppose un apport suffisant en dioxygène : c'est une <strong>combustion complète</strong>. Lorsque l'apport en O₂ est insuffisant — un appareil de chauffage mal ventilé, par exemple — la réaction devient <strong>incomplète</strong> et produit plutôt du monoxyde de carbone (CO) : un gaz incolore, inodore et hautement toxique, au lieu du CO₂. C'est pourquoi tout appareil à combustion (chaudière, foyer au gaz, génératrice) doit être accompagné d'un détecteur de monoxyde de carbone — une simple question de ventilation peut faire toute la différence entre un CO₂ inoffensif et un CO potentiellement mortel.</p>
+          </div>
+        </div>
+
+        <div class="activity-block">
+          <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+            <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg>
+            <span>Question de réflexion</span>
+            <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="activity-content">
+            <p class="activity-question">À l'aide du triangle du feu, explique pourquoi verser de l'eau sur un feu de bois ordinaire l'éteint efficacement, alors que verser de l'eau sur une friture enflammée est non seulement inefficace, mais dangereux.</p>
+            <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+            <div class="activity-hint">Sur du bois, l'eau retire la <strong>chaleur</strong> (elle absorbe l'énergie en s'évaporant) et fait chuter la température sous le point d'ignition — un sommet du triangle disparaît. Sur une friture, l'huile est bien au-dessus de 100 °C : l'eau versée se vaporise instantanément en un jet de vapeur qui projette de l'huile enflammée dans toutes les directions, aggravant l'incendie plutôt que de l'éteindre. Pour un feu de graisse, il faut plutôt couper le <strong>comburant</strong> (couvercle, extincteur à mousse) — jamais l'eau.</div>
+          </div>
+        </div>
+
+        <div class="subsection-title">Le dihydrogène : un combustible pas comme les autres</div>
+
+        <p>Le dihydrogène (H₂) est lui aussi utilisé comme combustible, mais sa faible masse volumique fait qu'il ne se trouve qu'à l'état de trace dans la haute atmosphère — impossible de le puiser directement dans l'air. Il doit être produit industriellement, le plus souvent par extraction à partir du méthane ou par électrolyse de l'eau. Sa combustion, elle, est d'une simplicité remarquable :</p>
+
+        <div class="formula">2 H₂<sub>(g)</sub> + O₂<sub>(g)</sub> → 2 H₂O<sub>(g)</sub></div>
+        <p class="formula-caption">Aucun carbone dans l'équation : le seul produit de la combustion du dihydrogène est l'eau.</p>
+
+        <div class="compare-block">
+          <div class="compare-col compare-col--a">
+            <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-3 4-5 6-5 9a5 5 0 0 0 10 0c0-3-2-5-5-9Z"/></svg>Extraction du méthane</div>
+            <p>Méthode la plus utilisée actuellement. Le méthane est chauffé avec de la vapeur d'eau pour en extraire le dihydrogène.</p>
+            <p>Consomme beaucoup d'énergie et libère une quantité considérable de CO₂ comme sous-produit.</p>
+          </div>
+          <div class="compare-col compare-col--b">
+            <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>Électrolyse de l'eau</div>
+            <p>Un courant électrique sépare l'eau en H₂ et O₂. Aucun CO₂ n'est libéré directement.</p>
+            <p>Exige elle aussi beaucoup d'électricité — un procédé réellement « vert » seulement si cette électricité provient d'une source propre (hydroélectricité, par exemple).</p>
+          </div>
+        </div>
+
+        <p>Dans une <strong>pile à combustible</strong>, ce processus s'inverse : le dihydrogène se combine au dioxygène de l'air pour produire de l'électricité et de l'eau — sans la moindre émission de CO₂ au moment de l'utilisation. C'est ce qui permet à certains véhicules électriques d'éliminer les émissions polluantes de leur moteur.</p>
+
+        <div class="activity-block">
+          <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+            <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg>
+            <span>Question de réflexion</span>
+            <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="activity-content">
+            <p class="activity-question">On qualifie souvent le dihydrogène de « combustible propre ». En te basant sur ce que tu viens de lire, explique en quoi cette appellation est vraie… et en quoi elle peut être trompeuse.</p>
+            <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+            <div class="activity-hint">Elle est vraie <strong>à l'utilisation</strong> : brûler du H₂ ou le faire réagir dans une pile à combustible ne produit que de l'eau, sans CO₂. Elle est trompeuse si on ignore la <strong>production</strong> : la méthode la plus répandue (extraction du méthane) libère beaucoup de CO₂ en amont, et même l'électrolyse n'est propre que si l'électricité utilisée l'est aussi. Un bilan environnemental honnête doit tenir compte du cycle de vie complet, pas seulement du moment où le gaz brûle.</div>
+          </div>
+        </div>
+
+        <div class="flash-box">
+          <div class="flash-tag"><span class="f1">Flash</span><span class="f2">Chimie</span></div>
+          <h4>La catastrophe du Hindenburg (1937)</h4>
+          <p>Le 6 mai 1937, le zeppelin allemand <em>Hindenburg</em> s'apprête à atterrir à Lakehurst, au New Jersey, au terme d'une traversée transatlantique. Conçu pour être gonflé à l'hélium — un gaz inerte — il a dû être rempli de dihydrogène à la place : les États-Unis, seuls producteurs mondiaux d'hélium à l'époque, en restreignaient l'exportation vers l'Allemagne nazie.</p>
+          <p>Une étincelle, probablement causée par une décharge d'électricité statique, suffit à enflammer une fuite de dihydrogène. En une trentaine de secondes à peine, l'appareil s'embrase entièrement et s'écrase au sol, causant la mort de 36 personnes. La scène, captée par les caméras des actualités, marque la fin de l'ère des dirigeables commerciaux.</p>
+          <p>Cette tragédie illustre de façon spectaculaire ce que prédit la théorie : le dihydrogène possède une énergie d'ignition extrêmement faible — la plus faible parmi les combustibles courants —, ce qui en fait un combustible redoutablement efficace, mais aussi l'un des plus délicats à manipuler à grande échelle.</p>
+        </div>
+
+        <div class="subsection-title">Synthèse — Section 1.2</div>
+        <div class="def-box">
+          <div class="def-label">À retenir</div>
+          <p>• La <strong>combustion</strong> est une réaction exothermique d'oxydation qui exige la réunion des trois éléments du <strong>triangle du feu</strong> : un combustible, un comburant, et une température qui atteint le point d'ignition.</p>
+          <p>• Les <strong>hydrocarbures gazeux</strong> (méthane, éthane, propane, butane) sont les combustibles les plus courants; leur combustion complète produit du CO₂ et de l'eau, alors qu'une combustion incomplète produit du CO, un gaz toxique.</p>
+          <p>• Le <strong>dihydrogène</strong> est un combustible propre à l'utilisation (seul produit : l'eau), mais sa production — par extraction du méthane ou par électrolyse — exige beaucoup d'énergie et n'est pas toujours exempte de gaz à effet de serre.</p>
+          <p>• Retirer n'importe lequel des trois éléments du triangle du feu suffit à éteindre une combustion — le principe derrière toutes les méthodes d'extinction des incendies.</p>
+        </div>
+
+        <div class="quiz-block" data-quiz="q12">
+          <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
+            <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Section 1.2<span class="quiz-block-subtitle">Clique pour t'exercer</span></span>
+            <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="quiz-body">
+          <p class="quiz-intro">Clique sur une réponse pour la valider. La bonne réponse s'affiche immédiatement.</p>
+          <div class="quiz-score-bar">
+            <span class="quiz-score-label">0 / 6</span>
+            <progress class="quiz-progress" value="0" max="6"></progress>
+          </div>
+
+          <div class="quiz-q" data-qi="0">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Une combustion peut se produire même en l'absence de comburant, si la température est suffisamment élevée.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Le triangle du feu exige les trois éléments à la fois — combustible, comburant ET point d'ignition. Sans comburant, peu importe la température, il n'y a pas de combustion possible.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : les trois sommets du triangle du feu — combustible, comburant, point d'ignition — doivent être réunis simultanément. Retirer le comburant empêche la combustion, peu importe la température atteinte.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="1">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">D'après le contenu de cette section, quel hydrocarbure gazeux est typiquement utilisé dans les briquets?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Le méthane (CH₄)</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> L'éthane (C₂H₆)</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Le propane (C₃H₈)</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">D</span> Le butane (C₄H₁₀)</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Le butane (C₄H₁₀) est le combustible des briquets — son point d'ignition relativement bas et sa facilité de liquéfaction sous pression en font un choix pratique pour un petit réservoir portatif.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est le butane (C₄H₁₀) — c'est le combustible utilisé dans les briquets, comme le montre l'équation de combustion étudiée dans cette section.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="2">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">La combustion complète d'un hydrocarbure dans le dioxygène produit uniquement du dioxyde de carbone et de l'eau.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact — c'est précisément ce qui distingue une combustion complète : avec un apport suffisant en O₂, seuls le CO₂ et l'eau sont produits. Un manque de dioxygène produirait plutôt du monoxyde de carbone (CO).</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai — c'est la définition même d'une combustion complète. Lorsque le dioxygène manque, la réaction devient incomplète et produit du monoxyde de carbone (CO), un gaz toxique, plutôt que du CO₂.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="3">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Pour balancer l'équation CH₄<sub>(g)</sub> + O₂<sub>(g)</sub> → CO₂<sub>(g)</sub> + H₂O<sub>(g)</sub>, quels coefficients complètent correctement l'équation?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> CH₄ + O₂ → CO₂ + 2 H₂O (sans balancer O₂)</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">B</span> CH₄ + 2 O₂ → CO₂ + 2 H₂O</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> 2 CH₄ + 2 O₂ → 2 CO₂ + 2 H₂O</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> CH₄ + 3 O₂ → CO₂ + 2 H₂O</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Avec CH₄ + 2 O₂ → CO₂ + 2 H₂O : 1 C = 1 C ✓, 4 H = 4 H (dans 2 H₂O) ✓, et 4 O à gauche (2×O₂) = 4 O à droite (2 dans CO₂ + 2 dans 2 H₂O) ✓. L'équation est balancée.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est CH₄ + 2 O₂ → CO₂ + 2 H₂O. Vérifie le bilan : 1 C, 4 H et 4 O de chaque côté — c'est un bon réflexe à reprendre du sec4 (balancement des équations chimiques) à chaque nouvelle équation.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="4">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le dihydrogène est présent en grande quantité dans l'atmosphère terrestre, ce qui permet de l'extraire facilement de l'air.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Sa très faible masse volumique fait que le dihydrogène ne se trouve qu'à l'état de trace dans la haute atmosphère — il doit être produit industriellement, par extraction du méthane ou par électrolyse de l'eau.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : le dihydrogène n'existe qu'à l'état de trace dans l'atmosphère en raison de sa très faible masse volumique. Il faut le produire industriellement (extraction du méthane ou électrolyse de l'eau).</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="5">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Pourquoi peut-on dire que l'appellation « combustible propre » pour le dihydrogène est vraie, mais incomplète?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> Parce que sa combustion ne produit que de l'eau, mais sa production (surtout par extraction du méthane) peut générer beaucoup de CO₂</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Parce que le dihydrogène n'émet jamais de CO₂, à aucune étape de son cycle de vie</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Parce qu'il est toujours produit à partir d'énergies renouvelables</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Parce qu'il n'est jamais utilisé dans des piles à combustible</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. La combustion (ou l'utilisation en pile à combustible) du dihydrogène ne produit effectivement que de l'eau. Mais la méthode de production la plus répandue — l'extraction à partir du méthane — libère beaucoup de CO₂, ce qui nuance sérieusement l'étiquette « propre ».</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est A : l'utilisation du dihydrogène est propre (seul produit : l'eau), mais sa production — surtout par extraction du méthane — peut générer beaucoup de CO₂. Un bilan honnête doit couvrir tout le cycle de vie.</span></div>
+          </div>
+
+          <div class="quiz-result-msg" id="result-q12"></div>
+          <button class="quiz-reset" id="reset-q12">↺ Recommencer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 1.3 -->
+    <div class="section-card" id="section-1-3">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">1.3</span>
+          <span class="section-title">Les gaz comburants</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>Le triangle du feu vu à la section 1.2 a trois sommets. On s'est attardé sur le premier — le combustible, la substance qui brûle. Voici maintenant le deuxième : le comburant, sans lequel aucune flamme ne peut exister, aussi inflammable le combustible soit-il.</p>
+
+        <div class="def-box">
+          <div class="def-label">Définition</div>
+          <p><strong>Comburant :</strong> une substance qui réagit avec un combustible pour permettre sa combustion — le plus souvent en lui fournissant l'oxygène nécessaire à la réaction.</p>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Le dioxygène : le comburant universel</div>
+
+          <p>Le dioxygène (O₂) est de loin le comburant le plus répandu : il représente environ 21 % de l'atmosphère terrestre. C'est lui qui alimente la respiration cellulaire de la plupart des organismes vivants, la combustion du gaz naturel dans nos habitations, et l'explosion des vapeurs d'essence dans les moteurs de nos voitures.</p>
+
+          <p>Comme on l'a vu à la section 1.1, un atome d'oxygène isolé a une couche de valence incomplète — il ne lui reste que 6 des 8 électrons visés. Le dioxygène existe donc, comme le diazote ou le dichlore, sous forme de molécule diatomique plutôt que d'atomes libres.</p>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg>
+              <span>Question de réflexion</span>
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">D'après ce que tu as appris à la section 1.1, pourquoi le dioxygène (O₂) existe-t-il sous forme de molécule plutôt que d'atomes d'oxygène isolés — et quel type de liaison cela suppose-t-il, sachant qu'il manque deux électrons à chaque atome pour compléter son octet?</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">Un atome d'oxygène isolé a 6 électrons de valence — il lui en manque 2 pour l'octet. En partageant deux paires d'électrons avec un autre atome de O (une liaison covalente <strong>double</strong>, notée O=O), les deux atomes complètent leur couche de valence. C'est un cran plus fort qu'une liaison simple comme celle du F₂ vue à la section 1.1.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">L'ozone : la même molécule, deux visages</div>
+
+          <p>Un cousin chimique du dioxygène, l'ozone (O₃), est un comburant beaucoup plus réactif — et beaucoup plus toxique. Son effet sur nous dépend presque entièrement d'un seul facteur : l'altitude à laquelle on le rencontre.</p>
+
+          <figure class="fig-block">
+            <div class="fig-inner">
+              <svg viewBox="0 0 320 240" style="width:280px;max-width:100%;height:auto;" role="img" aria-label="Diagramme des deux couches atmosphériques : dans la stratosphère, l'ozone bloque les rayons ultraviolets; près du sol, dans la troposphère, l'ozone est un polluant.">
+                <rect x="10" y="10" width="300" height="90" rx="8" fill="var(--indigo-light)"/>
+                <rect x="10" y="104" width="300" height="90" rx="8" fill="var(--flame)"/>
+                <rect x="10" y="198" width="300" height="14" rx="2" fill="var(--indigo-dark)"/>
+
+                <circle cx="272" cy="34" r="13" fill="var(--amber)"/>
+                <line x1="272" y1="52" x2="260" y2="88" stroke="var(--amber)" stroke-width="2" stroke-dasharray="3 3"/>
+                <line x1="272" y1="52" x2="272" y2="88" stroke="var(--amber)" stroke-width="2" stroke-dasharray="3 3"/>
+                <line x1="272" y1="52" x2="284" y2="88" stroke="var(--amber)" stroke-width="2" stroke-dasharray="3 3"/>
+                <g transform="translate(266,82)"><line x1="0" y1="0" x2="11" y2="11" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><line x1="11" y1="0" x2="0" y2="11" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></g>
+
+                <g transform="translate(44,55)">
+                  <line x1="0" y1="0" x2="16" y2="-8" stroke="#fff" stroke-width="2"/>
+                  <line x1="0" y1="0" x2="16" y2="8" stroke="#fff" stroke-width="2"/>
+                  <circle cx="0" cy="0" r="6.5" fill="#fff"/>
+                  <circle cx="16" cy="-8" r="6.5" fill="#fff"/>
+                  <circle cx="16" cy="8" r="6.5" fill="#fff"/>
+                </g>
+                <text x="170" y="30" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="14" fill="#fff" letter-spacing="0.04em">STRATOSPHÈRE</text>
+                <text x="170" y="47" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" fill="rgba(255,255,255,.85)">20 à 50 km d'altitude</text>
+                <text x="170" y="80" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="11.5" fill="#fff">Bloque les rayons UV — bénéfique</text>
+
+                <g transform="translate(44,150)">
+                  <line x1="0" y1="0" x2="16" y2="-8" stroke="#fff" stroke-width="2"/>
+                  <line x1="0" y1="0" x2="16" y2="8" stroke="#fff" stroke-width="2"/>
+                  <circle cx="0" cy="0" r="6.5" fill="#fff"/>
+                  <circle cx="16" cy="-8" r="6.5" fill="#fff"/>
+                  <circle cx="16" cy="8" r="6.5" fill="#fff"/>
+                </g>
+                <text x="170" y="130" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="14" fill="#fff" letter-spacing="0.04em">TROPOSPHÈRE</text>
+                <text x="170" y="147" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" fill="rgba(255,255,255,.85)">Niveau du sol</text>
+                <text x="170" y="175" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="11.5" fill="#fff">Polluant — nocif pour la santé</text>
+              </svg>
+            </div>
+            <figcaption>La même molécule, O₃, selon deux altitudes : bouclier contre les ultraviolets en haute atmosphère, polluant respiratoire près du sol.</figcaption>
+          </figure>
+
+          <p>Entre 20 et 50 km d'altitude, l'ozone forme une couche qui absorbe une grande partie des rayons ultraviolets du Soleil — un rôle protecteur essentiel pour la vie sur Terre. Près du sol, en revanche, l'ozone devient un polluant atmosphérique majeur : sa grande réactivité lui permet d'irriter les voies respiratoires et de dégrader plusieurs polymères, dont le caoutchouc — un pneu exposé longtemps à un air riche en ozone finit par se fissurer.</p>
+
+          <div class="note-box">
+            <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin</span>
+              <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="note-body">
+              <p>L'ozone troposphérique n'a pas de source directe : il se forme par une réaction photochimique entre la lumière du Soleil et certains polluants émis par les véhicules et l'industrie (des oxydes d'azote et des composés organiques volatils). C'est pourquoi les avis de smog sont plus fréquents lors des journées chaudes et ensoleillées de l'été — les conditions idéales pour cette réaction.</p>
+            </div>
+          </div>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg>
+              <span>Question de réflexion</span>
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">Un journal titre : « L'ozone : ami ou ennemi? » Explique en une phrase pourquoi cette question n'a pas de réponse unique — et ce qui détermine, dans chaque cas, de quel côté penche la réponse.</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">C'est la même molécule (O₃) dans les deux cas — ce n'est pas une question de composition chimique, mais de <strong>localisation</strong>. En haute atmosphère, il absorbe les UV avant qu'ils n'atteignent la surface; au niveau du sol, il entre directement en contact avec nos poumons et nos matériaux, où sa réactivité devient un problème plutôt qu'une protection.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Des comburants inattendus</div>
+
+          <p>D'autres substances peuvent elles aussi agir comme comburants, dans des contextes plus inattendus — parfois même à l'encontre de leur réputation.</p>
+
+          <p>Le protoxyde d'azote (N₂O) est parfois injecté dans l'admission d'air des moteurs de course comme comburant additionnel. Sous l'effet de la chaleur du moteur, il se décompose en libérant du diazote et un surplus de dioxygène :</p>
+
+          <div class="formula">2 N₂O<sub>(g)</sub> → 2 N₂<sub>(g)</sub> + O₂<sub>(g)</sub></div>
+          <p class="formula-caption">Ce surplus de comburant permet de brûler davantage de carburant à chaque cycle moteur — d'où le regain de puissance recherché.</p>
+
+          <p>Plus surprenant encore : le dioxyde de carbone et la vapeur d'eau, deux substances qu'on utilise couramment pour <em>éteindre</em> les feux, peuvent eux-mêmes agir comme comburants face à des métaux très réactifs comme le magnésium. Un ruban de magnésium en combustion, enveloppé dans de la glace sèche (CO₂ solide), continue de brûler : le magnésium arrache l'oxygène directement aux molécules de CO₂.</p>
+
+          <div class="formula">2 Mg<sub>(s)</sub> + CO₂<sub>(g)</sub> → 2 MgO<sub>(s)</sub> + C<sub>(s)</sub></div>
+          <p class="formula-caption">Le magnésium en combustion peut utiliser le CO₂ lui-même comme comburant de remplacement.</p>
+
+          <table class="data-table">
+            <thead><tr><th>Comburant</th><th>Contexte d'utilisation</th><th>Particularité</th></tr></thead>
+            <tbody>
+              <tr><td>Protoxyde d'azote (N₂O)</td><td>Comburant additionnel dans certains moteurs de course</td><td>Se décompose sous la chaleur en libérant du O₂ supplémentaire</td></tr>
+              <tr><td>Dioxyde de carbone (CO₂)</td><td>Normalement utilisé pour <em>éteindre</em> les feux</td><td>Peut réagir avec des métaux très réactifs comme le magnésium</td></tr>
+              <tr><td>Vapeur d'eau (H₂O)</td><td>Aussi utilisée pour éteindre les feux</td><td>Peut réagir violemment avec certains métaux réactifs</td></tr>
+            </tbody>
+          </table>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg>
+              <span>Question de réflexion</span>
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">Un feu de magnésium se déclare dans un laboratoire. Pourquoi un extincteur à CO₂ — normalement efficace sur la plupart des feux — est-il ici non seulement inutile, mais potentiellement dangereux? Réponds à l'aide du triangle du feu vu à la section 1.2.</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">Un extincteur à CO₂ éteint la plupart des feux en déplaçant le dioxygène autour du combustible — il retire un sommet du triangle du feu. Mais le magnésium peut utiliser le CO₂ lui-même comme comburant de remplacement : au lieu de retirer un comburant, on lui en fournirait un second, ce qui peut intensifier la réaction plutôt que l'étouffer.</div>
+            </div>
+          </div>
+
+          <div class="flash-box">
+            <div class="flash-tag"><span class="f1">Flash</span><span class="f2">Chimie</span></div>
+            <h4>Le gaz hilarant et la naissance de l'anesthésie</h4>
+            <p>Synthétisé pour la première fois en 1775 par le chimiste britannique Joseph Priestley, le protoxyde d'azote acquiert, au siècle suivant, une réputation qui n'a rien à voir avec les moteurs de course : ses effets euphorisants — perte des inhibitions, fous rires sans raison — en font une attraction de foire très prisée, où l'on paie pour en respirer une bouffée devant public.</p>
+            <p>En décembre 1844, aux États-Unis, un dentiste du nom d'Horace Wells assiste à l'une de ces démonstrations : un volontaire qui vient d'inhaler une bonne dose du gaz se met à rire et à danser sur l'estrade, fait une chute dans les escaliers et, malgré une profonde blessure à la jambe, ne semble ressentir aucune douleur. Frappé par cette observation, Wells se fait arracher une dent dès le lendemain sous protoxyde d'azote, par son propre assistant — un succès complet. Il renouvelle l'expérience au cours du mois suivant auprès de 15 patients, toujours avec succès.</p>
+            <p>Fort de ces résultats, Wells organise en janvier 1845 une démonstration publique devant un chirurgien et ses étudiants. Une mauvaise administration du gaz amène cette fois le patient à hurler de douleur en pleine intervention : Wells est hué et traité de charlatan. Cet échec retarde de plusieurs années la reconnaissance du protoxyde d'azote comme anesthésique — un rôle qu'il occupe pourtant encore aujourd'hui, en dentisterie notamment. Une même molécule, deux visages : oxydant de moteur ou pionnier malheureux de la chirurgie sans douleur, selon le contexte dans lequel on le rencontre.</p>
+          </div>
+
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Synthèse — Section 1.3</div>
+          <div class="def-box">
+            <div class="def-label">À retenir</div>
+            <p>• Un <strong>comburant</strong> est une substance qui réagit avec un combustible pour permettre sa combustion.</p>
+            <p>• Le <strong>dioxygène (O₂)</strong>, environ 21 % de l'atmosphère, est le comburant le plus répandu; comme les autres gaz moléculaires vus à la section 1.1, il existe sous forme diatomique pour compléter son octet.</p>
+            <p>• L'<strong>ozone (O₃)</strong> est un comburant plus réactif dont l'effet dépend entièrement de l'altitude : protecteur contre les UV en haute atmosphère, polluant toxique près du sol.</p>
+            <p>• Des substances associées à l'extinction des feux — le <strong>CO₂</strong> et la <strong>vapeur d'eau</strong> — peuvent elles-mêmes agir comme comburants face à des métaux très réactifs comme le magnésium.</p>
+            <p>• Le <strong>protoxyde d'azote (N₂O)</strong> sert de comburant additionnel dans certains moteurs de course en se décomposant pour libérer du dioxygène supplémentaire.</p>
+          </div>
+        </div>
+
+        <div class="quiz-block" data-quiz="q13">
+          <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
+            <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Section 1.3<span class="quiz-block-subtitle">Clique pour t'exercer</span></span>
+            <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="quiz-body">
+          <p class="quiz-intro">Clique sur une réponse pour la valider. La bonne réponse s'affiche immédiatement.</p>
+          <div class="quiz-score-bar">
+            <span class="quiz-score-label">0 / 6</span>
+            <progress class="quiz-progress" value="0" max="6"></progress>
+          </div>
+
+          <div class="quiz-q" data-qi="0">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le dioxygène est le seul comburant présent naturellement dans l'atmosphère terrestre.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. L'ozone (O₃) est lui aussi un comburant naturellement présent dans l'atmosphère, en concentration beaucoup plus faible, mais avec des effets très marqués selon l'altitude.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : l'ozone (O₃) est un autre comburant naturellement présent dans l'atmosphère — en petite quantité, mais avec des effets très marqués selon qu'il se trouve en haute altitude ou près du sol.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="1">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Pourquoi l'ozone (O₃) de la stratosphère est-il bénéfique, alors que ce même gaz, au niveau du sol, est considéré comme un polluant?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Ce ne sont pas vraiment la même molécule — l'ozone stratosphérique a une structure différente</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">B</span> C'est une question de localisation : en haute altitude, il bloque les rayons UV; près du sol, il attaque les tissus vivants et les matériaux</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> L'ozone stratosphérique n'est pas un comburant, contrairement à l'ozone troposphérique</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> L'ozone est en réalité bénéfique partout, mais on le croit à tort polluant</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. C'est la même molécule (O₃) dans les deux cas — c'est sa position dans l'atmosphère qui détermine si son effet est protecteur (en bloquant les UV en haute altitude) ou nocif (en réagissant avec les tissus vivants et les matériaux près du sol).</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : c'est la même molécule (O₃) dans les deux cas. Ce qui change, c'est sa localisation — en haute altitude, il absorbe les UV; près du sol, il agresse les voies respiratoires et dégrade des matériaux comme le caoutchouc.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="2">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le dioxyde de carbone (CO₂) ne peut jamais agir comme comburant, puisqu'on l'utilise pour éteindre la plupart des feux.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact — c'est faux. Bien que le CO₂ éteigne la plupart des feux en déplaçant le O₂, il peut réagir comme comburant avec des métaux très réactifs comme le magnésium en combustion.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : le CO₂ éteint la plupart des feux, mais peut réagir directement comme comburant avec des métaux très réactifs comme le magnésium en combustion — un extincteur à CO₂ est donc inefficace sur ce type de feu.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="3">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Pourquoi un extincteur à CO₂ est-il inefficace — voire dangereux — sur un feu de magnésium?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Parce que le CO₂ est inflammable</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Parce que le CO₂ refroidit trop rapidement le magnésium, causant une explosion</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Parce que le magnésium ne brûle jamais réellement</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">D</span> Parce que le magnésium peut utiliser le CO₂ lui-même comme comburant, ce qui alimente davantage la combustion</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Le magnésium en combustion peut arracher l'oxygène directement du CO₂ (2 Mg + CO₂ → 2 MgO + C), ce qui alimente la réaction plutôt que de l'éteindre — d'où l'existence d'extincteurs spécialisés (classe D) pour les feux de métaux.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : le magnésium peut utiliser le CO₂ comme comburant de remplacement (2 Mg + CO₂ → 2 MgO + C). Plutôt que d'étouffer le feu en retirant l'oxygène, on lui en fournit un second — d'où le danger.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="4">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">L'utilisation du protoxyde d'azote (N₂O) dans les moteurs de course s'explique par le fait qu'il fournit du dioxygène supplémentaire en se décomposant sous la chaleur.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Sous l'effet de la chaleur du moteur, le N₂O se décompose (2 N₂O → 2 N₂ + O₂), libérant un surplus de dioxygène qui permet de brûler plus de carburant à chaque cycle — d'où le regain de puissance.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai : le N₂O se décompose sous la chaleur (2 N₂O → 2 N₂ + O₂), libérant un surplus de dioxygène qui permet de brûler plus de carburant par cycle moteur, ce qui augmente la puissance.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="5">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">D'après ce qui a été vu à la section 1.1, pourquoi le dioxygène (O₂) existe-t-il sous forme de molécule plutôt que d'atomes d'oxygène isolés?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Parce que l'oxygène est un gaz noble</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Parce que le dioxygène est radioactif à l'état atomique</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">C</span> Parce qu'un atome d'oxygène isolé a une couche de valence incomplète, et qu'une liaison covalente double avec un autre atome de O lui permet de la compléter</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Parce que l'oxygène ne peut former que des liaisons ioniques</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Un atome d'oxygène isolé a 6 électrons de valence — il lui en manque 2 pour l'octet. En formant une liaison covalente double avec un autre atome de O, les deux atomes complètent leur couche de valence, d'où la molécule O₂.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : un atome d'oxygène a 6 électrons de valence, il lui en manque 2 pour l'octet. En partageant 2 paires d'électrons par liaison covalente double avec un autre atome de O, les deux complètent leur couche — d'où O₂, comme les autres gaz moléculaires vus à la section 1.1.</span></div>
+          </div>
+
+          <div class="quiz-result-msg" id="result-q13"></div>
+          <button class="quiz-reset" id="reset-q13">↺ Recommencer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<button id="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">↑</button>
+
+<script>
+// ── Toggle sections ────────────────────────────────────────
+function toggleSection(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+  btn.parentElement.querySelector('.section-body').classList.toggle('open', !expanded);
+}
+
+// ── Toggle activités suggérées ─────────────────────────────
+function toggleActivity(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+function toggleHint(btn) {
+  const hint = btn.nextElementSibling;
+  hint.classList.toggle('show');
+  btn.textContent = hint.classList.contains('show') ? '▾ Cacher la piste de réponse' : '▸ Voir une piste de réponse';
+}
+
+// ── Toggle blocs d'exercices ────────────────────────────────
+function toggleQuiz(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+// ── Toggle bulles de note ────────────────────────────────────
+function toggleNote(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+// ── Sidebar active link ────────────────────────────────────
+const tocLinks = document.querySelectorAll('.toc-link');
+const sectionIds = ['rappel','section-1-1','section-1-2','section-1-3'];
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 130) current = id;
+  });
+  tocLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+  document.getElementById('to-top').classList.toggle('visible', window.scrollY > 300);
+}, {passive: true});
+
+// ── Smooth scroll from TOC ─────────────────────────────────
+tocLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const id = link.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    const toggle = target.querySelector('.section-toggle');
+    if (toggle && toggle.getAttribute('aria-expanded') === 'false') toggleSection(toggle);
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+    document.getElementById('sidebar').classList.remove('open');
+  });
+});
+
+// ── Search ─────────────────────────────────────────────────
+const contentEl = document.querySelector('.content');
+const originalHTML = contentEl.innerHTML;
+
+let lastQuery = '';
+let matchIndex = -1;
+
+function doSearch(query) {
+  contentEl.innerHTML = originalHTML;
+  const countEl = document.getElementById('search-count');
+  matchIndex = -1;
+  lastQuery = query;
+
+  if (!query.trim()) { countEl.textContent = ''; return 0; }
+
+  const re = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+  const walker = document.createTreeWalker(contentEl, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  let count = 0;
+  nodes.forEach(node => {
+    if (!re.test(node.textContent)) return;
+    re.lastIndex = 0;
+    const span = document.createElement('span');
+    span.innerHTML = node.textContent.replace(re, m => { count++; return `<mark class="sh">${m}</mark>`; });
+    node.parentNode.replaceChild(span, node);
+  });
+
+  countEl.textContent = count ? `${count} résultat${count>1?'s':''}` : 'Aucun résultat';
+
+  document.querySelectorAll('.section-card').forEach(card => {
+    if (card.querySelector('mark.sh')) {
+      const t = card.querySelector('.section-toggle');
+      if (t && t.getAttribute('aria-expanded') === 'false') toggleSection(t);
+    }
+  });
+
+  return count;
+}
+
+function goToMatch(step) {
+  const marks = contentEl.querySelectorAll('mark.sh');
+  if (!marks.length) return;
+  if (matchIndex >= 0 && marks[matchIndex]) marks[matchIndex].classList.remove('current');
+  matchIndex = (matchIndex + step + marks.length) % marks.length;
+  const m = marks[matchIndex];
+  m.classList.add('current');
+  m.scrollIntoView({behavior:'smooth', block:'center'});
+  const countEl = document.getElementById('search-count');
+  countEl.textContent = `${matchIndex+1} / ${marks.length} résultats`;
+}
+
+function runSearchAndJump(query, step) {
+  if (query !== lastQuery || !contentEl.querySelector('mark.sh')) {
+    const count = doSearch(query);
+    if (count > 0) goToMatch(0);
+  } else {
+    goToMatch(step);
+  }
+}
+
+document.getElementById('search-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    runSearchAndJump(e.target.value, e.shiftKey ? -1 : 1);
+  }
+});
+
+// Ctrl+F → recherche interne
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+    const inp = document.getElementById('search-input');
+    inp.focus(); inp.select();
+  }
+});
+
+// Fermer la bulle d'attribution au clic à l'extérieur
+document.addEventListener('click', e => {
+  const pop = document.getElementById('attrib-pop');
+  if (pop && !pop.contains(e.target) && !e.target.closest('.sidebar-footer button')) {
+    pop.classList.remove('visible');
+  }
+});
+
+// === MOTEUR DE QUIZ INTERACTIFS ===
+function initQuizBlock(block) {
+  const questions = Array.from(block.querySelectorAll('.quiz-q'));
+  const total = questions.length;
+  const scoreLabel = block.querySelector('.quiz-score-label');
+  const progressBar = block.querySelector('.quiz-progress');
+  const resultMsg = block.querySelector('.quiz-result-msg');
+  const resetBtn = block.querySelector('.quiz-reset');
+  progressBar.max = total;
+
+  function updateScore() {
+    const answered = questions.filter(q => q.classList.contains('answered'));
+    const correct = answered.filter(q => q.dataset.gotCorrect === 'true').length;
+    scoreLabel.textContent = `${correct} / ${total}`;
+    progressBar.value = answered.length;
+
+    if (answered.length === total) {
+      resultMsg.classList.add('show');
+      const pct = Math.round((correct / total) * 100);
+      resultMsg.classList.remove('great', 'good', 'poor');
+      const starIcon = '<svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3l2.6 5.8 6.2.6-4.7 4.2 1.4 6.1L12 16.9 6.5 19.7l1.4-6.1-4.7-4.2 6.2-.6Z"/></svg>';
+      const upIcon = '<svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 13l3-3 2 2 3-3.5"/></svg>';
+      const bookIcon = '<svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5.5A2 2 0 0 1 6 4h6v16H6a2 2 0 0 1-2-2Z"/><path d="M20 5.5A2 2 0 0 0 18 4h-6v16h6a2 2 0 0 0 2-2Z"/></svg>';
+      let icon, msg, variant;
+      if (pct === 100) { icon = starIcon; msg = `Parfait ! ${correct} / ${total} — la section est maîtrisée.`; variant = 'great'; }
+      else if (pct >= 70) { icon = upIcon; msg = `Bon travail : ${correct} / ${total}. Relis les explications des questions manquées.`; variant = 'good'; }
+      else { icon = bookIcon; msg = `${correct} / ${total} — il serait utile de revoir cette section avant de continuer.`; variant = 'poor'; }
+      resultMsg.classList.add(variant);
+      resultMsg.innerHTML = `${icon}<span>${msg}</span>`;
+      resetBtn.style.display = 'inline-block';
+    } else {
+      resultMsg.classList.remove('show', 'great', 'good', 'poor');
+      resetBtn.style.display = 'none';
+    }
+  }
+
+  questions.forEach(q => {
+    const options = Array.from(q.querySelectorAll('.quiz-option'));
+    const fbOk = q.querySelector('.quiz-feedback.ok');
+    const fbKo = q.querySelector('.quiz-feedback.ko');
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        if (q.classList.contains('answered')) return;
+
+        const isCorrect = opt.dataset.correct === 'true';
+        q.classList.add('answered');
+        q.dataset.gotCorrect = isCorrect ? 'true' : 'false';
+
+        options.forEach(o => {
+          o.disabled = true;
+          if (o.dataset.correct === 'true') {
+            o.classList.add(o === opt ? 'correct' : 'reveal');
+          } else if (o === opt) {
+            o.classList.add('wrong');
+          }
+        });
+
+        (isCorrect ? fbOk : fbKo).classList.add('show');
+        updateScore();
+      });
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    questions.forEach(q => {
+      q.classList.remove('answered');
+      delete q.dataset.gotCorrect;
+      q.querySelectorAll('.quiz-option').forEach(o => {
+        o.disabled = false;
+        o.classList.remove('correct', 'wrong', 'reveal');
+      });
+      q.querySelectorAll('.quiz-feedback').forEach(f => f.classList.remove('show'));
+    });
+    updateScore();
+  });
+
+  updateScore();
+}
+
+// === MOTEUR DE QCM AUTONOMES (activités suggérées avec choix cliquables) ===
+function initStandaloneMCQ(block) {
+  const options = Array.from(block.querySelectorAll('.quiz-option'));
+  let answered = false;
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (answered) return;
+      answered = true;
+      const isCorrect = opt.dataset.correct === 'true';
+      options.forEach(o => {
+        o.disabled = true;
+        if (o.dataset.correct === 'true') {
+          o.classList.add(o === opt ? 'correct' : 'reveal');
+        } else if (o === opt) {
+          o.classList.add('wrong');
+        }
+      });
+    });
+  });
+}
+
+document.querySelectorAll('.standalone-mcq').forEach(initStandaloneMCQ);
+
+document.querySelectorAll('.quiz-block').forEach(initQuizBlock);
+</script>
+</body>
+</html>
