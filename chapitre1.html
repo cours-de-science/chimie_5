@@ -170,8 +170,18 @@
   .usage-card .usage-title { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--indigo-dark); margin-bottom: 10px; }
   .usage-card ul.content-list { margin-bottom: 0; }
   .usage-card ul.content-list li { font-size: 13.5px; }
-  .usage-card .usage-fig-ref { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 8px; }
+  .usage-fig-ref { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 8px; }
   @media (max-width: 768px) { .usage-grid { grid-template-columns: 1fr; } }
+
+  /* Symboles de danger (Section 1, Figure 1.1) */
+  .hazard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0 22px; }
+  .hazard-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .hazard-card .hazard-icon { width: 44px; height: 44px; margin-bottom: 10px; }
+  .hazard-card .hazard-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--indigo-dark); text-transform: uppercase; letter-spacing: .02em; margin-bottom: 8px; line-height: 1.25; }
+  .hazard-card .hazard-risk { font-size: 12px; color: var(--flame); font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
+  .hazard-card .hazard-precautions { font-size: 11.5px; color: var(--muted); line-height: 1.5; text-align: left; }
+  @media (max-width: 768px) { .hazard-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .hazard-grid { grid-template-columns: 1fr; } }
 
   #to-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; background: var(--indigo-dark); color: var(--amber); border: 2px solid var(--amber); border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 200; }
   #to-top.visible { opacity: 1; pointer-events: auto; }
@@ -272,10 +282,12 @@
   <nav>
     <ul>
       <li><a href="#rappel" class="toc-link"><span class="num">—</span> Rappel</a></li>
+      <li><a href="#section-1" class="toc-link"><span class="num">Section 1</span> La réactivité chimique</a></li>
       <li><a href="#section-1-1" class="toc-link"><span class="num">1.1</span> Les causes de la réactivité</a></li>
       <li><a href="#section-1-2" class="toc-link"><span class="num">1.2</span> Les gaz combustibles</a></li>
       <li><a href="#section-1-3" class="toc-link"><span class="num">1.3</span> Les gaz comburants</a></li>
-      <li><a href="#" class="disabled"><span class="num">1.4</span> Utilisation au quotidien</a></li>
+      <li><a href="#section-2" class="toc-link"><span class="num">Section 2</span> Utilisation au quotidien</a></li>
+      <li><a href="#chap1-recap" class="toc-link"><span class="num">Ch. 1</span> Exercices de fin de chapitre</a></li>
     </ul>
   </nav>
   <div class="sidebar-footer">
@@ -308,6 +320,170 @@
       <p>• <strong>La règle de l'octet</strong> — un atome cherche à compléter sa couche de valence à huit électrons (deux seulement pour l'hydrogène et l'hélium), la configuration la plus stable qui soit. <a class="rappel-ref" href="../science-sec4/chapitre1.html#section-1-1" title="Revoir : Sec. 4, chapitre 1, section 1.1 — Les modèles atomiques">↳ Sec. 4 · ch. 1, §1.1</a></p>
       <p>• <strong>Le tableau périodique et ses familles</strong>, dont celle des gaz nobles (colonne 18) — des éléments dont la couche de valence est déjà complète à l'état naturel. <a class="rappel-ref" href="../science-sec4/chapitre1.html#section-1-3" title="Revoir : Sec. 4, chapitre 1, section 1.3 — Le tableau périodique des éléments">↳ Sec. 4 · ch. 1, §1.3</a></p>
       <p>• <strong>Les liaisons chimiques</strong>, covalentes ou ioniques — la façon dont les atomes s'unissent pour atteindre une configuration plus stable. <a class="rappel-ref" href="../science-sec4/chapitre1.html#section-1-4" title="Revoir : Sec. 4, chapitre 1, section 1.4 — Les molécules">↳ Sec. 4 · ch. 1, §1.4</a></p>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section-card" id="section-1">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">Section 1</span>
+          <span class="section-title">La réactivité chimique des gaz</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>Un gaz est un ensemble d'atomes ou de molécules qui interagissent peu entre eux, faiblement liés, sans forme ni volume propres — ses particules, en mouvement continuel, se répandent dans toutes les directions dès qu'elles ne sont plus confinées dans un contenant fermé. Ces propriétés physiques s'appliquent à peu près à tous les gaz : ce sont des propriétés <strong>non caractéristiques</strong>, qui ne permettent pas d'identifier un gaz avec certitude.</p>
+
+        <p>Les propriétés <strong>caractéristiques</strong> — la solubilité, la masse volumique, la réaction à certains indicateurs — permettent au contraire d'identifier une substance ou, du moins, de la classer parmi un groupe. La réactivité chimique en fait partie : c'est elle qui distingue un gaz, ou un groupe de gaz, des autres. C'est cette réactivité chimique qu'on explore dans les trois sous-sections qui suivent.</p>
+
+        <p>Cette réactivité varie beaucoup d'un gaz à l'autre, mais certaines tendances communes à plusieurs gaz permettent d'anticiper les précautions à prendre : un gaz peut être inflammable, combustible, toxique, corrosif ou comburant. C'est pourquoi il est essentiel, avant de manipuler un contenant de gaz, de consulter les symboles de danger inscrits sur son étiquette.</p>
+
+        <div class="hazard-grid">
+
+          <div class="hazard-card">
+            <svg class="hazard-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M12 1.5 22.5 12 12 22.5 1.5 12Z" fill="#fff" stroke="var(--flame)" stroke-width="1.6"/>
+              <g stroke="var(--flame)" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="13" r="3.2" fill="none"/><path d="M12 8.2V6.4M9.5 9l-1.3-1.3M14.5 9l1.3-1.3"/><path d="M8.5 15.5 6.8 17M15.5 15.5l1.7 1.5"/></g>
+            </svg>
+            <div class="hazard-title">Matière et objet explosifs instables</div>
+            <div class="hazard-risk">Explosion, effet de souffle, projection ou incendie</div>
+            <div class="hazard-precautions">Manipuler avec précaution; éviter les vibrations; tenir loin de la chaleur, des flammes et de la lumière vive; ne pas perforer.</div>
+          </div>
+
+          <div class="hazard-card">
+            <svg class="hazard-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M12 1.5 22.5 12 12 22.5 1.5 12Z" fill="#fff" stroke="var(--flame)" stroke-width="1.6"/>
+              <g stroke="var(--flame)" stroke-width="1.4" stroke-linecap="round" fill="none"><rect x="9.3" y="8" width="5.4" height="9" rx="1.2"/><path d="M10.6 8V6.3h2.8V8"/></g>
+            </svg>
+            <div class="hazard-title">Gaz sous pression</div>
+            <div class="hazard-risk">Explosion</div>
+            <div class="hazard-precautions">Manipuler avec précaution; tenir loin de la chaleur et des flammes; ne pas perforer; ouvrir doucement la valve.</div>
+          </div>
+
+          <div class="hazard-card">
+            <svg class="hazard-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M12 1.5 22.5 12 12 22.5 1.5 12Z" fill="#fff" stroke="var(--flame)" stroke-width="1.6"/>
+              <path d="M12 7c1.5 2 2.3 3.3 2.3 4.7a2.3 2.3 0 0 1-4.6 0c0-.7.3-1.3.7-1.9-.2 1 .1 1.6.6 1.9.1-1.2.6-2.2 1-3.8Z" fill="var(--flame)" stroke="var(--flame)" stroke-width="0.6" stroke-linejoin="round"/>
+            </svg>
+            <div class="hazard-title">Gaz, liquide ou solide inflammables et combustibles</div>
+            <div class="hazard-risk">Incendie ou explosion</div>
+            <div class="hazard-precautions">Tenir loin de la chaleur, des flammes et des étincelles; conserver dans un endroit ventilé.</div>
+          </div>
+
+          <div class="hazard-card">
+            <svg class="hazard-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M12 1.5 22.5 12 12 22.5 1.5 12Z" fill="#fff" stroke="var(--flame)" stroke-width="1.6"/>
+              <g stroke="var(--flame)" stroke-width="1.4" fill="none"><circle cx="12" cy="11" r="3.6"/><circle cx="10.1" cy="10.1" r="0.55" fill="var(--flame)" stroke="none"/><circle cx="13.9" cy="10.1" r="0.55" fill="var(--flame)" stroke="none"/><path d="M9 17.5l1.4-2M15 17.5l-1.4-2M12 15v2.6"/></g>
+            </svg>
+            <div class="hazard-title">Matière ayant une toxicité aiguë</div>
+            <div class="hazard-risk">Intoxication par ingestion, contact cutané ou inhalation</div>
+            <div class="hazard-precautions">Éviter tout contact avec le produit; laisser une personne compétente le manipuler pour soi.</div>
+          </div>
+
+          <div class="hazard-card">
+            <svg class="hazard-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M12 1.5 22.5 12 12 22.5 1.5 12Z" fill="#fff" stroke="var(--flame)" stroke-width="1.6"/>
+              <g stroke="var(--flame)" stroke-width="1.4" stroke-linecap="round" fill="none"><path d="M9 6.5 8 10.5h3l-1 5"/><path d="M7 17.2c1.6.7 3.4.7 5 0"/><path d="M9.4 7.8 6.2 9M9 9.3l-2.7 2"/></g>
+            </svg>
+            <div class="hazard-title">Matière corrosive</div>
+            <div class="hazard-risk">Brûlure, irritation de la peau ou des yeux, lésions oculaires</div>
+            <div class="hazard-precautions">Éviter tout contact avec la peau et les yeux; rincer abondamment à l'eau en cas de contact; porter lunettes de sécurité, gants et sarrau.</div>
+          </div>
+
+          <div class="hazard-card">
+            <svg class="hazard-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M12 1.5 22.5 12 12 22.5 1.5 12Z" fill="#fff" stroke="var(--flame)" stroke-width="1.6"/>
+              <circle cx="12" cy="15.3" r="2.6" fill="none" stroke="var(--flame)" stroke-width="1.4"/>
+              <path d="M12 6.3c1.4 1.8 2.1 3 2.1 4.2a2.1 2.1 0 0 1-4.2 0c0-.6.3-1.1.6-1.6-.2.8.1 1.4.5 1.6.1-1.1.5-2 1-4.2Z" fill="var(--flame)" stroke="var(--flame)" stroke-width="0.5" stroke-linejoin="round"/>
+            </svg>
+            <div class="hazard-title">Gaz, liquide ou solide comburants</div>
+            <div class="hazard-risk">Incendie, aggravation d'incendie ou explosion</div>
+            <div class="hazard-precautions">Tenir loin de la chaleur, des flammes, des étincelles et de toute matière combustible (bois, essence, solvants).</div>
+          </div>
+
+        </div>
+        <p class="usage-fig-ref" style="margin:-10px 0 20px;">Figure 1.1 du manuel — Les symboles de danger pouvant apparaître sur l'étiquette du contenant de certains gaz.</p>
+
+        <div class="activity-block">
+          <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+            <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg>
+            <span>Question de réflexion</span>
+            <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="activity-content">
+            <p class="activity-question">Un contenant de gaz porte à la fois les symboles « gaz sous pression » et « matière corrosive ». Nomme une précaution propre à chacun de ces deux risques — elles ne se recoupent pas.</p>
+            <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+            <div class="activity-hint">Pour le risque de pression : ne pas perforer le contenant et ouvrir doucement la valve. Pour le risque de corrosion : éviter tout contact avec la peau et les yeux, et porter des lunettes de sécurité, des gants et un sarrau. Les deux risques sont indépendants — l'un concerne le contenant, l'autre son contenu.</div>
+          </div>
+        </div>
+
+        <div class="quiz-block" data-quiz="q1">
+          <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
+            <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Section 1<span class="quiz-block-subtitle">Clique pour t'exercer</span></span>
+            <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="quiz-body">
+          <p class="quiz-intro">Clique sur une réponse pour la valider. La bonne réponse s'affiche immédiatement.</p>
+          <div class="quiz-score-bar">
+            <span class="quiz-score-label">0 / 4</span>
+            <progress class="quiz-progress" value="0" max="4"></progress>
+          </div>
+
+          <div class="quiz-q" data-qi="0">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le symbole de toxicité aiguë signifie qu'une substance peut être dangereuse si elle est avalée, si elle touche la peau, ou si elle est respirée.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Le symbole de toxicité aiguë couvre les trois voies d'exposition : l'ingestion, le contact cutané et l'inhalation.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai : le symbole de toxicité aiguë couvre les trois voies d'exposition possibles — ingestion, contact avec la peau et inhalation.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="1">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Quelle précaution est spécifiquement associée au symbole « matière corrosive »?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Tenir le contenant loin de toute source de chaleur</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">B</span> Porter des lunettes de sécurité, des gants et un sarrau, et rincer abondamment à l'eau en cas de contact</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Ouvrir doucement la valve de la bonbonne</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Laisser une personne compétente manipuler le produit à sa place</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Le risque du symbole « corrosif » touche la peau et les yeux — d'où l'équipement de protection et le réflexe de rincer abondamment en cas de contact.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : le risque du symbole « corrosif » touche la peau et les yeux — lunettes, gants, sarrau et rinçage abondant en cas de contact. Les autres précautions concernent plutôt les gaz sous pression ou toxiques.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="2">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le symbole « gaz sous pression » signifie que le contenu du contenant est nécessairement inflammable.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact — c'est faux. Le risque du symbole « gaz sous pression » est l'explosion due à la pression elle-même, un risque distinct de celui du symbole « inflammable », qui peut apparaître seul ou combiné avec d'autres symboles.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : le risque du symbole « gaz sous pression » est l'explosion due à la pression elle-même — un contenant peut porter ce symbole sans que son contenu soit inflammable.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="3">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Pourquoi consulte-t-on les symboles de danger inscrits sur l'étiquette d'un contenant de gaz avant de le manipuler?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Pour connaître le prix du contenant</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Pour connaître la couleur du gaz</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">C</span> Pour connaître les règles de sécurité à respecter selon les risques associés au gaz</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Pour connaître la date de fabrication du contenant</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Les symboles de danger indiquent les risques associés au gaz — explosion, incendie, toxicité, corrosion — et donc les règles de sécurité à respecter pour le manipuler sans danger.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : les symboles indiquent les risques du gaz et donc les règles de sécurité à respecter — ils ne renseignent ni sur le prix, ni sur la couleur, ni sur la date de fabrication.</span></div>
+          </div>
+
+          <div class="quiz-result-msg" id="result-q1"></div>
+          <button class="quiz-reset" id="reset-q1">↺ Recommencer</button>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <!-- SECTION 1.1 -->
@@ -1088,6 +1264,376 @@
       </div>
     </div>
 
+    <!-- SECTION 2 -->
+    <div class="section-card" id="section-2">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">Section 2</span>
+          <span class="section-title">L'utilisation des gaz dans la vie quotidienne</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>Sans qu'on y pense nécessairement, les gaz occupent une place importante dans notre quotidien : ils ont un impact réel sur notre qualité de vie, sur l'environnement et sur plusieurs aspects de la vie en société. C'est notamment parce qu'on comprend leur réactivité chimique — et, comme on le verra bientôt, leurs propriétés physiques — qu'on a pu développer toute une gamme d'applications technologiques qui reposent sur les gaz. Le tableau ci-dessous en présente un survol, domaine par domaine. <em>(Les propriétés physiques des gaz seront vues en détail au chapitre 2 — Les comportements des gaz.)</em></p>
+
+        <div class="usage-grid">
+
+          <div class="usage-card">
+            <svg class="usage-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>
+            <div class="usage-title">Médecine</div>
+            <ul class="content-list">
+              <li>Le <strong>dioxygène (O₂)</strong>, comburant de la combustion cellulaire, est administré aux personnes souffrant de problèmes respiratoires ou aux soins intensifs, et pour assurer la fonction respiratoire pendant une anesthésie générale.</li>
+              <li>Le <strong>protoxyde d'azote (N₂O)</strong> et le <strong>xénon (Xe)</strong> sont utilisés comme anesthésiants et comme analgésiques pour contrôler la douleur, notamment par les dentistes.</li>
+              <li>Le <strong>monoxyde d'azote (NO)</strong> est utilisé en réanimation comme vasodilatateur.</li>
+            </ul>
+            <p class="usage-fig-ref">Voir la figure 1.11 du manuel — l'oxygène en milieu hospitalier.</p>
+          </div>
+
+          <div class="usage-card">
+            <svg class="usage-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c7-1 12-6 13-13-7 1-12 6-13 13Z"/><path d="M6 18c2-4 5-7 9-9"/></svg>
+            <div class="usage-title">Agroalimentaire</div>
+            <ul class="content-list">
+              <li>Le <strong>diazote (N₂)</strong> et l'<strong>argon (Ar)</strong> sont utilisés dans le conditionnement sous atmosphère modifiée afin de préserver la fraîcheur des aliments emballés — ils remplacent l'air (et donc le dioxygène qu'il contient), ce qui explique l'absence d'oxydation.</li>
+              <li>Le diazote est utilisé dans la fabrication d'engrais à base d'<strong>ammoniac (NH₃)</strong>, une forme sous laquelle il peut être assimilé par les plantes.</li>
+              <li>L'<strong>ozone (O₃)</strong> est utilisé comme désinfectant.</li>
+            </ul>
+            <p class="usage-fig-ref">Voir la figure 1.12 du manuel — l'emballage alimentaire.</p>
+          </div>
+
+          <div class="usage-card">
+            <svg class="usage-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 6 14h5l-1 7 8-12h-5l1-6Z"/></svg>
+            <div class="usage-title">Industriel et commercial</div>
+            <ul class="content-list">
+              <li>En métallurgie et pour le soudage, l'<strong>argon</strong> sert à créer une atmosphère inerte protectrice entre le métal et l'air ambiant, ce qui empêche l'oxydation.</li>
+              <li>Le <strong>dioxygène</strong> est utilisé lors de la production de l'acier pour en ajuster la teneur en carbone.</li>
+              <li>L'<strong>acétylène (C₂H₂)</strong> sert de combustible pour certains procédés de soudage, et en mécanique pour dilater des boulons trop serrés.</li>
+              <li>Grâce à leur capacité à produire de la lumière de diverses couleurs, plusieurs <strong>gaz nobles</strong>, dont le <strong>néon (Ne)</strong>, sont utilisés dans les tubes à luminescence des enseignes lumineuses.</li>
+            </ul>
+            <p class="usage-fig-ref">Voir la figure 1.13 du manuel — l'acétylène pour la soudure.</p>
+          </div>
+
+          <div class="usage-card">
+            <svg class="usage-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 0-5 3-5 6 0 2.5 1.5 4.5 3 5.5v2h4v-2c1.5-1 3-3 3-5.5 0-3-2-6-5-6Z"/><path d="M10 14.5 9 19h6l-1-4.5"/><path d="M9 19h6v2H9z"/></svg>
+            <div class="usage-title">Transport</div>
+            <ul class="content-list">
+              <li>À cause de sa très faible réactivité, l'<strong>hélium (He)</strong> est utilisé pour gonfler la plupart des ballons-sondes en météorologie et en aéronautique — et, combiné à l'argon, de plus en plus dans le déclenchement des coussins gonflables.</li>
+              <li>Le <strong>propane (C₃H₈)</strong>, un bon combustible, permet de chauffer l'air d'une montgolfière.</li>
+              <li>Parce qu'il est peu réactif, le <strong>diazote</strong> est utilisé pour gonfler les pneus d'avions et de voitures de course.</li>
+              <li>Le <strong>xénon</strong> est utilisé dans certains phares de voiture pour la lumière très blanche qu'il permet de produire.</li>
+            </ul>
+            <p class="usage-fig-ref">Voir la figure 1.14 du manuel — le propane pour les montgolfières.</p>
+          </div>
+
+          <div class="usage-card">
+            <svg class="usage-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2 2 3 5 3 8 0 3-1 6-3 9-2-3-3-6-3-9 0-3 1-6 3-8Z"/><path d="M9 14l-3 3M15 14l3 3M10 17l-1 4M14 17l1 4"/></svg>
+            <div class="usage-title">Domaine spatial</div>
+            <ul class="content-list">
+              <li>Le <strong>xénon</strong> est utilisé dans les moteurs ioniques pour propulser les satellites dans l'espace.</li>
+              <li>Le <strong>dihydrogène (H₂)</strong> est un combustible utilisé dans les moteurs à combustion des fusées.</li>
+            </ul>
+            <p class="usage-fig-ref">Voir la figure 1.15 du manuel — le xénon dans les moteurs ioniques.</p>
+          </div>
+
+          <div class="usage-card">
+            <svg class="usage-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg>
+            <div class="usage-title">Habitation</div>
+            <ul class="content-list">
+              <li>Parce qu'ils sont de bons isolants, l'<strong>argon</strong> et le <strong>xénon</strong> remplissent l'espace entre les vitres des fenêtres à double vitrage.</li>
+              <li>Étant de bons combustibles, le <strong>gaz naturel (CH₄)</strong> et le propane servent à chauffer les maisons et à faire cuire les aliments.</li>
+              <li>L'argon remplit les ampoules incandescentes, où il limite la dégradation du filament et augmente ainsi sa durée de vie.</li>
+              <li>Le <strong>diiode (I₂)</strong> et le <strong>dibrome (Br₂)</strong> gazeux sont utilisés dans les ampoules halogènes.</li>
+            </ul>
+            <p class="usage-fig-ref">Voir la figure 1.16 du manuel — le diiode et le dibrome dans les ampoules halogènes.</p>
+          </div>
+
+        </div>
+
+        <div class="activity-block">
+          <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+            <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg>
+            <span>Question de réflexion</span>
+            <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="activity-content">
+            <p class="activity-question">Le diazote (N₂) revient dans trois domaines très différents du tableau ci-dessus : l'emballage alimentaire, les engrais et le gonflage des pneus. Qu'est-ce que ces trois usages ont en commun sur le plan de la réactivité chimique du diazote?</p>
+            <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+            <div class="activity-hint">Dans les trois cas, c'est la très faible réactivité chimique du diazote (due à sa liaison triple, très forte — voir la section 1.1) qui est exploitée. Dans un emballage ou un pneu, on veut justement un gaz qui ne réagira pas avec son contenu. Pour les engrais, en revanche, on transforme d'abord le diazote en ammoniac (NH₃) — une forme réactive que les plantes peuvent assimiler, contrairement au N₂ atmosphérique.</div>
+          </div>
+        </div>
+
+        <div class="flash-box">
+          <div class="flash-tag"><span class="f1">En plus</span><span class="f2">Chimie</span></div>
+          <h4>Une arme contre les insectes ravageurs</h4>
+          <p>Chez un grand nombre d'insectes, les individus d'une même espèce communiquent entre eux par des molécules chimiques volatiles appelées <strong>phéromones</strong>. Ces molécules jouent notamment un rôle dans la reproduction : elles permettent au mâle de repérer une femelle en suivant la piste odorante qu'elle a laissée derrière elle.</p>
+          <p>En <strong>viticulture</strong> et en <strong>arboriculture</strong>, on utilise une méthode appelée la « confusion des mâles » pour réduire, de façon écologique, la population de certains insectes ravageurs. On introduit dans l'atmosphère de la culture à protéger des phéromones sexuelles de synthèse propres à l'espèce visée. Là où de grandes quantités de phéromones ont été diffusées, les mâles ont plus de difficulté à localiser les femelles : l'accouplement devient moins probable, ce qui réduit le nombre d'individus dans la génération suivante.</p>
+          <p>Cette méthode ne tue pas les individus déjà présents, mais elle permet de cibler une population précise, de réduire l'emploi de pesticides et, du même coup, de ralentir le développement d'une résistance à ces pesticides. <em>(Voir la figure 1.17 du manuel — un distributeur de phéromones de synthèse installé dans une vigne.)</em></p>
+        </div>
+
+        <div class="def-box">
+          <div class="def-label">Vocabulaire</div>
+          <p><strong>Viticulture :</strong> activité qui consiste à cultiver la vigne.</p>
+          <p><strong>Arboriculture :</strong> activité qui consiste à cultiver des arbres.</p>
+        </div>
+
+
+        <div class="subsection">
+          <div class="subsection-title">Synthèse — Section 2</div>
+          <div class="def-box">
+            <div class="def-label">À retenir</div>
+            <p>• Les propriétés chimiques (et physiques) des gaz sont à la base de nombreuses applications technologiques, réparties ici en six domaines : médecine, agroalimentaire, industriel et commercial, transport, spatial et habitation.</p>
+            <p>• Un même gaz peut avoir des usages très différents selon le contexte : le <strong>xénon</strong> propulse des satellites et éclaire des phares de voiture; le <strong>diazote</strong> protège des aliments, fertilise des cultures et gonfle des pneus.</p>
+            <p>• C'est très souvent la <strong>faible réactivité chimique</strong> d'un gaz (diazote, argon, hélium, gaz nobles) qui motive son choix, pour éviter des réactions indésirables avec ce qu'il entoure.</p>
+            <p>• À l'inverse, certains usages exploitent directement une réactivité élevée : le <strong>dioxygène</strong> comme comburant en milieu hospitalier ou en métallurgie, ou l'<strong>acétylène</strong> comme combustible.</p>
+            <p>• Les gaz jouent aussi un rôle en écologie : des <strong>phéromones de synthèse</strong> diffusées dans l'air permettent de réduire une population d'insectes ravageurs sans pesticides, en perturbant leur reproduction.</p>
+          </div>
+        </div>
+
+        <div class="quiz-block" data-quiz="q2">
+          <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
+            <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Section 2<span class="quiz-block-subtitle">Clique pour t'exercer</span></span>
+            <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="quiz-body">
+          <p class="quiz-intro">Clique sur une réponse pour la valider. La bonne réponse s'affiche immédiatement.</p>
+          <div class="quiz-score-bar">
+            <span class="quiz-score-label">0 / 8</span>
+            <progress class="quiz-progress" value="0" max="8"></progress>
+          </div>
+
+          <div class="quiz-q" data-qi="0">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le diazote (N₂) est choisi pour l'emballage alimentaire et pour le gonflage des pneus en raison de sa très faible réactivité chimique.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Dans un emballage, le diazote remplace le dioxygène et prévient l'oxydation des aliments; dans un pneu, cette même inertie limite les réactions indésirables avec le caoutchouc — deux usages très différents, une seule et même propriété.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai : c'est justement la faible réactivité du diazote qui le rend utile dans ces deux contextes très différents — remplacer le dioxygène dans un emballage, ou gonfler un pneu sans réagir avec le caoutchouc.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="1">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Pourquoi utilise-t-on le diazote (N₂) et l'argon (Ar) plutôt que l'air ordinaire pour emballer certains aliments sous atmosphère modifiée?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> Parce qu'ils remplacent le dioxygène de l'air, ce qui empêche l'oxydation des aliments</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Parce qu'ils tuent les bactéries présentes sur les aliments</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Parce qu'ils refroidissent les aliments plus efficacement que l'air</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Parce qu'ils prolongent artificiellement la date de péremption inscrite sur l'emballage</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. En remplaçant l'air — et donc le dioxygène qu'il contient — le diazote et l'argon empêchent les réactions d'oxydation responsables de la dégradation des aliments.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : ces gaz remplacent le dioxygène de l'air dans l'emballage, ce qui empêche l'oxydation des aliments — ils n'ont aucun effet antibactérien ni réfrigérant, et n'agissent pas sur la date de péremption elle-même.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="2">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le xénon est utilisé aussi bien dans les moteurs ioniques des satellites que dans certains phares de voiture.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Le xénon sert de propulseur dans les moteurs ioniques des satellites, et sa lumière très blanche en fait aussi un choix pour certains phares de voiture — deux usages très différents pour le même gaz.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai : le xénon propulse les satellites via les moteurs ioniques, et sa lumière blanche caractéristique est aussi utilisée dans certains phares de voiture.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="3">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Pourquoi le gaz utilisé pour remplir une ampoule incandescente doit-il être peu réactif?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Pour que l'ampoule produise une lumière plus colorée</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">B</span> Pour limiter la dégradation du filament chauffé à très haute température, ce qui prolonge la durée de vie de l'ampoule</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Pour réduire la consommation électrique de l'ampoule</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Pour empêcher l'ampoule de chauffer pendant son fonctionnement</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. À très haute température, un filament réagirait rapidement avec un gaz réactif comme le dioxygène de l'air. L'argon, peu réactif, limite cette dégradation et prolonge la durée de vie de l'ampoule.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : un gaz peu réactif comme l'argon limite la dégradation du filament porté à très haute température, ce qui prolonge la durée de vie de l'ampoule — ni la couleur, ni la consommation, ni la chaleur produite ne sont en cause ici.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="4">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">L'acétylène (C₂H₂) est utilisé en mécanique pour refroidir des pièces métalliques avant leur assemblage.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact — c'est faux. L'acétylène sert au contraire à réchauffer et à dilater des pièces métalliques, notamment pour desserrer des boulons trop serrés — pas à les refroidir.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : l'acétylène est un combustible qui dégage de la chaleur en brûlant. Cette chaleur sert notamment à dilater des boulons trop serrés en mécanique — pas à refroidir quoi que ce soit.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="5">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Quel est le point commun entre l'utilisation de l'hélium dans les ballons-sondes et dans les coussins gonflables des voitures?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Les deux applications nécessitent un gaz inflammable</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Les deux applications nécessitent un gaz plus dense que l'air</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">C</span> Les deux applications profitent de la très faible réactivité chimique de l'hélium</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Les deux applications nécessitent un gaz coloré</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Dans les deux cas, c'est la très faible réactivité chimique de l'hélium qui est recherchée — un gaz stable, que ce soit pour prendre de l'altitude ou pour se déclencher de façon fiable lors d'un impact.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : c'est la très faible réactivité chimique de l'hélium qui est exploitée dans les deux cas — rien à voir avec sa densité, sa couleur, ou une quelconque inflammabilité (l'hélium n'est d'ailleurs pas inflammable).</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="6">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">La méthode de la confusion des mâles, utilisée en viticulture et en arboriculture, tue directement les insectes ravageurs déjà présents dans la culture.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact — c'est faux. La méthode ne tue aucun insecte déjà présent; elle réduit plutôt les chances que les mâles trouvent les femelles, ce qui diminue le nombre d'individus dans la génération suivante.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : la confusion des mâles ne tue aucun insecte déjà présent. Elle empêche plutôt l'accouplement en saturant l'air de phéromones synthétiques, ce qui réduit la population — mais seulement à la génération suivante.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="7">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Comment la méthode de la « confusion des mâles » réduit-elle la population d'insectes ravageurs?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> En tuant les insectes adultes au contact des phéromones de synthèse</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> En empoisonnant les larves déjà présentes dans la culture</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> En repoussant physiquement les insectes hors de la zone traitée</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">D</span> En saturant l'air de phéromones synthétiques, ce qui empêche les mâles de repérer les femelles et réduit l'accouplement</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. En diffusant de grandes quantités de phéromones sexuelles de synthèse, on brouille la piste que les mâles suivent normalement pour repérer les femelles — moins d'accouplements, donc moins d'individus dans la génération suivante.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : les phéromones synthétiques ne tuent ni n'empoisonnent personne — elles saturent l'air pour empêcher les mâles de repérer les femelles, ce qui réduit l'accouplement et, par conséquent, la population future.</span></div>
+          </div>
+
+          <div class="quiz-result-msg" id="result-q2"></div>
+          <button class="quiz-reset" id="reset-q2">↺ Recommencer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EXERCICES DE FIN DE CHAPITRE -->
+    <div class="section-card" id="chap1-recap">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">Ch. 1</span>
+          <span class="section-title">Exercices de fin de chapitre</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>Ce dernier bloc récapitule l'ensemble du chapitre 1 — Section 1, 1.1, 1.2, 1.3 et Section 2. Contrairement aux exercices précédents, il ne teste pas une seule sous-section à la fois : chaque question demande de combiner des notions vues à des endroits différents, ou de les appliquer à une situation nouvelle. C'est normal si certaines questions demandent plus de réflexion.</p>
+
+        <div class="quiz-block" data-quiz="qfin">
+          <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
+            <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices récapitulatifs — Chapitre 1<span class="quiz-block-subtitle">Niveau plus relevé — clique pour t'exercer</span></span>
+            <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="quiz-body">
+          <p class="quiz-intro">Clique sur une réponse pour la valider. La bonne réponse s'affiche immédiatement.</p>
+          <div class="quiz-score-bar">
+            <span class="quiz-score-label">0 / 8</span>
+            <progress class="quiz-progress" value="0" max="8"></progress>
+          </div>
+
+          <div class="quiz-q" data-qi="0">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">On fait brûler complètement 1 mole de propane (C₃H₈) dans un excès de dioxygène. Combien de moles de CO₂ cette combustion produit-elle?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> 3 moles</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> 1 mole</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> 4 moles</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> 5 moles</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. L'équation balancée est C₃H₈<sub>(g)</sub> + 5 O₂<sub>(g)</sub> → 3 CO₂<sub>(g)</sub> + 4 H₂O<sub>(g)</sub>. Le propane a 3 atomes de carbone : chacun se retrouve dans une molécule de CO₂, d'où 3 moles.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est 3 moles : C₃H₈<sub>(g)</sub> + 5 O₂<sub>(g)</sub> → 3 CO₂<sub>(g)</sub> + 4 H₂O<sub>(g)</sub>. Chacun des 3 atomes de carbone du propane se retrouve dans une molécule de CO₂ — comme pour le butane vu à la section 1.2, mais avec un carbone de plus.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="1">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le fluor (F₂) est plus réactif que le diazote (N₂) uniquement parce que le fluor a plus d'électrons de valence que l'azote.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact — c'est faux. Ce n'est pas le nombre d'électrons de valence qui explique l'écart de réactivité, mais la force de la liaison : la liaison simple du F₂ est beaucoup plus faible (159 kJ/mol) que la liaison triple du N₂ (945 kJ/mol), donc plus facile à briser.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : le fluor et l'azote visent tous deux un octet complet — le nombre d'électrons de valence n'est pas la cause. C'est la force de la liaison qui diffère : simple et faible pour F₂ (159 kJ/mol), triple et forte pour N₂ (945 kJ/mol) — d'où la différence de réactivité vue à la section 1.1.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="2">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Un extincteur à mousse forme une pellicule qui empêche le dioxygène de l'air d'atteindre un feu de bois. Quel sommet du triangle du feu cette méthode retire-t-elle?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Le combustible</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">B</span> Le comburant</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Le point d'ignition</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Aucun des trois — elle refroidit seulement le feu</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Le bois (combustible) et la chaleur (point d'ignition déjà atteint) sont toujours là — c'est l'accès au dioxygène (comburant) que la mousse bloque en formant une barrière physique.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : c'est le comburant. Le bois (combustible) et la chaleur restent présents — la mousse bloque physiquement l'accès du dioxygène de l'air au combustible, retirant ce sommet du triangle du feu vu à la section 1.2.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="3">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le xénon utilisé dans certains phares de voiture et celui utilisé dans les moteurs ioniques des satellites sont deux formes chimiques différentes du même élément.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact — c'est faux. C'est exactement le même gaz noble, le xénon (Xe), sous sa seule forme atomique habituelle — seul le contexte d'utilisation change, pas la substance elle-même.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : c'est le même élément, le xénon (Xe), sous la même forme atomique dans les deux cas — comme tous les gaz nobles vus à la section 1.1, il n'existe pas sous une autre « forme chimique ». Seul l'usage change.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="4">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Parmi les gaz suivants, lequel est à la fois un comburant étudié à la section 1.3 et un gaz utilisé en médecine à la section 2?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Diazote (N₂)</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Ozone (O₃)</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">C</span> Dioxygène (O₂)</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Argon (Ar)</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Le dioxygène est le comburant universel vu à la section 1.3, et c'est aussi ce même gaz qui est administré aux patients en détresse respiratoire ou pendant une anesthésie générale.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : le dioxygène (O₂) — comburant universel à la section 1.3, et gaz administré en milieu hospitalier à la section 2. L'ozone est bien un comburant, mais son usage médical n'a pas été mentionné; le diazote et l'argon ne sont pas des comburants.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="5">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Un gaz noble comme l'argon pourrait remplacer le diazote dans l'emballage alimentaire sous atmosphère modifiée, puisque les deux sont peu réactifs.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact — et c'est déjà le cas! L'argon accompagne d'ailleurs le diazote dans l'emballage alimentaire vu à la section 2, précisément parce que les gaz nobles comme l'argon comptent parmi les gaz les moins réactifs qui soient (section 1.1).</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai — et c'est déjà le cas dans les faits : l'argon accompagne le diazote dans l'emballage alimentaire (section 2), car les gaz nobles sont parmi les gaz les moins réactifs qui soient (section 1.1).</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="6">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Le brome n'est pas un gaz à température ambiante, mais lorsqu'il est vaporisé, il forme des molécules de dibrome (Br₂) — exactement comme le chlore ou le fluor à l'état gazeux. Pourquoi ce comportement est-il prévisible?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Parce que le brome est un gaz noble</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Parce que le dibrome est plus stable sous forme d'ions</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Parce que le brome est radioactif</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">D</span> Parce que le brome, comme les halogènes, a une couche de valence incomplète et doit partager des électrons pour se stabiliser</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Comme le chlore et le fluor, le brome est un halogène : sa couche de valence incomplète le pousse à partager un électron avec un autre atome de brome par liaison covalente simple, formant Br₂ — le même principe que Cl₂ et F₂ vus à la section 1.1.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : le brome est un halogène, comme le chlore et le fluor. Sa couche de valence incomplète le pousse à former une liaison covalente simple avec un autre atome de brome pour se stabiliser — d'où Br₂, suivant exactement le principe vu à la section 1.1 pour Cl₂ et F₂.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="7">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Un contenant de gaz portant à la fois les symboles « inflammable » et « gaz sous pression » présente un risque d'incendie ET un risque d'explosion.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Chaque symbole représente un risque distinct et indépendant : « inflammable » signale un risque d'incendie ou d'explosion, « gaz sous pression » un risque d'explosion dû à la pression elle-même. Combinés, les deux risques s'additionnent.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai : les deux symboles représentent des risques distincts et indépendants, vus à la section 1 — ils s'additionnent plutôt que de se recouper.</span></div>
+          </div>
+
+          <div class="quiz-result-msg" id="result-qfin"></div>
+          <button class="quiz-reset" id="reset-qfin">↺ Recommencer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </main>
 
@@ -1127,7 +1673,7 @@ function toggleNote(btn) {
 
 // ── Sidebar active link ────────────────────────────────────
 const tocLinks = document.querySelectorAll('.toc-link');
-const sectionIds = ['rappel','section-1-1','section-1-2','section-1-3'];
+const sectionIds = ['rappel','section-1','section-1-1','section-1-2','section-1-3','section-2','chap1-recap'];
 
 window.addEventListener('scroll', () => {
   let current = '';
