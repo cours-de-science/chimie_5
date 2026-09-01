@@ -91,13 +91,15 @@
   .def-box p:last-child { margin: 0; }
   .def-box strong { color: var(--indigo-dark); font-weight: 600; }
 
-  .note-box { background: #fdf6e6; border-left: 4px solid var(--amber-dim); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; font-size: 14px; color: #4a3410; line-height: 1.65; }
-  .note-box .note-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--amber-dim); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-  .note-label .icon-sm { width: 13px; height: 13px; flex-shrink: 0; }
-  .note-bar { width: 100%; display: flex; align-items: flex-start; gap: 6px; background: none; border: none; cursor: pointer; padding: 0; text-align: left; font-family: inherit; color: inherit; }
-  .note-bar .chevron-n { margin-left: auto; width: 15px; height: 15px; transition: transform .2s; flex-shrink: 0; color: var(--amber-dim); }
+  .note-box { margin: 20px 0; border: 1.5px solid var(--amber-dim); border-radius: 10px; overflow: hidden; background: #fdf6e6; }
+  .note-bar { width: 100%; display: flex; align-items: flex-start; gap: 8px; background: rgba(232,169,59,.26); border: none; cursor: pointer; padding: 12px 18px; text-align: left; font-family: inherit; color: inherit; transition: background .15s; }
+  .note-bar:hover { background: rgba(232,169,59,.38); }
+  .note-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #7a5410; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; row-gap: 3px; }
+  .note-label .icon-sm { width: 15px; height: 15px; flex-shrink: 0; }
+  .note-subtitle { font-size: 11.5px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #a1793a; }
+  .note-bar .chevron-n { margin-left: auto; width: 16px; height: 16px; transition: transform .2s; flex-shrink: 0; color: #7a5410; margin-top: 1px; }
   .note-bar[aria-expanded="true"] .chevron-n { transform: rotate(180deg); }
-  .note-body { display: none; margin-top: 8px; }
+  .note-body { display: none; padding: 14px 18px 18px; font-size: 14px; color: #4a3410; line-height: 1.65; }
   .note-bar[aria-expanded="true"] + .note-body { display: block; }
 
   .formula { font-family: var(--mono); background: var(--indigo-dark); color: var(--amber); padding: 14px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; margin: 16px 0; letter-spacing: .04em; text-align: center; overflow-x: auto; }
@@ -411,6 +413,44 @@
         </div>
         <p class="usage-fig-ref" style="margin:-10px 0 20px;">Figure 1.1 du manuel — Les symboles de danger pouvant apparaître sur l'étiquette du contenant de certains gaz.</p>
 
+        <div class="note-box">
+          <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+            <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">Deux paires de symboles à ne pas confondre</span></span>
+            <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="note-body">
+            <p>Deux des six symboles ci-dessus se ressemblent en apparence — les deux évoquent un danger d'explosion — mais reposent sur un mécanisme complètement différent.</p>
+            <div class="compare-block">
+              <div class="compare-col compare-col--a">
+                <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><path d="M12 12 12 7M12 12 15.5 9.5M12 12 15.5 14.5M12 12 12 17M12 12 8.5 14.5M12 12 8.5 9.5"/></svg> Explosif instable</div>
+                <p>La substance renferme déjà, dans sa structure même, tout ce qu'il faut pour réagir violemment — <strong>pas besoin de dioxygène externe</strong>. Un simple choc, une vibration, un frottement, la lumière ou la chaleur peut suffire à déclencher une décomposition extrêmement rapide (une détonation).</p>
+                <p>Très sensible aux contraintes physiques; effet principal : onde de choc, effet de souffle, projection d'éclats. Exemples : nitroglycérine, dynamite.</p>
+              </div>
+              <div class="compare-col compare-col--b">
+                <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5c1.9 2.8 3 4.9 3 6.8 0 2.6-1.6 4.7-3.4 4.7-2 0-3.6-1.7-3.6-3.9 0-1.2.5-2.2 1.2-3-.2 1.3.2 2.1.9 2.4.1-1.6.7-3 1.9-6.9Z"/></svg> Gaz inflammable</div>
+                <p>La substance a besoin d'un <strong>comburant externe</strong> — le dioxygène de l'air — pour réagir. Le gaz doit d'abord s'échapper, se mélanger à l'air dans des proportions précises, puis rencontrer une étincelle ou une flamme pour s'enflammer.</p>
+                <p>Nécessite une source d'ignition (étincelle, flamme, surface très chaude); effet principal : boule de feu, incendie rapide, explosion du mélange gaz-air si confiné. Exemples : propane, butane, dihydrogène.</p>
+              </div>
+            </div>
+            <p>En somme : l'un explose de l'intérieur, sans air; l'autre brûle grâce à l'air, une fois allumé — exactement la distinction combustible/comburant qui revient tout au long de ce chapitre.</p>
+
+            <p style="margin-top:22px; padding-top:18px; border-top:1px solid rgba(122,84,16,.2);">Deux autres symboles se confondent facilement aussi — tous deux touchent à la santé — mais la nature de l'attaque sur l'organisme n'a rien à voir.</p>
+            <div class="compare-block">
+              <div class="compare-col compare-col--a">
+                <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="11" r="7"/><circle cx="9.3" cy="10.3" r="1" fill="currentColor" stroke="none"/><circle cx="14.7" cy="10.3" r="1" fill="currentColor" stroke="none"/></svg> Toxicité aiguë</div>
+                <p>Un <strong>empoisonnement systémique</strong> : la substance pénètre à l'intérieur du corps — par inhalation, ingestion ou absorption cutanée — et perturbe le fonctionnement interne des organes ou des cellules, souvent à très faible dose et rapidement.</p>
+                <p>Cible : organes internes, système nerveux, sang, cellules. Effet : intoxication, évanouissement, asphyxie, jusqu'au décès. Exemples : cyanure, monoxyde de carbone, strychnine.</p>
+              </div>
+              <div class="compare-col compare-col--b">
+                <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c3 5 5 8.5 5 11.5a5 5 0 0 1-10 0C7 11.5 9 8 12 3Z"/></svg> Matière corrosive</div>
+                <p>Une <strong>destruction chimique directe, en surface</strong> : la substance attaque et « ronge » immédiatement les tissus vivants (peau, yeux, voies respiratoires) ou certains matériaux au contact, sans avoir besoin de pénétrer dans le corps.</p>
+                <p>Cible : peau, yeux, muqueuses, certains métaux. Effet : brûlures, nécrose des tissus, lésions oculaires irréversibles. Exemples : acide chlorhydrique, soude caustique (NaOH), eau régale.</p>
+              </div>
+            </div>
+            <p>En somme : le toxique doit être absorbé pour agir de l'intérieur; le corrosif agit dès le contact, en surface — d'où l'importance de bien distinguer « éviter de respirer » de « éviter tout contact avec la peau ».</p>
+          </div>
+        </div>
+
         <div class="activity-block">
           <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
             <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg>
@@ -572,7 +612,7 @@
 
           <div class="note-box">
             <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
-              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin</span>
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">L'exception du xénon aux gaz nobles</span></span>
               <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="note-body">
@@ -617,7 +657,7 @@
                 <line x1="80" y1="50" x2="120" y2="50" stroke="var(--flame)" stroke-width="4"/>
               </svg>
               <p>Liaison <strong>simple</strong> — environ <strong>159 kJ/mol</strong> suffisent à la briser.</p>
-              <p>C'est l'un des gaz les plus réactifs connus : il attaque même le verre et l'eau.</p>
+              <p>C'est l'un des oxydants les plus puissants connus : sa très grande électronégativité lui permet d'oxyder même l'eau — un exploit que presque aucune autre substance ne peut accomplir.</p>
             </div>
             <div class="compare-col compare-col--b">
               <div class="compare-label">Diazote (N₂)</div>
@@ -637,7 +677,20 @@
 
           <div class="note-box">
             <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
-              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin</span>
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">Une réactivité bien précise, pas juste une image</span></span>
+              <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="note-body">
+              <p>« Oxyder l'eau » n'est pas qu'une façon de parler : le difluor est si électronégatif qu'il arrache littéralement des électrons à l'oxygène de l'eau — un véritable transfert d'électrons :</p>
+              <div class="formula">2 F₂<sub>(g)</sub> + 2 H₂O<sub>(l)</sub> → 4 HF<sub>(g)</sub> + O₂<sub>(g)</sub></div>
+              <p>Ce genre de réaction, où des électrons passent d'une substance à une autre, porte un nom que tu approfondiras plus tard dans ta formation : une réaction d'<strong>oxydoréduction</strong>. La substance qui perd des électrons (ici, l'oxygène de l'eau) est dite <strong>oxydée</strong>; celle qui en gagne (ici, le F₂, qui devient F⁻ dans le HF formé) est dite <strong>réduite</strong>. Retiens seulement, pour l'instant, que le difluor « vole » des électrons à presque tout ce qu'il touche — d'où sa réactivité extrême.</p>
+              <p>Le fluorure d'hydrogène (HF) ainsi formé explique en bonne partie pourquoi le difluor s'attaque au verre : c'est l'acide classique qui dissout la silice (SiO₂), en formant du tétrafluorure de silicium gazeux (SiF₄). C'est pourquoi on n'entrepose jamais de difluor dans des contenants de verre ordinaires.</p>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">Un avant-goût de l'enthalpie (module 2)</span></span>
               <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="note-body">
@@ -843,7 +896,7 @@
 
         <div class="note-box">
           <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
-            <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin</span>
+            <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">Le danger caché du monoxyde de carbone</span></span>
             <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="note-body">
@@ -1096,7 +1149,7 @@
 
           <div class="note-box">
             <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
-              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin</span>
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">D'où vient le smog l'été</span></span>
               <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="note-body">
