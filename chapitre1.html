@@ -102,6 +102,25 @@
   .note-body { display: none; padding: 14px 18px 18px; font-size: 14px; color: #4a3410; line-height: 1.65; }
   .note-bar[aria-expanded="true"] + .note-body { display: block; }
 
+  /* === TABLE DES MATIÈRES (index des notions, repliable, en tête de page) === */
+  .page-toc { background: var(--surface); border-bottom: 1px solid var(--border); }
+  .page-toc-bar { width: 100%; display: flex; align-items: center; gap: 10px; padding: 13px 56px; background: none; border: none; cursor: pointer; text-align: left; font-family: inherit; color: inherit; }
+  .page-toc-bar:hover { background: #f7f4ef; }
+  .page-toc-icon { width: 17px; height: 17px; color: var(--amber-dim); flex-shrink: 0; }
+  .page-toc-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--indigo-dark); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; row-gap: 2px; }
+  .page-toc-subtitle { font-size: 11.5px; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--muted); }
+  .page-toc-bar .chevron-toc { margin-left: auto; width: 16px; height: 16px; transition: transform .2s; flex-shrink: 0; color: var(--muted); }
+  .page-toc-bar[aria-expanded="true"] .chevron-toc { transform: rotate(180deg); }
+  .page-toc-body { display: none; padding: 4px 56px 22px; }
+  .page-toc-bar[aria-expanded="true"] + .page-toc-body { display: block; }
+  .page-toc-group { margin-top: 14px; }
+  .page-toc-group-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 7px; }
+  .page-toc-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .page-toc-pills a { font-size: 13px; font-weight: 600; color: var(--indigo-mid); background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 5px 13px 5px 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: background .15s, color .15s, border-color .15s; }
+  .page-toc-pills a .toc-num { font-family: var(--mono); font-size: 10.5px; font-weight: 700; color: #fff; background: var(--indigo-light); border-radius: 8px; padding: 1px 6px; }
+  .page-toc-pills a:hover { background: var(--indigo-dark); color: #fff; border-color: var(--indigo-dark); }
+  .page-toc-pills a:hover .toc-num { background: var(--amber); color: var(--indigo-dark); }
+
   .formula { font-family: var(--mono); background: var(--indigo-dark); color: var(--amber); padding: 14px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; margin: 16px 0; letter-spacing: .04em; text-align: center; overflow-x: auto; }
   .formula-caption { font-size: 12px; color: var(--muted); text-align: center; margin-top: -10px; margin-bottom: 14px; }
 
@@ -198,6 +217,8 @@
     .hero { padding: 60px 24px 36px; }
     .search-bar-wrap { padding: 12px 24px; }
     .content { padding: 28px 20px 60px; }
+    .page-toc-bar { padding: 12px 24px; }
+    .page-toc-body { padding: 4px 24px 20px; }
     .compare-block { flex-direction: column; }
   }
 
@@ -305,6 +326,52 @@
     <div class="eyebrow">Chimie · Secondaire 5 · Module 1 — Les gaz</div>
     <h1>Les propriétés<br>chimiques des gaz</h1>
     <p>Certains gaz dorment tranquillement dans leur bonbonne pendant des années. D'autres s'enflamment à la moindre étincelle, ou rongent le métal qu'ils touchent. Ce chapitre explique pourquoi — à travers la réactivité chimique des gaz, leur rôle comme combustibles ou comburants, et leurs usages bien réels dans notre quotidien.</p>
+  </div>
+
+  <div class="page-toc">
+    <button class="page-toc-bar" aria-expanded="false" onclick="toggleNote(this)">
+      <svg class="page-toc-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      <span class="page-toc-label">Table des matières<span class="page-toc-subtitle">Accès direct à chaque notion</span></span>
+      <svg class="chevron-toc" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="page-toc-body">
+      <div class="page-toc-group">
+        <div class="page-toc-group-label">1.1 — Les causes de la réactivité chimique des gaz</div>
+        <div class="page-toc-pills">
+          <a href="#comportement-electronique-atomes"><span class="toc-num">1.1.1</span>Comportement électronique des atomes</a>
+          <a href="#force-liaisons-chimiques"><span class="toc-num">1.1.2</span>Force des liaisons chimiques</a>
+        </div>
+      </div>
+      <div class="page-toc-group">
+        <div class="page-toc-group-label">1.2 — Les gaz combustibles</div>
+        <div class="page-toc-pills">
+          <a href="#rend-substance-combustible"><span class="toc-num">1.2.1</span>Qu'est-ce qui rend combustible?</a>
+          <a href="#triangle-du-feu"><span class="toc-num">1.2.2</span>Triangle du feu</a>
+          <a href="#hydrocarbures-gazeux"><span class="toc-num">1.2.3</span>Hydrocarbures gazeux</a>
+          <a href="#dihydrogene-combustible"><span class="toc-num">1.2.4</span>Le dihydrogène</a>
+        </div>
+      </div>
+      <div class="page-toc-group">
+        <div class="page-toc-group-label">1.3 — Les gaz comburants</div>
+        <div class="page-toc-pills">
+          <a href="#dioxygene-comburant-universel"><span class="toc-num">1.3.1</span>Dioxygène : comburant universel</a>
+          <a href="#ozone-deux-visages"><span class="toc-num">1.3.2</span>L'ozone, deux visages</a>
+          <a href="#comburants-inattendus"><span class="toc-num">1.3.3</span>Comburants inattendus</a>
+        </div>
+      </div>
+      <div class="page-toc-group">
+        <div class="page-toc-group-label">Section 2</div>
+        <div class="page-toc-pills">
+          <a href="#section-2"><span class="toc-num">2</span>Utilisation des gaz au quotidien</a>
+        </div>
+      </div>
+      <div class="page-toc-group">
+        <div class="page-toc-group-label">Synthèse</div>
+        <div class="page-toc-pills">
+          <a href="#chap1-recap"><span class="toc-num">✓</span>Exercices de fin de chapitre</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="search-bar-wrap">
@@ -570,7 +637,7 @@
           </div>
         </div>
 
-        <div class="subsection">
+        <div class="subsection" id="comportement-electronique-atomes">
           <div class="subsection-title">Le comportement électronique des atomes</div>
 
           <p>Les deux premières causes sont intimement liées à une seule et même idée, déjà rencontrée l'an dernier : un atome est chimiquement stable lorsque sa couche de valence est complète. Deux éléments favorisent cette stabilité naturelle : une forte attraction entre le noyau et les électrons de valence, et une couche de valence déjà près d'être complète. Plus un atome réunit ces deux conditions, moins il a besoin de réagir avec autre chose pour devenir stable.</p>
@@ -634,7 +701,7 @@
 
         </div>
 
-        <div class="subsection">
+        <div class="subsection" id="force-liaisons-chimiques">
           <div class="subsection-title">La force des liaisons chimiques</div>
 
           <p>Pour les gaz qui existent sous forme moléculaire, un troisième facteur entre en jeu. Lorsqu'une molécule réagit, les liaisons qui unissent ses atomes doivent d'abord se briser avant que de nouvelles liaisons puissent se former dans les produits. Or, briser une liaison exige toujours un apport d'énergie — cette quantité d'énergie, propre à chaque type de liaison, porte le nom d'<span class="kw">énergie de liaison</span>.</p>
@@ -827,7 +894,7 @@
       </button>
       <div class="section-body">
 
-        <div class="subsection-title">Qu'est-ce qui rend une substance combustible?</div>
+        <div class="subsection-title" id="rend-substance-combustible">Qu'est-ce qui rend une substance combustible?</div>
 
         <p>Le vrombissement d'un moteur à essence, la flamme bleue d'une cuisinière au gaz, l'étincelle d'un briquet : trois scènes ordinaires, mais une seule et même question chimique derrière chacune d'elles. Qu'est-ce qui fait qu'une substance peut brûler?</p>
 
@@ -849,7 +916,7 @@
           </div>
         </div>
 
-        <div class="subsection-title">Les conditions de la combustion : le triangle du feu</div>
+        <div class="subsection-title" id="triangle-du-feu">Les conditions de la combustion : le triangle du feu</div>
 
         <p>Un combustible en présence d'un comburant ne s'enflamme pas pour autant — encore faut-il réunir une dernière condition. La réponse tient en trois ingrédients précis, et il suffit d'en retirer un seul pour que le feu s'éteigne.</p>
 
@@ -899,7 +966,7 @@
 
         <p>Le <strong>comburant</strong> le plus commun est le dioxygène (O₂) — celui-là même dont on a vu, à la section précédente, qu'il existe sous forme de <a href="#section-1-1" onclick="var t=document.getElementById('section-1-1');var btn=t.querySelector('.section-toggle');if(btn.getAttribute('aria-expanded')==='false')btn.click();setTimeout(()=>t.scrollIntoView({behavior:'smooth',block:'start'}),80);return false;" style="color:var(--indigo-mid);font-weight:600;">molécule diatomique →</a>, et qui compose environ 21 % de l'atmosphère terrestre. Le <strong>point d'ignition</strong>, quant à lui, varie d'un combustible à l'autre : le butane s'enflamme à une température beaucoup plus basse que le méthane, par exemple, ce qui explique pourquoi on le retrouve dans les briquets plutôt que le méthane.</p>
 
-        <div class="subsection-title">Les hydrocarbures gazeux</div>
+        <div class="subsection-title" id="hydrocarbures-gazeux">Les hydrocarbures gazeux</div>
 
         <p>Parmi les combustibles gazeux les plus répandus figurent les <strong>hydrocarbures</strong> — des molécules composées uniquement d'atomes de carbone et d'hydrogène. Aux conditions ambiantes de température et de pression, quatre d'entre eux existent à l'état gazeux :</p>
 
@@ -941,7 +1008,7 @@
           </div>
         </div>
 
-        <div class="subsection-title">Le dihydrogène : un combustible pas comme les autres</div>
+        <div class="subsection-title" id="dihydrogene-combustible">Le dihydrogène : un combustible pas comme les autres</div>
 
         <p>Le dihydrogène (H₂) est lui aussi utilisé comme combustible, mais sa faible masse volumique fait qu'il ne se trouve qu'à l'état de trace dans la haute atmosphère — impossible de le puiser directement dans l'air. Il doit être produit industriellement, le plus souvent par extraction à partir du méthane ou par électrolyse de l'eau. Sa combustion, elle, est d'une simplicité remarquable :</p>
 
@@ -1103,7 +1170,7 @@
           <p><strong>Comburant :</strong> une substance qui réagit avec un combustible pour permettre sa combustion — le plus souvent en lui fournissant l'oxygène nécessaire à la réaction.</p>
         </div>
 
-        <div class="subsection">
+        <div class="subsection" id="dioxygene-comburant-universel">
           <div class="subsection-title">Le dioxygène : le comburant universel</div>
 
           <p>Le dioxygène (O₂) est de loin le comburant le plus répandu : il représente environ 21 % de l'atmosphère terrestre. C'est lui qui alimente la respiration cellulaire de la plupart des organismes vivants, la combustion du gaz naturel dans nos habitations, et l'explosion des vapeurs d'essence dans les moteurs de nos voitures.</p>
@@ -1125,7 +1192,7 @@
 
         </div>
 
-        <div class="subsection">
+        <div class="subsection" id="ozone-deux-visages">
           <div class="subsection-title">L'ozone : la même molécule, deux visages</div>
 
           <p>Un cousin chimique du dioxygène, l'ozone (O₃), est un comburant beaucoup plus réactif — et beaucoup plus toxique. Son effet sur nous dépend presque entièrement d'un seul facteur : l'altitude à laquelle on le rencontre.</p>
@@ -1196,7 +1263,7 @@
 
         </div>
 
-        <div class="subsection">
+        <div class="subsection" id="comburants-inattendus">
           <div class="subsection-title">Des comburants inattendus</div>
 
           <p>D'autres substances peuvent elles aussi agir comme comburants, dans des contextes plus inattendus — parfois même à l'encontre de leur réputation.</p>
@@ -1794,6 +1861,20 @@ tocLinks.forEach(link => {
     if (toggle && toggle.getAttribute('aria-expanded') === 'false') toggleSection(toggle);
     target.scrollIntoView({behavior:'smooth', block:'start'});
     document.getElementById('sidebar').classList.remove('open');
+  });
+});
+
+// ── Table des matières (page-toc) : ouvre la bonne section, puis défile ────
+document.querySelectorAll('.page-toc-pills a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const id = link.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    const card = target.closest('.section-card');
+    const toggle = card ? card.querySelector('.section-toggle') : null;
+    if (toggle && toggle.getAttribute('aria-expanded') === 'false') toggleSection(toggle);
+    target.scrollIntoView({behavior:'smooth', block:'start'});
   });
 });
 
