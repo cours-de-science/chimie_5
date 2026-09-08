@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapitre 2 — Les propriétés physiques des gaz | Chimie Sec. 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo-dark: #241b45;
+    --indigo-mid:  #3d2d72;
+    --indigo-light:#7d63b8;
+    --amber:       #e8a93b;
+    --amber-dim:   #b8842a;
+    --flame:       #d5472d;
+    --bg:          #f6f3ee;
+    --surface:     #ffffff;
+    --text:        #221c33;
+    --muted:       #6f6480;
+    --border:      #ddd6e6;
+    --sidebar-w:   268px;
+    --mono:        'JetBrains Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  #sidebar { width: var(--sidebar-w); background: var(--indigo-dark); position: fixed; top: 0; left: 0; bottom: 0; overflow-y: auto; display: flex; flex-direction: column; z-index: 100; transition: transform .3s ease; }
+  .sidebar-header { background: var(--amber); padding: 20px 18px 16px; flex-shrink: 0; }
+  .back-to-index { display: flex; align-items: center; gap: 5px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--indigo-dark); text-decoration: none; opacity: .65; margin-bottom: 12px; transition: opacity .15s; }
+  .back-to-index:hover { opacity: 1; text-decoration: underline; }
+  .sidebar-header .label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--indigo-dark); }
+  .sidebar-header .chap-num { font-family: 'Barlow Condensed', sans-serif; font-size: 58px; font-weight: 800; line-height: 1; color: var(--indigo-dark); }
+  .sidebar-header .chap-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--indigo-dark); margin-top: 4px; }
+  .toc-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--indigo-light); padding: 20px 18px 8px; }
+  #sidebar nav ul { list-style: none; }
+  #sidebar nav ul li a { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.75); text-decoration: none; border-left: 3px solid transparent; transition: background .15s, color .15s, border-color .15s; line-height: 1.35; }
+  #sidebar nav ul li a:hover, #sidebar nav ul li a.active { background: rgba(255,255,255,.08); color: #fff; border-left-color: var(--amber); }
+  #sidebar nav ul li a .num { font-family: var(--mono); font-size: 11px; color: var(--amber); flex-shrink: 0; margin-top: 1px; font-weight: 600; }
+  #sidebar nav ul li a.disabled { opacity: .4; pointer-events: none; }
+  .sidebar-footer { margin-top: auto; padding: 16px 18px; font-size: 11px; color: rgba(255,255,255,.3); border-top: 1px solid rgba(255,255,255,.1); }
+  .sidebar-footer button { background: none; border: none; cursor: pointer; font-size: 11px; color: rgba(255,255,255,.3); padding: 0; text-align: left; width: 100%; transition: color .15s; }
+  .sidebar-footer button:hover { color: rgba(255,255,255,.6); }
+  .attrib-popover { display: none; position: absolute; bottom: 60px; left: 14px; width: 230px; background: #fff; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,.18); padding: 14px 16px; font-size: 12px; color: var(--text); line-height: 1.6; z-index: 200; }
+  .attrib-popover::after { content: ''; position: absolute; bottom: -7px; left: 20px; width: 14px; height: 14px; background: #fff; transform: rotate(45deg); box-shadow: 2px 2px 4px rgba(0,0,0,.08); }
+  .attrib-popover.visible { display: block; }
+
+  /* ── MAIN ── */
+  #main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
+
+  .hero { background: linear-gradient(135deg, var(--indigo-dark) 0%, var(--indigo-mid) 60%, var(--indigo-light) 100%); padding: 60px 56px 48px; color: #fff; position: relative; overflow: hidden; }
+  .hero::before { content: '2'; position: absolute; right: 40px; top: -10px; font-family: 'Barlow Condensed', sans-serif; font-size: 260px; font-weight: 800; color: rgba(255,255,255,.06); line-height: 1; pointer-events: none; }
+  .hero .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+  .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(36px, 5vw, 56px); font-weight: 800; text-transform: uppercase; letter-spacing: .02em; line-height: 1.05; margin-bottom: 20px; }
+  .hero p { max-width: 600px; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,.82); }
+
+  .search-bar-wrap { background: var(--indigo-dark); padding: 14px 56px; display: flex; align-items: center; gap: 12px; border-bottom: 3px solid var(--amber); }
+  .search-bar-wrap label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.5); white-space: nowrap; letter-spacing: .06em; text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif; }
+  #search-input { flex: 1; max-width: 440px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 6px; padding: 8px 14px; font-size: 14px; color: #fff; font-family: 'Inter', sans-serif; outline: none; transition: background .2s, border-color .2s; }
+  #search-input::placeholder { color: rgba(255,255,255,.4); }
+  #search-input:focus { background: rgba(255,255,255,.16); border-color: var(--amber); }
+  #search-count { font-size: 12px; color: var(--amber); font-family: var(--mono); min-width: 90px; }
+
+  .content { padding: 48px 56px 80px; max-width: 880px; }
+
+  .section-card { background: var(--surface); border-radius: 10px; border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .section-toggle { width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left; display: block; }
+  .section-header { display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; background: var(--surface); transition: background .15s; border-bottom: 1px solid transparent; }
+  .section-num { margin-top: 2px; }
+  .section-toggle:hover .section-header, .section-toggle[aria-expanded="true"] .section-header { background: #f4f1fa; border-bottom-color: var(--border); }
+  .section-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--amber-dim); background: var(--indigo-dark); padding: 4px 9px; border-radius: 5px; letter-spacing: .04em; flex-shrink: 0; }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--indigo-dark); flex: 1; }
+  .chevron { width: 20px; height: 20px; color: var(--muted); transition: transform .25s ease; flex-shrink: 0; margin-top: 2px; }
+  .section-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+  .section-body { display: none; padding: 28px 28px 32px; border-top: 2px solid var(--amber); }
+  .section-body.open { display: block; }
+
+  .subsection { margin-bottom: 32px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection-title { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--indigo-mid); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .subsection-title::before { content: ''; display: inline-block; width: 4px; height: 18px; background: var(--amber); border-radius: 2px; flex-shrink: 0; }
+
+  p { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  ul.content-list { padding-left: 20px; margin-bottom: 14px; }
+  ul.content-list li { font-size: 15px; line-height: 1.7; margin-bottom: 6px; }
+
+  .def-box { background: linear-gradient(135deg, #f1eef8, #f6f2fb); border-left: 4px solid var(--indigo-light); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 16px 0; }
+  .def-box .def-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--indigo-light); margin-bottom: 6px; }
+  .def-box p { font-size: 14px; margin: 0 0 6px; color: var(--indigo-dark); }
+  .def-box p:last-child { margin: 0; }
+  .def-box strong { color: var(--indigo-dark); font-weight: 600; }
+
+  .note-box { margin: 20px 0; border: 1.5px solid var(--amber-dim); border-radius: 10px; overflow: hidden; background: #fdf6e6; }
+  .note-bar { width: 100%; display: flex; align-items: flex-start; gap: 8px; background: rgba(232,169,59,.26); border: none; cursor: pointer; padding: 12px 18px; text-align: left; font-family: inherit; color: inherit; transition: background .15s; }
+  .note-bar:hover { background: rgba(232,169,59,.38); }
+  .note-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #7a5410; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; row-gap: 3px; }
+  .note-label .icon-sm { width: 15px; height: 15px; flex-shrink: 0; }
+  .note-subtitle { font-size: 11.5px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #a1793a; }
+  .note-bar .chevron-n { margin-left: auto; width: 16px; height: 16px; transition: transform .2s; flex-shrink: 0; color: #7a5410; margin-top: 1px; }
+  .note-bar[aria-expanded="true"] .chevron-n { transform: rotate(180deg); }
+  .note-body { display: none; padding: 14px 18px 18px; font-size: 14px; color: #4a3410; line-height: 1.65; }
+  .note-bar[aria-expanded="true"] + .note-body { display: block; }
+
+  /* === TABLE DES MATIÈRES (index des notions, repliable, en tête de page) === */
+  .page-toc { background: var(--surface); border-bottom: 1px solid var(--border); }
+  .page-toc-bar { width: 100%; display: flex; align-items: center; gap: 10px; padding: 13px 56px; background: none; border: none; cursor: pointer; text-align: left; font-family: inherit; color: inherit; }
+  .page-toc-bar:hover { background: #f7f4ef; }
+  .page-toc-icon { width: 17px; height: 17px; color: var(--amber-dim); flex-shrink: 0; }
+  .page-toc-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--indigo-dark); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; row-gap: 2px; }
+  .page-toc-subtitle { font-size: 11.5px; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--muted); }
+  .page-toc-bar .chevron-toc { margin-left: auto; width: 16px; height: 16px; transition: transform .2s; flex-shrink: 0; color: var(--muted); }
+  .page-toc-bar[aria-expanded="true"] .chevron-toc { transform: rotate(180deg); }
+  .page-toc-body { display: none; padding: 4px 56px 22px; }
+  .page-toc-body[aria-expanded="true"], .page-toc-bar[aria-expanded="true"] + .page-toc-body { display: block; }
+  .page-toc-group { margin-top: 14px; }
+  .page-toc-group-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 7px; }
+  .page-toc-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .page-toc-pills a { font-size: 13px; font-weight: 600; color: var(--indigo-mid); background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 5px 13px 5px 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: background .15s, color .15s, border-color .15s; }
+  .page-toc-pills a .toc-num { font-family: var(--mono); font-size: 10.5px; font-weight: 700; color: #fff; background: var(--indigo-light); border-radius: 8px; padding: 1px 6px; }
+  .page-toc-pills a:hover { background: var(--indigo-dark); color: #fff; border-color: var(--indigo-dark); }
+  .page-toc-pills a:hover .toc-num { background: var(--amber); color: var(--indigo-dark); }
+
+  .formula { font-family: var(--mono); background: var(--indigo-dark); color: var(--amber); padding: 14px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; margin: 16px 0; letter-spacing: .04em; text-align: center; overflow-x: auto; }
+  .formula-caption { font-size: 12px; color: var(--muted); text-align: center; margin-top: -10px; margin-bottom: 14px; }
+  .formula sub { font-size: 72%; }
+
+  .kw { background: rgba(232,169,59,.28); color: var(--indigo-dark); padding: 1px 4px; border-radius: 3px; font-weight: 600; }
+
+  mark.sh { background: #f6d187; color: var(--text); border-radius: 2px; padding: 0 2px; }
+  mark.sh.current { background: var(--flame); color: #fff; box-shadow: 0 0 0 2px var(--flame); }
+
+  .rappel-card { background: linear-gradient(120deg, var(--indigo-dark), var(--indigo-mid)); border-radius: 10px; padding: 24px 28px; color: rgba(255,255,255,.88); margin-bottom: 24px; }
+  .rappel-card h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--amber); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; }
+  .rappel-card h2 svg { margin-top: 3px; flex-shrink: 0; }
+  .rappel-card p { color: rgba(255,255,255,.82); font-size: 14px; margin-bottom: 10px; }
+  .rappel-card p:last-child { margin-bottom: 0; }
+  .rappel-ref { display: inline-block; font-family: var(--mono); font-size: 11px; color: var(--amber); opacity: .85; text-decoration: none; border-bottom: 1px dotted currentColor; transition: opacity .15s; }
+  .rappel-ref:hover, .rappel-ref:focus-visible { opacity: 1; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  .data-table th { background: var(--indigo-dark); color: var(--amber); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; padding: 10px 14px; text-align: left; }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: #f6f4fa; }
+  .data-table td strong { color: var(--indigo-dark); }
+
+  .fig-block { margin: 18px 0; background: #faf9fc; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; text-align: center; }
+  .fig-block .fig-inner { padding: 20px; }
+  .fig-block figcaption { font-size: 12.5px; color: var(--muted); padding: 10px 16px 14px; border-top: 1px solid var(--border); line-height: 1.5; font-style: italic; text-align: left; }
+
+  .compare-block { display: flex; gap: 2px; margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .compare-col { flex: 1; padding: 18px 20px; }
+  .compare-col--a { background: linear-gradient(135deg, #f1eef8, #e8e1f5); }
+  .compare-col--b { background: linear-gradient(135deg, #fdf1ee, #fbe2da); }
+  .compare-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--indigo-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .compare-col--b .compare-label { color: var(--flame); }
+  .compare-col p { font-size: 13.5px; line-height: 1.6; margin: 0 0 8px; color: var(--text); }
+  .compare-col p:last-child { margin-bottom: 0; }
+
+  .cause-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0 22px; }
+  .cause-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 16px 14px; }
+  .cause-card .cause-icon { width: 30px; height: 30px; color: var(--indigo-mid); margin-bottom: 8px; }
+  .cause-card .cause-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--indigo-dark); margin-bottom: 4px; line-height: 1.25; }
+  .cause-card p { font-size: 12.5px; color: var(--muted); margin: 0; line-height: 1.5; }
+  @media (max-width: 768px) { .cause-grid { grid-template-columns: 1fr; } }
+
+  #to-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; background: var(--indigo-dark); color: var(--amber); border: 2px solid var(--amber); border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 200; }
+  #to-top.visible { opacity: 1; pointer-events: auto; }
+
+  #menu-toggle { display: none; position: fixed; top: 14px; left: 14px; z-index: 150; background: var(--indigo-dark); border: 2px solid var(--amber); color: var(--amber); width: 40px; height: 40px; border-radius: 8px; font-size: 20px; cursor: pointer; align-items: center; justify-content: center; }
+
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    #menu-toggle { display: flex; }
+    .hero { padding: 60px 24px 36px; }
+    .search-bar-wrap { padding: 12px 24px; }
+    .content { padding: 28px 20px 60px; }
+    .page-toc-bar { padding: 12px 24px; }
+    .page-toc-body { padding: 4px 24px 20px; }
+    .compare-block { flex-direction: column; }
+    .cause-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* ── QUIZ ── */
+  .quiz-block { margin-top: 36px; margin-bottom: 32px; border-top: 2px solid var(--amber); border-bottom: 2px solid var(--amber); padding-top: 24px; padding-bottom: 24px; }
+  .quiz-block-bar { width: 100%; display: flex; align-items: flex-start; gap: 10px; background: var(--indigo-dark); border: none; border-radius: 10px; cursor: pointer; padding: 14px 18px; margin-bottom: 6px; text-align: left; transition: background .15s; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .quiz-block-bar:hover { background: var(--indigo-mid); }
+  .quiz-block-bar .quiz-block-icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--amber); margin-top: 2px; }
+  .quiz-block-title { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .quiz-block-subtitle { font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: rgba(255,255,255,.72); margin-left: 2px; }
+  .quiz-block-bar .chevron-q { margin-left: auto; width: 20px; height: 20px; transition: transform .2s; flex-shrink: 0; color: #fff; margin-top: 2px; }
+  .quiz-block-bar[aria-expanded="true"] .chevron-q { transform: rotate(180deg); }
+  .quiz-body { display: none; }
+  .quiz-block-bar[aria-expanded="true"] + .quiz-body { display: block; padding-top: 14px; }
+  .quiz-intro { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+  .quiz-score-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; font-size: 13px; color: var(--muted); }
+  .quiz-score-bar progress { flex: 1; height: 6px; border-radius: 3px; appearance: none; -webkit-appearance: none; }
+  .quiz-score-bar progress::-webkit-progress-bar { background: var(--border); border-radius: 3px; }
+  .quiz-score-bar progress::-webkit-progress-value { background: var(--indigo-mid); border-radius: 3px; transition: width .4s; }
+
+  .quiz-q { background: var(--bg); border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; border: 1.5px solid var(--border); transition: border-color .2s; }
+  .quiz-q.answered { border-color: transparent; }
+  .quiz-q-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
+  .quiz-q-text { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 14px; }
+
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-option { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border-radius: 8px; border: 1.5px solid var(--border); background: #fff; cursor: pointer; font-size: 14px; color: var(--text); transition: background .15s, border-color .15s; text-align: left; width: 100%; line-height: 1.45; }
+  .quiz-option:hover:not(:disabled) { background: #f1eef8; border-color: var(--indigo-mid); }
+  .quiz-option .opt-letter { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted); flex-shrink: 0; margin-top: 1px; }
+  .quiz-option:disabled { cursor: default; }
+  .quiz-option.correct { background: #e8f8ef; border-color: #2da262; color: #1a6640; }
+  .quiz-option.correct .opt-letter { color: #2da262; }
+  .quiz-option.wrong { background: #fdecea; border-color: #d94f3d; color: #8b2218; }
+  .quiz-option.wrong .opt-letter { color: #d94f3d; }
+  .quiz-option.reveal { background: #e8f8ef; border-color: #2da262; color: #1a6640; opacity: .7; }
+  .quiz-option.reveal .opt-letter { color: #2da262; }
+
+  .quiz-feedback { margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 13.5px; line-height: 1.55; display: none; }
+  .quiz-feedback.show { display: flex; gap: 8px; align-items: flex-start; }
+  .quiz-feedback .icon-sm { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
+  .quiz-feedback.ok { background: #e8f8ef; color: #1a6640; }
+  .quiz-feedback.ko { background: #fdecea; color: #8b2218; }
+  .quiz-result-msg { margin-top: 16px; padding: 14px 18px; border-radius: 10px; font-size: 14px; font-weight: 500; text-align: center; display: none; align-items: center; justify-content: center; gap: 8px; }
+  .quiz-result-msg.show { display: flex; }
+  .quiz-result-msg .icon-sm { width: 18px; height: 18px; flex-shrink: 0; }
+  .quiz-result-msg.great { background: #e8f8ef; color: #1a6640; }
+  .quiz-result-msg.good { background: #fdf6e3; color: #7a5c00; }
+  .quiz-result-msg.poor { background: #fdecea; color: #8b2218; }
+
+  .quiz-reset { margin-top: 20px; padding: 9px 20px; border-radius: 8px; border: 1.5px solid var(--indigo-mid); background: #fff; color: var(--indigo-dark); font-size: 13px; font-weight: 600; cursor: pointer; transition: background .15s; display: none; }
+  .quiz-reset:hover { background: #f1eef8; }
+
+  /* === ACTIVITÉ SUGGÉRÉE === */
+  .icon-sm { display: inline-block; vertical-align: middle; width: 14px; height: 14px; flex-shrink: 0; }
+  .activity-block { margin: 22px 0; border: 1.5px solid var(--flame); border-radius: 10px; overflow: hidden; background: #fdf6f4; }
+  .activity-bar { width: 100%; display: flex; align-items: flex-start; gap: 10px; padding: 11px 16px; background: #fbe2da; border: none; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--flame); text-align: left; transition: background .15s; line-height: 1.35; }
+  .activity-bar:hover { background: #f8d3c7; }
+  .activity-bar .activity-icon { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+  .activity-bar .chevron-a { margin-left: auto; width: 16px; height: 16px; transition: transform .2s; flex-shrink: 0; margin-top: 1px; }
+  .activity-bar[aria-expanded="true"] .chevron-a { transform: rotate(180deg); }
+  .activity-content { display: none; padding: 16px 18px 18px; }
+  .activity-bar[aria-expanded="true"] + .activity-content { display: block; }
+  .activity-question { font-size: 14.5px; color: var(--text); line-height: 1.6; font-style: italic; }
+  .activity-hint-toggle { margin-top: 12px; font-size: 12px; font-weight: 600; color: var(--indigo-mid); background: none; border: none; cursor: pointer; padding: 0; text-decoration: underline; }
+  .activity-hint { display: none; margin-top: 8px; font-size: 13px; color: var(--muted); background: var(--bg); border-radius: 6px; padding: 10px 12px; line-height: 1.55; }
+  .activity-hint.show { display: block; }
+
+  /* === BIO-BOX : LA COMMUNAUTÉ SCIENTIFIQUE === */
+  .bio-box { margin: 22px 0; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--indigo-light); background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .bio-box-header { background: linear-gradient(120deg, var(--indigo-dark), var(--indigo-mid)); padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+  .bio-box-icon { width: 42px; height: 42px; flex-shrink: 0; color: var(--amber); }
+  .bio-box-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); margin-bottom: 3px; }
+  .bio-box-name { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 800; text-transform: uppercase; letter-spacing: .02em; color: #fff; line-height: 1.15; }
+  .bio-box-dates { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.72); margin-top: 2px; }
+  .bio-box-body { padding: 18px 22px 20px; }
+  .bio-box-body p { font-size: 14px; }
+  .bio-box-fig { text-align: center; margin-top: 14px; }
+  .bio-box-fig svg { width: 230px; max-width: 100%; height: auto; }
+
+  /* === EXEMPLE RÉSOLU === */
+  .example-box { margin: 20px 0; border-radius: 10px; border: 1.5px solid var(--indigo-mid); overflow: hidden; background: #fff; }
+  .example-box-header { background: var(--indigo-dark); color: #fff; padding: 10px 18px; display: flex; align-items: center; gap: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+  .example-box-header svg { width: 16px; height: 16px; color: var(--amber); flex-shrink: 0; }
+  .example-body { padding: 16px 20px 18px; }
+  .example-statement { font-size: 14.5px; color: var(--text); margin-bottom: 14px; font-style: italic; line-height: 1.6; }
+  .example-step { font-size: 14px; color: var(--text); margin-bottom: 11px; line-height: 1.6; padding-left: 28px; position: relative; }
+  .example-step:last-of-type { margin-bottom: 0; }
+  .example-step .step-num { position: absolute; left: 0; top: 1px; width: 19px; height: 19px; border-radius: 50%; background: var(--indigo-light); color: #fff; font-family: var(--mono); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .example-answer { margin-top: 14px; background: rgba(232,169,59,.18); border-left: 4px solid var(--amber); border-radius: 0 6px 6px 0; padding: 10px 16px; font-family: var(--mono); font-size: 14.5px; font-weight: 600; color: var(--indigo-dark); }
+</style>
+</head>
+<body>
+
+<button id="menu-toggle" aria-label="Menu" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<aside id="sidebar" role="navigation" aria-label="Table des matières">
+  <div class="sidebar-header">
+    <a href="index.html" class="back-to-index" title="Retour à la table des matières du cours">
+      <svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Tous les chapitres
+    </a>
+    <div class="label">Chimie Sec. 5 · Module 1 · Chapitre</div>
+    <div class="chap-num">2</div>
+    <div class="chap-title">Les propriétés physiques des gaz</div>
+  </div>
+  <div class="toc-label">Table des matières</div>
+  <nav>
+    <ul>
+      <li><a href="#rappel" class="toc-link"><span class="num">—</span> Rappel</a></li>
+      <li><a href="#section-1" class="toc-link"><span class="num">Section 1</span> La théorie cinétique des gaz</a></li>
+      <li><a href="#section-1-1" class="toc-link"><span class="num">1.1</span> Les différentes phases de la matière</a></li>
+      <li><a href="#section-1-2" class="toc-link"><span class="num">1.2</span> Les principaux points de la théorie cinétique</a></li>
+      <li><a href="#" class="toc-link disabled"><span class="num">Section 2</span> La pression (à venir)</a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-footer">
+    <button onclick="document.getElementById('attrib-pop').classList.toggle('visible')" title="À propos de ce document" style="display:flex;align-items:center;gap:6px;"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.5" r="0.6" fill="currentColor" stroke="none"/></svg> À propos de ce document</button>
+    <div class="attrib-popover" id="attrib-pop">
+      Matériel préparé par M. Raphaël Sylvestre Bouchard, à l'aide du manuel <em>Delta</em>, Secondaire 5 (TC Média Livres inc.).
+    </div>
+  </div>
+</aside>
+
+<main id="main">
+  <div class="hero">
+    <div class="eyebrow">Chimie · Secondaire 5 · Module 1 — Les gaz</div>
+    <h1>Les propriétés<br>physiques des gaz</h1>
+    <p>Un ballon gonflé à l'hélium se dégonfle étonnamment plus vite qu'un ballon rempli d'air ordinaire. Une bulle d'air libérée par un plongeur grossit à mesure qu'elle remonte vers la surface. Et il est possible de comprimer une quantité impressionnante d'air dans une petite bouteille de plongée. Ces comportements, en apparence disparates, s'expliquent tous par une seule et même théorie : le mouvement constant et invisible des particules qui composent les gaz. Ce chapitre explore d'abord cette théorie cinétique, avant de s'attaquer à la notion de pression — les deux clés pour prédire comment un gaz va se comporter.</p>
+  </div>
+
+  <div class="page-toc">
+    <button class="page-toc-bar" aria-expanded="false" onclick="toggleNote(this)">
+      <svg class="page-toc-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      <span class="page-toc-label">Table des matières<span class="page-toc-subtitle">Accès direct à chaque notion</span></span>
+      <svg class="chevron-toc" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="page-toc-body">
+      <div class="page-toc-group">
+        <div class="page-toc-group-label">1.1 — Les différentes phases de la matière</div>
+        <div class="page-toc-pills">
+          <a href="#modele-particulaire-mouvements"><span class="toc-num">1.1.1</span>Le modèle particulaire et les mouvements des particules</a>
+          <a href="#trois-phases-matiere"><span class="toc-num">1.1.2</span>Les trois phases de la matière</a>
+          <a href="#changements-de-phase"><span class="toc-num">1.1.3</span>Les changements de phase</a>
+        </div>
+      </div>
+      <div class="page-toc-group">
+        <div class="page-toc-group-label">1.2 — Les principaux points de la théorie cinétique</div>
+        <div class="page-toc-pills">
+          <a href="#section-1-2"><span class="toc-num">1.2</span>L'énergie cinétique d'une particule gazeuse</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-bar-wrap">
+    <label for="search-input">🔍 Recherche rapide</label>
+    <input type="text" id="search-input" placeholder="Ex : vibration, rotation, plasma, énergie cinétique…" oninput="doSearch(this.value)">
+    <span id="search-count"></span>
+  </div>
+
+  <div class="content">
+
+    <!-- RAPPEL -->
+    <div id="rappel" class="rappel-card">
+      <h2><svg class="icon-sm" aria-hidden="true" style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg> Rappel — Ce qu'on sait déjà</h2>
+      <p>Ce chapitre s'appuie sur deux idées que tu côtoies depuis longtemps, bien avant le secondaire 5. Il vaut la peine de les raviver avant d'aller plus loin :</p>
+      <p>• <strong>Le modèle particulaire de la matière</strong> — toute matière, peu importe sa phase, est constituée de particules en mouvement constant, retenues ensemble par des forces d'attraction. C'est le point de départ de tout ce chapitre.</p>
+      <p>• <strong>Le vocabulaire des changements de phase</strong> (fusion, solidification, vaporisation, condensation, sublimation, déposition) — des mots que tu as déjà rencontrés, et qu'on reprend en détail à la section 1.1.3 parce que la théorie cinétique en donne enfin l'explication complète, à l'échelle des particules.</p>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section-card" id="section-1">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">Section 1</span>
+          <span class="section-title">La théorie cinétique des gaz</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>La théorie cinétique des gaz est le fruit du travail de nombreux scientifiques des 18<sup>e</sup> et 19<sup>e</sup> siècles, qui cherchaient à expliquer pourquoi des gaz très différents les uns des autres présentent souvent des comportements étonnamment semblables.</p>
+        <p>Pour bien comprendre cette théorie — et surtout pour être capable de prédire comment un gaz réel va se comporter — il faut d'abord s'attarder au mouvement des particules dans les différentes phases de la matière, puis établir clairement le lien entre l'énergie cinétique des particules d'un gaz et sa vitesse.</p>
+
+        <div class="cause-grid" style="grid-template-columns:repeat(2,1fr);">
+          <div class="cause-card">
+            <svg class="cause-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"/></svg>
+            <div class="cause-title">1.1 — Le mouvement des particules</div>
+            <p>Comment les particules se déplacent différemment selon qu'elles se trouvent dans un solide, un liquide ou un gaz — et ce que ça explique sur les propriétés de chaque phase.</p>
+          </div>
+          <div class="cause-card">
+            <svg class="cause-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16 16 9"/><circle cx="12" cy="16" r="1.3" fill="currentColor" stroke="none"/><path d="M4 16h1.2M18.8 16H20M6.3 9.7l.9.9M17.7 9.7l-.9.9"/></svg>
+            <div class="cause-title">1.2 — Les principes de la théorie</div>
+            <p>La relation entre l'énergie cinétique d'une particule gazeuse, sa masse et sa vitesse — le premier grand principe sur lequel repose toute la théorie cinétique des gaz.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 1.1 -->
+    <div class="section-card" id="section-1-1">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">1.1</span>
+          <span class="section-title">Les différentes phases de la matière</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>Le modèle particulaire de la matière permet d'expliquer un grand nombre des propriétés qu'on observe à l'échelle macroscopique, c'est-à-dire à l'échelle de ce qu'on peut voir et toucher. Selon ce modèle, trois idées résument le comportement de la matière, peu importe sa phase :</p>
+
+        <ul class="content-list">
+          <li>La matière est constituée de particules — atomes, ions ou molécules — plus ou moins rapprochées les unes des autres, selon la phase dans laquelle elles se trouvent.</li>
+          <li>Ces particules sont retenues ensemble par des forces d'attraction, dont l'intensité varie selon la distance qui les sépare.</li>
+          <li>Les particules de matière sont continuellement en mouvement — jamais complètement immobiles, même dans un solide.</li>
+        </ul>
+
+        <div class="subsection" id="modele-particulaire-mouvements">
+          <div class="subsection-title">Le modèle particulaire et les mouvements des particules</div>
+
+          <p>Le type de mouvement qu'une particule peut effectuer dépend directement de la phase dans laquelle elle se trouve, tout comme le degré d'interaction qui la relie à ses voisines. Trois mouvements sont possibles à l'échelle des particules :</p>
+
+          <ul class="content-list">
+            <li><strong>La vibration</strong> — la particule oscille autour d'une position fixe, sans jamais vraiment la quitter.</li>
+            <li><strong>La rotation</strong> — la particule tourne sur elle-même, autour d'un ou de plusieurs axes.</li>
+            <li><strong>La translation</strong> — la particule se déplace en ligne droite d'un point à un autre, jusqu'à sa prochaine collision.</li>
+          </ul>
+
+          <figure class="fig-block">
+            <div class="fig-inner">
+              <svg viewBox="0 0 620 210" style="width:100%;max-width:580px;height:auto;" role="img" aria-label="Trois diagrammes illustrant les mouvements de vibration, de rotation et de translation d'une particule.">
+                <defs>
+                  <marker id="arrowTransl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 Z" fill="var(--flame)"/>
+                  </marker>
+                </defs>
+                <line x1="205" y1="10" x2="205" y2="200" stroke="var(--border)" stroke-width="1"/>
+                <line x1="415" y1="10" x2="415" y2="200" stroke="var(--border)" stroke-width="1"/>
+
+                <text x="100" y="22" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="13" fill="var(--indigo-dark)">A) VIBRATION</text>
+                <g>
+                  <line x1="100" y1="125" x2="68" y2="103" stroke="var(--flame)" stroke-width="3"/>
+                  <line x1="100" y1="125" x2="132" y2="103" stroke="var(--flame)" stroke-width="3"/>
+                  <circle cx="100" cy="125" r="14" fill="var(--indigo-dark)"/>
+                  <circle cx="68" cy="103" r="9" fill="var(--indigo-light)"/>
+                  <circle cx="132" cy="103" r="9" fill="var(--indigo-light)"/>
+                  <text x="52" y="92" font-size="17" fill="var(--amber-dim)">↔</text>
+                  <text x="130" y="92" font-size="17" fill="var(--amber-dim)">↔</text>
+                </g>
+                <text x="100" y="185" text-anchor="middle" font-size="11.5" fill="var(--muted)">Oscille autour d'une position fixe</text>
+
+                <text x="310" y="22" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="13" fill="var(--indigo-dark)">B) ROTATION</text>
+                <g>
+                  <text x="278" y="142" font-size="48" fill="var(--amber-dim)" opacity="0.5">⟳</text>
+                  <line x1="310" y1="125" x2="278" y2="103" stroke="var(--flame)" stroke-width="3"/>
+                  <line x1="310" y1="125" x2="342" y2="103" stroke="var(--flame)" stroke-width="3"/>
+                  <circle cx="310" cy="125" r="14" fill="var(--indigo-dark)"/>
+                  <circle cx="278" cy="103" r="9" fill="var(--indigo-light)"/>
+                  <circle cx="342" cy="103" r="9" fill="var(--indigo-light)"/>
+                </g>
+                <text x="310" y="185" text-anchor="middle" font-size="11.5" fill="var(--muted)">Tourne sur elle-même</text>
+
+                <text x="520" y="22" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="13" fill="var(--indigo-dark)">C) TRANSLATION</text>
+                <g opacity="0.32">
+                  <line x1="460" y1="125" x2="428" y2="103" stroke="var(--flame)" stroke-width="3"/>
+                  <line x1="460" y1="125" x2="492" y2="103" stroke="var(--flame)" stroke-width="3"/>
+                  <circle cx="460" cy="125" r="14" fill="var(--indigo-dark)"/>
+                  <circle cx="428" cy="103" r="9" fill="var(--indigo-light)"/>
+                  <circle cx="492" cy="103" r="9" fill="var(--indigo-light)"/>
+                </g>
+                <line x1="474" y1="125" x2="542" y2="125" stroke="var(--flame)" stroke-width="2.5" stroke-dasharray="3 4" marker-end="url(#arrowTransl)"/>
+                <g>
+                  <line x1="580" y1="125" x2="548" y2="103" stroke="var(--flame)" stroke-width="3"/>
+                  <line x1="580" y1="125" x2="612" y2="103" stroke="var(--flame)" stroke-width="3"/>
+                  <circle cx="580" cy="125" r="14" fill="var(--indigo-dark)"/>
+                  <circle cx="548" cy="103" r="9" fill="var(--indigo-light)"/>
+                  <circle cx="612" cy="103" r="9" fill="var(--indigo-light)"/>
+                </g>
+                <text x="520" y="185" text-anchor="middle" font-size="11.5" fill="var(--muted)">Se déplace en ligne droite</text>
+              </svg>
+            </div>
+            <figcaption>Figure 2.1 — Les trois types de mouvements que peut effectuer une particule : la vibration (a), la rotation (b) et la translation (c).</figcaption>
+          </figure>
+
+          <div class="bio-box">
+            <div class="bio-box-header">
+              <svg class="bio-box-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="15" cy="5.5" r="1.8"/>
+                <path d="M15 7.3 10 15"/>
+                <path d="M8 15h6l1.5 3H6.5z"/>
+                <path d="M6 21h9"/>
+                <path d="M11 18v3"/>
+                <circle cx="10.3" cy="16.2" r="0.5" fill="currentColor" stroke="none"/>
+              </svg>
+              <div>
+                <div class="bio-box-tag">La communauté scientifique</div>
+                <div class="bio-box-name">Robert Brown</div>
+                <div class="bio-box-dates">1773 – 1858 · Naturaliste écossais</div>
+              </div>
+            </div>
+            <div class="bio-box-body">
+              <p>Bien que l'essentiel de sa carrière ait porté sur la botanique, Robert Brown reste surtout connu aujourd'hui pour une observation qui n'avait, au départ, rien à voir avec les plantes elles-mêmes.</p>
+              <p>En 1827, en examinant au microscope des grains de pollen en suspension dans l'eau, Brown remarque que de minuscules particules à l'intérieur de ces grains s'agitent sans cesse, de façon complètement désordonnée. Il soupçonne d'abord que ce mouvement trahit une forme de vie — après tout, le pollen provient d'organismes vivants. Mais en répétant l'expérience avec des particules de teinture, manifestement inertes, il observe exactement la même agitation aléatoire. Ce mouvement, aujourd'hui appelé <strong>mouvement brownien</strong> en son honneur, n'a donc rien à voir avec la vie.</p>
+              <p>L'explication viendra plus tard : le mouvement brownien résulte des innombrables collisions entre les particules observées et les molécules du fluide environnant, elles-mêmes constamment en mouvement — exactement l'idée centrale de la théorie cinétique. Cette découverte a fourni l'une des preuves expérimentales les plus convaincantes de l'existence des atomes et des molécules, à une époque où plusieurs scientifiques doutaient encore de leur réalité physique.</p>
+              <div class="bio-box-fig">
+                <svg viewBox="0 0 220 140" role="img" aria-label="Trajectoire aléatoire en zigzag d'une particule soumise au mouvement brownien, entourée de petits points représentant les molécules du fluide.">
+                  <circle cx="30" cy="35" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="60" cy="20" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="100" cy="15" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="150" cy="25" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="185" cy="45" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="15" cy="80" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="65" cy="130" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="115" cy="125" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="165" cy="135" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="200" cy="70" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="8" cy="55" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <circle cx="205" cy="20" r="1.4" fill="var(--indigo-light)" opacity="0.4"/>
+                  <polyline points="20,110 45,90 40,60 70,70 85,40 110,55 95,85 130,75 150,95 140,120 175,110" fill="none" stroke="var(--flame)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+                  <circle cx="20" cy="110" r="4" fill="var(--indigo-dark)"/>
+                  <circle cx="45" cy="90" r="3" fill="var(--indigo-mid)"/>
+                  <circle cx="40" cy="60" r="3" fill="var(--indigo-mid)"/>
+                  <circle cx="70" cy="70" r="3" fill="var(--indigo-mid)"/>
+                  <circle cx="85" cy="40" r="3" fill="var(--indigo-mid)"/>
+                  <circle cx="110" cy="55" r="3" fill="var(--indigo-mid)"/>
+                  <circle cx="95" cy="85" r="3" fill="var(--indigo-mid)"/>
+                  <circle cx="130" cy="75" r="3" fill="var(--indigo-mid)"/>
+                  <circle cx="150" cy="95" r="3" fill="var(--indigo-mid)"/>
+                  <circle cx="140" cy="120" r="3" fill="var(--indigo-mid)"/>
+                  <circle cx="175" cy="110" r="4" fill="var(--indigo-dark)"/>
+                  <text x="8" y="128" font-family="var(--mono)" font-size="10" fill="var(--muted)">t₀</text>
+                  <text x="180" y="126" font-family="var(--mono)" font-size="10" fill="var(--muted)">tₙ</text>
+                </svg>
+              </div>
+              <p class="usage-fig-ref" style="text-align:center;margin-top:6px;">La trajectoire en zigzag d'une particule en suspension : chaque changement de direction correspond à une collision avec une molécule du fluide (les petits points pâles) — invisible à l'échelle de la particule, mais dont l'effet cumulé est bien visible au microscope.</p>
+            </div>
+          </div>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">Si on chauffait l'eau dans laquelle sont suspendus les grains de pollen de Robert Brown, à quoi devrait-on s'attendre du côté de leur mouvement brownien : qu'il ralentisse, qu'il s'accélère, ou qu'il ne change pas? Justifie ta réponse à partir du modèle particulaire.</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">Chauffer l'eau augmente l'énergie cinétique de ses molécules — elles se déplacent donc plus rapidement. Puisque le mouvement brownien des grains de pollen résulte directement des collisions avec ces molécules d'eau, des molécules plus rapides devraient produire des collisions plus fréquentes et plus énergiques, donc un mouvement brownien plus rapide et plus agité.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="trois-phases-matiere">
+          <div class="subsection-title">Les trois phases de la matière</div>
+
+          <p>Selon la phase dans laquelle elle se trouve, une substance ne présente pas les mêmes mouvements de particules, ni le même degré d'interaction entre elles — ce qui explique directement ses propriétés macroscopiques, comme le fait d'avoir ou non une forme et un volume déterminés.</p>
+
+          <div class="cause-grid">
+            <div class="cause-card">
+              <svg class="cause-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="7" cy="7" r="1.8" fill="currentColor" stroke="none"/><circle cx="17" cy="7" r="1.8" fill="currentColor" stroke="none"/><circle cx="7" cy="17" r="1.8" fill="currentColor" stroke="none"/><circle cx="17" cy="17" r="1.8" fill="currentColor" stroke="none"/><rect x="4" y="4" width="16" height="16" rx="2" stroke-dasharray="2 2"/></svg>
+              <div class="cause-title">Solide</div>
+              <p><strong>Mouvement :</strong> vibration seulement. <strong>Interaction :</strong> très élevée, structure et orientation fixes. <strong>Résultat :</strong> forme et volume déterminés.</p>
+            </div>
+            <div class="cause-card">
+              <svg class="cause-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="9" r="1.8" fill="currentColor" stroke="none"/><circle cx="14" cy="7" r="1.8" fill="currentColor" stroke="none"/><circle cx="16" cy="14" r="1.8" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.8" fill="currentColor" stroke="none"/><path d="M4 19c3-2 13-2 16 0" stroke-linecap="round"/></svg>
+              <div class="cause-title">Liquide</div>
+              <p><strong>Mouvements :</strong> vibration, rotation, translation négligeable. <strong>Interaction :</strong> plus faible que le solide. <strong>Résultat :</strong> volume déterminé, mais forme variable.</p>
+            </div>
+            <div class="cause-card">
+              <svg class="cause-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5" cy="6" r="1.6" fill="currentColor" stroke="none"/><circle cx="18" cy="5" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="17" r="1.6" fill="currentColor" stroke="none"/><circle cx="6" cy="18" r="1.6" fill="currentColor" stroke="none"/><path d="M5 6 8 3M18 5 21 2M19 17 22 20M6 18 3 21"/></svg>
+              <div class="cause-title">Gaz</div>
+              <p><strong>Mouvements :</strong> vibration, rotation et surtout translation, largement dominante. <strong>Interaction :</strong> négligeable. <strong>Résultat :</strong> ni forme ni volume déterminés.</p>
+            </div>
+          </div>
+
+          <figure class="fig-block">
+            <div class="fig-inner">
+              <svg viewBox="0 0 660 230" style="width:100%;max-width:620px;height:auto;" role="img" aria-label="Trois panneaux illustrant la disposition des particules en phase solide, liquide et gazeuse.">
+                <defs>
+                  <marker id="arrowGas" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 Z" fill="var(--flame)"/>
+                  </marker>
+                </defs>
+                <line x1="210" y1="10" x2="210" y2="205" stroke="var(--border)" stroke-width="1"/>
+                <line x1="430" y1="10" x2="430" y2="205" stroke="var(--border)" stroke-width="1"/>
+
+                <text x="100" y="24" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="13" fill="var(--indigo-dark)">A) SOLIDE</text>
+                <g fill="var(--indigo-mid)" stroke="var(--indigo-dark)" stroke-width="1">
+                  <circle cx="50" cy="55" r="9"/><circle cx="100" cy="55" r="9"/><circle cx="150" cy="55" r="9"/>
+                  <circle cx="50" cy="100" r="9"/><circle cx="100" cy="100" r="9"/><circle cx="150" cy="100" r="9"/>
+                  <circle cx="50" cy="145" r="9"/><circle cx="100" cy="145" r="9"/><circle cx="150" cy="145" r="9"/>
+                </g>
+                <circle cx="100" cy="100" r="17" fill="none" stroke="var(--flame)" stroke-width="1.5" stroke-dasharray="2 3"/>
+                <text x="100" y="200" text-anchor="middle" font-size="11" fill="var(--muted)">Vibration seulement · très ordonnée</text>
+
+                <text x="320" y="24" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="13" fill="var(--indigo-dark)">B) LIQUIDE</text>
+                <g fill="var(--indigo-light)" stroke="var(--indigo-dark)" stroke-width="1">
+                  <circle cx="260" cy="70" r="9"/><circle cx="300" cy="55" r="9"/><circle cx="340" cy="75" r="9"/>
+                  <circle cx="275" cy="110" r="9"/><circle cx="315" cy="105" r="9"/><circle cx="355" cy="115" r="9"/>
+                  <circle cx="290" cy="150" r="9"/><circle cx="330" cy="145" r="9"/>
+                </g>
+                <text x="313" y="46" font-size="20" fill="var(--amber-dim)" opacity="0.6">⟳</text>
+                <line x1="275" y1="110" x2="285" y2="124" stroke="var(--flame)" stroke-width="2" marker-end="url(#arrowGas)"/>
+                <text x="320" y="200" text-anchor="middle" font-size="11" fill="var(--muted)">Vibration, rotation · désordre modéré</text>
+
+                <text x="540" y="24" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="13" fill="var(--indigo-dark)">C) GAZ</text>
+                <g fill="var(--flame)" stroke="var(--indigo-dark)" stroke-width="1">
+                  <circle cx="470" cy="60" r="8"/><circle cx="560" cy="50" r="8"/><circle cx="620" cy="90" r="8"/>
+                  <circle cx="480" cy="150" r="8"/><circle cx="555" cy="170" r="8"/><circle cx="610" cy="130" r="8"/>
+                </g>
+                <g stroke="var(--flame)" stroke-width="2" marker-end="url(#arrowGas)">
+                  <line x1="470" y1="60" x2="450" y2="35"/>
+                  <line x1="560" y1="50" x2="583" y2="27"/>
+                  <line x1="620" y1="90" x2="644" y2="108"/>
+                  <line x1="480" y1="150" x2="460" y2="174"/>
+                  <line x1="555" y1="170" x2="574" y2="194"/>
+                  <line x1="610" y1="130" x2="590" y2="106"/>
+                </g>
+                <text x="540" y="200" text-anchor="middle" font-size="11" fill="var(--muted)">Translation dominante · désordre très élevé</text>
+              </svg>
+            </div>
+            <figcaption>Figure 2.2 — La disposition et les mouvements des particules en phase solide (a), liquide (b) et gazeuse (c).</figcaption>
+          </figure>
+
+          <div class="note-box">
+            <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">« Gaz » et « vapeur », est-ce la même chose?</span></span>
+              <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="note-body">
+              <p>Scientifiquement, les deux mots décrivent exactement la même phase — celle où les particules interagissent très peu et se déplacent surtout par translation. La distinction est purement une question d'usage courant, pas une différence physique fondamentale.</p>
+              <p>On parle généralement de <strong>gaz</strong> pour une substance qui se trouve à l'état gazeux dans les conditions habituelles de température ambiante — le dioxygène, l'azote ou le dioxyde de carbone, par exemple. On réserve plutôt le mot <strong>vapeur</strong> à une substance qui, dans ces mêmes conditions, se trouve normalement à l'état liquide ou solide, mais qui est passée à l'état gazeux — comme la vapeur d'eau. Un même point commun, donc, mais un vocabulaire qui varie selon ce à quoi on est habitué de comparer la substance.</p>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg> En plus — Le plasma<span class="note-subtitle">Un quatrième état de la matière</span></span>
+              <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="note-body">
+              <p>Il existe en réalité un quatrième état de la matière, rare dans la vie de tous les jours mais qui domine pourtant l'essentiel de l'Univers observable : le <strong>plasma</strong>. Lorsqu'un gaz est chauffé à une température extrême (au-delà d'environ 5000 °C) ou soumis à un champ électrique suffisamment intense, ses particules s'ionisent : des électrons sont littéralement arrachés aux atomes, produisant un mélange de particules chargées — des ions positifs et des électrons libres. Selon les estimations de la NASA, ce quatrième état représenterait environ 99,9 % de la matière visible de l'Univers, qu'on le retrouve dans les étoiles, dans le vent solaire ou dans les nébuleuses.</p>
+              <p>Le plasma se comporte globalement comme un gaz — ses particules occupent tout l'espace disponible et se déplacent librement — à une différence près, mais capitale : comme il contient des particules chargées, un plasma conduit l'électricité et réagit fortement aux champs électriques et magnétiques environnants, ce qu'un gaz ordinaire ne fait pas. Cette propriété est exploitée dans plusieurs technologies, de l'imagerie médicale aux écrans à plasma, en passant par la propulsion de certains engins spatiaux.</p>
+              <figure class="fig-block" style="margin-top:14px;">
+                <div class="fig-inner">
+                  <svg viewBox="0 0 160 175" style="width:150px;height:auto;" role="img" aria-label="Schéma d'une lampe à plasma décorative : un globe de verre traversé de filaments lumineux partant d'une électrode centrale.">
+                    <rect x="55" y="150" width="50" height="18" rx="3" fill="var(--indigo-dark)"/>
+                    <circle cx="80" cy="80" r="62" fill="var(--indigo-dark)" stroke="var(--indigo-light)" stroke-width="2"/>
+                    <circle cx="80" cy="80" r="6" fill="var(--amber)"/>
+                    <g stroke-linecap="round" fill="none">
+                      <polyline points="80,80 65,55 60,32" stroke="var(--amber)" stroke-width="1.6"/>
+                      <polyline points="80,80 100,50 112,28" stroke="var(--flame)" stroke-width="1.6"/>
+                      <polyline points="80,80 40,75 18,68" stroke="var(--flame)" stroke-width="1.6"/>
+                      <polyline points="80,80 118,72 142,80" stroke="var(--amber)" stroke-width="1.6"/>
+                      <polyline points="80,80 55,110 40,132" stroke="var(--amber)" stroke-width="1.6"/>
+                      <polyline points="80,80 100,115 118,138" stroke="var(--flame)" stroke-width="1.6"/>
+                      <polyline points="80,80 80,120 82,145" stroke="var(--flame)" stroke-width="1.6"/>
+                    </g>
+                  </svg>
+                </div>
+                <figcaption>Figure 2.3 — Une lampe à plasma décorative : un courant à haute tension ionise le gaz à l'intérieur du globe, créant les filaments lumineux caractéristiques du plasma.</figcaption>
+              </figure>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="changements-de-phase">
+          <div class="subsection-title">Les changements de phase</div>
+
+          <p>L'état dans lequel se trouve une substance à un moment donné dépend de l'équilibre entre deux facteurs opposés : le niveau d'interaction qui retient les particules ensemble, et l'énergie cinétique de ces mêmes particules, qui tend au contraire à les disperser.</p>
+
+          <div class="def-box">
+            <div class="def-label">Définition</div>
+            <p><strong>Énergie cinétique :</strong> l'énergie que possède un corps en raison de son mouvement. Plus une particule est massive et se déplace rapidement, plus son énergie cinétique est grande — une relation qu'on formalise avec une équation précise à la section 1.2.</p>
+          </div>
+
+          <p>Un gain suffisant d'énergie cinétique permet aux particules de vaincre une partie des forces qui les retiennent ensemble, ce qui brise certains des liens entre elles. À l'inverse, une perte suffisante d'énergie cinétique ralentit les particules au point où les forces d'attraction reprennent le dessus, ce qui rapproche les particules et en forme de nouveaux. Dans un cas comme dans l'autre, la substance change de phase.</p>
+
+          <div class="def-box">
+            <div class="def-label">Rappel</div>
+            <p>Une substance peut passer d'une phase à une autre de six façons différentes, selon le sens du changement et les phases concernées. Les six noms ci-dessous te sont probablement familiers — ils sont rappelés ici parce que tout le reste du chapitre, et du module, s'appuie sur cette idée.</p>
+          </div>
+
+          <figure class="fig-block">
+            <div class="fig-inner">
+              <svg viewBox="0 0 640 300" style="width:100%;max-width:600px;height:auto;" role="img" aria-label="Diagramme des six changements de phase entre le solide, le liquide et le gaz, avec indication du gain ou de la perte d'énergie cinétique associée.">
+                <defs>
+                  <marker id="arrowFlamePhase" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--flame)"/></marker>
+                  <marker id="arrowIndigoPhase" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--indigo-mid)"/></marker>
+                </defs>
+
+                <path d="M170,135 Q210,100 250,135" fill="none" stroke="var(--flame)" stroke-width="2.5" marker-end="url(#arrowFlamePhase)"/>
+                <text x="210" y="88" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--flame)">FUSION</text>
+
+                <path d="M250,165 Q210,205 170,165" fill="none" stroke="var(--indigo-mid)" stroke-width="2.5" marker-end="url(#arrowIndigoPhase)"/>
+                <text x="210" y="222" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--indigo-mid)">SOLIDIFICATION</text>
+
+                <path d="M390,135 Q430,100 470,135" fill="none" stroke="var(--flame)" stroke-width="2.5" marker-end="url(#arrowFlamePhase)"/>
+                <text x="430" y="88" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--flame)">VAPORISATION</text>
+
+                <path d="M470,165 Q430,205 390,165" fill="none" stroke="var(--indigo-mid)" stroke-width="2.5" marker-end="url(#arrowIndigoPhase)"/>
+                <text x="430" y="222" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--indigo-mid)">CONDENSATION</text>
+
+                <path d="M105,118 Q320,18 535,118" fill="none" stroke="var(--flame)" stroke-width="2.5" marker-end="url(#arrowFlamePhase)"/>
+                <text x="320" y="32" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="13" fill="var(--flame)">SUBLIMATION</text>
+
+                <path d="M535,182 Q320,282 105,182" fill="none" stroke="var(--indigo-mid)" stroke-width="2.5" marker-end="url(#arrowIndigoPhase)"/>
+                <text x="320" y="272" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="13" fill="var(--indigo-mid)">DÉPOSITION</text>
+
+                <rect x="30" y="115" width="140" height="70" rx="10" fill="#fff" stroke="var(--indigo-mid)" stroke-width="1.5"/>
+                <text x="100" y="145" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="15" fill="var(--indigo-dark)">SOLIDE</text>
+                <circle cx="88" cy="163" r="3" fill="var(--indigo-mid)"/><circle cx="100" cy="163" r="3" fill="var(--indigo-mid)"/><circle cx="112" cy="163" r="3" fill="var(--indigo-mid)"/>
+
+                <rect x="250" y="115" width="140" height="70" rx="10" fill="#fff" stroke="var(--indigo-mid)" stroke-width="1.5"/>
+                <text x="320" y="145" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="15" fill="var(--indigo-dark)">LIQUIDE</text>
+                <circle cx="304" cy="163" r="3" fill="var(--indigo-light)"/><circle cx="320" cy="165" r="3" fill="var(--indigo-light)"/><circle cx="336" cy="162" r="3" fill="var(--indigo-light)"/>
+
+                <rect x="470" y="115" width="140" height="70" rx="10" fill="#fff" stroke="var(--indigo-mid)" stroke-width="1.5"/>
+                <text x="540" y="145" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="15" fill="var(--indigo-dark)">GAZ</text>
+                <circle cx="518" cy="163" r="3" fill="var(--flame)"/><circle cx="540" cy="166" r="3" fill="var(--flame)"/><circle cx="562" cy="160" r="3" fill="var(--flame)"/>
+              </svg>
+            </div>
+            <figcaption>Figure 2.4 — Les six changements de phase. Les flèches flamme (fusion, vaporisation, sublimation) correspondent à un gain d'énergie cinétique; les flèches indigo (solidification, condensation, déposition), à une perte d'énergie cinétique.</figcaption>
+          </figure>
+
+          <div class="note-box">
+            <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">Un avant-goût de l'enthalpie (module 2)</span></span>
+              <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="note-body">
+              <p>Les changements de phase qui absorbent de l'énergie (fusion, vaporisation, sublimation) sont dits <strong>endothermiques</strong>; ceux qui en libèrent (solidification, condensation, déposition) sont dits <strong>exothermiques</strong>. Pour l'instant, retiens seulement l'idée générale — gain d'énergie cinétique d'un côté, perte de l'autre. Tu reverras ces termes de façon beaucoup plus rigoureuse au module 2, lorsque tu calculeras précisément la quantité de chaleur associée à chaque type de transformation.</p>
+            </div>
+          </div>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">Sur le feu, une casserole d'eau à ébullition perd graduellement de la vapeur, et le niveau d'eau baisse peu à peu. Un élève affirme : « L'eau qui s'évapore perd de l'énergie cinétique, puisqu'elle quitte le système. » Es-tu d'accord avec cette affirmation?</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">Non — c'est l'inverse. La vaporisation est un changement de phase qui absorbe de l'énergie cinétique (voir la figure 2.4) : ce sont justement les molécules d'eau qui ont gagné assez d'énergie cinétique pour vaincre les forces d'attraction du liquide qui parviennent à s'en échapper sous forme de vapeur. Les molécules qui restent dans la casserole ont, en moyenne, une énergie cinétique un peu plus faible que celles qui viennent de s'échapper — c'est d'ailleurs ce phénomène qui explique le refroidissement par évaporation.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Synthèse — Section 1.1</div>
+          <div class="def-box">
+            <div class="def-label">À retenir</div>
+            <p>• Le <strong>modèle particulaire</strong> décrit la matière comme un ensemble de particules en mouvement, retenues par des forces d'attraction dont l'intensité dépend de la distance qui les sépare.</p>
+            <p>• Trois mouvements sont possibles : <strong>vibration</strong>, <strong>rotation</strong> et <strong>translation</strong>. Un solide ne vibre que sur place; un liquide vibre et tourne, avec une translation négligeable; un gaz fait les trois, mais avec une translation dominante.</p>
+            <p>• Plus l'interaction entre les particules est forte, plus la matière a une forme et un volume déterminés : c'est vrai pour le solide, partiellement vrai pour le liquide (volume déterminé, forme variable), et faux pour le gaz (ni l'un ni l'autre).</p>
+            <p>• Le <strong>plasma</strong> est un quatrième état de la matière, formé lorsqu'un gaz s'ionise sous l'effet d'une chaleur extrême ou d'un champ électrique intense; il conduit l'électricité, contrairement à un gaz ordinaire.</p>
+            <p>• Le <strong>mouvement brownien</strong>, observé par Robert Brown en 1827, a fourni l'une des premières preuves expérimentales convaincantes de l'existence des atomes et des molécules.</p>
+            <p>• L'état d'une substance dépend de l'équilibre entre le <strong>niveau d'interaction</strong> entre ses particules et leur <strong>énergie cinétique</strong>. Les changements de phase qui absorbent de l'énergie cinétique — fusion, vaporisation, sublimation — s'opposent à ceux qui en libèrent — solidification, condensation, déposition.</p>
+          </div>
+        </div>
+
+        <div class="quiz-block" data-quiz="q11">
+          <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
+            <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Section 1.1<span class="quiz-block-subtitle">Clique pour t'exercer</span></span>
+            <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="quiz-body">
+          <p class="quiz-intro">Clique sur une réponse pour la valider. La bonne réponse s'affiche immédiatement.</p>
+          <div class="quiz-score-bar">
+            <span class="quiz-score-label">0 / 8</span>
+            <progress class="quiz-progress" value="0" max="8"></progress>
+          </div>
+
+          <div class="quiz-q" data-qi="0">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Selon le modèle particulaire, les particules d'un solide sont complètement immobiles.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>C'est faux, mais bien joué d'avoir remarqué le piège : la bonne réponse est « Faux ». Même dans un solide, les particules vibrent continuellement autour d'une position fixe — elles ne sont jamais complètement immobiles.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : même dans un solide, les particules vibrent continuellement autour d'une position fixe. Elles ne sont jamais complètement immobiles, seulement incapables de tourner ou de se déplacer par translation.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="1">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Lequel des trois mouvements (vibration, rotation, translation) est le seul présent dans un solide?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> La vibration</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> La rotation</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> La translation</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Aucun des trois</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. L'interaction très élevée entre les particules d'un solide les maintient dans une structure et une orientation fixes — seule la vibration sur place leur est possible.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est la vibration. L'interaction très élevée entre les particules d'un solide les maintient dans une structure fixe — la rotation et la translation nécessitent toutes deux plus de liberté que ce que permet cette structure.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="2">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Dans un liquide, la translation des particules est négligeable comparée à la vibration et à la rotation.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Un liquide vibre et tourne beaucoup, mais son interaction encore assez élevée limite fortement la translation — c'est pourquoi il garde un volume déterminé, même si sa forme varie.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai : dans un liquide, la vibration et la rotation dominent largement; la translation reste négligeable, contrairement à un gaz où elle devient le mouvement principal.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="3">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Qu'est-ce qui explique le mieux qu'un gaz n'a ni forme ni volume déterminés?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Ses particules sont plus grosses que celles d'un solide ou d'un liquide</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">B</span> L'interaction entre ses particules est négligeable et la translation y est dominante</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Ses particules ne vibrent pas</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Ses particules sont chargées électriquement</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Avec une interaction négligeable entre les particules et un mouvement de translation dominant, rien ne retient les particules d'un gaz ensemble : elles se dispersent et occupent tout l'espace disponible.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : l'interaction négligeable entre les particules d'un gaz, combinée à une translation dominante, fait qu'aucune force ne les retient ensemble — elles se dispersent dans tout l'espace disponible.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="4">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le plasma est un état de la matière extrêmement rare dans l'Univers.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact — c'est même l'inverse. Selon la NASA, le plasma composerait environ 99,9 % de la matière visible de l'Univers (étoiles, vent solaire, nébuleuses); c'est plutôt sur Terre qu'il est rare dans la vie de tous les jours.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : selon la NASA, le plasma composerait environ 99,9 % de la matière visible de l'Univers (étoiles, vent solaire, nébuleuses). C'est sur Terre, dans notre quotidien, qu'il est rare.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="5">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Qu'est-ce qui distingue principalement le plasma d'un gaz ordinaire?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Le plasma n'occupe pas tout l'espace disponible</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">B</span> Le plasma contient des particules chargées et conduit l'électricité</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Le plasma n'a pas de température</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Le plasma ne se déplace pas par translation</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. L'ionisation produit des ions positifs et des électrons libres — des particules chargées — ce qui rend le plasma conducteur d'électricité et sensible aux champs électriques et magnétiques, contrairement à un gaz ordinaire.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : le plasma est un gaz ionisé, donc composé de particules chargées (ions positifs et électrons libres). C'est ce qui le rend conducteur d'électricité, contrairement à un gaz ordinaire.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="6">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Qu'est-ce que Robert Brown a observé en 1827 qui a mené à la découverte du mouvement brownien?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Des cristaux qui changeaient spontanément de forme</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">B</span> De minuscules particules, en suspension dans l'eau, qui s'agitaient de façon désordonnée — même lorsqu'elles n'étaient pas vivantes</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Des grains de pollen qui changeaient de couleur au microscope</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Une réaction chimique spontanée entre deux gaz</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Brown a d'abord observé cette agitation dans des grains de pollen, puis l'a reproduite avec des particules de teinture non vivantes — écartant l'hypothèse d'un phénomène lié à la vie, et ouvrant la voie à l'explication par les collisions moléculaires.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : Brown a observé, au microscope, de minuscules particules en suspension dans l'eau qui s'agitaient de façon aléatoire — un mouvement qu'il a ensuite reproduit avec des particules inertes (de teinture), écartant l'hypothèse d'un lien avec la vie.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="7">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Comment appelle-t-on le passage direct de l'état gazeux à l'état solide, sans passer par l'état liquide?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">A</span> Sublimation</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Condensation</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">C</span> Déposition</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Solidification</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. La déposition est le passage direct du gaz au solide — l'inverse de la sublimation (solide → gaz). Les deux sont des transformations directes, sans passage par l'état liquide.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est la déposition. La sublimation est l'inverse (solide → gaz); la condensation est gaz → liquide; la solidification est liquide → solide. Seule la déposition va directement du gaz au solide.</span></div>
+          </div>
+
+          <div class="quiz-result-msg" id="result-q11"></div>
+          <button class="quiz-reset" id="reset-q11">↺ Recommencer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 1.2 -->
+    <div class="section-card" id="section-1-2">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">1.2</span>
+          <span class="section-title">Les principaux points de la théorie cinétique des gaz</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>Comme son nom l'indique, la théorie cinétique des gaz repose principalement sur le mouvement des particules gazeuses — et sur l'énergie cinétique qui en est la cause directe.</p>
+        <p>L'énergie cinétique d'une particule dépend de deux choses : sa masse et sa vitesse. Ainsi, plus une particule est massive et se déplace rapidement, plus la quantité d'énergie cinétique qu'elle possède est grande. L'équation suivante permet de calculer précisément l'énergie cinétique d'une particule gazeuse.</p>
+
+        <div class="formula">E<sub>c</sub> = ½ · m · v²</div>
+        <div class="formula-caption">où E<sub>c</sub> = énergie cinétique (J) · m = masse de la particule (kg) · v = vitesse de la particule (m/s)</div>
+
+        <div class="example-box">
+          <div class="example-box-header">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 4-4 5v6h-4v-6L4 7z"/></svg>
+            Exemple résolu
+          </div>
+          <div class="example-body">
+            <p class="example-statement">Une molécule de diazote (N₂), de masse molaire 28,0 g/mol, se déplace à une vitesse de 480 m/s. Quelle est l'énergie cinétique d'une seule molécule de N₂ à cette vitesse?</p>
+
+            <div class="example-step"><span class="step-num">1</span>Trouver la masse d'une seule molécule, en kilogrammes. On divise la masse molaire par le nombre d'Avogadro, puis on convertit les grammes en kilogrammes : m = (28,0 g/mol ÷ 6,022 × 10²³ /mol) ÷ 1000 = 4,65 × 10⁻²⁶ kg.</div>
+            <div class="example-step"><span class="step-num">2</span>Appliquer l'équation de l'énergie cinétique avec la masse trouvée et la vitesse donnée : E<sub>c</sub> = ½ × (4,65 × 10⁻²⁶ kg) × (480 m/s)².</div>
+            <div class="example-step"><span class="step-num">3</span>Calculer : (480)² = 230 400 m²/s², donc E<sub>c</sub> = ½ × 4,65 × 10⁻²⁶ × 230 400 = 5,36 × 10⁻²¹ J.</div>
+
+            <div class="example-answer">E<sub>c</sub> ≈ 5,36 × 10⁻²¹ J</div>
+          </div>
+        </div>
+
+        <div class="note-box">
+          <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+            <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">Une seule particule à la fois — pour l'instant</span></span>
+            <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="note-body">
+            <p>Cette équation calcule l'énergie cinétique d'une seule particule, à une vitesse donnée. Or dans un vrai échantillon de gaz, des milliards de milliards de particules se déplacent chacune à sa propre vitesse, dans toutes les directions. La suite de cette section — et de ce module — établira le lien entre l'énergie cinétique moyenne de l'ensemble de ces particules et une grandeur que tu mesures facilement en laboratoire : la température.</p>
+          </div>
+        </div>
+
+        <div class="activity-block">
+          <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+            <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+            <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="activity-content">
+            <p class="activity-question">Deux particules gazeuses possèdent exactement la même énergie cinétique. La première a une masse deux fois plus grande que la seconde. Laquelle des deux se déplace le plus rapidement — et par quel facteur, par rapport à l'autre?</p>
+            <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+            <div class="activity-hint">Si Ec est la même pour les deux et que m₁ = 2m₂, alors ½m₁v₁² = ½m₂v₂², donc m₁v₁² = m₂v₂², donc 2v₁² = v₂², donc v₂ = v₁ × √2. La particule la MOINS massive (la seconde) se déplace donc plus rapidement, par un facteur d'environ 1,41 (soit √2) — pas par un facteur de 2, parce que la vitesse est élevée au carré dans l'équation, pas la masse.</div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Synthèse — Ce qu'on a vu jusqu'ici (section 1.2)</div>
+          <div class="def-box">
+            <div class="def-label">À retenir</div>
+            <p>• L'énergie cinétique d'une particule gazeuse se calcule avec E<sub>c</sub> = ½mv², où E<sub>c</sub> est en joules (J), m en kilogrammes (kg) et v en mètres par seconde (m/s).</p>
+            <p>• La relation entre E<sub>c</sub> et la masse est <strong>directe</strong> : à vitesse égale, doubler la masse double l'énergie cinétique.</p>
+            <p>• La relation entre E<sub>c</sub> et la vitesse est <strong>quadratique</strong>, à cause du carré dans l'équation : à masse égale, doubler la vitesse quadruple l'énergie cinétique.</p>
+            <p>• Cette section se poursuivra avec le lien entre l'énergie cinétique moyenne des particules d'un gaz et sa température.</p>
+          </div>
+        </div>
+
+        <div class="quiz-block" data-quiz="q12">
+          <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
+            <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Section 1.2<span class="quiz-block-subtitle">Clique pour t'exercer</span></span>
+            <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="quiz-body">
+          <p class="quiz-intro">Clique sur une réponse pour la valider. La bonne réponse s'affiche immédiatement.</p>
+          <div class="quiz-score-bar">
+            <span class="quiz-score-label">0 / 5</span>
+            <progress class="quiz-progress" value="0" max="5"></progress>
+          </div>
+
+          <div class="quiz-q" data-qi="0">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Dans l'équation Ec = ½mv², que représente la variable m?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> La masse de la particule, en kilogrammes</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Le nombre de moles de gaz</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> La masse molaire de la substance</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Le nombre de particules dans l'échantillon</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. La variable m représente la masse d'une seule particule, exprimée en kilogrammes — pas la masse molaire, qui doit d'abord être divisée par le nombre d'Avogadro (voir l'exemple résolu).</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : m est la masse d'une seule particule, en kilogrammes. C'est une erreur fréquente de confondre cette masse avec la masse molaire — il faut d'abord diviser par le nombre d'Avogadro pour obtenir la masse d'une seule particule.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="1">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Si la masse d'une particule double, alors que sa vitesse reste constante, son énergie cinétique double également.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. La masse n'apparaît qu'à la puissance 1 dans l'équation — la relation est donc directe (linéaire) : doubler m double Ec, à vitesse constante.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai : la masse apparaît à la puissance 1 dans l'équation Ec = ½mv², donc la relation entre m et Ec est directe — doubler la masse double l'énergie cinétique, à vitesse constante.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="2">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Si la vitesse d'une particule double, alors que sa masse reste constante, son énergie cinétique double également.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. La vitesse est élevée au carré dans l'équation : doubler v multiplie Ec par 2² = 4, pas par 2. C'est une nuance importante à ne pas confondre avec l'effet de la masse.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux : la vitesse est élevée au carré dans l'équation Ec = ½mv². Doubler la vitesse multiplie donc l'énergie cinétique par 2² = 4, et non par 2 — contrairement à l'effet de la masse, qui lui est direct.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="3">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Si la masse est exprimée en kilogrammes et la vitesse en mètres par seconde, dans quelle unité l'énergie cinétique obtenue est-elle exprimée?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> Joules (J)</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Calories (cal)</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Newtons (N)</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Watts (W)</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. L'énergie cinétique, comme toute forme d'énergie en physique et en chimie, s'exprime en joules (J) lorsque la masse est en kilogrammes et la vitesse en mètres par seconde.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est le joule (J) — l'unité SI de l'énergie. Le newton mesure une force, le watt une puissance, et la calorie est une unité d'énergie non SI, parfois utilisée mais pas ici.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="4">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Quelle est l'énergie cinétique d'une molécule de dioxygène (O₂, masse molaire 32,0 g/mol) se déplaçant à 400 m/s?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> 4,25 × 10⁻²¹ J</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> 8,50 × 10⁻²¹ J</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> 1,06 × 10⁻²³ J</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> 4,25 × 10⁻¹⁸ J</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. m = (32,0 ÷ 6,022 × 10²³) ÷ 1000 = 5,31 × 10⁻²⁶ kg. Ec = ½ × 5,31 × 10⁻²⁶ × 400² = ½ × 5,31 × 10⁻²⁶ × 160 000 = 4,25 × 10⁻²¹ J.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est 4,25 × 10⁻²¹ J. Étapes : convertir 32,0 g/mol en masse d'une molécule en kg (÷ 6,022×10²³, puis ÷ 1000) pour obtenir 5,31 × 10⁻²⁶ kg, puis appliquer Ec = ½mv² avec v = 400 m/s. (8,50 × 10⁻²¹ J correspond à l'oubli du ½; 1,06 × 10⁻²³ J correspond à l'oubli d'élever la vitesse au carré; 4,25 × 10⁻¹⁸ J correspond à l'oubli de convertir la masse en kilogrammes.)</span></div>
+          </div>
+
+          <div class="quiz-result-msg" id="result-q12"></div>
+          <button class="quiz-reset" id="reset-q12">↺ Recommencer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<button id="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">↑</button>
+
+<script>
+// ── Toggle sections ────────────────────────────────────────
+function toggleSection(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+  btn.parentElement.querySelector('.section-body').classList.toggle('open', !expanded);
+}
+
+// ── Toggle activités suggérées ─────────────────────────────
+function toggleActivity(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+function toggleHint(btn) {
+  const hint = btn.nextElementSibling;
+  hint.classList.toggle('show');
+  btn.textContent = hint.classList.contains('show') ? '▾ Cacher la piste de réponse' : '▸ Voir une piste de réponse';
+}
+
+// ── Toggle blocs d'exercices ────────────────────────────────
+function toggleQuiz(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+// ── Toggle bulles de note ────────────────────────────────────
+function toggleNote(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+// ── Sidebar active link ────────────────────────────────────
+const tocLinks = document.querySelectorAll('.toc-link');
+const sectionIds = ['rappel','section-1','section-1-1','section-1-2'];
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 130) current = id;
+  });
+  tocLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+  document.getElementById('to-top').classList.toggle('visible', window.scrollY > 300);
+}, {passive: true});
+
+// ── Smooth scroll from TOC ─────────────────────────────────
+tocLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    if (link.classList.contains('disabled')) { e.preventDefault(); return; }
+    e.preventDefault();
+    const id = link.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    const toggle = target.querySelector('.section-toggle');
+    if (toggle && toggle.getAttribute('aria-expanded') === 'false') toggleSection(toggle);
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+    document.getElementById('sidebar').classList.remove('open');
+  });
+});
+
+// ── Table des matières (page-toc) : ouvre la bonne section, puis défile ────
+document.querySelectorAll('.page-toc-pills a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const id = link.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    const card = target.closest('.section-card');
+    const toggle = card ? card.querySelector('.section-toggle') : null;
+    if (toggle && toggle.getAttribute('aria-expanded') === 'false') toggleSection(toggle);
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+// ── Search ─────────────────────────────────────────────────
+const contentEl = document.querySelector('.content');
+const originalHTML = contentEl.innerHTML;
+
+let lastQuery = '';
+let matchIndex = -1;
+
+function doSearch(query) {
+  contentEl.innerHTML = originalHTML;
+  const countEl = document.getElementById('search-count');
+  matchIndex = -1;
+  lastQuery = query;
+
+  if (!query.trim()) { countEl.textContent = ''; return 0; }
+
+  const re = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+  const walker = document.createTreeWalker(contentEl, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  let count = 0;
+  nodes.forEach(node => {
+    if (!re.test(node.textContent)) return;
+    re.lastIndex = 0;
+    const span = document.createElement('span');
+    span.innerHTML = node.textContent.replace(re, m => { count++; return `<mark class="sh">${m}</mark>`; });
+    node.parentNode.replaceChild(span, node);
+  });
+
+  countEl.textContent = count ? `${count} résultat${count>1?'s':''}` : 'Aucun résultat';
+
+  document.querySelectorAll('.section-card').forEach(card => {
+    if (card.querySelector('mark.sh')) {
+      const t = card.querySelector('.section-toggle');
+      if (t && t.getAttribute('aria-expanded') === 'false') toggleSection(t);
+    }
+  });
+
+  return count;
+}
+
+function goToMatch(step) {
+  const marks = contentEl.querySelectorAll('mark.sh');
+  if (!marks.length) return;
+  if (matchIndex >= 0 && marks[matchIndex]) marks[matchIndex].classList.remove('current');
+  matchIndex = (matchIndex + step + marks.length) % marks.length;
+  const m = marks[matchIndex];
+  m.classList.add('current');
+  m.scrollIntoView({behavior:'smooth', block:'center'});
+  const countEl = document.getElementById('search-count');
+  countEl.textContent = `${matchIndex+1} / ${marks.length} résultats`;
+}
+
+function runSearchAndJump(query, step) {
+  if (query !== lastQuery || !contentEl.querySelector('mark.sh')) {
+    const count = doSearch(query);
+    if (count > 0) goToMatch(0);
+  } else {
+    goToMatch(step);
+  }
+}
+
+document.getElementById('search-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    runSearchAndJump(e.target.value, e.shiftKey ? -1 : 1);
+  }
+});
+
+// Ctrl+F → recherche interne
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+    const inp = document.getElementById('search-input');
+    inp.focus(); inp.select();
+  }
+});
+
+// Fermer la bulle d'attribution au clic à l'extérieur
+document.addEventListener('click', e => {
+  const pop = document.getElementById('attrib-pop');
+  if (pop && !pop.contains(e.target) && !e.target.closest('.sidebar-footer button')) {
+    pop.classList.remove('visible');
+  }
+});
+
+// === MOTEUR DE QUIZ INTERACTIFS ===
+function initQuizBlock(block) {
+  const questions = Array.from(block.querySelectorAll('.quiz-q'));
+  const total = questions.length;
+  const scoreLabel = block.querySelector('.quiz-score-label');
+  const progressBar = block.querySelector('.quiz-progress');
+  const resultMsg = block.querySelector('.quiz-result-msg');
+  const resetBtn = block.querySelector('.quiz-reset');
+  progressBar.max = total;
+
+  function updateScore() {
+    const answered = questions.filter(q => q.classList.contains('answered'));
+    const correct = answered.filter(q => q.dataset.gotCorrect === 'true').length;
+    scoreLabel.textContent = `${correct} / ${total}`;
+    progressBar.value = answered.length;
+
+    if (answered.length === total) {
+      resultMsg.classList.add('show');
+      const pct = Math.round((correct / total) * 100);
+      resultMsg.classList.remove('great', 'good', 'poor');
+      const starIcon = '<svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3l2.6 5.8 6.2.6-4.7 4.2 1.4 6.1L12 16.9 6.5 19.7l1.4-6.1-4.7-4.2 6.2-.6Z"/></svg>';
+      const upIcon = '<svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 13l3-3 2 2 3-3.5"/></svg>';
+      const bookIcon = '<svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5.5A2 2 0 0 1 6 4h6v16H6a2 2 0 0 1-2-2Z"/><path d="M20 5.5A2 2 0 0 0 18 4h-6v16h6a2 2 0 0 0 2-2Z"/></svg>';
+      let icon, msg, variant;
+      if (pct === 100) { icon = starIcon; msg = `Parfait ! ${correct} / ${total} — la section est maîtrisée.`; variant = 'great'; }
+      else if (pct >= 70) { icon = upIcon; msg = `Bon travail : ${correct} / ${total}. Relis les explications des questions manquées.`; variant = 'good'; }
+      else { icon = bookIcon; msg = `${correct} / ${total} — il serait utile de revoir cette section avant de continuer.`; variant = 'poor'; }
+      resultMsg.classList.add(variant);
+      resultMsg.innerHTML = `${icon}<span>${msg}</span>`;
+      resetBtn.style.display = 'inline-block';
+    } else {
+      resultMsg.classList.remove('show', 'great', 'good', 'poor');
+      resetBtn.style.display = 'none';
+    }
+  }
+
+  questions.forEach(q => {
+    const options = Array.from(q.querySelectorAll('.quiz-option'));
+    const fbOk = q.querySelector('.quiz-feedback.ok');
+    const fbKo = q.querySelector('.quiz-feedback.ko');
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        if (q.classList.contains('answered')) return;
+
+        const isCorrect = opt.dataset.correct === 'true';
+        q.classList.add('answered');
+        q.dataset.gotCorrect = isCorrect ? 'true' : 'false';
+
+        options.forEach(o => {
+          o.disabled = true;
+          if (o.dataset.correct === 'true') {
+            o.classList.add(o === opt ? 'correct' : 'reveal');
+          } else if (o === opt) {
+            o.classList.add('wrong');
+          }
+        });
+
+        (isCorrect ? fbOk : fbKo).classList.add('show');
+        updateScore();
+      });
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    questions.forEach(q => {
+      q.classList.remove('answered');
+      delete q.dataset.gotCorrect;
+      q.querySelectorAll('.quiz-option').forEach(o => {
+        o.disabled = false;
+        o.classList.remove('correct', 'wrong', 'reveal');
+      });
+      q.querySelectorAll('.quiz-feedback').forEach(f => f.classList.remove('show'));
+    });
+    updateScore();
+  });
+
+  updateScore();
+}
+
+document.querySelectorAll('.quiz-block').forEach(initQuizBlock);
+</script>
+</body>
+</html>
