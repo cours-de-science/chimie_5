@@ -293,7 +293,9 @@
       <li><a href="#section-1" class="toc-link"><span class="num">Section 1</span> La théorie cinétique des gaz</a></li>
       <li><a href="#section-1-1" class="toc-link"><span class="num">1.1</span> Les différentes phases de la matière</a></li>
       <li><a href="#section-1-2" class="toc-link"><span class="num">1.2</span> Les principaux points de la théorie cinétique</a></li>
-      <li><a href="#" class="toc-link disabled"><span class="num">Section 2</span> La pression (à venir)</a></li>
+      <li><a href="#section-1-3" class="toc-link"><span class="num">1.3</span> Les comportements des gaz</a></li>
+      <li><a href="#section-2" class="toc-link"><span class="num">Section 2</span> La pression</a></li>
+      <li><a href="#section-2-1" class="toc-link"><span class="num">2.1</span> La pression atmosphérique</a></li>
     </ul>
   </nav>
   <div class="sidebar-footer">
@@ -330,6 +332,21 @@
         <div class="page-toc-group-label">1.2 — Les principaux points de la théorie cinétique</div>
         <div class="page-toc-pills">
           <a href="#section-1-2"><span class="toc-num">1.2</span>L'énergie cinétique d'une particule gazeuse</a>
+        </div>
+      </div>
+      <div class="page-toc-group">
+        <div class="page-toc-group-label">1.3 — Les comportements des gaz</div>
+        <div class="page-toc-pills">
+          <a href="#compressibilite-expansion"><span class="toc-num">1.3.1</span>La compressibilité et l'expansion</a>
+          <a href="#diffusion-effusion"><span class="toc-num">1.3.2</span>La diffusion et l'effusion</a>
+          <a href="#loi-graham"><span class="toc-num">1.3.3</span>La loi de Graham</a>
+        </div>
+      </div>
+      <div class="page-toc-group">
+        <div class="page-toc-group-label">Section 2 — La pression</div>
+        <div class="page-toc-pills">
+          <a href="#section-2"><span class="toc-num">2</span>Qu'est-ce que la pression?</a>
+          <a href="#section-2-1"><span class="toc-num">2.1</span>La pression atmosphérique et le baromètre</a>
         </div>
       </div>
     </div>
@@ -1005,6 +1022,606 @@
 
           <div class="quiz-result-msg" id="result-q12"></div>
           <button class="quiz-reset" id="reset-q12">↺ Recommencer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 1.3 -->
+    <div class="section-card" id="section-1-3">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">1.3</span>
+          <span class="section-title">Les comportements des gaz</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>La théorie cinétique des gaz ne sert pas seulement à calculer une énergie cinétique : elle permet aussi d'expliquer, de façon très concrète, plusieurs comportements caractéristiques des gaz. Un gaz peut être comprimé dans un espace restreint ou, à l'inverse, se dilater pour occuper tout l'espace qu'on lui offre. Il peut aussi se mélanger à d'autres substances gazeuses, ou s'échapper d'un contenant par une simple ouverture. Ces quatre comportements portent des noms précis — la compressibilité, l'expansion, la diffusion et l'effusion — et chacun s'explique directement par le mouvement des particules décrit à la section 1.1.</p>
+
+        <div class="subsection" id="compressibilite-expansion">
+          <div class="subsection-title">La compressibilité et l'expansion</div>
+
+          <p>Rappelle-toi qu'à l'état gazeux, les particules sont extrêmement éloignées les unes des autres — c'est d'ailleurs ce qui distingue le plus un gaz d'un liquide ou d'un solide (section 1.1). Cette grande distance entre les particules a deux conséquences directes.</p>
+
+          <p>D'une part, puisqu'il y a énormément d'espace vide entre les particules, il est possible de les rapprocher en appliquant une force, ce qui a pour effet de réduire le volume occupé par le gaz. D'autre part, puisque les particules se déplacent continuellement en ligne droite, de façon complètement indépendante les unes des autres, un gaz peut aussi se répandre librement pour occuper tout l'espace disponible — sans qu'aucune force externe ne soit nécessaire pour l'y forcer.</p>
+
+          <div class="def-box">
+            <div class="def-label">Définitions</div>
+            <p><strong>Compressibilité</strong> — capacité d'une substance à voir son volume diminuer sous l'effet d'une force.</p>
+            <p><strong>Expansion</strong> — capacité d'un gaz à se dilater pour occuper tout l'espace qui lui est offert.</p>
+          </div>
+
+          <figure class="fig-block">
+            <div class="fig-inner">
+              <svg viewBox="0 0 600 210" style="width:100%;max-width:560px;height:auto;" role="img" aria-label="Diagramme montrant des particules de gaz dispersées dans un grand volume à gauche, puis rapprochées dans un volume réduit à droite après compression.">
+                <rect x="20" y="24" width="230" height="150" rx="6" fill="none" stroke="var(--border)" stroke-width="2"/>
+                <g fill="var(--indigo-mid)">
+                  <circle cx="55" cy="55" r="6"/><circle cx="120" cy="45" r="6"/><circle cx="190" cy="60" r="6"/>
+                  <circle cx="70" cy="100" r="6"/><circle cx="150" cy="95" r="6"/><circle cx="215" cy="110" r="6"/>
+                  <circle cx="45" cy="145" r="6"/><circle cx="110" cy="150" r="6"/><circle cx="180" cy="140" r="6"/>
+                  <circle cx="230" cy="150" r="6"/>
+                </g>
+                <text x="135" y="196" text-anchor="middle" font-size="11.5" fill="var(--muted)">Grand volume — particules dispersées</text>
+
+                <g>
+                  <line x1="270" y1="98" x2="330" y2="98" stroke="var(--flame)" stroke-width="3"/>
+                  <path d="M330,98 L318,90 M330,98 L318,106" stroke="var(--flame)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                  <text x="300" y="82" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12" fill="var(--flame)">COMPRESSION</text>
+                </g>
+
+                <rect x="350" y="64" width="120" height="90" rx="6" fill="none" stroke="var(--border)" stroke-width="2"/>
+                <g fill="var(--indigo-mid)">
+                  <circle cx="368" cy="80" r="6"/><circle cx="398" cy="78" r="6"/><circle cx="430" cy="82" r="6"/><circle cx="455" cy="76" r="6"/>
+                  <circle cx="372" cy="108" r="6"/><circle cx="400" cy="112" r="6"/><circle cx="428" cy="106" r="6"/><circle cx="452" cy="112" r="6"/>
+                  <circle cx="385" cy="136" r="6"/><circle cx="415" cy="140" r="6"/>
+                </g>
+                <text x="410" y="180" text-anchor="middle" font-size="11.5" fill="var(--muted)">Volume réduit — mêmes particules</text>
+              </svg>
+            </div>
+            <figcaption>Figure 2.5 — En rapprochant les particules d'un gaz, on réduit son volume : c'est la compressibilité. Le phénomène inverse — les particules qui s'éloignent pour occuper tout l'espace disponible — correspond à l'expansion.</figcaption>
+          </figure>
+
+          <div class="compare-block">
+            <div class="compare-col compare-col--a">
+              <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h9M13 12l-3-3M13 12l-3 3"/><rect x="15" y="6" width="5" height="12" rx="1"/></svg> Applications de la compressibilité</div>
+              <p>Une pompe à vélo comprime l'air dans un cylindre avant de l'expulser dans le pneu — le même principe est à l'œuvre dans les outils pneumatiques comme les cloueuses.</p>
+              <p>C'est aussi cette propriété qui permet d'entreposer de grandes quantités de gaz dans des contenants relativement petits : bonbonnes de plongée, bonbonnes de propane pour barbecue, etc.</p>
+            </div>
+            <div class="compare-col compare-col--b">
+              <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg> Applications de l'expansion</div>
+              <p>Lorsqu'on chauffe l'air à l'intérieur du ballon d'une montgolfière, les particules gagnent de l'énergie et s'éloignent les unes des autres — l'air se dilate, devient moins dense que l'air environnant, et le ballon s'élève.</p>
+              <p>Le même principe permet aux ballons-sondes météorologiques de grossir à mesure qu'ils montent en altitude, où la pression environnante diminue.</p>
+            </div>
+          </div>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">Pourquoi est-il beaucoup plus facile de comprimer un gaz qu'un liquide ou un solide? Appuie ta réponse sur ce que tu sais de la distance entre les particules dans chacune des trois phases (section 1.1).</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">Dans un liquide ou un solide, les particules sont déjà très rapprochées — il reste très peu d'espace vide entre elles, donc peu de marge pour les rapprocher davantage. Dans un gaz, au contraire, la distance entre les particules est énorme par rapport à leur propre taille : il y a donc énormément d'espace vide à éliminer avant que les particules elles-mêmes ne se touchent, ce qui rend la compression beaucoup plus facile.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="diffusion-effusion">
+          <div class="subsection-title">La diffusion et l'effusion</div>
+
+          <p>Une substance gazeuse a naturellement tendance à se déplacer de l'endroit où elle est le plus concentrée vers l'endroit où sa concentration est plus faible. Les particules gazeuses y parviennent grâce à deux processus apparentés, mais distincts.</p>
+
+          <div class="def-box">
+            <div class="def-label">Définitions</div>
+            <p><strong>Diffusion</strong> — processus par lequel des substances gazeuses se mélangent grâce au mouvement aléatoire de leurs particules.</p>
+            <p><strong>Effusion</strong> — processus par lequel un gaz s'échappe d'un contenant par une petite ouverture.</p>
+          </div>
+
+          <p>Un ballon de fête gonflé à l'hélium qui se dégonfle tout seul, lentement, illustre bien les deux phénomènes à la fois. La membrane de caoutchouc du ballon est percée d'un grand nombre de très petits pores; les particules d'hélium s'en échappent une à une par <strong>effusion</strong>. Une fois sorties, elles se mêlent à l'air environnant par <strong>diffusion</strong>, jusqu'à ce que leur répartition dans la pièce devienne uniforme. Le même duo diffusion-effusion est aussi à l'œuvre à la surface poreuse des feuilles des végétaux, où il permet les échanges gazeux nécessaires à la photosynthèse et à la respiration cellulaire.</p>
+
+          <div class="note-box">
+            <button class="note-bar" aria-expanded="false" onclick="toggleNote(this)">
+              <span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7Z"/><path d="M9 12l2 2 4-4.5"/></svg> À quoi ça sert ?<span class="note-subtitle">La perméation gazeuse — le cas des tissus « respirants »</span></span>
+              <svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="note-body">
+              <p>Certains vêtements techniques ont la réputation d'être à la fois imperméables à la pluie et « respirants ». Ce tour de force repose sur un phénomène qui s'apparente fortement à l'effusion : la <strong>perméation gazeuse</strong>.</p>
+              <p>Le tissu de ces vêtements intègre une fine membrane percée de millions de pores microscopiques — bien plus petits que la plus fine goutte d'eau, mais tout de même beaucoup plus grands qu'une seule molécule d'eau à l'état gazeux. Résultat : la vapeur d'eau produite par la transpiration, faite de molécules individuelles très petites, traverse facilement la membrane vers l'extérieur, alors que les gouttes de pluie, beaucoup trop volumineuses, restent bloquées à la surface.</p>
+              <figure class="fig-block" style="margin-top:14px;">
+                <div class="fig-inner">
+                  <svg viewBox="0 0 460 170" style="width:100%;max-width:420px;height:auto;" role="img" aria-label="Diagramme d'une membrane percée de petits pores : les petites molécules de vapeur d'eau la traversent, alors qu'une grosse goutte de pluie reste bloquée à l'extérieur.">
+                    <rect x="190" y="20" width="34" height="130" fill="#e4dff2" stroke="var(--indigo-light)" stroke-width="1.5"/>
+                    <circle cx="207" cy="42" r="6" fill="var(--bg)" stroke="var(--indigo-mid)" stroke-width="1.5"/>
+                    <circle cx="207" cy="85" r="6" fill="var(--bg)" stroke="var(--indigo-mid)" stroke-width="1.5"/>
+                    <circle cx="207" cy="128" r="6" fill="var(--bg)" stroke="var(--indigo-mid)" stroke-width="1.5"/>
+                    <circle cx="60" cy="42" r="34" fill="none" stroke="var(--indigo-light)" stroke-width="2"/>
+                    <text x="60" y="46" text-anchor="middle" font-size="10" fill="var(--flame)" font-weight="700">✕</text>
+                    <text x="60" y="88" text-anchor="middle" font-size="11" fill="var(--muted)">Goutte de pluie</text>
+                    <text x="60" y="101" text-anchor="middle" font-size="11" fill="var(--muted)">(bloquée)</text>
+                    <g fill="var(--amber-dim)">
+                      <circle cx="60" cy="130" r="3.5"/><circle cx="90" cy="138" r="3.5"/><circle cx="55" cy="150" r="3.5"/>
+                    </g>
+                    <text x="70" y="164" text-anchor="middle" font-size="11" fill="var(--muted)">Molécules de vapeur d'eau</text>
+                    <path d="M78,130 L188,45" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
+                    <path d="M100,140 L188,88" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
+                    <path d="M226,42 L340,42" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
+                    <path d="M226,85 L340,85" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
+                    <path d="M226,128 L340,128" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
+                    <defs>
+                      <marker id="arrowVap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                        <path d="M0,0 L10,5 L0,10 Z" fill="var(--amber-dim)"/>
+                      </marker>
+                    </defs>
+                    <text x="380" y="80" text-anchor="middle" font-size="11" fill="var(--muted)">Vers</text>
+                    <text x="380" y="93" text-anchor="middle" font-size="11" fill="var(--muted)">l'extérieur</text>
+                  </svg>
+                </div>
+                <figcaption>Figure 2.6 — Les pores d'une membrane « respirante » sont trop petits pour laisser passer une goutte de pluie, mais assez grands pour que les molécules de vapeur d'eau s'échappent par perméation — un phénomène apparenté à l'effusion.</figcaption>
+              </figure>
+              <p>Cette technologie offre un net avantage sur les vêtements imperméables traditionnels, dont le revêtement bouche complètement les pores et empêche du même coup l'évacuation de la transpiration.</p>
+            </div>
+          </div>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">Quelqu'un vaporise un parfum dans un coin d'une pièce fermée, sans aucun courant d'air. Après quelques minutes, l'odeur est perceptible partout dans la pièce. S'agit-il ici de diffusion, d'effusion, ou des deux? Explique.</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">Il s'agit uniquement de diffusion. L'effusion suppose que le gaz passe d'un contenant vers l'extérieur par une petite ouverture précise — ce n'est pas le cas ici, puisque le parfum est déjà dans l'air de la pièce dès le départ. Son mélange progressif dans tout le volume de la pièce, grâce au mouvement aléatoire de ses particules, est exactement la définition de la diffusion.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="loi-graham">
+          <div class="subsection-title">La loi de Graham</div>
+
+          <p>La diffusion et l'effusion ne se produisent pas à la même vitesse pour tous les gaz. À une température donnée, toutes les particules gazeuses possèdent la même énergie cinétique moyenne — mais comme leur masse diffère d'un gaz à l'autre, leur vitesse doit forcément différer elle aussi. Plus précisément : à température égale, plus un gaz est léger, plus ses particules se déplacent rapidement en moyenne.</p>
+
+          <figure class="fig-block">
+            <div class="fig-inner">
+              <svg viewBox="0 0 600 250" style="width:100%;max-width:560px;height:auto;" role="img" aria-label="Graphique du nombre de particules en fonction de leur vitesse, pour trois gaz de masses différentes à une même température.">
+                <line x1="55" y1="20" x2="55" y2="215" stroke="var(--muted)" stroke-width="1.3"/>
+                <line x1="55" y1="215" x2="575" y2="215" stroke="var(--muted)" stroke-width="1.3"/>
+                <text x="20" y="120" text-anchor="middle" font-size="11" fill="var(--muted)" transform="rotate(-90 20 120)">Nombre de particules</text>
+                <text x="315" y="238" text-anchor="middle" font-size="11" fill="var(--muted)">Vitesse des particules</text>
+
+                <path d="M55,215 C100,215 108,55 142,55 C176,55 184,215 220,215" fill="none" stroke="var(--indigo-mid)" stroke-width="2.5"/>
+                <text x="150" y="46" text-anchor="middle" font-size="12" fill="var(--indigo-mid)" font-weight="600">Gaz lourd</text>
+
+                <path d="M55,215 C150,215 175,100 225,100 C275,100 300,215 380,215" fill="none" stroke="var(--flame)" stroke-width="2.5"/>
+                <text x="255" y="91" text-anchor="middle" font-size="12" fill="var(--flame)" font-weight="600">Gaz moyen</text>
+
+                <path d="M55,215 C230,215 265,155 335,155 C405,155 440,215 560,215" fill="none" stroke="var(--amber-dim)" stroke-width="2.5"/>
+                <text x="430" y="146" text-anchor="middle" font-size="12" fill="var(--amber-dim)" font-weight="600">Gaz léger</text>
+              </svg>
+            </div>
+            <figcaption>Figure 2.7 — À une même température, les particules d'un gaz léger se déplacent en moyenne plus rapidement (courbe étalée vers la droite) que celles d'un gaz plus lourd (courbe étroite et décalée vers la gauche), même si leur énergie cinétique moyenne est identique.</figcaption>
+          </figure>
+
+          <div class="bio-box">
+            <div class="bio-box-header">
+              <svg class="bio-box-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M6 21v-2a6 6 0 0 1 12 0v2"/>
+                <path d="M9 8h6"/>
+              </svg>
+              <div>
+                <div class="bio-box-tag">La communauté scientifique</div>
+                <div class="bio-box-name">Thomas Graham</div>
+                <div class="bio-box-dates">1805 – 1869 · Chimiste écossais</div>
+              </div>
+            </div>
+            <div class="bio-box-body">
+              <p>Vers 1840, Thomas Graham devient le premier à observer et à quantifier avec précision ce lien entre la masse des particules d'un gaz et leur vitesse de déplacement — une relation qu'on appelle aujourd'hui la <strong>loi de Graham</strong> en son honneur.</p>
+              <p>Graham en vient à cette relation en comparant, pour une même température, l'énergie cinétique de deux gaz hypothétiques. Puisque leur énergie cinétique moyenne est identique à température égale, il suffit d'égaler les deux expressions E<sub>c</sub> = ½mv² l'une à l'autre pour isoler le rapport des vitesses en fonction du rapport des masses.</p>
+            </div>
+          </div>
+
+          <p>La démonstration part du principe que E<sub>c1</sub> = E<sub>c2</sub> à température égale :</p>
+
+          <div class="formula">E<sub>c1</sub> = E<sub>c2</sub> &nbsp;→&nbsp; ½m₁v₁² = ½m₂v₂² &nbsp;→&nbsp; v₁²/v₂² = m₂/m₁ &nbsp;→&nbsp; v₁/v₂ = √(m₂/m₁)</div>
+          <div class="formula-caption">Comme la masse molaire (M) est proportionnelle à la masse d'une particule (m) — dans un rapport identique pour tous les gaz —, on peut remplacer m par M dans l'équation, ce qui est beaucoup plus pratique à utiliser.</div>
+
+          <div class="def-box">
+            <div class="def-label">La loi de Graham</div>
+            <p>À une température donnée, le rapport des vitesses de diffusion ou d'effusion de deux gaz est inversement proportionnel à la racine carrée du rapport de leurs masses molaires :</p>
+          </div>
+
+          <div class="formula">v₁ / v₂ = √(M₂ / M₁)</div>
+          <div class="formula-caption">où v₁, v₂ = vitesses de diffusion ou d'effusion des gaz 1 et 2 (m/s ou mL/s) · M₁, M₂ = masses molaires des gaz 1 et 2 (g/mol)</div>
+
+          <div class="example-box">
+            <div class="example-box-header">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 4-4 5v6h-4v-6L4 7z"/></svg>
+              Exemple résolu
+            </div>
+            <div class="example-body">
+              <p class="example-statement">Calcule le rapport entre la vitesse d'effusion de l'hélium (He) et celle du diazote (N₂), dans les mêmes conditions de température. Que signifie ce rapport?</p>
+
+              <div class="example-step"><span class="step-num">1</span>Identifier les masses molaires des deux gaz : M<sub>He</sub> ≈ 4,00 g/mol et M<sub>N2</sub> ≈ 28,0 g/mol. Le gaz 1 est l'hélium (celui dont on cherche la vitesse relative) et le gaz 2 est le diazote.</div>
+              <div class="example-step"><span class="step-num">2</span>Appliquer la loi de Graham : v<sub>He</sub> / v<sub>N2</sub> = √(M<sub>N2</sub> / M<sub>He</sub>) = √(28,0 / 4,00) = √7,00.</div>
+              <div class="example-step"><span class="step-num">3</span>Calculer la racine carrée : √7,00 ≈ 2,65.</div>
+
+              <div class="example-answer">v<sub>He</sub> / v<sub>N2</sub> ≈ 2,65 — les particules d'hélium se déplacent environ 2,65 fois plus vite que celles de diazote, dans les mêmes conditions.</div>
+            </div>
+          </div>
+
+          <p>La loi de Graham fonctionne aussi dans l'autre sens : si on connaît la masse molaire d'un gaz de référence et le rapport de vitesse entre ce gaz et un gaz inconnu, on peut isoler et calculer la masse molaire du gaz inconnu.</p>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">Un gaz inconnu X diffuse 1,50 fois plus lentement que le dioxygène (O₂, M = 32,0 g/mol), dans les mêmes conditions. En partant de la loi de Graham, détermine la masse molaire approximative du gaz X.</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">v<sub>O2</sub> / v<sub>X</sub> = √(M<sub>X</sub> / M<sub>O2</sub>). Puisque X diffuse 1,50 fois plus lentement que O₂, ce rapport vaut 1,50. En élevant les deux côtés au carré : 1,50² = M<sub>X</sub> / M<sub>O2</sub>, donc M<sub>X</sub> = 32,0 × 2,25 = 72,0 g/mol.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Synthèse — Section 1.3</div>
+          <div class="def-box">
+            <div class="def-label">À retenir</div>
+            <p>• <strong>Compressibilité</strong> et <strong>expansion</strong> s'expliquent par la grande distance entre les particules d'un gaz : on peut les rapprocher (réduire le volume) ou les laisser se répandre librement (occuper tout l'espace disponible).</p>
+            <p>• <strong>Diffusion</strong> (mélange par mouvement aléatoire des particules) et <strong>effusion</strong> (échappement par une petite ouverture) décrivent comment un gaz se déplace vers une zone de plus faible concentration.</p>
+            <p>• La <strong>loi de Graham</strong>, v₁/v₂ = √(M₂/M₁), relie la vitesse de diffusion ou d'effusion de deux gaz à leurs masses molaires : à température égale, un gaz plus léger se déplace toujours plus rapidement qu'un gaz plus lourd.</p>
+          </div>
+        </div>
+
+        <div class="quiz-block" data-quiz="q13">
+          <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
+            <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Section 1.3<span class="quiz-block-subtitle">Clique pour t'exercer</span></span>
+            <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="quiz-body">
+          <p class="quiz-intro">Clique sur une réponse pour la valider. La bonne réponse s'affiche immédiatement.</p>
+          <div class="quiz-score-bar">
+            <span class="quiz-score-label">0 / 5</span>
+            <progress class="quiz-progress" value="0" max="5"></progress>
+          </div>
+
+          <div class="quiz-q" data-qi="0">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Laquelle des situations suivantes illustre le mieux la compressibilité d'un gaz?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> De l'air poussé dans une bonbonne de plongée rigide, dans un espace beaucoup plus petit qu'à l'air libre</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Un ballon-sonde météorologique qui grossit en montant en altitude</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Une odeur de parfum qui se répand progressivement dans une pièce</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> De l'hélium qui s'échappe lentement d'un ballon de fête par ses pores</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Forcer une grande quantité d'air dans un contenant rigide beaucoup plus petit, c'est réduire le volume du gaz sous l'effet d'une force — la définition même de la compressibilité.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est la bonbonne de plongée. Le ballon-sonde illustre plutôt l'expansion, le parfum illustre la diffusion, et l'hélium qui fuit par les pores du ballon illustre l'effusion — quatre comportements distincts à ne pas confondre.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="1">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Un gaz peut se dilater (expansion) sans qu'aucune force externe ne soit appliquée sur ses particules.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Les particules gazeuses sont déjà continuellement en mouvement, en ligne droite et de façon indépendante — elles n'ont besoin d'aucune poussée externe pour se répandre dans tout l'espace disponible, contrairement à la compression, qui exige une force.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai. Les particules gazeuses sont déjà en mouvement constant et indépendant : elles se répandent naturellement pour occuper tout l'espace disponible, sans qu'une force externe soit requise — à l'inverse de la compressibilité, qui elle en a besoin.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="2">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Quelle est la distinction essentielle entre la diffusion et l'effusion?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> La diffusion est un mélange de particules dans tout un volume, alors que l'effusion est un passage par une petite ouverture précise</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> La diffusion est toujours plus rapide que l'effusion, peu importe le gaz</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> L'effusion ne s'applique qu'aux gaz très légers, comme l'hélium</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> La diffusion s'applique aux solides, alors que l'effusion s'applique uniquement aux gaz</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. La diffusion décrit le mélange de particules gazeuses dans un volume déjà partagé (comme une odeur qui se répand dans une pièce), tandis que l'effusion décrit spécifiquement le passage d'un gaz d'un contenant vers l'extérieur par une petite ouverture.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est la première option. L'effusion s'applique à tous les gaz, pas seulement aux plus légers (même si les gaz légers effusent plus vite); et la diffusion, comme l'effusion, est un phénomène propre aux gaz (et, dans une moindre mesure, aux liquides) — pas aux solides.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="3">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Quel est le rapport (v₁/v₂) entre la vitesse de diffusion du dihydrogène (H₂, M = 2,02 g/mol) et celle du méthane (CH₄, M = 16,04 g/mol)?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> 2,82</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> 0,355</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> 7,94</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> 14,0</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. v(H₂)/v(CH₄) = √(M(CH₄)/M(H₂)) = √(16,04/2,02) = √7,94 ≈ 2,82.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est 2,82. Étapes : v(H₂)/v(CH₄) = √(M(CH₄)/M(H₂)) = √(16,04/2,02) = √7,94 ≈ 2,82. (0,355 correspond au rapport inversé; 7,94 correspond à l'oubli de la racine carrée; 14,0 correspond à une simple soustraction des masses molaires, ce qui n'a pas de sens ici.)</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="4">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Selon la loi de Graham, à une même température, les particules d'un gaz plus léger se déplacent en moyenne plus lentement que celles d'un gaz plus lourd.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact, c'est faux. C'est l'inverse : à énergie cinétique moyenne égale, un gaz plus léger doit se déplacer plus rapidement qu'un gaz plus lourd pour compenser sa masse plus faible — c'est tout le sens de la loi de Graham.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux. À une même température, l'énergie cinétique moyenne est la même pour tous les gaz; comme Ec dépend à la fois de la masse et de la vitesse, un gaz plus léger doit se déplacer plus rapidement — pas plus lentement — pour avoir la même énergie cinétique qu'un gaz plus lourd.</span></div>
+          </div>
+
+          <div class="quiz-result-msg" id="result-q13"></div>
+          <button class="quiz-reset" id="reset-q13">↺ Recommencer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section-card" id="section-2">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">Section 2</span>
+          <span class="section-title">La pression</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>De façon générale, une pression est une force répartie sur une certaine surface. Pour une même force, plus la surface sur laquelle elle est appliquée est grande, plus la pression qui en résulte est faible — et inversement. Ce principe explique un phénomène qui semble contre-intuitif au premier abord : il est possible de s'allonger sans danger sur une planche hérissée de centaines de clous, alors qu'il serait extrêmement douloureux de se tenir debout sur la pointe d'un seul clou. Dans les deux cas, le poids exercé est identique — mais réparti sur des centaines de pointes plutôt que sur une seule, la force appliquée par clou (et donc la pression) devient minime.</p>
+
+        <div class="formula">p = F / A</div>
+        <div class="formula-caption">où p = pression, en newtons par mètre carré (N/m²) ou en pascals (Pa) · F = force, en newtons (N) · A = aire sur laquelle la force est appliquée, en mètres carrés (m²)</div>
+
+        <p>La pression exercée par un gaz obéit exactement au même principe — sauf que la force en jeu n'est pas un poids, mais le résultat d'innombrables collisions entre les particules gazeuses en mouvement et la surface des obstacles qu'elles rencontrent, que ce soit la paroi d'un contenant ou la surface d'un objet quelconque.</p>
+
+        <div class="def-box">
+          <div class="def-label">Définition</div>
+          <p><strong>La pression d'un gaz</strong> correspond à la somme des forces exercées par les collisions de ses particules contre la surface des obstacles qu'elles rencontrent. Plus les collisions sont nombreuses ou énergiques, plus la pression exercée par le gaz est grande.</p>
+        </div>
+
+        <figure class="fig-block">
+          <div class="fig-inner">
+            <svg viewBox="0 0 280 260" style="width:100%;max-width:260px;height:auto;" role="img" aria-label="Coupe d'un contenant sphérique dans lequel des particules de gaz entrent en collision avec la paroi, exerçant une force vers l'extérieur à chaque point d'impact.">
+              <circle cx="140" cy="135" r="95" fill="none" stroke="var(--indigo-dark)" stroke-width="3"/>
+              <g fill="var(--indigo-mid)">
+                <circle cx="140" cy="70" r="5.5"/><circle cx="200" cy="100" r="5.5"/><circle cx="95" cy="180" r="5.5"/>
+                <circle cx="175" cy="185" r="5.5"/><circle cx="85" cy="95" r="5.5"/><circle cx="150" cy="140" r="5.5"/>
+              </g>
+              <g stroke="var(--flame)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrowColl)">
+                <line x1="140" y1="46" x2="140" y2="24"/>
+                <line x1="222" y1="118" x2="240" y2="108"/>
+                <line x1="70" y1="203" x2="58" y2="218"/>
+                <line x1="207" y1="205" x2="222" y2="220"/>
+                <line x1="58" y1="72" x2="42" y2="58"/>
+              </g>
+              <defs>
+                <marker id="arrowColl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                  <path d="M0,0 L10,5 L0,10 Z" fill="var(--flame)"/>
+                </marker>
+              </defs>
+            </svg>
+          </div>
+          <figcaption>Figure 2.8 — Chaque collision d'une particule gazeuse contre la paroi de son contenant exerce une force vers l'extérieur, en direction opposée à la paroi. La somme de toutes ces forces, réparties sur la surface intérieure du contenant, constitue la pression du gaz.</figcaption>
+        </figure>
+
+        <p>Or, toutes les particules gazeuses n'exercent pas leur pression de la même façon. Puisqu'un gaz léger se déplace en moyenne plus rapidement qu'un gaz lourd, à température égale (loi de Graham, section 1.3), ses particules entrent en collision avec les parois plus fréquemment — mais chaque impact individuel est plus faible, étant donné leur faible masse. À l'inverse, les particules d'un gaz plus lourd frappent moins souvent, mais chaque collision est proportionnellement plus violente.</p>
+
+        <div class="compare-block">
+          <div class="compare-col compare-col--a">
+            <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="16" cy="12" r="2.2" fill="currentColor" stroke="none"/><path d="M2 8h8M2 12h6M2 16h8" stroke-linecap="round"/></svg> Gaz léger</div>
+              <p>Ses particules se déplacent rapidement et entrent en collision <strong>plus souvent</strong> avec les parois — mais chaque impact est <strong>plus faible</strong>, puisque les particules sont peu massives.</p>
+          </div>
+          <div class="compare-col compare-col--b">
+            <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6" fill="currentColor" stroke="none"/></svg> Gaz lourd</div>
+              <p>Ses particules se déplacent plus lentement et entrent en collision <strong>moins souvent</strong> — mais chaque impact est <strong>plus fort</strong>, puisque les particules sont plus massives.</p>
+          </div>
+        </div>
+
+        <p>Ces deux effets s'annulent exactement l'un l'autre. Au final, dans les mêmes conditions de température et de volume, <strong>différents gaz exercent donc la même pression, peu importe leur masse molaire</strong> — une conséquence directe de la théorie cinétique qui sera reprise plus loin dans ce module, lorsqu'il sera question des lois des gaz.</p>
+
+      </div>
+    </div>
+
+    <!-- SECTION 2.1 -->
+    <div class="section-card" id="section-2-1">
+      <button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)">
+        <div class="section-header">
+          <span class="section-num">2.1</span>
+          <span class="section-title">La pression atmosphérique</span>
+          <svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </button>
+      <div class="section-body">
+
+        <p>L'atmosphère terrestre est elle-même une immense masse de gaz, dont les particules sont continuellement en mouvement et exercent une force sur tout ce qui se trouve à sa surface — y compris nous-mêmes, bien qu'on ne la ressente pas directement. Cette force, exercée par l'air sur la surface des objets, porte un nom précis.</p>
+
+        <div class="def-box">
+          <div class="def-label">Définition</div>
+          <p><strong>La pression atmosphérique</strong> est la force exercée par les particules de l'air en mouvement sur la surface des objets avec lesquels elles entrent en collision.</p>
+        </div>
+
+        <p>On mesure généralement la pression atmosphérique à l'aide d'un <strong>baromètre à mercure</strong>, un instrument constitué d'un long tube de verre fermé à une extrémité, en partie rempli de mercure (Hg) puis renversé dans un bassin contenant lui aussi du mercure.</p>
+
+        <div class="bio-box">
+          <div class="bio-box-header">
+            <svg class="bio-box-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="3" width="6" height="9" rx="1"/>
+              <path d="M9 12v3a3 3 0 0 0 6 0v-3"/>
+              <path d="M12 18v3M9 21h6"/>
+            </svg>
+            <div>
+              <div class="bio-box-tag">La communauté scientifique</div>
+              <div class="bio-box-name">Evangelista Torricelli</div>
+              <div class="bio-box-dates">1608 – 1647 · Physicien italien</div>
+            </div>
+          </div>
+          <div class="bio-box-body">
+            <p>Assistant de Galilée à la toute fin de la vie de ce dernier, Torricelli hérite de plusieurs questions restées sans réponse — dont celle-ci : pourquoi une pompe à eau ne parvient-elle jamais à faire monter l'eau à plus d'une dizaine de mètres de hauteur, peu importe la puissance de la pompe utilisée?</p>
+            <p>En 1643, Torricelli a l'idée de refaire l'expérience avec du mercure plutôt que de l'eau — un liquide environ 13,6 fois plus dense, ce qui lui permet de travailler avec un tube beaucoup plus court et maniable. Il constate que le mercure descend toujours jusqu'à une hauteur précise dans le tube, peu importe l'inclinaison ou la longueur du tube utilisé, laissant un espace vide à l'extrémité fermée. Cette observation le mène à une conclusion audacieuse pour l'époque : ce n'est pas le vide qui « aspire » le mercure vers le haut, comme le voulait la physique aristotélicienne dominante, mais bien le poids de l'air ambiant qui pousse sur la surface du mercure dans le bassin, le forçant à monter dans le tube.</p>
+            <p>L'expérience de Torricelli est aujourd'hui considérée comme l'une des premières démonstrations convaincantes de l'existence de la pression atmosphérique — et de la possibilité même de créer un vide. L'unité de pression appelée le « torr », toujours utilisée en science aujourd'hui (1 torr ≈ 1 mm Hg), a été nommée en son honneur.</p>
+          </div>
+        </div>
+
+        <figure class="fig-block">
+          <div class="fig-inner">
+            <svg viewBox="0 0 260 400" style="width:100%;max-width:220px;height:auto;" role="img" aria-label="Diagramme d'un baromètre à mercure : un tube fermé à son sommet contient une colonne de mercure surmontée de vide, plongé dans un bassin de mercure sur lequel s'exerce la pression de l'air.">
+              <path d="M35,350 L35,376 A95,15 0 0 0 225,376 L225,350" fill="var(--flame)" opacity="0.85" stroke="var(--indigo-dark)" stroke-width="2"/>
+              <ellipse cx="130" cy="350" rx="95" ry="15" fill="var(--flame)" stroke="var(--indigo-dark)" stroke-width="2"/>
+
+              <rect x="107" y="22" width="26" height="330" rx="3" fill="var(--bg)" stroke="var(--indigo-dark)" stroke-width="2.5"/>
+              <rect x="109" y="150" width="22" height="200" fill="var(--flame)"/>
+              <line x1="109" y1="150" x2="131" y2="150" stroke="var(--indigo-dark)" stroke-width="1.5"/>
+
+              <g stroke="var(--indigo-mid)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrowDown)">
+                <line x1="65" y1="300" x2="65" y2="335"/>
+                <line x1="195" y1="300" x2="195" y2="335"/>
+              </g>
+              <defs>
+                <marker id="arrowDown" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                  <path d="M0,0 L10,5 L0,10 Z" fill="var(--indigo-mid)"/>
+                </marker>
+              </defs>
+
+              <line x1="133" y1="60" x2="175" y2="55" stroke="var(--muted)" stroke-width="1"/>
+              <text x="180" y="59" font-size="15" fill="var(--indigo-dark)" font-family="'Barlow Condensed', sans-serif" font-weight="700">Vide</text>
+
+              <line x1="131" y1="230" x2="175" y2="225" stroke="var(--muted)" stroke-width="1"/>
+              <text x="180" y="229" font-size="15" fill="var(--indigo-dark)" font-family="'Barlow Condensed', sans-serif" font-weight="700">Mercure</text>
+
+              <text x="130" y="393" text-anchor="middle" font-size="13.5" fill="var(--indigo-mid)" font-family="'Barlow Condensed', sans-serif" font-weight="700">PRESSION DE L'AIR</text>
+            </svg>
+          </div>
+          <figcaption>Figure 2.9 — Un baromètre à mercure. La pression de l'air, exercée sur la surface du mercure dans le bassin, pousse le mercure à l'intérieur du tube jusqu'à ce que le poids de la colonne de mercure équilibre exactement cette pression.</figcaption>
+        </figure>
+
+        <p>Le niveau de mercure dans le tube se stabilise lorsque la pression exercée par le poids de la colonne de mercure équilibre exactement la pression de l'air qui pousse sur le mercure du bassin. Lorsque la pression atmosphérique augmente, elle pousse davantage sur le mercure du bassin, ce qui fait monter la colonne de mercure dans le tube — jusqu'à ce qu'un nouvel équilibre s'établisse.</p>
+
+        <p>Au niveau de la mer, la colonne de mercure d'un baromètre atteint une hauteur d'environ 760 mm Hg. Cette valeur correspond à la <strong>pression atmosphérique normale</strong>, qui équivaut aussi à 101,3 kilopascals (kPa) dans le système international, ou encore à 1 atmosphère (atm).</p>
+
+        <div class="formula">760 mm Hg = 101,3 kPa = 1 atm</div>
+        <div class="formula-caption">Trois unités différentes, utilisées pour exprimer une seule et même pression atmosphérique normale — toutes interchangeables grâce à cette équivalence.</div>
+
+        <p>Les prévisionnistes météo suivent d'ailleurs de très près les variations de pression atmosphérique : une pression qui chute annonce souvent l'arrivée de mauvais temps, alors qu'une pression qui remonte est plutôt signe d'un temps stable et dégagé.</p>
+
+        <div class="example-box">
+          <div class="example-box-header">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 4-4 5v6h-4v-6L4 7z"/></svg>
+            Exemple résolu
+          </div>
+          <div class="example-body">
+            <p class="example-statement">Lors du passage d'une tempête, un baromètre à mercure affiche une pression atmosphérique de 745 mm Hg. Exprime cette pression en kilopascals (kPa).</p>
+
+            <div class="example-step"><span class="step-num">1</span>Noter les valeurs connues et l'équivalence à utiliser : 760 mm Hg = 101,3 kPa; p = 745 mm Hg; p = ? kPa.</div>
+            <div class="example-step"><span class="step-num">2</span>Établir la proportion entre les deux unités, puis isoler p en kPa : 760 mm Hg / 101,3 kPa = 745 mm Hg / p, donc p = (745 × 101,3) / 760.</div>
+            <div class="example-step"><span class="step-num">3</span>Calculer : p = 75 468,5 / 760 ≈ 99,3 kPa.</div>
+
+            <div class="example-answer">p ≈ 99,3 kPa — une valeur légèrement inférieure à la pression atmosphérique normale (101,3 kPa), typique d'une zone de basse pression associée au mauvais temps.</div>
+          </div>
+        </div>
+
+        <div class="activity-block">
+          <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+            <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+            <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="activity-content">
+            <p class="activity-question">Si on construisait un baromètre avec de l'eau plutôt qu'avec du mercure, la colonne de liquide serait-elle plus haute, plus basse, ou de la même hauteur qu'avec le mercure, pour une même pression atmosphérique? Appuie ta réponse sur la masse volumique de chacun de ces deux liquides.</p>
+            <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+            <div class="activity-hint">Le mercure est environ 13,6 fois plus dense que l'eau (13,6 g/mL contre 1,0 g/mL). Puisque c'est le poids de la colonne de liquide qui doit équilibrer la pression atmosphérique, un liquide moins dense comme l'eau doit former une colonne beaucoup plus haute pour exercer la même pression — environ 13,6 fois plus haute que le mercure. C'est justement pour cette raison qu'on utilise le mercure dans les baromètres : un baromètre à eau devrait mesurer plus de 10 mètres de hauteur pour fonctionner au niveau de la mer!</div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Synthèse — Section 2.1</div>
+          <div class="def-box">
+            <div class="def-label">À retenir</div>
+            <p>• La <strong>pression atmosphérique</strong> est la force exercée par les particules de l'air en mouvement sur la surface des objets.</p>
+            <p>• Elle se mesure à l'aide d'un <strong>baromètre à mercure</strong>, inventé par Evangelista Torricelli en 1643 : la hauteur de la colonne de mercure reflète directement la pression de l'air qui la pousse vers le haut.</p>
+            <p>• Au niveau de la mer, la pression atmosphérique normale correspond à <strong>760 mm Hg = 101,3 kPa = 1 atm</strong> — trois unités équivalentes entre elles.</p>
+          </div>
+        </div>
+
+        <div class="quiz-block" data-quiz="q21">
+          <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
+            <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Section 2.1<span class="quiz-block-subtitle">Clique pour t'exercer</span></span>
+            <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="quiz-body">
+          <p class="quiz-intro">Clique sur une réponse pour la valider. La bonne réponse s'affiche immédiatement.</p>
+          <div class="quiz-score-bar">
+            <span class="quiz-score-label">0 / 5</span>
+            <progress class="quiz-progress" value="0" max="5"></progress>
+          </div>
+
+          <div class="quiz-q" data-qi="0">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Dans l'équation p = F/A, que représente la variable A?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> L'aire sur laquelle la force est appliquée, en mètres carrés</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> L'amplitude de la force, en newtons</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Le nombre de particules gazeuses en collision</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> La masse molaire du gaz, en g/mol</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. A représente l'aire (la surface) sur laquelle la force F est répartie, exprimée en mètres carrés (m²). C'est F qui représente la force, en newtons.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est l'aire sur laquelle la force est appliquée (en m²). Dans p = F/A, F est la force (en newtons) et A est la surface sur laquelle elle se répartit — ni le nombre de particules ni la masse molaire n'apparaissent dans cette équation.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="1">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Pour une force donnée, plus l'aire sur laquelle cette force est répartie est grande, plus la pression exercée est élevée.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact, c'est faux. C'est l'inverse : puisque p = F/A, une plus grande aire (A) pour une même force (F) donne une pression (p) plus faible, pas plus élevée — c'est exactement le principe du tapis de clous.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est faux. Puisque p = F/A, augmenter A (l'aire) pour une force F constante fait diminuer p, pas augmenter — la pression et l'aire sont inversement proportionnelles, à force égale.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="2">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Dans les mêmes conditions de température et de volume, pourquoi un gaz léger et un gaz lourd exercent-ils la même pression, même si leurs particules n'ont pas la même masse?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> Les particules du gaz léger frappent moins fort mais plus souvent, ce qui compense exactement les collisions moins fréquentes mais plus fortes du gaz lourd</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> Parce que tous les gaz ont, en réalité, la même masse molaire</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> Parce que la pression d'un gaz ne dépend pas du nombre de collisions contre les parois</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> Parce que seul le gaz le plus lourd contribue réellement à la pression totale</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Un gaz léger frappe les parois plus souvent, mais avec moins de force par collision (particules moins massives); un gaz lourd frappe moins souvent, mais plus fort. La somme des forces est finalement la même dans les deux cas.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : les collisions plus fréquentes mais plus faibles du gaz léger compensent exactement les collisions moins fréquentes mais plus fortes du gaz lourd. La pression dépend justement du nombre ET de la force des collisions — pas d'un seul de ces deux facteurs.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="3">
+            <div class="quiz-q-label">Choix multiple</div>
+            <div class="quiz-q-text">Un manomètre indique une pression de 2,00 atm. À combien de kilopascals cela correspond-il approximativement?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">A</span> 202,6 kPa</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">B</span> 101,3 kPa</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">C</span> 50,65 kPa</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">D</span> 760 kPa</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Puisque 1 atm = 101,3 kPa, alors 2,00 atm = 2,00 × 101,3 = 202,6 kPa.</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est 202,6 kPa (2,00 × 101,3 kPa). 101,3 kPa correspond à seulement 1 atm (on a oublié de multiplier par 2); 50,65 kPa vient d'une division plutôt que d'une multiplication; 760 kPa confond kPa et mm Hg.</span></div>
+          </div>
+
+          <div class="quiz-q" data-qi="4">
+            <div class="quiz-q-label">Vrai ou faux</div>
+            <div class="quiz-q-text">Le baromètre à mercure a été inventé par Evangelista Torricelli, qui a ainsi démontré l'existence de la pression atmosphérique.</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true"><span class="opt-letter">V</span> Vrai</button>
+              <button class="quiz-option" data-correct="false"><span class="opt-letter">F</span> Faux</button>
+            </div>
+            <div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Torricelli invente le baromètre à mercure en 1643, démontrant du même coup que c'est le poids de l'air (la pression atmosphérique) qui soutient la colonne de mercure — et non un mystérieux « appel du vide ».</span></div>
+            <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai. Torricelli, physicien italien, invente le baromètre à mercure en 1643 et démontre par cette expérience l'existence de la pression atmosphérique.</span></div>
+          </div>
+
+          <div class="quiz-result-msg" id="result-q21"></div>
+          <button class="quiz-reset" id="reset-q21">↺ Recommencer</button>
           </div>
         </div>
 
