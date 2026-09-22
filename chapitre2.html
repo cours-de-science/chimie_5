@@ -693,22 +693,22 @@
                 </defs>
 
                 <path d="M170,135 Q210,100 250,135" fill="none" stroke="var(--flame)" stroke-width="2.5" marker-end="url(#arrowFlamePhase)"/>
-                <text x="210" y="88" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--flame)">FUSION</text>
+                <text x="210" y="90" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--flame)">FUSION</text>
 
                 <path d="M250,165 Q210,205 170,165" fill="none" stroke="var(--indigo-mid)" stroke-width="2.5" marker-end="url(#arrowIndigoPhase)"/>
-                <text x="210" y="222" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--indigo-mid)">SOLIDIFICATION</text>
+                <text x="210" y="213" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--indigo-mid)">SOLIDIFICATION</text>
 
                 <path d="M390,135 Q430,100 470,135" fill="none" stroke="var(--flame)" stroke-width="2.5" marker-end="url(#arrowFlamePhase)"/>
-                <text x="430" y="88" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--flame)">VAPORISATION</text>
+                <text x="430" y="90" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--flame)">VAPORISATION</text>
 
                 <path d="M470,165 Q430,205 390,165" fill="none" stroke="var(--indigo-mid)" stroke-width="2.5" marker-end="url(#arrowIndigoPhase)"/>
-                <text x="430" y="222" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--indigo-mid)">CONDENSATION</text>
+                <text x="430" y="213" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="12.5" fill="var(--indigo-mid)">CONDENSATION</text>
 
-                <path d="M105,118 Q320,18 535,118" fill="none" stroke="var(--flame)" stroke-width="2.5" marker-end="url(#arrowFlamePhase)"/>
-                <text x="320" y="32" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="13" fill="var(--flame)">SUBLIMATION</text>
+                <path d="M105,118 C105,15 535,15 535,118" fill="none" stroke="var(--flame)" stroke-width="2.5" marker-end="url(#arrowFlamePhase)"/>
+                <text x="320" y="20" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="13" fill="var(--flame)">SUBLIMATION</text>
 
-                <path d="M535,182 Q320,282 105,182" fill="none" stroke="var(--indigo-mid)" stroke-width="2.5" marker-end="url(#arrowIndigoPhase)"/>
-                <text x="320" y="272" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="13" fill="var(--indigo-mid)">DÉPOSITION</text>
+                <path d="M535,182 C535,285 105,285 105,182" fill="none" stroke="var(--indigo-mid)" stroke-width="2.5" marker-end="url(#arrowIndigoPhase)"/>
+                <text x="320" y="292" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="700" font-size="13" fill="var(--indigo-mid)">DÉPOSITION</text>
 
                 <rect x="30" y="115" width="140" height="70" rx="10" fill="#fff" stroke="var(--indigo-mid)" stroke-width="1.5"/>
                 <text x="100" y="145" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="15" fill="var(--indigo-dark)">SOLIDE</text>
@@ -1094,6 +1094,18 @@
               <div class="compare-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg> Applications de l'expansion</div>
               <p>Lorsqu'on chauffe l'air à l'intérieur du ballon d'une montgolfière, les particules gagnent de l'énergie et s'éloignent les unes des autres — l'air se dilate, devient moins dense que l'air environnant, et le ballon s'élève.</p>
               <p>Le même principe permet aux ballons-sondes météorologiques de grossir à mesure qu'ils montent en altitude, où la pression environnante diminue.</p>
+            </div>
+          </div>
+
+          <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="activity-content">
+              <p class="activity-question">Une pompe à vélo doit comprimer l'air avant de pouvoir le faire entrer dans la chambre à air. Pourquoi une pompe qui n'exercerait aucune compression ne parviendrait-elle jamais à gonfler le pneu, même en pompant longtemps?</p>
+              <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+              <div class="activity-hint">Un gaz ne s'écoule jamais spontanément d'une zone de basse pression vers une zone de haute pression — c'est toujours l'inverse. La valve du pneu agit comme un clapet : elle reste fermée tant que la pression à l'intérieur de la pompe n'est pas supérieure à celle déjà présente dans le pneu. En poussant sur le piston, on réduit le volume du cylindre, ce qui augmente la pression de l'air qu'il contient; dès qu'elle dépasse celle du pneu, la valve cède et l'air y pénètre. Sans compression, l'air resterait à la pression atmosphérique et ne pourrait jamais forcer la valve — on aurait beau pomper, rien n'entrerait. C'est aussi ce qui permet d'entasser davantage de molécules dans le volume fixe du pneu, ce qui le rend rigide. Le même principe est exploité dans les outils pneumatiques comme les cloueuses : l'air comprimé emmagasiné sert de réserve d'énergie, libérée d'un coup contre un piston au moment du déclenchement. Tu reverras cette notion de pression, et comment la mesurer précisément, à la section 2.</div>
             </div>
           </div>
 
