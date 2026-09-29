@@ -1130,7 +1130,7 @@
 
           <div class="def-box">
             <div class="def-label">Définitions</div>
-            <p><strong>Diffusion</strong> — processus par lequel des substances gazeuses se mélangent grâce au mouvement aléatoire de leurs particules.</p>
+            <p><strong>Diffusion</strong> — processus par lequel des substances gazeuses se mélangent grâce au mouvement aléatoire de leurs particules (chaque gaz se répand dans tout l'espace disponible, même s'il s'y trouve déjà d'autres gaz : il se mélange à eux sans les « déplacer »).</p>
             <p><strong>Effusion</strong> — processus par lequel un gaz s'échappe d'un contenant par une petite ouverture.</p>
           </div>
 
@@ -1146,34 +1146,23 @@
               <p>Le tissu de ces vêtements intègre une fine membrane percée de millions de pores microscopiques — bien plus petits que la plus fine goutte d'eau, mais tout de même beaucoup plus grands qu'une seule molécule d'eau à l'état gazeux. Résultat : la vapeur d'eau produite par la transpiration, faite de molécules individuelles très petites, traverse facilement la membrane vers l'extérieur, alors que les gouttes de pluie, beaucoup trop volumineuses, restent bloquées à la surface.</p>
               <figure class="fig-block" style="margin-top:14px;">
                 <div class="fig-inner">
-                  <svg viewBox="0 0 460 170" style="width:100%;max-width:420px;height:auto;" role="img" aria-label="Diagramme d'une membrane percée de petits pores : les petites molécules de vapeur d'eau la traversent, alors qu'une grosse goutte de pluie reste bloquée à l'extérieur.">
-                    <rect x="190" y="20" width="34" height="130" fill="#e4dff2" stroke="var(--indigo-light)" stroke-width="1.5"/>
-                    <circle cx="207" cy="42" r="6" fill="var(--bg)" stroke="var(--indigo-mid)" stroke-width="1.5"/>
-                    <circle cx="207" cy="85" r="6" fill="var(--bg)" stroke="var(--indigo-mid)" stroke-width="1.5"/>
-                    <circle cx="207" cy="128" r="6" fill="var(--bg)" stroke="var(--indigo-mid)" stroke-width="1.5"/>
-                    <circle cx="60" cy="42" r="34" fill="none" stroke="var(--indigo-light)" stroke-width="2"/>
-                    <text x="60" y="46" text-anchor="middle" font-size="10" fill="var(--flame)" font-weight="700">✕</text>
-                    <text x="60" y="88" text-anchor="middle" font-size="11" fill="var(--muted)">Goutte de pluie</text>
-                    <text x="60" y="101" text-anchor="middle" font-size="11" fill="var(--muted)">(bloquée)</text>
-                    <g fill="var(--amber-dim)">
-                      <circle cx="60" cy="130" r="3.5"/><circle cx="90" cy="138" r="3.5"/><circle cx="55" cy="150" r="3.5"/>
-                    </g>
-                    <text x="70" y="164" text-anchor="middle" font-size="11" fill="var(--muted)">Molécules de vapeur d'eau</text>
-                    <path d="M78,130 L188,45" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
-                    <path d="M100,140 L188,88" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
-                    <path d="M226,42 L340,42" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
-                    <path d="M226,85 L340,85" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
-                    <path d="M226,128 L340,128" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
-                    <defs>
-                      <marker id="arrowVap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-                        <path d="M0,0 L10,5 L0,10 Z" fill="var(--amber-dim)"/>
-                      </marker>
-                    </defs>
-                    <text x="380" y="80" text-anchor="middle" font-size="11" fill="var(--muted)">Vers</text>
-                    <text x="380" y="93" text-anchor="middle" font-size="11" fill="var(--muted)">l'extérieur</text>
+                  <svg viewBox="0 0 460 216" style="width:100%;max-width:420px;height:auto;" role="img" aria-label="Coupe d'une membrane percée de pores : à gauche (intérieur), les molécules de vapeur d'eau traversent les pores vers l'extérieur ; à droite, une goutte de pluie beaucoup plus grosse qu'un pore ne peut pas y entrer.">
+                    <defs><marker id="arrowVap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--amber-dim)"/></marker></defs>
+                    <text x="100" y="14" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Intérieur (côté peau)</text>
+                    <text x="350" y="14" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Extérieur</text>
+                    <g fill="#e4dff2" stroke="var(--indigo-light)" stroke-width="1.5"><rect x="200" y="26" width="26" height="34"/><rect x="200" y="72" width="26" height="34"/><rect x="200" y="118" width="26" height="34"/><rect x="200" y="164" width="26" height="30"/></g>
+                    <text x="213" y="208" text-anchor="middle" font-size="11" fill="var(--muted)">Membrane</text>
+                    <circle cx="306" cy="66" r="22" fill="none" stroke="var(--indigo-light)" stroke-width="2"/>
+                    <text x="306" y="36" text-anchor="middle" font-size="11" fill="var(--muted)">Goutte de pluie (bloquée)</text>
+                    <path d="M282,66 L246,66" stroke="var(--flame)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                    <text x="236" y="71" text-anchor="middle" font-size="14" fill="var(--flame)" font-weight="700">✕</text>
+                    <g fill="var(--amber-dim)"><circle cx="96" cy="100" r="3.5"/><circle cx="122" cy="116" r="3.5"/><circle cx="84" cy="146" r="3.5"/><circle cx="130" cy="160" r="3.5"/><circle cx="108" cy="182" r="3.5"/></g>
+                    <text x="110" y="208" text-anchor="middle" font-size="11" fill="var(--muted)">Molécules de vapeur d'eau</text>
+                    <path d="M150,112 L344,112" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
+                    <path d="M150,158 L344,158" stroke="var(--amber-dim)" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowVap)"/>
                   </svg>
                 </div>
-                <figcaption>Figure 2.6 — Les pores d'une membrane « respirante » sont trop petits pour laisser passer une goutte de pluie, mais assez grands pour que les molécules de vapeur d'eau s'échappent par perméation — un phénomène apparenté à l'effusion.</figcaption>
+                <figcaption>Figure 2.6 — Les pores d'une membrane « respirante » sont trop petits pour laisser passer une goutte de pluie, mais assez grands pour que les molécules de vapeur d'eau s'échappent par perméation — un phénomène apparenté à l'effusion. Schéma non à l'échelle.</figcaption>
               </figure>
               <p>Cette technologie offre un net avantage sur les vêtements imperméables traditionnels, dont le revêtement bouche complètement les pores et empêche du même coup l'évacuation de la transpiration.</p>
             </div>
@@ -1200,24 +1189,20 @@
 
           <figure class="fig-block">
             <div class="fig-inner">
-              <svg viewBox="0 0 600 250" style="width:100%;max-width:560px;height:auto;" role="img" aria-label="Graphique du nombre de particules en fonction de leur vitesse, pour trois gaz de masses différentes à une même température.">
+              <svg viewBox="0 0 600 250" style="width:100%;max-width:560px;height:auto;" role="img" aria-label="Graphique du nombre de particules en fonction de leur vitesse, pour trois gaz de masses différentes à une même température, avec un même nombre de particules (aires égales).">
                 <line x1="55" y1="20" x2="55" y2="215" stroke="var(--muted)" stroke-width="1.3"/>
                 <line x1="55" y1="215" x2="575" y2="215" stroke="var(--muted)" stroke-width="1.3"/>
                 <text x="20" y="120" text-anchor="middle" font-size="11" fill="var(--muted)" transform="rotate(-90 20 120)">Nombre de particules</text>
                 <text x="315" y="238" text-anchor="middle" font-size="11" fill="var(--muted)">Vitesse des particules</text>
-
-                <path d="M55,215 C100,215 108,55 142,55 C176,55 184,215 220,215" fill="none" stroke="var(--indigo-mid)" stroke-width="2.5"/>
-                <text x="150" y="46" text-anchor="middle" font-size="12" fill="var(--indigo-mid)" font-weight="600">Gaz lourd</text>
-
-                <path d="M55,215 C150,215 175,100 225,100 C275,100 300,215 380,215" fill="none" stroke="var(--flame)" stroke-width="2.5"/>
-                <text x="255" y="91" text-anchor="middle" font-size="12" fill="var(--flame)" font-weight="600">Gaz moyen</text>
-
-                <path d="M55,215 C230,215 265,155 335,155 C405,155 440,215 560,215" fill="none" stroke="var(--amber-dim)" stroke-width="2.5"/>
-                <text x="430" y="146" text-anchor="middle" font-size="12" fill="var(--amber-dim)" font-weight="600">Gaz léger</text>
+                <line x1="127.2" y1="49.8" x2="127.2" y2="215" stroke="var(--indigo-mid)" stroke-width="1.3" stroke-dasharray="3 3"/><line x1="170.5" y1="111.7" x2="170.5" y2="215" stroke="var(--flame)" stroke-width="1.3" stroke-dasharray="3 3"/><line x1="228.3" y1="146.2" x2="228.3" y2="215" stroke="var(--amber-dim)" stroke-width="1.3" stroke-dasharray="3 3"/><path d="M55.0,215.0 L60.8,212.1 L66.6,203.8 L72.3,190.6 L78.1,173.5 L83.9,153.8 L89.7,132.8 L95.4,112.1 L101.2,92.9 L107.0,76.4 L112.8,63.4 L118.5,54.7 L124.3,50.3 L130.1,50.3 L135.9,54.3 L141.6,61.8 L147.4,72.0 L153.2,84.3 L159.0,97.9 L164.7,112.0 L170.5,126.1 L176.3,139.6 L182.1,152.2 L187.8,163.5 L193.6,173.5 L199.4,182.1 L205.2,189.3 L211.0,195.3 L216.7,200.1 L222.5,203.9 L228.3,206.8 L234.1,209.1 L239.8,210.8 L245.6,212.1 L251.4,213.0 L257.2,213.6 L262.9,214.1 L268.7,214.4 L274.5,214.6 L280.3,214.7 L286.0,214.8 L291.8,214.9 L297.6,214.9 L303.4,215.0 L309.1,215.0 L314.9,215.0 L320.7,215.0 L326.5,215.0 L332.2,215.0 L338.0,215.0 L343.8,215.0 L349.6,215.0 L355.4,215.0 L361.1,215.0 L366.9,215.0 L372.7,215.0 L378.5,215.0 L384.2,215.0 L390.0,215.0 L395.8,215.0 L401.6,215.0 L407.3,215.0 L413.1,215.0 L418.9,215.0 L424.7,215.0 L430.4,215.0 L436.2,215.0 L442.0,215.0 L447.8,215.0 L453.5,215.0 L459.3,215.0 L465.1,215.0 L470.9,215.0 L476.6,215.0 L482.4,215.0 L488.2,215.0 L494.0,215.0 L499.8,215.0 L505.5,215.0 L511.3,215.0 L517.1,215.0 L522.9,215.0 L528.6,215.0 L534.4,215.0 L540.2,215.0 L546.0,215.0 L551.7,215.0 L557.5,215.0 L563.3,215.0 L569.1,215.0 L574.8,215.0" fill="none" stroke="var(--indigo-mid)" stroke-width="2.5"/><path d="M55.0,215.0 L60.8,214.3 L66.6,212.2 L72.3,208.8 L78.1,204.2 L83.9,198.5 L89.7,191.9 L95.4,184.6 L101.2,176.7 L107.0,168.6 L112.8,160.4 L118.5,152.3 L124.3,144.5 L130.1,137.3 L135.9,130.7 L141.6,125.0 L147.4,120.3 L153.2,116.5 L159.0,113.9 L164.7,112.3 L170.5,111.7 L176.3,112.2 L182.1,113.7 L187.8,116.1 L193.6,119.2 L199.4,123.1 L205.2,127.5 L211.0,132.3 L216.7,137.5 L222.5,142.9 L228.3,148.4 L234.1,154.0 L239.8,159.5 L245.6,164.8 L251.4,169.9 L257.2,174.8 L262.9,179.4 L268.7,183.7 L274.5,187.6 L280.3,191.2 L286.0,194.4 L291.8,197.4 L297.6,200.0 L303.4,202.2 L309.1,204.3 L314.9,206.0 L320.7,207.5 L326.5,208.8 L332.2,209.9 L338.0,210.8 L343.8,211.6 L349.6,212.3 L355.4,212.8 L361.1,213.2 L366.9,213.6 L372.7,213.9 L378.5,214.1 L384.2,214.3 L390.0,214.5 L395.8,214.6 L401.6,214.7 L407.3,214.8 L413.1,214.8 L418.9,214.9 L424.7,214.9 L430.4,214.9 L436.2,214.9 L442.0,215.0 L447.8,215.0 L453.5,215.0 L459.3,215.0 L465.1,215.0 L470.9,215.0 L476.6,215.0 L482.4,215.0 L488.2,215.0 L494.0,215.0 L499.8,215.0 L505.5,215.0 L511.3,215.0 L517.1,215.0 L522.9,215.0 L528.6,215.0 L534.4,215.0 L540.2,215.0 L546.0,215.0 L551.7,215.0 L557.5,215.0 L563.3,215.0 L569.1,215.0 L574.8,215.0" fill="none" stroke="var(--flame)" stroke-width="2.5"/><path d="M55.0,215.0 L60.8,214.8 L66.6,214.2 L72.3,213.1 L78.1,211.7 L83.9,209.9 L89.7,207.8 L95.4,205.4 L101.2,202.6 L107.0,199.6 L112.8,196.4 L118.5,193.0 L124.3,189.5 L130.1,185.9 L135.9,182.2 L141.6,178.6 L147.4,175.0 L153.2,171.4 L159.0,168.0 L164.7,164.7 L170.5,161.7 L176.3,158.8 L182.1,156.2 L187.8,153.9 L193.6,151.9 L199.4,150.1 L205.2,148.7 L211.0,147.6 L216.7,146.8 L222.5,146.3 L228.3,146.2 L234.1,146.3 L239.8,146.8 L245.6,147.5 L251.4,148.5 L257.2,149.7 L262.9,151.2 L268.7,152.8 L274.5,154.7 L280.3,156.6 L286.0,158.8 L291.8,161.0 L297.6,163.3 L303.4,165.7 L309.1,168.2 L314.9,170.6 L320.7,173.1 L326.5,175.5 L332.2,178.0 L338.0,180.4 L343.8,182.7 L349.6,184.9 L355.4,187.1 L361.1,189.2 L366.9,191.3 L372.7,193.2 L378.5,195.0 L384.2,196.7 L390.0,198.3 L395.8,199.9 L401.6,201.3 L407.3,202.6 L413.1,203.8 L418.9,205.0 L424.7,206.0 L430.4,207.0 L436.2,207.8 L442.0,208.6 L447.8,209.4 L453.5,210.0 L459.3,210.6 L465.1,211.1 L470.9,211.6 L476.6,212.0 L482.4,212.4 L488.2,212.7 L494.0,213.0 L499.8,213.3 L505.5,213.5 L511.3,213.7 L517.1,213.9 L522.9,214.1 L528.6,214.2 L534.4,214.3 L540.2,214.4 L546.0,214.5 L551.7,214.6 L557.5,214.6 L563.3,214.7 L569.1,214.8 L574.8,214.8" fill="none" stroke="var(--amber-dim)" stroke-width="2.5"/><text x="127" y="24" text-anchor="middle" font-size="12" fill="var(--indigo-mid)" font-weight="600">Gaz lourd</text><text x="127" y="37" text-anchor="middle" font-size="10.5" fill="var(--indigo-mid)">masse élevée</text><text x="205" y="100" font-size="12" fill="var(--flame)" font-weight="600">Gaz moyen</text><text x="205" y="113" font-size="10.5" fill="var(--flame)">masse moyenne</text><text x="300" y="125" font-size="12" fill="var(--amber-dim)" font-weight="600">Gaz léger</text><text x="300" y="138" font-size="10.5" fill="var(--amber-dim)">faible masse</text>
+                <text x="575" y="30" text-anchor="end" font-size="11" fill="var(--muted)">Même nombre de particules</text>
+                <text x="575" y="43" text-anchor="end" font-size="11" fill="var(--muted)">(même aire sous chaque courbe)</text>
               </svg>
             </div>
-            <figcaption>Figure 2.7 — À une même température, les particules d'un gaz léger se déplacent en moyenne plus rapidement (courbe étalée vers la droite) que celles d'un gaz plus lourd (courbe étroite et décalée vers la gauche), même si leur énergie cinétique moyenne est identique.</figcaption>
+            <figcaption>Figure 2.7 — À une même température, ces trois échantillons contiennent le même nombre de particules (même aire sous chaque courbe) et la même énergie cinétique moyenne. Seule la masse des particules diffère : celles d'un gaz léger se déplacent en moyenne plus rapidement (courbe étalée vers la droite) que celles d'un gaz plus lourd (courbe étroite, décalée vers la gauche). Les traits pointillés repèrent la vitesse la plus courante de chaque gaz.</figcaption>
           </figure>
+          <p><strong>Pourquoi la vitesse varie-t-elle si le nombre de particules est le même?</strong> Ce n'est pas le nombre de particules qui détermine leur vitesse, mais leur masse. L'énergie cinétique d'une particule est E<sub>c</sub> = ½mv² (section 1.2) : si deux gaz ont la même énergie cinétique moyenne, la particule la plus massive doit se déplacer plus lentement, et la moins massive, plus rapidement. Par analogie, une balle de ping-pong et une balle de quilles qui auraient la même énergie cinétique n'iraient certainement pas à la même vitesse.</p>
+
 
           <div class="bio-box">
             <div class="bio-box-header">
@@ -1241,7 +1226,7 @@
           <p>La démonstration part du principe que E<sub>c1</sub> = E<sub>c2</sub> à température égale :</p>
 
           <div class="formula">E<sub>c1</sub> = E<sub>c2</sub> &nbsp;→&nbsp; ½m₁v₁² = ½m₂v₂² &nbsp;→&nbsp; v₁²/v₂² = m₂/m₁ &nbsp;→&nbsp; v₁/v₂ = √(m₂/m₁)</div>
-          <div class="formula-caption">Comme la masse molaire (M) est proportionnelle à la masse d'une particule (m) — dans un rapport identique pour tous les gaz —, on peut remplacer m par M dans l'équation, ce qui est beaucoup plus pratique à utiliser.</div>
+          <div class="formula-caption">Ici, m est la masse d'<em>une seule particule</em>, puisque v est la vitesse d'une particule (et non celle de tout l'échantillon de gaz). Comme la masse molaire (M) est proportionnelle à la masse d'une particule (m) — M = m × N<sub>A</sub>, avec le même nombre de particules par mole (N<sub>A</sub>) pour tous les gaz —, le rapport m₂/m₁ est égal à M₂/M₁ : on peut donc remplacer m par M dans l'équation, ce qui est beaucoup plus pratique à utiliser.</div>
 
           <div class="def-box">
             <div class="def-label">La loi de Graham</div>
@@ -1399,30 +1384,15 @@
 
         <figure class="fig-block">
           <div class="fig-inner">
-            <svg viewBox="0 0 280 260" style="width:100%;max-width:260px;height:auto;" role="img" aria-label="Coupe d'un contenant sphérique dans lequel des particules de gaz entrent en collision avec la paroi, exerçant une force vers l'extérieur à chaque point d'impact.">
-              <circle cx="140" cy="135" r="95" fill="none" stroke="var(--indigo-dark)" stroke-width="3"/>
-              <g fill="var(--indigo-mid)">
-                <circle cx="140" cy="70" r="5.5"/><circle cx="200" cy="100" r="5.5"/><circle cx="95" cy="180" r="5.5"/>
-                <circle cx="175" cy="185" r="5.5"/><circle cx="85" cy="95" r="5.5"/><circle cx="150" cy="140" r="5.5"/>
-              </g>
-              <g stroke="var(--flame)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrowColl)">
-                <line x1="140" y1="46" x2="140" y2="24"/>
-                <line x1="222" y1="118" x2="240" y2="108"/>
-                <line x1="70" y1="203" x2="58" y2="218"/>
-                <line x1="207" y1="205" x2="222" y2="220"/>
-                <line x1="58" y1="72" x2="42" y2="58"/>
-              </g>
-              <defs>
-                <marker id="arrowColl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-                  <path d="M0,0 L10,5 L0,10 Z" fill="var(--flame)"/>
-                </marker>
-              </defs>
-            </svg>
+            <svg viewBox="0 0 620 280" style="width:100%;max-width:600px;height:auto;" role="img" aria-label="Deux schémas de la pression d'un gaz. À gauche, des particules se déplacent dans toutes les directions dans un contenant ; à chaque choc contre une paroi, la particule exerce sur celle-ci une force perpendiculaire, dirigée vers l'extérieur. À droite, gros plan sur un choc : la particule arrive avec une vitesse v, rebondit avec une vitesse v′, et exerce une force F sur la paroi.">
+                <defs><marker id="arrowV" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="var(--indigo-mid)"/></marker><marker id="arrowF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="var(--flame)"/></marker></defs>
+                <rect x="30" y="44" width="260" height="180" fill="none" stroke="var(--indigo-mid)" stroke-width="3"/><line x1="262" y1="120" x2="288" y2="132" stroke="var(--indigo-mid)" stroke-width="1.8" marker-end="url(#arrowV)"/><circle cx="262" cy="120" r="5" fill="var(--indigo-mid)"/><line x1="150" y1="68" x2="166" y2="46" stroke="var(--indigo-mid)" stroke-width="1.8" marker-end="url(#arrowV)"/><circle cx="150" cy="68" r="5" fill="var(--indigo-mid)"/><line x1="100" y1="200" x2="86" y2="222" stroke="var(--indigo-mid)" stroke-width="1.8" marker-end="url(#arrowV)"/><circle cx="100" cy="200" r="5" fill="var(--indigo-mid)"/><line x1="80" y1="110" x2="104" y2="90" stroke="var(--indigo-mid)" stroke-width="1.8" marker-end="url(#arrowV)"/><circle cx="80" cy="110" r="5" fill="var(--indigo-mid)"/><line x1="190" y1="150" x2="164" y2="168" stroke="var(--indigo-mid)" stroke-width="1.8" marker-end="url(#arrowV)"/><circle cx="190" cy="150" r="5" fill="var(--indigo-mid)"/><line x1="215" y1="90" x2="239" y2="106" stroke="var(--indigo-mid)" stroke-width="1.8" marker-end="url(#arrowV)"/><circle cx="215" cy="90" r="5" fill="var(--indigo-mid)"/><line x1="140" y1="120" x2="150" y2="146" stroke="var(--indigo-mid)" stroke-width="1.8" marker-end="url(#arrowV)"/><circle cx="140" cy="120" r="5" fill="var(--indigo-mid)"/><line x1="290" y1="133" x2="324" y2="133" stroke="var(--flame)" stroke-width="2.4" marker-end="url(#arrowF)"/><line x1="167" y1="44" x2="167" y2="12" stroke="var(--flame)" stroke-width="2.4" marker-end="url(#arrowF)"/><line x1="85" y1="224" x2="85" y2="256" stroke="var(--flame)" stroke-width="2.4" marker-end="url(#arrowF)"/><rect x="470" y="60" width="16" height="170" fill="#e4dff2" stroke="var(--indigo-light)" stroke-width="1.5"/><text x="478" y="246" text-anchor="middle" font-size="11" fill="var(--muted)">Paroi</text><circle cx="400" cy="110" r="5" fill="none" stroke="var(--indigo-mid)" stroke-width="1.3" stroke-dasharray="2 2"/><line x1="405" y1="112" x2="466" y2="139" stroke="var(--indigo-mid)" stroke-width="1.8" marker-end="url(#arrowV)"/><line x1="466" y1="141" x2="405" y2="168" stroke="var(--indigo-mid)" stroke-width="1.8" marker-end="url(#arrowV)"/><circle cx="400" cy="170" r="5" fill="none" stroke="var(--indigo-mid)" stroke-width="1.3" stroke-dasharray="2 2"/><circle cx="463" cy="140" r="5" fill="var(--indigo-mid)"/><line x1="470" y1="140" x2="548" y2="140" stroke="var(--flame)" stroke-width="2.4" marker-end="url(#arrowF)"/><text x="415" y="112" font-size="14" font-style="italic" font-weight="700" fill="var(--indigo-mid)">v</text><text x="415" y="176" font-size="14" font-style="italic" font-weight="700" fill="var(--indigo-mid)">v′</text><text x="552" y="144" font-size="14" font-style="italic" font-weight="700" fill="var(--flame)">F</text><line x1="350" y1="22" x2="376" y2="22" stroke="var(--indigo-mid)" stroke-width="1.8" marker-end="url(#arrowV)"/><text x="382" y="26" font-size="11" fill="var(--muted)">vitesse de la particule</text><line x1="350" y1="40" x2="376" y2="40" stroke="var(--flame)" stroke-width="2.4" marker-end="url(#arrowF)"/><text x="382" y="44" font-size="11" fill="var(--muted)">force de la particule sur la paroi</text><text x="160" y="272" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Vue d'ensemble du contenant</text><text x="470" y="272" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Gros plan sur un choc</text>
+              </svg>
           </div>
-          <figcaption>Figure 2.8 — Chaque collision d'une particule gazeuse contre la paroi de son contenant exerce une force vers l'extérieur, en direction opposée à la paroi. La somme de toutes ces forces, réparties sur la surface intérieure du contenant, constitue la pression du gaz.</figcaption>
+          <figcaption>Figure 2.8 — À gauche, les particules d'un gaz se déplacent en ligne droite dans toutes les directions (flèches foncées : vitesse) et rebondissent sur les parois du contenant. À chaque choc, la particule exerce sur la paroi une force perpendiculaire à celle-ci et dirigée vers l'extérieur du contenant (flèches rouges). À droite, gros plan sur un choc idéal : la particule arrive avec une vitesse v et repart avec une vitesse v′, dont la composante perpendiculaire à la paroi est inversée ; la paroi exerce sur la particule une force de même intensité que F, dirigée vers l'intérieur, ce qui la fait rebondir. La pression du gaz résulte de la somme de tous ces chocs répartis sur la surface de la paroi.</figcaption>
         </figure>
 
-        <p>Or, toutes les particules gazeuses n'exercent pas leur pression de la même façon. Puisqu'un gaz léger se déplace en moyenne plus rapidement qu'un gaz lourd, à température égale (loi de Graham, section 1.3), ses particules entrent en collision avec les parois plus fréquemment — mais chaque impact individuel est plus faible, étant donné leur faible masse. À l'inverse, les particules d'un gaz plus lourd frappent moins souvent, mais chaque collision est proportionnellement plus violente.</p>
+        <p>Or, toutes les particules gazeuses n'exercent pas leur pression de la même façon. Comparons deux gaz contenant la même quantité de particules, à la même température et dans le même volume. Puisqu'un gaz léger se déplace en moyenne plus rapidement qu'un gaz lourd, à température égale (loi de Graham, section 1.3), ses particules entrent en collision avec les parois plus fréquemment — mais chaque impact individuel est plus faible, étant donné leur faible masse. À l'inverse, les particules d'un gaz plus lourd frappent moins souvent, mais chaque collision est proportionnellement plus violente.</p>
 
         <div class="compare-block">
           <div class="compare-col compare-col--a">
@@ -1435,7 +1405,7 @@
           </div>
         </div>
 
-        <p>Ces deux effets s'annulent exactement l'un l'autre. Au final, dans les mêmes conditions de température et de volume, <strong>différents gaz exercent donc la même pression, peu importe leur masse molaire</strong> — une conséquence directe de la théorie cinétique qui sera reprise plus loin dans ce module, lorsqu'il sera question des lois des gaz.</p>
+        <p>Ces deux effets s'annulent exactement l'un l'autre. Au final, pour un même nombre de particules (même quantité de gaz en moles, et non la même masse), à la même température et dans le même volume, <strong>différents gaz exercent donc la même pression, peu importe leur masse molaire</strong> — une conséquence directe de la théorie cinétique qui sera reprise plus loin dans ce module, lorsqu'il sera question des lois des gaz.</p>
 
       </div>
     </div>
