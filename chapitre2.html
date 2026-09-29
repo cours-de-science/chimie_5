@@ -1452,17 +1452,19 @@
 
         <figure class="fig-block">
           <div class="fig-inner">
-            <svg viewBox="0 0 260 400" style="width:100%;max-width:220px;height:auto;" role="img" aria-label="Diagramme d'un baromètre à mercure : un tube fermé à son sommet contient une colonne de mercure surmontée de vide, plongé dans un bassin de mercure sur lequel s'exerce la pression de l'air.">
-              <path d="M35,350 L35,376 A95,15 0 0 0 225,376 L225,350" fill="var(--flame)" opacity="0.85" stroke="var(--indigo-dark)" stroke-width="2"/>
-              <ellipse cx="130" cy="350" rx="95" ry="15" fill="var(--flame)" stroke="var(--indigo-dark)" stroke-width="2"/>
+            <svg viewBox="0 0 260 432" style="width:100%;max-width:220px;height:auto;" role="img" aria-label="Diagramme d'un baromètre à mercure : un tube fermé à son sommet, contenant une colonne de mercure surmontée de vide, plonge dans un bassin de mercure à parois hautes, ouvert à l'air. La hauteur h de la colonne se mesure entre la surface du mercure dans le bassin et celle dans le tube.">
+              <path d="M37,340 L37,390 A93,14 0 0 0 223,390 L223,340 Z" fill="var(--flame)" opacity="0.85"/>
+              <ellipse cx="130" cy="340" rx="93" ry="14" fill="var(--flame)" stroke="var(--indigo-dark)" stroke-width="1.5"/>
+              <path d="M35,310 L35,392 A95,15 0 0 0 225,392 L225,310" fill="none" stroke="var(--indigo-dark)" stroke-width="2.5"/>
+              <ellipse cx="130" cy="310" rx="95" ry="15" fill="none" stroke="var(--indigo-dark)" stroke-width="2"/>
 
-              <rect x="107" y="22" width="26" height="330" rx="3" fill="var(--bg)" stroke="var(--indigo-dark)" stroke-width="2.5"/>
-              <rect x="109" y="150" width="22" height="200" fill="var(--flame)"/>
+              <rect x="107" y="22" width="26" height="350" rx="3" fill="var(--bg)" stroke="var(--indigo-dark)" stroke-width="2.5"/>
+              <rect x="109" y="150" width="22" height="221" fill="var(--flame)"/>
               <line x1="109" y1="150" x2="131" y2="150" stroke="var(--indigo-dark)" stroke-width="1.5"/>
 
               <g stroke="var(--indigo-mid)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrowDown)">
-                <line x1="65" y1="300" x2="65" y2="335"/>
-                <line x1="195" y1="300" x2="195" y2="335"/>
+                <line x1="55" y1="280" x2="55" y2="324"/>
+                <line x1="205" y1="280" x2="205" y2="324"/>
               </g>
               <defs>
                 <marker id="arrowDown" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
@@ -1470,19 +1472,23 @@
                 </marker>
               </defs>
 
+              <g stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"><line x1="84" y1="150" x2="107" y2="150"/><line x1="84" y1="340" x2="107" y2="340"/></g>
+              <line x1="88" y1="152" x2="88" y2="338" stroke="var(--indigo-dark)" stroke-width="1.5" marker-start="url(#arrowDown)" marker-end="url(#arrowDown)"/>
+              <text x="72" y="252" text-anchor="middle" font-size="18" font-style="italic" font-weight="700" fill="var(--indigo-dark)">h</text>
+
               <line x1="133" y1="60" x2="175" y2="55" stroke="var(--muted)" stroke-width="1"/>
               <text x="180" y="59" font-size="15" fill="var(--indigo-dark)" font-family="'Barlow Condensed', sans-serif" font-weight="700">Vide</text>
 
               <line x1="131" y1="230" x2="175" y2="225" stroke="var(--muted)" stroke-width="1"/>
               <text x="180" y="229" font-size="15" fill="var(--indigo-dark)" font-family="'Barlow Condensed', sans-serif" font-weight="700">Mercure</text>
 
-              <text x="130" y="393" text-anchor="middle" font-size="13.5" fill="var(--indigo-mid)" font-family="'Barlow Condensed', sans-serif" font-weight="700">PRESSION DE L'AIR</text>
+              <text x="130" y="426" text-anchor="middle" font-size="13.5" fill="var(--indigo-mid)" font-family="'Barlow Condensed', sans-serif" font-weight="700">PRESSION DE L'AIR</text>
             </svg>
           </div>
-          <figcaption>Figure 2.9 — Un baromètre à mercure. La pression de l'air, exercée sur la surface du mercure dans le bassin, pousse le mercure à l'intérieur du tube jusqu'à ce que le poids de la colonne de mercure équilibre exactement cette pression.</figcaption>
+          <figcaption>Figure 2.9 — Un baromètre à mercure. La pression de l'air, exercée sur la surface du mercure dans le bassin, pousse le mercure à l'intérieur du tube jusqu'à ce que le poids de la colonne de mercure équilibre exactement cette pression. La hauteur h se mesure entre les surfaces libres du mercure dans le bassin et dans le tube.</figcaption>
         </figure>
 
-        <p>Le niveau de mercure dans le tube se stabilise lorsque la pression exercée par le poids de la colonne de mercure équilibre exactement la pression de l'air qui pousse sur le mercure du bassin. Lorsque la pression atmosphérique augmente, elle pousse davantage sur le mercure du bassin, ce qui fait monter la colonne de mercure dans le tube — jusqu'à ce qu'un nouvel équilibre s'établisse.</p>
+        <p>Le niveau de mercure dans le tube se stabilise lorsque la pression exercée par le poids de la colonne de mercure équilibre exactement la pression de l'air qui pousse sur le mercure du bassin. Si de l'air se trouvait aussi au-dessus du mercure dans le tube, la même pression s'exercerait sur les deux surfaces et les niveaux seraient égaux, comme dans des vases communicants. Ici, il y a du vide au-dessus de la colonne : seule la pression de l'air sur le bassin la soutient, d'où la différence de hauteur h. Lorsque la pression atmosphérique augmente, elle pousse davantage sur le mercure du bassin, ce qui fait monter la colonne de mercure dans le tube — jusqu'à ce qu'un nouvel équilibre s'établisse.</p>
 
         <p>Au niveau de la mer, la colonne de mercure d'un baromètre atteint une hauteur d'environ 760 mm Hg. Cette valeur correspond à la <strong>pression atmosphérique normale</strong>, qui équivaut aussi à 101,3 kilopascals (kPa) dans le système international, ou encore à 1 atmosphère (atm).</p>
 
