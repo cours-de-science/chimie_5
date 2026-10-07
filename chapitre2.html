@@ -1772,43 +1772,81 @@ document.querySelectorAll('.page-toc-pills a').forEach(link => {
 
 // ── Search ─────────────────────────────────────────────────
 const contentEl = document.querySelector('.content');
-const originalHTML = contentEl.innerHTML;
 
 let lastQuery = '';
 let matchIndex = -1;
 
+function clearMarks() {
+  contentEl.querySelectorAll('span.sh-wrap').forEach(w => {
+    const p = w.parentNode;
+    w.replaceWith(document.createTextNode(w.textContent));
+    p.normalize();
+  });
+}
+
+// Éléments exclus de la recherche : contenus masqués ou non textuels
+const SEARCH_SKIP = 'script,style,textarea,select,option,svg,.quiz-feedback,.quiz-model,.quiz-self,.quiz-score-label,.quiz-result-msg,.activity-hint-toggle';
+
+// Ouvre automatiquement les blocs repliés qui contiennent un résultat
+function revealMark(m) {
+  const act = m.closest('.activity-block');
+  if (act) {
+    const b = act.querySelector('.activity-bar');
+    if (b && b.getAttribute('aria-expanded') !== 'true') toggleActivity(b);
+    const h = m.closest('.activity-hint');
+    if (h && !h.classList.contains('show')) toggleHint(h.previousElementSibling);
+  }
+  const note = m.closest('.note-box');
+  if (note) { const b = note.querySelector('.note-bar'); if (b && b.getAttribute('aria-expanded') !== 'true') toggleNote(b); }
+  const qz = m.closest('.quiz-block');
+  if (qz) { const b = qz.querySelector('.quiz-block-bar'); if (b && b.getAttribute('aria-expanded') !== 'true') toggleQuiz(b); }
+  const card = m.closest('.section-card');
+  if (card) { const t = card.querySelector('.section-toggle'); if (t && t.getAttribute('aria-expanded') === 'false') toggleSection(t); }
+}
+
+// La recherche n'écrase plus le contenu : elle entoure les résultats de <mark>
+// et les retire ensuite, ce qui conserve les réponses des quiz et leurs boutons.
 function doSearch(query) {
-  contentEl.innerHTML = originalHTML;
+  clearMarks();
   const countEl = document.getElementById('search-count');
   matchIndex = -1;
   lastQuery = query;
 
   if (!query.trim()) { countEl.textContent = ''; return 0; }
 
-  const re = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-  const walker = document.createTreeWalker(contentEl, NodeFilter.SHOW_TEXT);
+  const esc = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const reG = new RegExp(esc, 'gi'), reT = new RegExp(esc, 'i');
+  const walker = document.createTreeWalker(contentEl, NodeFilter.SHOW_TEXT, {
+    acceptNode: n => (n.parentElement && !n.parentElement.closest(SEARCH_SKIP) && reT.test(n.nodeValue))
+      ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+  });
   const nodes = [];
   while (walker.nextNode()) nodes.push(walker.currentNode);
 
   let count = 0;
   nodes.forEach(node => {
-    if (!re.test(node.textContent)) return;
-    re.lastIndex = 0;
-    const span = document.createElement('span');
-    span.innerHTML = node.textContent.replace(re, m => { count++; return `<mark class="sh">${m}</mark>`; });
-    node.parentNode.replaceChild(span, node);
+    const txt = node.nodeValue, wrap = document.createElement('span');
+    wrap.className = 'sh-wrap';
+    let last = 0, m;
+    reG.lastIndex = 0;
+    while ((m = reG.exec(txt)) !== null) {
+      if (m[0] === '') { reG.lastIndex++; continue; }
+      wrap.appendChild(document.createTextNode(txt.slice(last, m.index)));
+      const mk = document.createElement('mark');
+      mk.className = 'sh'; mk.textContent = m[0];
+      wrap.appendChild(mk);
+      count++;
+      last = m.index + m[0].length;
+    }
+    wrap.appendChild(document.createTextNode(txt.slice(last)));
+    node.parentNode.replaceChild(wrap, node);
   });
 
   countEl.textContent = count ? `${count} résultat${count>1?'s':''}` : 'Aucun résultat';
-
-  document.querySelectorAll('.section-card').forEach(card => {
-    if (card.querySelector('mark.sh')) {
-      const t = card.querySelector('.section-toggle');
-      if (t && t.getAttribute('aria-expanded') === 'false') toggleSection(t);
-    }
-  });
-
-  return count;
+  contentEl.querySelectorAll('mark.sh').forEach(revealMark);
+  const total = contentEl.querySelectorAll('mark.sh').length;
+  countEl.textContent = total ? `${total} résultat${total>1?'s':''}` : 'Aucun résultat';
+  return total;
 }
 
 function goToMatch(step) {
