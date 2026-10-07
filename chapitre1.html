@@ -285,6 +285,26 @@
   .activity-hint-toggle { margin-top: 12px; font-size: 12px; font-weight: 600; color: var(--indigo-mid); background: none; border: none; cursor: pointer; padding: 0; text-decoration: underline; }
   .activity-hint { display: none; margin-top: 8px; font-size: 13px; color: var(--muted); background: var(--bg); border-radius: 6px; padding: 10px 12px; line-height: 1.55; }
   .activity-hint.show { display: block; }
+
+  .quiz-num-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .quiz-input { width: 130px; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-family: var(--mono); font-size: 15px; background: #fff; color: var(--text); }
+  .quiz-input:focus, .quiz-text:focus, .quiz-select:focus { outline: 2px solid var(--indigo-light); border-color: var(--indigo-light); }
+  .quiz-input.correct, .quiz-match-row.correct, .quiz-check.reveal { border-color: #2e8b57; background: #e9f6ee; }
+  .quiz-input.wrong, .quiz-match-row.wrong, .quiz-check.wrong { border-color: var(--flame); background: #fdeeea; }
+  .quiz-unit { font-size: 14px; color: var(--muted); font-weight: 600; }
+  .quiz-submit { margin-top: 10px; padding: 9px 20px; border-radius: 8px; border: 1.5px solid var(--indigo-mid); background: var(--indigo-mid); color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .quiz-submit:disabled { opacity: .45; cursor: not-allowed; }
+  .quiz-num-row .quiz-submit { margin-top: 0; }
+  .quiz-match { display: grid; gap: 8px; margin-top: 8px; }
+  .quiz-match-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 8px; background: #fff; font-size: 14px; }
+  .quiz-select { padding: 7px 10px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 13.5px; background: #fff; color: var(--text); max-width: 55%; }
+  .quiz-check { display: flex; align-items: flex-start; gap: 10px; padding: 9px 14px; border: 1.5px solid var(--border); border-radius: 8px; background: #fff; font-size: 14px; margin-top: 8px; cursor: pointer; }
+  .quiz-check input { margin-top: 3px; }
+  .quiz-text { width: 100%; margin-top: 8px; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 14px; line-height: 1.5; resize: vertical; box-sizing: border-box; }
+  .quiz-model, .quiz-self { display: none; margin-top: 12px; }
+  .quiz-model.show { display: block; padding: 12px 16px; border-left: 4px solid var(--amber); background: #fdf6e6; border-radius: 0 8px 8px 0; font-size: 13.5px; line-height: 1.6; }
+  .quiz-self.show { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13.5px; }
+  .quiz-self button { padding: 7px 16px; border-radius: 8px; border: 1.5px solid var(--indigo-mid); background: #fff; color: var(--indigo-dark); font-size: 13px; font-weight: 600; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -591,7 +611,7 @@
             <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : les symboles indiquent les risques du gaz et donc les règles de sécurité à respecter — ils ne renseignent ni sur le prix, ni sur la couleur, ni sur la date de fabrication.</span></div>
           </div>
 
-          <div class="quiz-result-msg" id="result-q1"></div>
+          <div class="quiz-q" data-qi="60" data-type="match"><div class="quiz-q-label">Association</div><div class="quiz-q-text">Associe chaque pictogramme de danger à sa signification.</div><div class="quiz-match"><div class="quiz-match-row" data-correct="Inflammable"><span>Une flamme</span><select class="quiz-select" aria-label="Une flamme"><option value="">— choisir —</option><option value="Inflammable">Inflammable</option><option value="Gaz sous pression">Gaz sous pression</option><option value="Toxicité aiguë">Toxicité aiguë</option><option value="Matière corrosive">Matière corrosive</option></select></div><div class="quiz-match-row" data-correct="Gaz sous pression"><span>Une bonbonne de gaz</span><select class="quiz-select" aria-label="Une bonbonne de gaz"><option value="">— choisir —</option><option value="Inflammable">Inflammable</option><option value="Gaz sous pression">Gaz sous pression</option><option value="Toxicité aiguë">Toxicité aiguë</option><option value="Matière corrosive">Matière corrosive</option></select></div><div class="quiz-match-row" data-correct="Toxicité aiguë"><span>Une tête de mort</span><select class="quiz-select" aria-label="Une tête de mort"><option value="">— choisir —</option><option value="Inflammable">Inflammable</option><option value="Gaz sous pression">Gaz sous pression</option><option value="Toxicité aiguë">Toxicité aiguë</option><option value="Matière corrosive">Matière corrosive</option></select></div><div class="quiz-match-row" data-correct="Matière corrosive"><span>Une main et un métal rongés</span><select class="quiz-select" aria-label="Une main et un métal rongés"><option value="">— choisir —</option><option value="Inflammable">Inflammable</option><option value="Gaz sous pression">Gaz sous pression</option><option value="Toxicité aiguë">Toxicité aiguë</option><option value="Matière corrosive">Matière corrosive</option></select></div></div><button class="quiz-submit">Valider</button><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Chaque pictogramme signale un risque distinct, et un même contenant peut en porter plusieurs.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Reprends les symboles de danger : flamme → inflammable; bonbonne → gaz sous pression; tête de mort → toxicité aiguë; main et métal rongés → matière corrosive.</span></div></div><div class="quiz-result-msg" id="result-q1"></div>
           <button class="quiz-reset" id="reset-q1">↺ Recommencer</button>
           </div>
         </div>
@@ -875,7 +895,7 @@
             <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Cette affirmation est trop absolue. Sous des conditions extrêmes, un gros gaz noble comme le xénon peut former quelques composés (XeF₂, XeF₄) parce que ses électrons de valence, plus loin du noyau, sont moins fermement retenus. Ce sont des exceptions rares, mais elles existent.</span></div>
           </div>
 
-          <div class="quiz-result-msg" id="result-q11"></div>
+          <div class="quiz-q" data-qi="50" data-type="multi"><div class="quiz-q-label">Sélection multiple</div><div class="quiz-q-text">Coche tous les gaz qui existent à l'état naturel sous forme de molécules diatomiques.</div><label class="quiz-check"><input type="checkbox" data-correct="true"><span>Dihydrogène (H₂)</span></label><label class="quiz-check"><input type="checkbox" data-correct="false"><span>Néon (Ne)</span></label><label class="quiz-check"><input type="checkbox" data-correct="true"><span>Dichlore (Cl₂)</span></label><label class="quiz-check"><input type="checkbox" data-correct="false"><span>Argon (Ar)</span></label><button class="quiz-submit">Valider</button><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Les éléments gazeux dont la couche de valence est incomplète s'unissent par deux (H₂, Cl₂); les gaz nobles, à couche complète, restent des atomes libres.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Il fallait cocher H₂ et Cl₂. Le néon et l'argon sont des gaz nobles : leur couche de valence est complète, ils existent donc à l'état d'atomes libres.</span></div></div><div class="quiz-result-msg" id="result-q11"></div>
           <button class="quiz-reset" id="reset-q11">↺ Recommencer</button>
           </div>
         </div>
@@ -902,6 +922,8 @@
           <div class="def-label">Définition</div>
           <p><strong>Être combustible</strong>, chimiquement, c'est être capable de céder des électrons à un comburant — autrement dit, d'être oxydé (voir la note sur l'oxydoréduction, section 1.1). Une substance n'est donc jamais « combustible » dans l'absolu : elle l'est seulement <em>face à</em> un comburant capable de lui arracher ces électrons.</p>
         </div>
+
+        <p>Dans le langage courant, on appelle <strong>combustible</strong> toute matière capable de s'enflammer — qu'elle soit solide, liquide ou gazeuse — dès qu'elle rencontre un comburant et que la température atteint son <strong>point d'ignition</strong>. Côté gaz, ceux qu'on exploite surtout pour produire de l'énergie sont les <strong>hydrocarbures gazeux</strong> et le <strong>dihydrogène (H₂)</strong>.</p>
 
         <div class="activity-block">
           <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
@@ -964,7 +986,7 @@
           <figcaption>Le triangle du feu : combustible, comburant et point d'ignition doivent être réunis pour qu'une combustion s'amorce. Retirer un seul de ces trois éléments suffit à l'éteindre — c'est le principe derrière tous les extincteurs.</figcaption>
         </figure>
 
-        <p>Le <strong>comburant</strong> le plus commun est le dioxygène (O₂) — celui-là même dont on a vu, à la section précédente, qu'il existe sous forme de <a href="#section-1-1" onclick="var t=document.getElementById('section-1-1');var btn=t.querySelector('.section-toggle');if(btn.getAttribute('aria-expanded')==='false')btn.click();setTimeout(()=>t.scrollIntoView({behavior:'smooth',block:'start'}),80);return false;" style="color:var(--indigo-mid);font-weight:600;">molécule diatomique →</a>, et qui compose environ 21 % de l'atmosphère terrestre. Le <strong>point d'ignition</strong>, quant à lui, varie d'un combustible à l'autre : le butane s'enflamme à une température beaucoup plus basse que le méthane, par exemple, ce qui explique pourquoi on le retrouve dans les briquets plutôt que le méthane.</p>
+        <p>Le <strong>comburant</strong> que l'on rencontre le plus souvent est le dioxygène (O₂) — celui-là même dont on a vu, à la section précédente, qu'il existe sous forme de <a href="#section-1-1" onclick="var t=document.getElementById('section-1-1');var btn=t.querySelector('.section-toggle');if(btn.getAttribute('aria-expanded')==='false')btn.click();setTimeout(()=>t.scrollIntoView({behavior:'smooth',block:'start'}),80);return false;" style="color:var(--indigo-mid);font-weight:600;">molécule diatomique →</a>, et qui compose environ 21 % de l'atmosphère terrestre. Le <strong>point d'ignition</strong>, quant à lui, varie d'un combustible à l'autre : le butane s'enflamme à une température beaucoup plus basse que le méthane, par exemple, ce qui explique pourquoi on le retrouve dans les briquets plutôt que le méthane.</p>
 
         <div class="subsection-title" id="hydrocarbures-gazeux">Les hydrocarbures gazeux</div>
 
@@ -1144,7 +1166,7 @@
             <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse est A : l'utilisation du dihydrogène est propre (seul produit : l'eau), mais sa production — surtout par extraction du méthane — peut générer beaucoup de CO₂. Un bilan honnête doit couvrir tout le cycle de vie.</span></div>
           </div>
 
-          <div class="quiz-result-msg" id="result-q12"></div>
+          <div class="quiz-q" data-qi="50" data-type="numeric" data-answer="15" data-tol="0.01"><div class="quiz-q-label">Réponse numérique</div><div class="quiz-q-text">Le propane brûle complètement selon C₃H₈ + 5 O₂ → 3 CO₂ + 4 H₂O. Combien de moles de dioxygène faut-il pour brûler 3 mol de propane?</div><div class="quiz-num-row"><input class="quiz-input" type="text" inputmode="decimal" placeholder="Ta réponse" aria-label="Réponse"><span class="quiz-unit">mol</span><button class="quiz-submit">Valider</button></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Chaque mole de propane consomme 5 mol de O₂ : 3 × 5 = 15 mol.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La réponse attendue est 15 mol. Le coefficient devant O₂ est 5 pour 1 mol de C₃H₈; pour 3 mol de propane, on multiplie : 3 × 5 = 15 mol.</span></div></div><div class="quiz-q" data-qi="51" data-type="text"><div class="quiz-q-label">Réflexion écrite</div><div class="quiz-q-text">Une cuisinière au gaz brûle avec une flamme jaune et fumeuse plutôt que bleue, parce que l'air est mal alimenté. Explique pourquoi cette situation est préoccupante.</div><textarea class="quiz-text" rows="3" placeholder="Écris ta réponse avec tes mots (au moins une phrase)…"></textarea><button class="quiz-submit" disabled>Voir la réponse modèle</button><div class="quiz-model"><strong>Réponse modèle.</strong> Avec trop peu de dioxygène, la combustion est incomplète : au lieu de former seulement du CO₂ et de l'eau, elle produit aussi du CO, un gaz toxique. Il faut donc assurer un apport d'air suffisant et bien ventiler.</div><div class="quiz-self"><span>Ta réponse contenait-elle l'essentiel?</span><button data-self="ok">Oui</button><button data-self="ko">Pas tout à fait</button></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Bien. Compare quand même ta formulation à la réponse modèle pour repérer ce qui t'aurait échappé.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Pas de problème : relis la réponse modèle, puis reformule-la avec tes mots avant de continuer.</span></div></div><div class="quiz-result-msg" id="result-q12"></div>
           <button class="quiz-reset" id="reset-q12">↺ Recommencer</button>
           </div>
         </div>
@@ -1167,7 +1189,7 @@
 
         <div class="def-box">
           <div class="def-label">Définition</div>
-          <p><strong>Comburant :</strong> une substance qui réagit avec un combustible pour permettre sa combustion — le plus souvent en lui fournissant l'oxygène nécessaire à la réaction.</p>
+          <p><strong>Comburant :</strong> espèce chimique qui oxyde le combustible — elle lui prend des électrons — et rend ainsi la combustion possible; le plus souvent, c'est elle qui apporte l'oxygène dont la réaction a besoin.</p>
         </div>
 
         <div class="subsection" id="dioxygene-comburant-universel">
@@ -1322,7 +1344,7 @@
           <div class="subsection-title">Synthèse — Section 1.3</div>
           <div class="def-box">
             <div class="def-label">À retenir</div>
-            <p>• Un <strong>comburant</strong> est une substance qui réagit avec un combustible pour permettre sa combustion.</p>
+            <p>• Un <strong>comburant</strong> est ce qui permet à un combustible de brûler : il l'oxyde, c'est-à-dire qu'il lui prend des électrons pendant la combustion.</p>
             <p>• Le <strong>dioxygène (O₂)</strong>, environ 21 % de l'atmosphère, est le comburant le plus répandu; comme les autres gaz moléculaires vus à la section 1.1, il existe sous forme diatomique pour compléter son octet.</p>
             <p>• L'<strong>ozone (O₃)</strong> est un comburant plus réactif dont l'effet dépend entièrement de l'altitude : protecteur contre les UV en haute atmosphère, polluant toxique près du sol.</p>
             <p>• Des substances associées à l'extinction des feux — le <strong>CO₂</strong> et la <strong>vapeur d'eau</strong> — peuvent elles-mêmes agir comme comburants face à des métaux très réactifs comme le magnésium.</p>
@@ -1414,7 +1436,7 @@
             <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : un atome d'oxygène a 6 électrons de valence, il lui en manque 2 pour l'octet. En partageant 2 paires d'électrons par liaison covalente double avec un autre atome de O, les deux complètent leur couche — d'où O₂, comme les autres gaz moléculaires vus à la section 1.1.</span></div>
           </div>
 
-          <div class="quiz-result-msg" id="result-q13"></div>
+          <div class="quiz-q" data-qi="60" data-type="numeric" data-answer="10.5" data-tol="0.1"><div class="quiz-q-label">Réponse numérique</div><div class="quiz-q-text">L'air contient environ 21 % de dioxygène (en volume). Quel volume de dioxygène y a-t-il dans 50 L d'air?</div><div class="quiz-num-row"><input class="quiz-input" type="text" inputmode="decimal" placeholder="Ta réponse" aria-label="Réponse"><span class="quiz-unit">L</span><button class="quiz-submit">Valider</button></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. 21 % de 50 L = 0,21 × 50 = 10,5 L de dioxygène.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La réponse attendue est 10,5 L. On calcule 21 % de 50 L : 0,21 × 50 = 10,5. Le reste de l'air (surtout du diazote) ne joue pas ici le rôle de comburant.</span></div></div><div class="quiz-q" data-qi="61" data-type="text"><div class="quiz-q-label">Réflexion écrite</div><div class="quiz-q-text">Un ami affirme que « le dioxygène brûle ». Explique, avec les mots combustible et comburant, ce qui cloche dans cette phrase.</div><textarea class="quiz-text" rows="3" placeholder="Écris ta réponse avec tes mots (au moins une phrase)…"></textarea><button class="quiz-submit" disabled>Voir la réponse modèle</button><div class="quiz-model"><strong>Réponse modèle.</strong> Le dioxygène ne brûle pas : il est le comburant, c'est-à-dire ce qui permet à un combustible de brûler en l'oxydant (en lui prenant des électrons). Seul, sans combustible, il ne produit aucune flamme. On dira plutôt qu'un combustible brûle <em>dans</em> le dioxygène.</div><div class="quiz-self"><span>Ta réponse contenait-elle l'essentiel?</span><button data-self="ok">Oui</button><button data-self="ko">Pas tout à fait</button></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Bien. Compare quand même ta formulation à la réponse modèle pour repérer ce qui t'aurait échappé.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Pas de problème : relis la réponse modèle, puis reformule-la avec tes mots avant de continuer.</span></div></div><div class="quiz-result-msg" id="result-q13"></div>
           <button class="quiz-reset" id="reset-q13">↺ Recommencer</button>
           </div>
         </div>
@@ -1464,20 +1486,34 @@
             <div class="usage-title">Industriel et commercial</div>
             <ul class="content-list">
               <li>En métallurgie et pour le soudage, l'<strong>argon</strong> sert à créer une atmosphère inerte protectrice entre le métal et l'air ambiant, ce qui empêche l'oxydation.</li>
-              <li>Le <strong>dioxygène</strong> est utilisé lors de la production de l'acier pour en ajuster la teneur en carbone.</li>
+              <li>Le <strong>dioxygène</strong> est utilisé lors de la production de l'acier pour en ajuster la teneur en carbone. En soudage, il joue le rôle de comburant : brûlé avec l'acétylène, il donne une flamme assez chaude pour fondre le métal.</li>
               <li>L'<strong>acétylène (C₂H₂)</strong> sert de combustible pour certains procédés de soudage, et en mécanique pour dilater des boulons trop serrés.</li>
               <li>Grâce à leur capacité à produire de la lumière de diverses couleurs, plusieurs <strong>gaz nobles</strong>, dont le <strong>néon (Ne)</strong>, sont utilisés dans les tubes à luminescence des enseignes lumineuses.</li>
             </ul>
             <p class="usage-fig-ref">Voir la figure 1.13 du manuel — l'acétylène pour la soudure.</p>
+            <div class="activity-block">
+              <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+                <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg>
+                <span>Question de réflexion</span>
+                <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="activity-content">
+                <p class="activity-question">Dans le soudage, on utilise tantôt un chalumeau qui brûle de l'acétylène avec du dioxygène, tantôt de l'argon qui enveloppe la zone chauffée. Ces deux gaz jouent des rôles opposés : lequel favorise la réaction avec le métal, lequel l'empêche? Appuie-toi sur les notions de combustible et de comburant pour l'expliquer.</p>
+                <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+                <div class="activity-hint">Le chalumeau réunit un combustible (l'acétylène) et un comburant (le dioxygène) : la combustion dégage assez de chaleur pour fondre le métal. À l'inverse, l'argon est un gaz noble, donc très peu réactif : il chasse l'air, et donc le dioxygène, autour du métal chaud, qui ne peut plus s'oxyder. Le dioxygène nourrit la réaction; l'argon la bloque.</div>
+              </div>
+            </div>
+
           </div>
 
           <div class="usage-card">
             <svg class="usage-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 0-5 3-5 6 0 2.5 1.5 4.5 3 5.5v2h4v-2c1.5-1 3-3 3-5.5 0-3-2-6-5-6Z"/><path d="M10 14.5 9 19h6l-1-4.5"/><path d="M9 19h6v2H9z"/></svg>
             <div class="usage-title">Transport</div>
             <ul class="content-list">
-              <li>À cause de sa très faible réactivité, l'<strong>hélium (He)</strong> est utilisé pour gonfler la plupart des ballons-sondes en météorologie et en aéronautique — et, combiné à l'argon, de plus en plus dans le déclenchement des coussins gonflables.</li>
+              <li>À cause de sa très faible réactivité, l'<strong>hélium (He)</strong> sert à gonfler la majorité des ballons-sondes en météorologie et en aéronautique — et, combiné à l'argon, de plus en plus dans le déclenchement des coussins gonflables.</li>
               <li>Le <strong>propane (C₃H₈)</strong>, un bon combustible, permet de chauffer l'air d'une montgolfière.</li>
-              <li>Parce qu'il est peu réactif, le <strong>diazote</strong> est utilisé pour gonfler les pneus d'avions et de voitures de course.</li>
+              <li>Parce qu'il est peu réactif, le <strong>diazote</strong> sert à remplir les pneus des avions et des bolides de course.</li>
+              <li>Le <strong>dihydrogène (H₂)</strong>, autre combustible, alimente les piles à combustible de certaines voitures électriques.</li>
               <li>Le <strong>xénon</strong> est utilisé dans certains phares de voiture pour la lumière très blanche qu'il permet de produire.</li>
             </ul>
             <p class="usage-fig-ref">Voir la figure 1.14 du manuel — le propane pour les montgolfières.</p>
@@ -1497,8 +1533,8 @@
             <svg class="usage-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg>
             <div class="usage-title">Habitation</div>
             <ul class="content-list">
-              <li>Parce qu'ils sont de bons isolants, l'<strong>argon</strong> et le <strong>xénon</strong> remplissent l'espace entre les vitres des fenêtres à double vitrage.</li>
-              <li>Étant de bons combustibles, le <strong>gaz naturel (CH₄)</strong> et le propane servent à chauffer les maisons et à faire cuire les aliments.</li>
+              <li>Parce qu'ils sont de bons isolants, l'<strong>argon</strong> et le <strong>xénon</strong> occupent l'espace séparant les deux vitres d'une fenêtre à double vitrage.</li>
+              <li>Étant de bons combustibles, le <strong>gaz naturel (CH₄)</strong> et le propane servent à chauffer les logements et à préparer les repas sur la cuisinière.</li>
               <li>L'argon remplit les ampoules incandescentes, où il limite la dégradation du filament et augmente ainsi sa durée de vie.</li>
               <li>Le <strong>diiode (I₂)</strong> et le <strong>dibrome (Br₂)</strong> gazeux sont utilisés dans les ampoules halogènes.</li>
             </ul>
@@ -1663,7 +1699,7 @@
             <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La bonne réponse : les phéromones synthétiques ne tuent ni n'empoisonnent personne — elles saturent l'air pour empêcher les mâles de repérer les femelles, ce qui réduit l'accouplement et, par conséquent, la population future.</span></div>
           </div>
 
-          <div class="quiz-result-msg" id="result-q2"></div>
+          <div class="quiz-q" data-qi="50" data-type="match"><div class="quiz-q-label">Association</div><div class="quiz-q-text">Associe chaque gaz à l'usage décrit dans le chapitre.</div><div class="quiz-match"><div class="quiz-match-row" data-correct="Gonfler des ballons-sondes"><span>Hélium (He)</span><select class="quiz-select" aria-label="Hélium (He)"><option value="">— choisir —</option><option value="Gonfler des ballons-sondes">Gonfler des ballons-sondes</option><option value="Gonfler des pneus d'avions">Gonfler des pneus d'avions</option><option value="Soudage">Soudage</option><option value="Chauffer l'air d'une montgolfière">Chauffer l'air d'une montgolfière</option><option value="Propulser des satellites">Propulser des satellites</option></select></div><div class="quiz-match-row" data-correct="Gonfler des pneus d'avions"><span>Diazote (N₂)</span><select class="quiz-select" aria-label="Diazote (N₂)"><option value="">— choisir —</option><option value="Gonfler des ballons-sondes">Gonfler des ballons-sondes</option><option value="Gonfler des pneus d'avions">Gonfler des pneus d'avions</option><option value="Soudage">Soudage</option><option value="Chauffer l'air d'une montgolfière">Chauffer l'air d'une montgolfière</option><option value="Propulser des satellites">Propulser des satellites</option></select></div><div class="quiz-match-row" data-correct="Soudage"><span>Acétylène (C₂H₂)</span><select class="quiz-select" aria-label="Acétylène (C₂H₂)"><option value="">— choisir —</option><option value="Gonfler des ballons-sondes">Gonfler des ballons-sondes</option><option value="Gonfler des pneus d'avions">Gonfler des pneus d'avions</option><option value="Soudage">Soudage</option><option value="Chauffer l'air d'une montgolfière">Chauffer l'air d'une montgolfière</option><option value="Propulser des satellites">Propulser des satellites</option></select></div><div class="quiz-match-row" data-correct="Chauffer l'air d'une montgolfière"><span>Propane (C₃H₈)</span><select class="quiz-select" aria-label="Propane (C₃H₈)"><option value="">— choisir —</option><option value="Gonfler des ballons-sondes">Gonfler des ballons-sondes</option><option value="Gonfler des pneus d'avions">Gonfler des pneus d'avions</option><option value="Soudage">Soudage</option><option value="Chauffer l'air d'une montgolfière">Chauffer l'air d'une montgolfière</option><option value="Propulser des satellites">Propulser des satellites</option></select></div><div class="quiz-match-row" data-correct="Propulser des satellites"><span>Xénon (Xe)</span><select class="quiz-select" aria-label="Xénon (Xe)"><option value="">— choisir —</option><option value="Gonfler des ballons-sondes">Gonfler des ballons-sondes</option><option value="Gonfler des pneus d'avions">Gonfler des pneus d'avions</option><option value="Soudage">Soudage</option><option value="Chauffer l'air d'une montgolfière">Chauffer l'air d'une montgolfière</option><option value="Propulser des satellites">Propulser des satellites</option></select></div></div><button class="quiz-submit">Valider</button><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Chaque usage exploite une propriété précise : inertie (He, N₂), pouvoir combustible (C₂H₂, C₃H₈) ou production d'ions (Xe).</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Reprends le tableau de la Section 2 : hélium → ballons-sondes, diazote → pneus d'avions, acétylène → soudage, propane → montgolfière, xénon → moteurs ioniques des satellites.</span></div></div><div class="quiz-q" data-qi="60" data-type="multi"><div class="quiz-q-label">Sélection multiple</div><div class="quiz-q-text">Coche les usages où l'on exploite la faible réactivité du gaz.</div><label class="quiz-check"><input type="checkbox" data-correct="true"><span>L'hélium dans les ballons-sondes</span></label><label class="quiz-check"><input type="checkbox" data-correct="true"><span>Le diazote dans les pneus d'avions</span></label><label class="quiz-check"><input type="checkbox" data-correct="false"><span>L'acétylène dans le soudage</span></label><label class="quiz-check"><input type="checkbox" data-correct="false"><span>Le dihydrogène dans les moteurs de fusées</span></label><button class="quiz-submit">Valider</button><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. L'hélium et le diazote sont choisis parce qu'ils réagissent très peu; l'acétylène et le dihydrogène sont au contraire utilisés pour leur pouvoir combustible.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Il fallait cocher l'hélium (ballons-sondes) et le diazote (pneus). L'acétylène et le dihydrogène sont des combustibles : on les choisit justement parce qu'ils brûlent.</span></div></div><div class="quiz-result-msg" id="result-q2"></div>
           <button class="quiz-reset" id="reset-q2">↺ Recommencer</button>
           </div>
         </div>
@@ -1805,7 +1841,7 @@
             <div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>C'est vrai : les deux symboles représentent des risques distincts et indépendants, vus à la section 1 — ils s'additionnent plutôt que de se recouper.</span></div>
           </div>
 
-          <div class="quiz-result-msg" id="result-qfin"></div>
+          <div class="quiz-q" data-qi="60" data-type="numeric" data-answer="9.0" data-tol="0.01"><div class="quiz-q-label">Réponse numérique</div><div class="quiz-q-text">Le méthane brûle complètement selon CH₄ + 2 O₂ → CO₂ + 2 H₂O. Combien de moles d'eau obtient-on en brûlant 4,5 mol de méthane?</div><div class="quiz-num-row"><input class="quiz-input" type="text" inputmode="decimal" placeholder="Ta réponse" aria-label="Réponse"><span class="quiz-unit">mol</span><button class="quiz-submit">Valider</button></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. Chaque mole de CH₄ produit 2 mol de H₂O : 4,5 × 2 = 9,0 mol.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La réponse attendue est 9,0 mol. Le coefficient devant H₂O est 2 pour 1 mol de CH₄ : 4,5 × 2 = 9,0 mol.</span></div></div><div class="quiz-q" data-qi="61" data-type="match"><div class="quiz-q-label">Association</div><div class="quiz-q-text">Pour chaque gaz, indique son rôle dans une combustion.</div><div class="quiz-match"><div class="quiz-match-row" data-correct="Comburant"><span>Dioxygène (O₂)</span><select class="quiz-select" aria-label="Dioxygène (O₂)"><option value="">— choisir —</option><option value="Comburant">Comburant</option><option value="Combustible">Combustible</option><option value="Ni l'un ni l'autre">Ni l'un ni l'autre</option></select></div><div class="quiz-match-row" data-correct="Combustible"><span>Propane (C₃H₈)</span><select class="quiz-select" aria-label="Propane (C₃H₈)"><option value="">— choisir —</option><option value="Comburant">Comburant</option><option value="Combustible">Combustible</option><option value="Ni l'un ni l'autre">Ni l'un ni l'autre</option></select></div><div class="quiz-match-row" data-correct="Ni l'un ni l'autre"><span>Argon (Ar)</span><select class="quiz-select" aria-label="Argon (Ar)"><option value="">— choisir —</option><option value="Comburant">Comburant</option><option value="Combustible">Combustible</option><option value="Ni l'un ni l'autre">Ni l'un ni l'autre</option></select></div><div class="quiz-match-row" data-correct="Comburant"><span>Ozone (O₃)</span><select class="quiz-select" aria-label="Ozone (O₃)"><option value="">— choisir —</option><option value="Comburant">Comburant</option><option value="Combustible">Combustible</option><option value="Ni l'un ni l'autre">Ni l'un ni l'autre</option></select></div></div><button class="quiz-submit">Valider</button><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact. O₂ et O₃ oxydent le combustible; le propane est oxydé; l'argon, gaz noble, ne réagit pas.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Révise : dioxygène et ozone sont des comburants; le propane est un combustible; l'argon, gaz noble à couche de valence complète, ne participe pas à la réaction.</span></div></div><div class="quiz-q" data-qi="62" data-type="text"><div class="quiz-q-label">Réflexion écrite</div><div class="quiz-q-text">Pourquoi un feu s'éteint-il quand on le prive d'air? Appuie ton explication sur le triangle du feu.</div><textarea class="quiz-text" rows="3" placeholder="Écris ta réponse avec tes mots (au moins une phrase)…"></textarea><button class="quiz-submit" disabled>Voir la réponse modèle</button><div class="quiz-model"><strong>Réponse modèle.</strong> Le triangle du feu exige trois éléments : un combustible, un comburant et une température qui atteint le point d'ignition. L'air apporte le dioxygène, le comburant. En le privant d'air, on retire un côté du triangle : la combustion ne peut plus se poursuivre et le feu s'éteint.</div><div class="quiz-self"><span>Ta réponse contenait-elle l'essentiel?</span><button data-self="ok">Oui</button><button data-self="ko">Pas tout à fait</button></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Bien. Compare quand même ta formulation à la réponse modèle pour repérer ce qui t'aurait échappé.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Pas de problème : relis la réponse modèle, puis reformule-la avec tes mots avant de continuer.</span></div></div><div class="quiz-result-msg" id="result-qfin"></div>
           <button class="quiz-reset" id="reset-qfin">↺ Recommencer</button>
           </div>
         </div>
@@ -2016,7 +2052,60 @@ function initQuizBlock(block) {
     }
   }
 
+  function finish(q, ok) {
+    q.classList.add('answered'); q.dataset.gotCorrect = ok ? 'true' : 'false';
+    q.querySelector(ok ? '.quiz-feedback.ok' : '.quiz-feedback.ko').classList.add('show'); updateScore();
+  }
+  function parseNum(v) { return parseFloat(String(v).trim().replace(/\s/g, '').replace(',', '.')); }
+  function initTyped(q) {
+    const t = q.dataset.type, btn = q.querySelector('.quiz-submit');
+    const lock = () => q.querySelectorAll('input,select,textarea,.quiz-submit').forEach(e => e.disabled = true);
+    if (t === 'numeric') {
+      const inp = q.querySelector('.quiz-input');
+      const go = () => {
+        if (q.classList.contains('answered')) return;
+        const v = parseNum(inp.value); if (isNaN(v)) return;
+        const ok = Math.abs(v - parseFloat(q.dataset.answer)) <= parseFloat(q.dataset.tol);
+        inp.classList.add(ok ? 'correct' : 'wrong'); lock(); finish(q, ok);
+      };
+      btn.onclick = go; inp.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+    } else if (t === 'match') {
+      btn.onclick = () => {
+        const rows = Array.from(q.querySelectorAll('.quiz-match-row'));
+        if (rows.some(r => !r.querySelector('select').value)) return;
+        let ok = true;
+        rows.forEach(r => { const good = r.querySelector('select').value === r.dataset.correct; if (!good) ok = false; r.classList.add(good ? 'correct' : 'wrong'); });
+        lock(); finish(q, ok);
+      };
+    } else if (t === 'multi') {
+      btn.onclick = () => {
+        let ok = true;
+        q.querySelectorAll('.quiz-check').forEach(l => {
+          const b = l.querySelector('input'), want = b.dataset.correct === 'true';
+          if (b.checked !== want) ok = false;
+          if (want) l.classList.add('reveal'); else if (b.checked) l.classList.add('wrong');
+        });
+        lock(); finish(q, ok);
+      };
+    } else if (t === 'text') {
+      const ta = q.querySelector('.quiz-text');
+      ta.addEventListener('input', () => { btn.disabled = ta.value.trim().length < 20; });
+      btn.onclick = () => { q.querySelector('.quiz-model').classList.add('show'); q.querySelector('.quiz-self').classList.add('show'); ta.disabled = true; btn.disabled = true; };
+      q.querySelectorAll('.quiz-self button').forEach(b => b.onclick = () => { q.querySelectorAll('.quiz-self button').forEach(x => x.disabled = true); finish(q, b.dataset.self === 'ok'); });
+    }
+    q._reset = () => {
+      q.querySelectorAll('input[type=text],textarea').forEach(e => { e.value = ''; e.disabled = false; e.classList.remove('correct', 'wrong'); });
+      q.querySelectorAll('input[type=checkbox]').forEach(e => { e.checked = false; e.disabled = false; });
+      q.querySelectorAll('select').forEach(e => { e.value = ''; e.disabled = false; });
+      q.querySelectorAll('.quiz-match-row,.quiz-check').forEach(e => e.classList.remove('correct', 'wrong', 'reveal'));
+      q.querySelectorAll('.quiz-submit').forEach(b => b.disabled = (t === 'text'));
+      q.querySelectorAll('.quiz-self button').forEach(b => b.disabled = false);
+      q.querySelectorAll('.quiz-model,.quiz-self').forEach(e => e.classList.remove('show'));
+    };
+  }
+
   questions.forEach(q => {
+    if (q.dataset.type) { initTyped(q); return; }
     const options = Array.from(q.querySelectorAll('.quiz-option'));
     const fbOk = q.querySelector('.quiz-feedback.ok');
     const fbKo = q.querySelector('.quiz-feedback.ko');
@@ -2053,6 +2142,7 @@ function initQuizBlock(block) {
         o.classList.remove('correct', 'wrong', 'reveal');
       });
       q.querySelectorAll('.quiz-feedback').forEach(f => f.classList.remove('show'));
+      if (q._reset) q._reset();
     });
     updateScore();
   });
