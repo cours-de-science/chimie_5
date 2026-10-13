@@ -34,7 +34,7 @@
   .progress-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 8px; display: flex; justify-content: space-between; }
   .progress-label span:last-child { color: var(--amber); font-family: var(--mono); }
   .progress-bar { height: 8px; background: rgba(255,255,255,.18); border-radius: 5px; overflow: hidden; }
-  .progress-fill { height: 100%; background: var(--amber); border-radius: 5px; width: calc(100% / 9); }
+  .progress-fill { height: 100%; background: var(--amber); border-radius: 5px; width: calc(100% * 2 / 9); }
 
   /* Content */
   .content { padding: 48px 56px 90px; max-width: 980px; margin: 0 auto; }
@@ -88,8 +88,8 @@
   <p>Notes de cours basées sur le manuel <em>Delta</em>. Quatre modules, neuf chapitres — des gaz jusqu'à l'équilibre chimique, en passant par l'énergie des transformations et la cinétique. Chaque chapitre s'ouvre sur un rappel du secondaire 4, là où on en a besoin.</p>
 
   <div class="progress-wrap">
-    <div class="progress-label"><span>Progression</span><span>1 / 9 chapitres</span></div>
-    <div class="progress-bar"><div class="progress-fill" style="width: calc(100% / 9);"></div></div>
+    <div class="progress-label"><span>Progression</span><span>2 / 9 chapitres</span></div>
+    <div class="progress-bar"><div class="progress-fill" style="width: calc(100% * 2 / 9);"></div></div>
   </div>
 </div>
 
@@ -117,10 +117,10 @@
       <a class="chap-card" href="chapitre2.html">
         <div class="chap-top">
           <span class="chap-num">2</span>
-          <span class="status-badge wip">En cours</span>
+          <span class="status-badge dispo">Disponible</span>
         </div>
         <div class="chap-title">Les propriétés physiques des gaz</div>
-        <div class="chap-desc">La théorie cinétique des gaz, les comportements des gaz (compressibilité, expansion, diffusion, effusion) et la loi de Graham. Reste : la pression.</div>
+        <div class="chap-desc">La théorie cinétique des gaz, les comportements des gaz (compressibilité, expansion, diffusion, effusion), la loi de Graham, la pression atmosphérique et la mesure de la pression (baromètre, manomètres).</div>
         <span class="chap-arrow">→</span>
       </a>
 
@@ -130,7 +130,7 @@
           <span class="status-badge wip">En cours</span>
         </div>
         <div class="chap-title">Les lois des gaz</div>
-        <div class="chap-desc">Les lois simples, la loi générale, les gaz parfaits, Dalton. Disponible : début de la section 1 (variables, TPN/TAPN, loi de Boyle-Mariotte).</div>
+        <div class="chap-desc">Les lois simples, la loi générale, les gaz parfaits, Dalton. Section 1 en cours : variables, TPN/TAPN, lois de Boyle-Mariotte et de Charles.</div>
         <span class="chap-arrow">→</span>
       </a>
 
