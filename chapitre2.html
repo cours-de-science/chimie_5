@@ -359,6 +359,15 @@
   .hyp-body p:last-child { margin-bottom: 0; }
   .hyp-key { font-size: 12.5px !important; color: var(--indigo-mid) !important; font-weight: 600; border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 4px !important; }
   @media (max-width: 768px) { .hyp-grid { grid-template-columns: 1fr; } }
+  /* Flash Chimie */
+  .flash-box { background: linear-gradient(135deg, #faf8fd, #f3eefa); border: 1.5px solid var(--indigo-light); border-radius: 10px; padding: 20px 22px; margin: 22px 0; }
+  .flash-box .flash-tag { display: inline-flex; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
+  .flash-box .flash-tag span { padding: 3px 10px; }
+  .flash-box .flash-tag .f1 { background: var(--indigo-dark); color: #fff; border-radius: 4px 0 0 4px; }
+  .flash-box .flash-tag .f2 { background: var(--flame); color: #fff; border-radius: 0 4px 4px 0; }
+  .flash-box h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--indigo-dark); margin-bottom: 12px; }
+  .flash-box p { font-size: 13.5px; line-height: 1.65; margin-bottom: 10px; color: var(--text); }
+  .flash-box p:last-child { margin-bottom: 0; }
 </style>
 </head>
 <body>
@@ -2102,6 +2111,28 @@
             <div class="example-step"><span class="step-num">3</span>Calculer : p = 75 468,5 / 760 ≈ 99,3 kPa.</div>
 
             <div class="example-answer">p ≈ 99,3 kPa — une valeur légèrement inférieure à la pression atmosphérique normale (101,3 kPa), typique d'une zone de basse pression associée au mauvais temps.</div>
+          </div>
+        </div>
+
+        <div class="flash-box">
+          <div class="flash-tag"><span class="f1">Flash</span><span class="f2">Chimie</span></div>
+          <h4>« Succion » : un mot trompeur</h4>
+          <p>Dans le langage courant, le vide « aspire », « suce » ou « tire ». En réalité, le vide n'est que l'absence de particules : sans particules, il n'y a aucun choc, donc aucune force. Rien ne tire. Ce qui agit, c'est toujours la région où la pression est <em>plus élevée</em>, qui pousse vers celle où elle l'est moins.</p>
+          <p><strong>La paille.</strong> En buvant, tu agrandis le volume de ta bouche, ce qui fait baisser la pression de l'air qui s'y trouve (le chapitre 3 explique pourquoi : <a href="chapitre3.html#section-1-1" style="color:var(--indigo-mid);font-weight:600;">loi de Boyle-Mariotte</a>). L'air extérieur, à plus haute pression, appuie alors sur la surface de ta boisson et la pousse dans la paille. Même avec un vide parfait au sommet, il y a une limite : l'atmosphère ne peut soutenir qu'une colonne d'eau d'environ 10,3 m, le même raisonnement que Torricelli (760 mm de mercure × 13,6 ≈ 10,3 m d'eau). Une paille plus longue n'y changerait rien, et c'est pourquoi une pompe aspirante ne peut pas puiser l'eau d'un puits plus profond.</p>
+          <p><strong>Le doigt sur la paille.</strong> Si tu bouches le haut d'une paille remplie de liquide et que tu la sors du verre, un peu de liquide s'écoule par le bas : l'air emprisonné en haut occupe alors plus de volume et sa pression baisse sous celle de l'atmosphère (ce n'est pas un vide, seulement une pression réduite). Le liquide s'arrête quand la pression de l'air emprisonné, additionnée à celle de la colonne de liquide, égale la pression de l'air extérieur, qui pousse par l'ouverture du bas. La pipette fonctionne ainsi.</p>
+          <p><strong>La ventouse.</strong> En l'écrasant sur une surface lisse, tu chasses de l'air : la pression sous la ventouse devient plus basse que celle de l'air ambiant, qui la plaque contre la surface avec une force F = Δp × A. Si l'air s'infiltre (surface rugueuse, petit trou), les pressions s'égalisent des deux côtés et la ventouse tombe.</p>
+          <p><strong>Dans l'espace.</strong> Un trou dans la paroi d'un vaisseau n'« aspire » pas l'air de la cabine : ses particules, qui se déplacent dans toutes les directions, filent simplement par l'ouverture, puisque plus rien ne les retient de l'autre côté. À chaque fois que tu lis « aspiration », demande-toi : où la pression est-elle la plus élevée, et vers où pousse-t-elle?</p>
+        </div>
+
+        <div class="activity-block">
+            <button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)">
+              <svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion
+              <svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          <div class="activity-content">
+            <p class="activity-question">Une ventouse de 5,0 cm de diamètre est collée sur une vitre. L'air qui reste sous la ventouse a une pression de 40 kPa; l'air ambiant est à 100 kPa. Avec quelle force approximative l'atmosphère plaque-t-elle la ventouse contre la vitre? Que devient cette force si un petit trou laisse entrer l'air sous la ventouse?</p>
+            <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
+            <div class="activity-hint">La force vient de l'écart de pression : Δp = 100 − 40 = 60 kPa = 6,0 × 10⁴ Pa. L'aire de la ventouse est A = π × (0,025 m)² ≈ 1,96 × 10⁻³ m². Donc F = Δp × A ≈ 6,0 × 10⁴ × 1,96 × 10⁻³ ≈ 118 N, soit environ 12 kg « retenus ». Si de l'air entre, la pression sous la ventouse monte vers 100 kPa : Δp tend vers 0, donc la force aussi, et la ventouse tombe.</div>
           </div>
         </div>
 
