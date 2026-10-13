@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapitre 3 — Les lois des gaz | Chimie Sec. 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo-dark: #241b45;
+    --indigo-mid:  #3d2d72;
+    --indigo-light:#7d63b8;
+    --amber:       #e8a93b;
+    --amber-dim:   #b8842a;
+    --flame:       #d5472d;
+    --bg:          #f6f3ee;
+    --surface:     #ffffff;
+    --text:        #221c33;
+    --muted:       #6f6480;
+    --border:      #ddd6e6;
+    --sidebar-w:   268px;
+    --mono:        'JetBrains Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  #sidebar { width: var(--sidebar-w); background: var(--indigo-dark); position: fixed; top: 0; left: 0; bottom: 0; overflow-y: auto; display: flex; flex-direction: column; z-index: 100; transition: transform .3s ease; }
+  .sidebar-header { background: var(--amber); padding: 20px 18px 16px; flex-shrink: 0; }
+  .back-to-index { display: flex; align-items: center; gap: 5px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--indigo-dark); text-decoration: none; opacity: .65; margin-bottom: 12px; transition: opacity .15s; }
+  .back-to-index:hover { opacity: 1; text-decoration: underline; }
+  .sidebar-header .label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--indigo-dark); }
+  .sidebar-header .chap-num { font-family: 'Barlow Condensed', sans-serif; font-size: 58px; font-weight: 800; line-height: 1; color: var(--indigo-dark); }
+  .sidebar-header .chap-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--indigo-dark); margin-top: 4px; }
+  .toc-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--indigo-light); padding: 20px 18px 8px; }
+  #sidebar nav ul { list-style: none; }
+  #sidebar nav ul li a { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.75); text-decoration: none; border-left: 3px solid transparent; transition: background .15s, color .15s, border-color .15s; line-height: 1.35; }
+  #sidebar nav ul li a:hover, #sidebar nav ul li a.active { background: rgba(255,255,255,.08); color: #fff; border-left-color: var(--amber); }
+  #sidebar nav ul li a .num { font-family: var(--mono); font-size: 11px; color: var(--amber); flex-shrink: 0; margin-top: 1px; font-weight: 600; }
+  #sidebar nav ul li a.disabled { opacity: .4; pointer-events: none; }
+  .sidebar-footer { margin-top: auto; padding: 16px 18px; font-size: 11px; color: rgba(255,255,255,.3); border-top: 1px solid rgba(255,255,255,.1); }
+  .sidebar-footer button { background: none; border: none; cursor: pointer; font-size: 11px; color: rgba(255,255,255,.3); padding: 0; text-align: left; width: 100%; transition: color .15s; }
+  .sidebar-footer button:hover { color: rgba(255,255,255,.6); }
+  .attrib-popover { display: none; position: absolute; bottom: 60px; left: 14px; width: 230px; background: #fff; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,.18); padding: 14px 16px; font-size: 12px; color: var(--text); line-height: 1.6; z-index: 200; }
+  .attrib-popover::after { content: ''; position: absolute; bottom: -7px; left: 20px; width: 14px; height: 14px; background: #fff; transform: rotate(45deg); box-shadow: 2px 2px 4px rgba(0,0,0,.08); }
+  .attrib-popover.visible { display: block; }
+
+  /* ── MAIN ── */
+  #main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
+
+  .hero { background: linear-gradient(135deg, var(--indigo-dark) 0%, var(--indigo-mid) 60%, var(--indigo-light) 100%); padding: 60px 56px 48px; color: #fff; position: relative; overflow: hidden; }
+  .hero::before { content: '2'; position: absolute; right: 40px; top: -10px; font-family: 'Barlow Condensed', sans-serif; font-size: 260px; font-weight: 800; color: rgba(255,255,255,.06); line-height: 1; pointer-events: none; }
+  .hero .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+  .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(36px, 5vw, 56px); font-weight: 800; text-transform: uppercase; letter-spacing: .02em; line-height: 1.05; margin-bottom: 20px; }
+  .hero p { max-width: 600px; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,.82); }
+
+  .search-bar-wrap { background: var(--indigo-dark); padding: 14px 56px; display: flex; align-items: center; gap: 12px; border-bottom: 3px solid var(--amber); }
+  .search-bar-wrap label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.5); white-space: nowrap; letter-spacing: .06em; text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif; }
+  #search-input { flex: 1; max-width: 440px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 6px; padding: 8px 14px; font-size: 14px; color: #fff; font-family: 'Inter', sans-serif; outline: none; transition: background .2s, border-color .2s; }
+  #search-input::placeholder { color: rgba(255,255,255,.4); }
+  #search-input:focus { background: rgba(255,255,255,.16); border-color: var(--amber); }
+  #search-count { font-size: 12px; color: var(--amber); font-family: var(--mono); min-width: 90px; }
+
+  .content { padding: 48px 56px 80px; max-width: 880px; }
+
+  .section-card { background: var(--surface); border-radius: 10px; border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .section-toggle { width: 100%; background: none; border: none; cursor: pointer; padding: 0; text-align: left; display: block; }
+  .section-header { display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; background: var(--surface); transition: background .15s; border-bottom: 1px solid transparent; }
+  .section-num { margin-top: 2px; }
+  .section-toggle:hover .section-header, .section-toggle[aria-expanded="true"] .section-header { background: #f4f1fa; border-bottom-color: var(--border); }
+  .section-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--amber-dim); background: var(--indigo-dark); padding: 4px 9px; border-radius: 5px; letter-spacing: .04em; flex-shrink: 0; }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--indigo-dark); flex: 1; }
+  .chevron { width: 20px; height: 20px; color: var(--muted); transition: transform .25s ease; flex-shrink: 0; margin-top: 2px; }
+  .section-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+  .section-body { display: none; padding: 28px 28px 32px; border-top: 2px solid var(--amber); }
+  .section-body.open { display: block; }
+
+  .subsection { margin-bottom: 32px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection-title { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--indigo-mid); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .subsection-title::before { content: ''; display: inline-block; width: 4px; height: 18px; background: var(--amber); border-radius: 2px; flex-shrink: 0; }
+
+  p { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  ul.content-list { padding-left: 20px; margin-bottom: 14px; }
+  ul.content-list li { font-size: 15px; line-height: 1.7; margin-bottom: 6px; }
+
+  .def-box { background: linear-gradient(135deg, #f1eef8, #f6f2fb); border-left: 4px solid var(--indigo-light); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 16px 0; }
+  .def-box .def-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--indigo-light); margin-bottom: 6px; }
+  .def-box p { font-size: 14px; margin: 0 0 6px; color: var(--indigo-dark); }
+  .def-box p:last-child { margin: 0; }
+  .def-box strong { color: var(--indigo-dark); font-weight: 600; }
+
+  .note-box { margin: 20px 0; border: 1.5px solid var(--amber-dim); border-radius: 10px; overflow: hidden; background: #fdf6e6; }
+  .note-bar { width: 100%; display: flex; align-items: flex-start; gap: 8px; background: rgba(232,169,59,.26); border: none; cursor: pointer; padding: 12px 18px; text-align: left; font-family: inherit; color: inherit; transition: background .15s; }
+  .note-bar:hover { background: rgba(232,169,59,.38); }
+  .note-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #7a5410; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; row-gap: 3px; }
+  .note-label .icon-sm { width: 15px; height: 15px; flex-shrink: 0; }
+  .note-subtitle { font-size: 11.5px; font-weight: 500; text-transform: none; letter-spacing: 0; color: #a1793a; }
+  .note-bar .chevron-n { margin-left: auto; width: 16px; height: 16px; transition: transform .2s; flex-shrink: 0; color: #7a5410; margin-top: 1px; }
+  .note-bar[aria-expanded="true"] .chevron-n { transform: rotate(180deg); }
+  .note-body { display: none; padding: 14px 18px 18px; font-size: 14px; color: #4a3410; line-height: 1.65; }
+  .note-bar[aria-expanded="true"] + .note-body { display: block; }
+
+  /* === TABLE DES MATIÈRES (index des notions, repliable, en tête de page) === */
+  .page-toc { background: var(--surface); border-bottom: 1px solid var(--border); }
+  .page-toc-bar { width: 100%; display: flex; align-items: center; gap: 10px; padding: 13px 56px; background: none; border: none; cursor: pointer; text-align: left; font-family: inherit; color: inherit; }
+  .page-toc-bar:hover { background: #f7f4ef; }
+  .page-toc-icon { width: 17px; height: 17px; color: var(--amber-dim); flex-shrink: 0; }
+  .page-toc-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--indigo-dark); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; row-gap: 2px; }
+  .page-toc-subtitle { font-size: 11.5px; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--muted); }
+  .page-toc-bar .chevron-toc { margin-left: auto; width: 16px; height: 16px; transition: transform .2s; flex-shrink: 0; color: var(--muted); }
+  .page-toc-bar[aria-expanded="true"] .chevron-toc { transform: rotate(180deg); }
+  .page-toc-body { display: none; padding: 4px 56px 22px; }
+  .page-toc-body[aria-expanded="true"], .page-toc-bar[aria-expanded="true"] + .page-toc-body { display: block; }
+  .page-toc-group { margin-top: 14px; }
+  .page-toc-group-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 7px; }
+  .page-toc-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .page-toc-pills a { font-size: 13px; font-weight: 600; color: var(--indigo-mid); background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 5px 13px 5px 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: background .15s, color .15s, border-color .15s; }
+  .page-toc-pills a .toc-num { font-family: var(--mono); font-size: 10.5px; font-weight: 700; color: #fff; background: var(--indigo-light); border-radius: 8px; padding: 1px 6px; }
+  .page-toc-pills a:hover { background: var(--indigo-dark); color: #fff; border-color: var(--indigo-dark); }
+  .page-toc-pills a:hover .toc-num { background: var(--amber); color: var(--indigo-dark); }
+
+  .formula { font-family: var(--mono); background: var(--indigo-dark); color: var(--amber); padding: 14px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; margin: 16px 0; letter-spacing: .04em; text-align: center; overflow-x: auto; }
+  .formula-caption { font-size: 12px; color: var(--muted); text-align: center; margin-top: -10px; margin-bottom: 14px; }
+  .formula sub { font-size: 72%; }
+
+  .kw { background: rgba(232,169,59,.28); color: var(--indigo-dark); padding: 1px 4px; border-radius: 3px; font-weight: 600; }
+
+  mark.sh { background: #f6d187; color: var(--text); border-radius: 2px; padding: 0 2px; }
+  mark.sh.current { background: var(--flame); color: #fff; box-shadow: 0 0 0 2px var(--flame); }
+
+  .rappel-card { background: linear-gradient(120deg, var(--indigo-dark), var(--indigo-mid)); border-radius: 10px; padding: 24px 28px; color: rgba(255,255,255,.88); margin-bottom: 24px; }
+  .rappel-card h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--amber); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; }
+  .rappel-card h2 svg { margin-top: 3px; flex-shrink: 0; }
+  .rappel-card p { color: rgba(255,255,255,.82); font-size: 14px; margin-bottom: 10px; }
+  .rappel-card p:last-child { margin-bottom: 0; }
+  .rappel-ref { display: inline-block; font-family: var(--mono); font-size: 11px; color: var(--amber); opacity: .85; text-decoration: none; border-bottom: 1px dotted currentColor; transition: opacity .15s; }
+  .rappel-ref:hover, .rappel-ref:focus-visible { opacity: 1; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  .data-table th { background: var(--indigo-dark); color: var(--amber); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; padding: 10px 14px; text-align: left; }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: #f6f4fa; }
+  .data-table td strong { color: var(--indigo-dark); }
+
+  .fig-block { margin: 18px 0; background: #faf9fc; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; text-align: center; }
+  .fig-block .fig-inner { padding: 20px; }
+  .fig-block figcaption { font-size: 12.5px; color: var(--muted); padding: 10px 16px 14px; border-top: 1px solid var(--border); line-height: 1.5; font-style: italic; text-align: left; }
+
+  .compare-block { display: flex; gap: 2px; margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .compare-col { flex: 1; padding: 18px 20px; }
+  .compare-col--a { background: linear-gradient(135deg, #f1eef8, #e8e1f5); }
+  .compare-col--b { background: linear-gradient(135deg, #fdf1ee, #fbe2da); }
+  .compare-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--indigo-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .compare-col--b .compare-label { color: var(--flame); }
+  .compare-col p { font-size: 13.5px; line-height: 1.6; margin: 0 0 8px; color: var(--text); }
+  .compare-col p:last-child { margin-bottom: 0; }
+
+  .cause-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0 22px; }
+  .cause-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 16px 14px; }
+  .cause-card .cause-icon { width: 30px; height: 30px; color: var(--indigo-mid); margin-bottom: 8px; }
+  .cause-card .cause-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--indigo-dark); margin-bottom: 4px; line-height: 1.25; }
+  .cause-card p { font-size: 12.5px; color: var(--muted); margin: 0; line-height: 1.5; }
+  @media (max-width: 768px) { .cause-grid { grid-template-columns: 1fr; } }
+
+  #to-top { position: fixed; bottom: 28px; right: 28px; width: 42px; height: 42px; background: var(--indigo-dark); color: var(--amber); border: 2px solid var(--amber); border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 200; }
+  #to-top.visible { opacity: 1; pointer-events: auto; }
+
+  #menu-toggle { display: none; position: fixed; top: 14px; left: 14px; z-index: 150; background: var(--indigo-dark); border: 2px solid var(--amber); color: var(--amber); width: 40px; height: 40px; border-radius: 8px; font-size: 20px; cursor: pointer; align-items: center; justify-content: center; }
+
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    #menu-toggle { display: flex; }
+    .hero { padding: 60px 24px 36px; }
+    .search-bar-wrap { padding: 12px 24px; }
+    .content { padding: 28px 20px 60px; }
+    .page-toc-bar { padding: 12px 24px; }
+    .page-toc-body { padding: 4px 24px 20px; }
+    .compare-block { flex-direction: column; }
+    .cause-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* ── QUIZ ── */
+  .quiz-block { margin-top: 36px; margin-bottom: 32px; border-top: 2px solid var(--amber); border-bottom: 2px solid var(--amber); padding-top: 24px; padding-bottom: 24px; }
+  .quiz-block-bar { width: 100%; display: flex; align-items: flex-start; gap: 10px; background: var(--indigo-dark); border: none; border-radius: 10px; cursor: pointer; padding: 14px 18px; margin-bottom: 6px; text-align: left; transition: background .15s; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .quiz-block-bar:hover { background: var(--indigo-mid); }
+  .quiz-block-bar .quiz-block-icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--amber); margin-top: 2px; }
+  .quiz-block-title { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .quiz-block-subtitle { font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; color: rgba(255,255,255,.72); margin-left: 2px; }
+  .quiz-block-bar .chevron-q { margin-left: auto; width: 20px; height: 20px; transition: transform .2s; flex-shrink: 0; color: #fff; margin-top: 2px; }
+  .quiz-block-bar[aria-expanded="true"] .chevron-q { transform: rotate(180deg); }
+  .quiz-body { display: none; }
+  .quiz-block-bar[aria-expanded="true"] + .quiz-body { display: block; padding-top: 14px; }
+  .quiz-intro { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+  .quiz-score-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; font-size: 13px; color: var(--muted); }
+  .quiz-score-bar progress { flex: 1; height: 6px; border-radius: 3px; appearance: none; -webkit-appearance: none; }
+  .quiz-score-bar progress::-webkit-progress-bar { background: var(--border); border-radius: 3px; }
+  .quiz-score-bar progress::-webkit-progress-value { background: var(--indigo-mid); border-radius: 3px; transition: width .4s; }
+
+  .quiz-q { background: var(--bg); border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; border: 1.5px solid var(--border); transition: border-color .2s; }
+  .quiz-q.answered { border-color: transparent; }
+  .quiz-q-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
+  .quiz-q-text { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 14px; }
+
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-option { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border-radius: 8px; border: 1.5px solid var(--border); background: #fff; cursor: pointer; font-size: 14px; color: var(--text); transition: background .15s, border-color .15s; text-align: left; width: 100%; line-height: 1.45; }
+  .quiz-option:hover:not(:disabled) { background: #f1eef8; border-color: var(--indigo-mid); }
+  .quiz-option .opt-letter { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted); flex-shrink: 0; margin-top: 1px; }
+  .quiz-option:disabled { cursor: default; }
+  .quiz-option.correct { background: #e8f8ef; border-color: #2da262; color: #1a6640; }
+  .quiz-option.correct .opt-letter { color: #2da262; }
+  .quiz-option.wrong { background: #fdecea; border-color: #d94f3d; color: #8b2218; }
+  .quiz-option.wrong .opt-letter { color: #d94f3d; }
+  .quiz-option.reveal { background: #e8f8ef; border-color: #2da262; color: #1a6640; opacity: .7; }
+  .quiz-option.reveal .opt-letter { color: #2da262; }
+
+  .quiz-feedback { margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 13.5px; line-height: 1.55; display: none; }
+  .quiz-feedback.show { display: flex; gap: 8px; align-items: flex-start; }
+  .quiz-feedback .icon-sm { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
+  .quiz-feedback.ok { background: #e8f8ef; color: #1a6640; }
+  .quiz-feedback.ko { background: #fdecea; color: #8b2218; }
+  .quiz-result-msg { margin-top: 16px; padding: 14px 18px; border-radius: 10px; font-size: 14px; font-weight: 500; text-align: center; display: none; align-items: center; justify-content: center; gap: 8px; }
+  .quiz-result-msg.show { display: flex; }
+  .quiz-result-msg .icon-sm { width: 18px; height: 18px; flex-shrink: 0; }
+  .quiz-result-msg.great { background: #e8f8ef; color: #1a6640; }
+  .quiz-result-msg.good { background: #fdf6e3; color: #7a5c00; }
+  .quiz-result-msg.poor { background: #fdecea; color: #8b2218; }
+
+  .quiz-reset { margin-top: 20px; padding: 9px 20px; border-radius: 8px; border: 1.5px solid var(--indigo-mid); background: #fff; color: var(--indigo-dark); font-size: 13px; font-weight: 600; cursor: pointer; transition: background .15s; display: none; }
+  .quiz-reset:hover { background: #f1eef8; }
+
+  /* === ACTIVITÉ SUGGÉRÉE === */
+  .icon-sm { display: inline-block; vertical-align: middle; width: 14px; height: 14px; flex-shrink: 0; }
+  .activity-block { margin: 22px 0; border: 1.5px solid var(--flame); border-radius: 10px; overflow: hidden; background: #fdf6f4; }
+  .activity-bar { width: 100%; display: flex; align-items: flex-start; gap: 10px; padding: 11px 16px; background: #fbe2da; border: none; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--flame); text-align: left; transition: background .15s; line-height: 1.35; }
+  .activity-bar:hover { background: #f8d3c7; }
+  .activity-bar .activity-icon { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+  .activity-bar .chevron-a { margin-left: auto; width: 16px; height: 16px; transition: transform .2s; flex-shrink: 0; margin-top: 1px; }
+  .activity-bar[aria-expanded="true"] .chevron-a { transform: rotate(180deg); }
+  .activity-content { display: none; padding: 16px 18px 18px; }
+  .activity-bar[aria-expanded="true"] + .activity-content { display: block; }
+  .activity-question { font-size: 14.5px; color: var(--text); line-height: 1.6; font-style: italic; }
+  .activity-hint-toggle { margin-top: 12px; font-size: 12px; font-weight: 600; color: var(--indigo-mid); background: none; border: none; cursor: pointer; padding: 0; text-decoration: underline; }
+  .activity-hint { display: none; margin-top: 8px; font-size: 13px; color: var(--muted); background: var(--bg); border-radius: 6px; padding: 10px 12px; line-height: 1.55; }
+  .activity-hint.show { display: block; }
+
+  /* === BIO-BOX : LA COMMUNAUTÉ SCIENTIFIQUE === */
+  .bio-box { margin: 22px 0; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--indigo-light); background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .bio-box-header { background: linear-gradient(120deg, var(--indigo-dark), var(--indigo-mid)); padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+  .bio-box-icon { width: 42px; height: 42px; flex-shrink: 0; color: var(--amber); }
+  .bio-box-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); margin-bottom: 3px; }
+  .bio-box-name { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 800; text-transform: uppercase; letter-spacing: .02em; color: #fff; line-height: 1.15; }
+  .bio-box-dates { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.72); margin-top: 2px; }
+  .bio-box-body { padding: 18px 22px 20px; }
+  .bio-box-body p { font-size: 14px; }
+  .bio-box-fig { text-align: center; margin-top: 14px; }
+  .bio-box-fig svg { width: 230px; max-width: 100%; height: auto; }
+
+  /* === EXEMPLE RÉSOLU === */
+  .example-box { margin: 20px 0; border-radius: 10px; border: 1.5px solid var(--indigo-mid); overflow: hidden; background: #fff; }
+  .example-box-header { background: var(--indigo-dark); color: #fff; padding: 10px 18px; display: flex; align-items: center; gap: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+  .example-box-header svg { width: 16px; height: 16px; color: var(--amber); flex-shrink: 0; }
+  .example-body { padding: 16px 20px 18px; }
+  .example-statement { font-size: 14.5px; color: var(--text); margin-bottom: 14px; font-style: italic; line-height: 1.6; }
+  .example-step { font-size: 14px; color: var(--text); margin-bottom: 11px; line-height: 1.6; padding-left: 28px; position: relative; }
+  .example-step:last-of-type { margin-bottom: 0; }
+  .example-step .step-num { position: absolute; left: 0; top: 1px; width: 19px; height: 19px; border-radius: 50%; background: var(--indigo-light); color: #fff; font-family: var(--mono); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .example-answer { margin-top: 14px; background: rgba(232,169,59,.18); border-left: 4px solid var(--amber); border-radius: 0 6px 6px 0; padding: 10px 16px; font-family: var(--mono); font-size: 14.5px; font-weight: 600; color: var(--indigo-dark); }
+
+  /* === MINI-RÉVISIONS « VÉRIFIE TA COMPRÉHENSION » (intégrées au fil du texte) === */
+  .quiz-block.mini { margin: 28px 0 12px; padding: 0; border-top: none; border-bottom: none; }
+  .quiz-block.mini .quiz-block-bar { background: #f4f0fb; border: 1.5px solid var(--indigo-light); box-shadow: none; margin-bottom: 0; }
+  .quiz-block.mini .quiz-block-bar:hover { background: #ebe5f7; }
+  .quiz-block.mini .quiz-block-bar .quiz-block-icon { color: var(--amber-dim); }
+  .quiz-block.mini .quiz-block-title { color: var(--indigo-dark); }
+  .quiz-block.mini .quiz-block-subtitle { color: var(--muted); }
+  .quiz-block.mini .chevron-q { color: var(--indigo-mid); }
+  .quiz-block.mini .quiz-block-bar[aria-expanded="true"] { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+  .quiz-block.mini .quiz-body { border: 1.5px solid var(--indigo-light); border-top: none; border-radius: 0 0 10px 10px; padding: 18px 18px 6px; background: #fcfbfe; }
+  .quiz-block.mini .quiz-block-bar[aria-expanded="true"] + .quiz-body { padding-top: 18px; }
+  .quiz-block.mini .quiz-q { background: #fff; }
+  .quiz-block.mini .quiz-intro { margin-bottom: 14px; }
+  .quiz-block.mini .quiz-score-bar { margin-bottom: 14px; }
+  .quiz-block.mini .quiz-reset { margin-bottom: 14px; }
+
+  /* === NOUVEAUX TYPES DE QUESTIONS === */
+  .quiz-input-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .quiz-num { font-family: var(--mono); font-size: 15px; width: 170px; max-width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 8px; background: #fff; color: var(--text); outline: none; transition: border-color .15s, box-shadow .15s; }
+  .quiz-num:focus, .quiz-textarea:focus, .activity-answer textarea:focus, .quiz-blank:focus { border-color: var(--indigo-mid); box-shadow: 0 0 0 3px rgba(125,99,184,.18); }
+  .quiz-num.correct { border-color: #2da262; background: #e8f8ef; color: #1a6640; }
+  .quiz-num.wrong { border-color: #d94f3d; background: #fdecea; color: #8b2218; }
+  .quiz-unit { font-size: 14px; color: var(--muted); font-weight: 500; }
+  .quiz-submit, .quiz-reveal { padding: 9px 18px; border-radius: 8px; border: none; background: var(--indigo-dark); color: #fff; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .15s, opacity .15s; }
+  .quiz-submit:hover:not(:disabled), .quiz-reveal:hover:not(:disabled) { background: var(--indigo-mid); }
+  .quiz-submit:disabled, .quiz-reveal:disabled { opacity: .38; cursor: not-allowed; }
+  .quiz-submit.block { margin-top: 14px; }
+  .quiz-hint-msg { font-size: 12px; color: var(--flame); margin-top: 6px; }
+  .quiz-hint-msg:empty { display: none; }
+
+  .quiz-fill { font-size: 15px; line-height: 2.4; color: var(--text); }
+  .quiz-blank { font-family: inherit; font-size: 14px; padding: 4px 8px; border: 1.5px solid var(--indigo-light); border-radius: 6px; background: #fff; color: var(--indigo-dark); margin: 0 3px; cursor: pointer; max-width: 100%; }
+  .quiz-blank.right { border-color: #2da262; background: #e8f8ef; color: #1a6640; }
+  .quiz-blank.wrong { border-color: #d94f3d; background: #fdecea; color: #8b2218; }
+  .quiz-blank:disabled { opacity: 1; cursor: default; }
+  .quiz-correction { display: inline-block; font-size: 12.5px; color: #1a6640; font-weight: 600; margin: 0 4px 0 2px; }
+
+  .quiz-match { display: grid; grid-template-columns: minmax(120px, 1fr) minmax(170px, 1.6fr); gap: 10px 14px; align-items: center; }
+  .quiz-match-term { font-size: 14px; font-weight: 600; color: var(--indigo-dark); line-height: 1.4; }
+  .quiz-match .quiz-blank { width: 100%; margin: 0; padding: 7px 8px; }
+  .quiz-match-cell { display: flex; flex-direction: column; gap: 4px; }
+  @media (max-width: 560px) { .quiz-match { grid-template-columns: 1fr; gap: 4px 0; } .quiz-match-term { margin-top: 8px; } }
+  .quiz-partial { display: none; font-size: 12.5px; font-weight: 700; color: var(--muted); margin-top: 10px; }
+  .quiz-partial.show { display: block; }
+
+  .quiz-option .opt-box { width: 17px; height: 17px; flex-shrink: 0; border: 1.5px solid var(--muted); border-radius: 4px; margin-top: 1px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: transparent; background: #fff; }
+  .quiz-option.selected { border-color: var(--indigo-mid); background: #f1eef8; }
+  .quiz-option.selected .opt-box { background: var(--indigo-mid); border-color: var(--indigo-mid); color: #fff; }
+  .quiz-option.correct .opt-box { background: #2da262; border-color: #2da262; color: #fff; }
+  .quiz-option.wrong .opt-box { background: #d94f3d; border-color: #d94f3d; color: #fff; }
+  .quiz-option.reveal .opt-box { border-color: #2da262; color: #2da262; }
+
+  .quiz-q.open-q { background: #fdf8f6; border-color: rgba(213,71,45,.32); }
+  .quiz-q.open-q .quiz-q-label { color: var(--flame); }
+  .quiz-textarea, .activity-answer textarea { width: 100%; min-height: 84px; resize: vertical; font-family: inherit; font-size: 14px; line-height: 1.55; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px; background: #fff; color: var(--text); outline: none; transition: border-color .15s, box-shadow .15s; }
+  .quiz-textarea[readonly], .activity-answer textarea[readonly] { background: #faf9fc; color: var(--muted); }
+  .quiz-open-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+  .quiz-open-row .note { font-size: 12px; color: var(--muted); }
+  .quiz-model { display: none; margin-top: 14px; border-radius: 10px; background: #fff; border: 1.5px solid var(--indigo-light); padding: 14px 18px 12px; }
+  .quiz-model.show { display: block; }
+  .quiz-model-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--indigo-light); margin-bottom: 6px; }
+  .quiz-model p { font-size: 14px; line-height: 1.65; margin-bottom: 10px; }
+  .quiz-keypoints-title { font-size: 12px; font-weight: 700; color: var(--muted); margin-top: 6px; }
+  .quiz-keypoints { list-style: none; margin: 4px 0 0; padding: 0; }
+  .quiz-keypoints li { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; line-height: 1.5; padding: 7px 0; border-top: 1px dashed var(--border); }
+  .quiz-keypoints li:first-child { border-top: none; }
+  .quiz-keypoints input { margin-top: 3px; accent-color: var(--indigo-mid); flex-shrink: 0; }
+  .quiz-keypoints label { cursor: pointer; }
+
+  /* Réflexion écrite avant la piste (activités « Question de réflexion ») */
+  .activity-answer { margin-top: 14px; }
+  .activity-answer label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+  .activity-answer .activity-answer-note { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .activity-hint-toggle:disabled { opacity: .4; cursor: not-allowed; text-decoration: none; }
+
+  /* Hypothèses de la théorie cinétique (cartes numérotées) */
+  .hyp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 16px 0 20px; }
+  .hyp-card { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+  .hyp-card-head { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: linear-gradient(120deg, var(--indigo-dark), var(--indigo-mid)); }
+  .hyp-num { width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; background: var(--amber); color: var(--indigo-dark); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+  .hyp-title { font-family: 'Barlow Condensed', sans-serif; font-size: 15.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #fff; line-height: 1.2; }
+  .hyp-fig { background: #faf9fc; border-bottom: 1px solid var(--border); padding: 10px 12px; text-align: center; }
+  .hyp-fig svg { width: 100%; max-width: 230px; height: auto; display: block; margin: 0 auto; }
+  .hyp-body { padding: 13px 16px 15px; }
+  .hyp-body p { font-size: 13.5px; line-height: 1.62; margin: 0 0 8px; color: var(--text); }
+  .hyp-body p:last-child { margin-bottom: 0; }
+  .hyp-key { font-size: 12.5px !important; color: var(--indigo-mid) !important; font-weight: 600; border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 4px !important; }
+  @media (max-width: 768px) { .hyp-grid { grid-template-columns: 1fr; } }
+
+  .sim canvas{width:100%;max-width:600px;height:auto;display:block;margin:0 auto;background:#fff;border-radius:6px}
+  .sim-ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:12px 0;font-size:14px}
+  .sim-ctrl input[type=range]{flex:1;min-width:160px;accent-color:var(--indigo-mid)}
+  .sim-ctrl b{font-family:var(--mono)}
+  .sim-note{font-size:12.5px;color:var(--muted)}
+  .sim-out{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+  .sim-out svg{width:100%;height:auto;background:#fff;border:1px solid var(--border);border-radius:6px}
+  .sim-cap{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+  @media(max-width:860px){.sim-out{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<button id="menu-toggle" aria-label="Menu" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+<aside id="sidebar" role="navigation" aria-label="Table des matières">
+  <div class="sidebar-header"><a href="index.html" class="back-to-index" title="Retour à la table des matières du cours">← Tous les chapitres</a><div class="label">Chimie Sec. 5 · Module 1 · Chapitre</div><div class="chap-num">3</div><div class="chap-title">Les lois des gaz</div></div>
+  <div class="toc-label">Table des matières</div>
+  <nav><ul>
+   <li><a href="#rappel" class="toc-link"><span class="num">—</span> Rappel</a></li>
+   <li><a href="#section-1" class="toc-link"><span class="num">Section 1</span> Les lois simples des gaz</a></li>
+   <li><a href="#section-1-1" class="toc-link"><span class="num">1.1</span> Pression et volume</a></li>
+   <li><a href="#chap3-ex1" class="toc-link"><span class="num">Ex.</span> Exercices 1.1</a></li>
+   <li><a href="#section-1-2" class="toc-link"><span class="num">1.2</span> Volume et température</a></li>
+   <li><a href="#chap3-ex2" class="toc-link"><span class="num">Ex.</span> Exercices 1.2</a></li>
+  </ul></nav>
+  <div class="sidebar-footer">
+    <button onclick="document.getElementById('attrib-pop').classList.toggle('visible')" title="À propos de ce document" style="display:flex;align-items:center;gap:6px;"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.5" r="0.6" fill="currentColor" stroke="none"/></svg> À propos de ce document</button>
+    <div class="attrib-popover" id="attrib-pop">
+      Matériel préparé par M. Raphaël Sylvestre Bouchard, à l'aide du manuel <em>Delta</em>, Secondaire 5 (TC Média Livres inc.).
+    </div>
+  </div>
+</aside>
+<main id="main">
+  <div class="hero"><div class="eyebrow">Chimie · Secondaire 5 · Module 1 — Les gaz</div><h1>Les lois<br>des gaz</h1><p>Enfonce le piston d'une seringue bouchée : l'air résiste. Une bulle libérée par un plongeur grossit en remontant. Ces comportements suivent des règles mathématiques simples, découvertes à partir du 17<sup>e</sup> siècle, qui permettent de <em>prédire</em> ce que fera un gaz quand on change une de ses conditions. Dans ce chapitre, tu apprends à les formuler, à les tester et à les utiliser.</p></div>
+  <div class="page-toc"><button class="page-toc-bar" aria-expanded="false" onclick="toggleNote(this)"><span class="page-toc-label">Table des matières<span class="page-toc-subtitle">Accès direct à chaque notion</span></span><svg class="chevron-toc" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="page-toc-body"><div class="page-toc-group"><div class="page-toc-group-label">Section 1 — Les lois simples des gaz</div><div class="page-toc-pills"><a href="#section-1"><span class="toc-num">1</span>Variables et conditions de référence</a><a href="#boyle-experience"><span class="toc-num">1.1.1</span>Expérimenter</a><a href="#boyle-loi"><span class="toc-num">1.1.2</span>La loi de Boyle-Mariotte</a><a href="#boyle-cinetique"><span class="toc-num">1.1.3</span>Explication cinétique</a><a href="#chap3-ex1"><span class="toc-num">Ex.</span>Exercices 1.1</a></div></div><div class="page-toc-group"><div class="page-toc-group-label">1.2 — Volume et température</div><div class="page-toc-pills"><a href="#charles-experience"><span class="toc-num">1.2.1</span>Expérimenter</a><a href="#charles-kelvin"><span class="toc-num">1.2.2</span>Zéro absolu et kelvin</a><a href="#charles-loi"><span class="toc-num">1.2.3</span>La loi de Charles</a><a href="#charles-cinetique"><span class="toc-num">1.2.4</span>Explication cinétique</a><a href="#chap3-ex2"><span class="toc-num">Ex.</span>Exercices 1.2</a></div></div></div></div>
+  <div class="search-bar-wrap"><label for="search-input">🔍 Recherche rapide</label><input type="text" id="search-input" placeholder="Ex : Boyle, hyperbole, TPN, kelvin…" oninput="doSearch(this.value)"><span id="search-count"></span></div>
+  <div class="content">
+<div id="rappel" class="rappel-card"><h2>Rappel — Ce qu'on sait déjà</h2><p>• <strong>La pression</strong> mesure la force exercée par les chocs des particules sur une surface (p = F/A); on l'exprime en kPa ou en mm Hg. <a class="rappel-ref" href="chapitre2.html#section-2">→ chapitre 2, section 2</a></p><p>• <strong>La température absolue</strong> : l'énergie cinétique moyenne des particules est proportionnelle à T <em>en kelvins</em>. Une particule deux fois plus « énergique » = une température deux fois plus élevée sur l'échelle Kelvin, pas Celsius. <a class="rappel-ref" href="chapitre2.html#section-1-2">→ chapitre 2, section 1.2</a></p><p>• <strong>Le rapport entre deux grandeurs</strong> : « inversement proportionnel » signifie que si l'une double, l'autre est divisée par deux. Tu l'utilises dès la première page de cette section.</p></div><div class="section-card" id="section-1"><button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)"><div class="section-header"><span class="section-num">Section 1</span><span class="section-title">Les lois simples des gaz</span><svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></button><div class="section-body"><p>Un échantillon de gaz se décrit complètement avec quatre variables. Les lois simples des gaz reposent sur une stratégie d'enquêteur : on <strong>fige deux variables</strong>, on en fait varier une troisième et on observe comment réagit la quatrième. Chaque paire donne une loi.</p><table class="data-table"><thead><tr><th>Variable</th><th>Symbole</th><th>Ce qu'elle décrit</th><th>Unités usuelles</th></tr></thead><tbody><tr><td>Pression</td><td>p</td><td>Intensité des chocs des particules sur les parois, par unité de surface</td><td>kPa, mm Hg</td></tr><tr><td>Volume</td><td>V</td><td>Espace dont le gaz dispose (le volume du contenant)</td><td>L, mL</td></tr><tr><td>Température absolue</td><td>T</td><td>Agitation moyenne des particules</td><td>K</td></tr><tr><td>Quantité de matière</td><td>n</td><td>Combien de particules contient l'échantillon</td><td>mol</td></tr></tbody></table><div class="def-box"><div class="def-label">Pourquoi des kelvins?</div><p>Les lois des gaz relient la température à l'énergie cinétique des particules. Or cette énergie ne peut pas être négative : il existe un minimum, le zéro absolu (0 K, soit −273,15 °C). L'échelle Kelvin part de ce minimum, ce qui rend les rapports de températures significatifs. Conversion : <strong>T (K) = t (°C) + 273,15</strong>.</p></div><p>Comme la pression atmosphérique et la température varient d'un jour et d'un endroit à l'autre, les scientifiques comparent leurs gaz à partir de deux conditions de référence :</p><table class="data-table"><thead><tr><th>Conditions de référence</th><th>Sigle</th><th>Température</th><th>Pression</th></tr></thead><tbody><tr><td>Température et pression normales</td><td>TPN</td><td>0 °C (273,15 K)</td><td>101,3 kPa</td></tr><tr><td>Température ambiante et pression normale</td><td>TAPN</td><td>25 °C (298,15 K)</td><td>101,3 kPa</td></tr></tbody></table><div class="quiz-block mini" data-quiz="c3-m1"><button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)"><svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span class="quiz-block-title">Vérifie ta compréhension<span class="quiz-block-subtitle">2 questions rapides · clique pour t'essayer</span></span><svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="quiz-body"><p class="quiz-intro">Réponds sans retourner au texte.</p><div class="quiz-score-bar"><span class="quiz-score-label">0 / 2</span><progress class="quiz-progress" value="0" max="2"></progress></div><div class="quiz-q" data-qi="0" data-type="num" data-answer="310.15" data-tol="0.1"><div class="quiz-q-label">Réponse numérique</div><div class="quiz-q-text">Un thermomètre indique 37 °C. Quelle est la température absolue correspondante?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">K</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : 37 + 273,15 = 310,15 K.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>On <em>ajoute</em> 273,15 à la valeur en °C : 37 + 273,15 = 310,15 K.</span></div></div><div class="quiz-q" data-qi="1" data-type="selects"><div class="quiz-q-label">Association</div><div class="quiz-q-text">Associe chaque situation à la bonne condition de référence.</div><div class="quiz-match"><div class="quiz-match-term">Un gaz à 0 °C et 101,3 kPa</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="0" aria-label="Un gaz à 0 °C et 101,3 kPa"><option value="">…</option><option value="0">TPN</option><option value="1">TAPN</option></select></div><div class="quiz-match-term">Un gaz à 25 °C et 101,3 kPa</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="1" aria-label="Un gaz à 25 °C et 101,3 kPa"><option value="">…</option><option value="0">TPN</option><option value="1">TAPN</option></select></div></div><button class="quiz-submit block">Valider</button><div class="quiz-partial" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : la pression est la même; seule la température distingue TPN (0 °C) et TAPN (25 °C).</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Les deux ont 101,3 kPa. TPN = 0 °C; TAPN = 25 °C (température ambiante).</span></div></div><div class="quiz-result-msg" id="result-c3-m1"></div><button class="quiz-reset" id="reset-c3-m1">↺ Recommencer</button></div></div></div></div><div class="section-card" id="section-1-1"><button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)"><div class="section-header"><span class="section-num">1.1</span><span class="section-title">La relation entre la pression et le volume</span><svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></button><div class="section-body"><p>Prends une seringue sans aiguille, bouche l'embout avec le doigt et enfonce le piston : l'air résiste de plus en plus. Cette résistance, deux savants du 17<sup>e</sup> siècle, Robert Boyle en Angleterre et Edme Mariotte en France, l'ont mesurée chacun de son côté, et ils sont arrivés à la même conclusion.</p><div class="subsection" id="boyle-experience"><div class="subsection-title">Expérimente : comprimer et détendre un gaz</div><p>Le cylindre ci-dessous contient toujours les mêmes 26 particules (n constant) à la même température. Tu contrôles le volume; le simulateur affiche la pression. Déplace le curseur, note des mesures, puis regarde la dernière colonne du tableau.</p><figure class="fig-block"><div class="fig-inner sim"><canvas id="sim-cv" width="600" height="180" role="img" aria-label="Cylindre à piston contenant 26 particules de gaz"></canvas>
+<div class="sim-ctrl"><label for="sim-v">Volume : <b id="sim-vv">8,0 L</b></label><input type="range" id="sim-v" min="1" max="10" step="0.5" value="8"><span>Pression : <b id="sim-pp">50 kPa</b></span><span class="sim-hits">Chocs sur le piston : <b id="sim-h">—</b>/s</span></div>
+<div class="sim-ctrl"><button class="quiz-submit" id="sim-add">Noter cette mesure</button><button class="quiz-reset" id="sim-clr" style="display:inline-block">Effacer</button><span class="sim-note">Garde T et n constants : seul le piston bouge.</span></div>
+<div class="sim-out"><div style="overflow-x:auto"><table class="data-table" id="sim-tbl"><thead><tr><th>V (L)</th><th>p (kPa)</th><th>p × V (kPa·L)</th><th>1/V (L⁻¹)</th></tr></thead><tbody></tbody></table></div>
+<svg viewBox="0 0 270 210" role="img" aria-label="Graphique de p en fonction de V"><line x1="40" y1="180" x2="262" y2="180" stroke="#6f6480"/><line x1="40" y1="10" x2="40" y2="180" stroke="#6f6480"/><text x="40" y="196" font-size="10" text-anchor="middle">0</text><text x="145" y="196" font-size="10" text-anchor="middle">5</text><text x="250" y="196" font-size="10" text-anchor="middle">10</text><text x="262" y="206" font-size="10" text-anchor="end">V (L)</text><text x="36" y="184" font-size="10" text-anchor="end">0</text><text x="36" y="104" font-size="10" text-anchor="end">200</text><text x="36" y="24" font-size="10" text-anchor="end">400</text><text x="4" y="10" font-size="10">p (kPa)</text><g id="g1p"></g></svg>
+<svg viewBox="0 0 270 210" role="img" aria-label="Graphique de p en fonction de 1/V"><line x1="40" y1="180" x2="262" y2="180" stroke="#6f6480"/><line x1="40" y1="10" x2="40" y2="180" stroke="#6f6480"/><text x="40" y="196" font-size="10" text-anchor="middle">0</text><text x="145" y="196" font-size="10" text-anchor="middle">0,5</text><text x="250" y="196" font-size="10" text-anchor="middle">1</text><text x="262" y="206" font-size="10" text-anchor="end">1/V (L⁻¹)</text><text x="36" y="104" font-size="10" text-anchor="end">200</text><text x="36" y="24" font-size="10" text-anchor="end">400</text><text x="4" y="10" font-size="10">p (kPa)</text><g id="g2p"></g></svg></div>
+<figcaption class="sim-cap">Figure 3.1 — Simulateur d'un gaz enfermé dans un cylindre. Note au moins quatre mesures à des volumes différents : les deux graphiques se construisent tout seuls.</figcaption></div></figure><div class="quiz-block mini" data-quiz="c3-m11a"><button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)"><svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span class="quiz-block-title">Prédis avant de calculer<span class="quiz-block-subtitle">2 questions · clique pour t'essayer</span></span><svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="quiz-body"><p class="quiz-intro">Utilise ce que tu viens de manipuler dans le simulateur.</p><div class="quiz-score-bar"><span class="quiz-score-label">0 / 1</span><progress class="quiz-progress" value="0" max="1"></progress></div><div class="quiz-q" data-qi="0" data-type="num" data-answer="200" data-tol="0.5"><div class="quiz-q-label">Réponse numérique</div><div class="quiz-q-text">Dans le simulateur, le gaz indique 100 kPa à 4,0 L. Quelle pression lirais-tu à 2,0 L?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">kPa</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : le volume est divisé par 2, donc la pression est multipliée par 2.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Le volume est divisé par 2 : la pression est multipliée par 2, soit 200 kPa. Vérifie avec p × V : 100 × 4,0 = 400 et 200 × 2,0 = 400.</span></div></div><div class="quiz-q open-q" data-qi="1" data-type="open" data-scored="false"><div class="quiz-q-label">Réflexion — non notée</div><div class="quiz-q-text">Sur le graphique de p en fonction de 1/V, tes points forment une droite qui passe par l'origine. Que représente la pente de cette droite, et pourquoi la courbe de p en fonction de V, elle, n'est pas droite?</div><textarea class="quiz-textarea" rows="3" placeholder="Écris ta réflexion ici, avec tes propres mots…" aria-label="Ta réflexion"></textarea><div class="quiz-open-row"><button class="quiz-reveal">Voir la réponse-modèle</button><span class="note">Écris ta réponse (même incomplète) pour débloquer la réponse-modèle.</span></div><div class="quiz-model"><div class="quiz-model-label">Réponse-modèle</div><p>La pente de la droite p = k × (1/V) est la constante k = p × V : c'est le « produit » qui ne change pas. Sur le graphique de p en fonction de V, le rapport est inverse (si V double, p diminue de moitié), ce qui trace une hyperbole : une courbe qui descend vite puis s'aplatit sans jamais toucher les axes.</p><div class="quiz-keypoints-title">Les idées clés — retrouves-tu les mêmes dans ta réponse ?</div><ul class="quiz-keypoints"><li><label><input type="checkbox"> La pente est la constante p × V</label></li><li><label><input type="checkbox"> Relation inverse en p–V : hyperbole, pas une droite</label></li><li><label><input type="checkbox"> Relation directe en p–(1/V) : droite par l'origine</label></li></ul></div></div><div class="quiz-result-msg" id="result-c3-m11a"></div><button class="quiz-reset" id="reset-c3-m11a">↺ Recommencer</button></div></div></div><div class="subsection" id="boyle-loi"><div class="subsection-title">La loi de Boyle-Mariotte</div><p>Les mesures le montrent : quand le volume est divisé par 2, la pression double; quand il triple, la pression est divisée par 3. On dit que p et V sont <strong>inversement proportionnels</strong>.</p><div class="def-box"><div class="def-label">Énoncé de la loi</div><p>Pour une quantité de gaz donnée, à température constante, la pression et le volume varient en sens contraire et leur <strong>produit reste constant</strong> : p × V = constante.</p></div><p>Les graphiques confirment la relation. En p–V, on obtient une <strong>hyperbole</strong>, la courbe typique d'une proportionnalité inverse. En p–(1/V), on obtient une <strong>droite qui passe par l'origine</strong> : p est directement proportionnelle à 1/V, et la pente de la droite vaut la constante p × V.</p><div class="formula">p<sub>1</sub>V<sub>1</sub> = p<sub>2</sub>V<sub>2</sub></div><div class="formula-caption">p₁, p₂ : pressions initiale et finale (kPa ou mm Hg, la même unité des deux côtés) · V₁, V₂ : volumes initial et final (L ou mL, la même unité des deux côtés) · valable seulement si n et T sont constants</div><p>Avec une autre quantité de gaz, ou à une autre température, la relation p × V = constante reste vraie, mais <strong>la constante change</strong> (un gaz plus chaud ou plus abondant donne un produit plus grand). C'est pour ça que l'équation compare deux états d'un <em>même</em> échantillon.</p><div class="example-box"><div class="example-box-header"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 4-4 5v6h-4v-6L4 7z"/></svg> Exemple résolu</div><div class="example-body"><p class="example-statement">Une seringue contient 60,0 mL d'air à 120 kPa. On bouche l'embout, puis on enfonce lentement le piston jusqu'à la graduation de 24,0 mL. Quelle est la pression finale de l'air, si la température ne change pas?</p><div class="example-step"><span class="step-num">1</span><strong>Données.</strong> p₁ = 120 kPa; V₁ = 60,0 mL; V₂ = 24,0 mL; p₂ = ? (n et T constants : la loi s'applique).</div><div class="example-step"><span class="step-num">2</span><strong>Isoler l'inconnue.</strong> De p₁V₁ = p₂V₂, on tire p₂ = p₁ × V₁ / V₂. Pas de conversion : les mL se simplifient, car V₁ et V₂ sont dans la même unité.</div><div class="example-step"><span class="step-num">3</span><strong>Calculer.</strong> p₂ = 120 kPa × 60,0 mL / 24,0 mL = 300 kPa.</div><div class="example-step"><span class="step-num">4</span><strong>Vérifier le bon sens.</strong> Le volume a diminué (60 → 24 mL), donc la pression doit avoir augmenté (120 → 300 kPa). ✔ Le facteur 2,5 sur le volume se retrouve, inversé, sur la pression.</div><div class="example-answer">p₂ = 300 kPa</div></div></div><div class="quiz-block mini" data-quiz="c3-m11b"><button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)"><svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span class="quiz-block-title">Vérifie ta compréhension<span class="quiz-block-subtitle">2 questions rapides · clique pour t'essayer</span></span><svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="quiz-body"><p class="quiz-intro">À toi d'utiliser l'équation.</p><div class="quiz-score-bar"><span class="quiz-score-label">0 / 2</span><progress class="quiz-progress" value="0" max="2"></progress></div><div class="quiz-q" data-qi="0" data-type="num" data-answer="50" data-tol="0.5"><div class="quiz-q-label">Réponse numérique</div><div class="quiz-q-text">Un gaz occupe 4,0 L à 150 kPa. On le laisse se détendre jusqu'à 12,0 L, à température constante. Quelle est sa pression finale?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">kPa</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : p₂ = 150 × 4,0 / 12,0 = 50 kPa.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>p₂ = p₁V₁ / V₂ = 150 × 4,0 / 12,0 = 50 kPa. Le volume triple, la pression est donc divisée par 3.</span></div></div><div class="quiz-q" data-qi="1" data-type="selects"><div class="quiz-q-label">Association</div><div class="quiz-q-text">Pour chaque changement de volume (n et T constants), choisis l'effet sur la pression.</div><div class="quiz-match"><div class="quiz-match-term">Le volume double</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="0" aria-label="Le volume double"><option value="">…</option><option value="0">La pression est divisée par 2</option><option value="1">La pression est multipliée par 3</option><option value="2">La pression est multipliée par 4</option></select></div><div class="quiz-match-term">Le volume est divisé par 3</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="1" aria-label="Le volume est divisé par 3"><option value="">…</option><option value="0">La pression est divisée par 2</option><option value="1">La pression est multipliée par 3</option><option value="2">La pression est multipliée par 4</option></select></div><div class="quiz-match-term">Le volume est multiplié par 0,25</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="2" aria-label="Le volume est multiplié par 0,25"><option value="">…</option><option value="0">La pression est divisée par 2</option><option value="1">La pression est multipliée par 3</option><option value="2">La pression est multipliée par 4</option></select></div></div><button class="quiz-submit block">Valider</button><div class="quiz-partial" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : la pression varie par le facteur inverse de celui du volume.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Prends l'inverse du facteur : V × 2 → p ÷ 2; V ÷ 3 → p × 3; V × 0,25 = V ÷ 4 → p × 4.</span></div></div><div class="quiz-result-msg" id="result-c3-m11b"></div><button class="quiz-reset" id="reset-c3-m11b">↺ Recommencer</button></div></div></div><div class="subsection" id="boyle-cinetique"><div class="subsection-title">Pourquoi ça marche : le regard des particules</div><div class="def-box"><div class="def-label">Explication cinétique</div><p>À température constante, la vitesse moyenne des particules ne change pas. Si on réduit le volume, elles ont moins de chemin à faire d'une paroi à l'autre : elles frappent donc la paroi plus souvent. Plus de chocs par seconde sur la même surface, c'est une pression plus élevée (p = F/A). Le compteur de chocs du simulateur montre exactement ça.</p></div><div class="note-box"><button class="note-bar" aria-expanded="false" onclick="toggleNote(this)"><span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">La respiration, ou la loi de Boyle-Mariotte dans ton corps</span></span><svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="note-body"><p>Les poumons n'ont aucun muscle qui <em>pompe</em> l'air : c'est le volume de la cage thoracique qui change. À l'inspiration, le diaphragme descend et les côtes s'écartent; le volume des poumons augmente, donc la pression de l'air qu'ils contiennent passe sous la pression atmosphérique, et l'air extérieur s'écoule vers l'intérieur. À l'expiration, les muscles se relâchent, le volume diminue, la pression dépasse celle de l'air ambiant et l'air ressort. C'est la loi de Boyle-Mariotte appliquée à ton propre corps : tu respires <em>grâce à</em> des écarts de pression que provoquent des changements de volume.</p></div></div><div class="activity-block"><button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)"><svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion<svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="activity-content"><p class="activity-question">Un élève trace p en fonction de V pour un gaz de Boyle-Mariotte et relie ses points avec une droite descendante. Son enseignant lui dit que c'est une erreur de modèle, même si les points semblent alignés. Comment l'élève peut-il le vérifier avec seulement trois mesures?</p><button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button><div class="activity-hint">Il calcule p × V pour chaque mesure : si le produit reste constant, la relation est inverse et le graphique est une hyperbole. Avec une droite descendante, p serait nul à un volume fini, et diviser V par 2 n'aurait pas pour effet de doubler p. Le test du produit constant est le plus sûr.</div></div></div><div class="activity-block"><button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)"><svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion<svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="activity-content"><p class="activity-question">En gonflant un pneu avec une pompe à vélo, on remarque que le bas de la pompe devient tiède. Pourquoi cela peut-il fausser la prédiction p₁V₁ = p₂V₂ si on pompe très vite?</p><button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button><div class="activity-hint">Comprimer rapidement un gaz augmente son énergie cinétique moyenne, donc sa température : T n'est plus constante. La pression réelle dépasse celle que prédit la loi. En comprimant lentement, la chaleur a le temps de quitter le gaz et T reste à peu près constante.</div></div></div></div><div class="def-box"><div class="def-label">Synthèse de la sous-section 1.1</div><p>• À n et T constants : p × V = constante, donc p₁V₁ = p₂V₂.<br>• V × 2 → p ÷ 2 : relation inverse (hyperbole en p–V; droite par l'origine en p–1/V).<br>• Même unité de chaque côté; pas besoin de convertir en SI.<br>• Explication : moins de volume → chocs plus fréquents sur les parois.</p></div></div></div><div class="section-card" id="chap3-ex1"><button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)"><div class="section-header"><span class="section-num">Ex.</span><span class="section-title">Exercices — 1.1</span><svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></button><div class="section-body"><div class="quiz-block" data-quiz="q31"><button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)"><svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2-2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Sous-section 1.1<span class="quiz-block-subtitle">Calculs, données et raisonnement · clique pour t'exercer</span></span><svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="quiz-body"><p class="quiz-intro">Chaque énoncé contient toutes les données nécessaires. Suppose que n et T sont constants, sauf indication contraire.</p><div class="quiz-score-bar"><span class="quiz-score-label">0 / 8</span><progress class="quiz-progress" value="0" max="8"></progress></div><div class="quiz-q" data-qi="0" data-type="num" data-answer="400" data-tol="1"><div class="quiz-q-label">Calcul avec conversion</div><div class="quiz-q-text">Un gaz occupe 2,0 L à 100 kPa. On le transfère dans un contenant de 500 mL, à température constante. Quelle est sa pression finale? (Attention aux unités.)</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">kPa</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : 500 mL = 0,500 L, donc p₂ = 100 × 2,0 / 0,500 = 400 kPa.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Convertis d'abord : 500 mL = 0,500 L. Puis p₂ = 100 × 2,0 / 0,500 = 400 kPa. Sans conversion, on aurait trouvé 0,4 kPa, un résultat absurde pour une compression.</span></div></div><div class="quiz-q" data-qi="1" data-type="num" data-answer="12.5" data-tol="0.1"><div class="quiz-q-label">Chercher un volume</div><div class="quiz-q-text">Un échantillon de 5,0 L est à 300 kPa. À quel volume sera-t-il quand sa pression sera de 120 kPa?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">L</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : V₂ = p₁V₁ / p₂ = 300 × 5,0 / 120 = 12,5 L.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>V₂ = p₁V₁ / p₂ = 300 × 5,0 / 120 = 12,5 L. La pression diminue (300 → 120), donc le volume augmente.</span></div></div><div class="quiz-q" data-qi="2" data-type="num" data-answer="2.0" data-tol="0.05"><div class="quiz-q-label">Analyse de données</div><div class="quiz-q-text">Voici des mesures d'un même gaz : <table class="data-table"><thead><tr><th>p (kPa)</th><th>60</th><th>75</th><th>120</th><th>150</th></tr></thead><tbody><tr><td>V (L)</td><td>5,0</td><td>4,0</td><td>2,5</td><td>?</td></tr></tbody></table> Quel volume occupe-t-il à 150 kPa?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">L</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : p × V = 300 pour toutes les mesures, donc V = 300 / 150 = 2,0 L.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Calcule le produit : 60 × 5,0 = 300; 75 × 4,0 = 300; 120 × 2,5 = 300. À 150 kPa, V = 300 / 150 = 2,0 L.</span></div></div><div class="quiz-q" data-qi="3" data-type="selects"><div class="quiz-q-label">Repérer l'erreur</div><div class="quiz-q-text">Un élève a noté quatre mesures de (p; V) pour un même gaz à température constante. Pour chacune, indique si elle est cohérente avec les trois autres, sachant que p × V devrait être constant (400 kPa·L pour les trois premières lectures correctes).</div><div class="quiz-match"><div class="quiz-match-term">80 kPa ; 5,0 L</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="0" aria-label="80 kPa ; 5,0 L"><option value="">…</option><option value="0">Cohérente</option><option value="1">Incohérente</option></select></div><div class="quiz-match-term">160 kPa ; 2,5 L</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="0" aria-label="160 kPa ; 2,5 L"><option value="">…</option><option value="0">Cohérente</option><option value="1">Incohérente</option></select></div><div class="quiz-match-term">200 kPa ; 2,4 L</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="1" aria-label="200 kPa ; 2,4 L"><option value="">…</option><option value="0">Cohérente</option><option value="1">Incohérente</option></select></div><div class="quiz-match-term">320 kPa ; 1,25 L</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="0" aria-label="320 kPa ; 1,25 L"><option value="">…</option><option value="0">Cohérente</option><option value="1">Incohérente</option></select></div></div><button class="quiz-submit block">Valider</button><div class="quiz-partial" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : 200 × 2,4 = 480 ≠ 400. Pour 200 kPa, on attendait 2,0 L.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Calcule p × V : 80 × 5,0 = 400; 160 × 2,5 = 400; 200 × 2,4 = 480 (incohérent); 320 × 1,25 = 400.</span></div></div><div class="quiz-q" data-qi="4" data-type="multi"><div class="quiz-q-label">Plusieurs réponses possibles</div><div class="quiz-q-text">Dans lesquelles de ces situations la loi de Boyle-Mariotte s'applique-t-elle (n et T à peu près constants)? <em style="font-weight:400;color:var(--muted);">(Coche toutes les bonnes réponses.)</em></div><div class="quiz-options"><button class="quiz-option" data-correct="true" aria-pressed="false"><span class="opt-box">✓</span> On enfonce lentement le piston d'une seringue dont l'embout est bouché</button><button class="quiz-option" data-correct="false" aria-pressed="false"><span class="opt-box">✓</span> On gonfle un ballon en y soufflant de l'air</button><button class="quiz-option" data-correct="false" aria-pressed="false"><span class="opt-box">✓</span> Un gaz enfermé dans un cylindre est chauffé de 20 °C à 80 °C</button><button class="quiz-option" data-correct="true" aria-pressed="false"><span class="opt-box">✓</span> Un plongeur laisse une bulle d'air remonter lentement vers la surface</button></div><button class="quiz-submit block">Valider ma sélection</button><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : seringue bouchée et bulle qui remonte lentement. Dans les autres cas, n (ballon qu'on gonfle) ou T (gaz chauffé) change.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>La loi exige une quantité de gaz fixe (donc pas un ballon qu'on gonfle) et une température constante (donc pas un gaz qu'on chauffe).</span></div></div><div class="quiz-q" data-qi="5"><div class="quiz-q-label">Vrai ou faux — justifie mentalement</div><div class="quiz-q-text">Si on triple la pression d'un gaz (n et T constants), son volume triple aussi.</div><div class="quiz-options"><button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button><button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : p et V sont inversement proportionnels, donc le volume est divisé par 3.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Relation inverse : p × 3 → V ÷ 3.</span></div></div><div class="quiz-q" data-qi="6" data-type="num" data-answer="190" data-tol="0.5"><div class="quiz-q-label">Autre unité de pression</div><div class="quiz-q-text">Un gaz est à 760 mm Hg dans un contenant de 1,00 L. On le laisse se détendre dans un contenant de 4,00 L. Quelle est sa pression finale, en mm Hg?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">mm Hg</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : p₂ = 760 × 1,00 / 4,00 = 190 mm Hg. La loi fonctionne dans n'importe quelle unité de pression, tant que p₁ et p₂ sont dans la même.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>p₂ = 760 × 1,00 / 4,00 = 190 mm Hg. Pas besoin de convertir en kPa : les unités de pression se simplifient comme celles du volume.</span></div></div><div class="quiz-q" data-qi="7" data-type="num" data-answer="36" data-tol="0.5"><div class="quiz-q-label">Mise en situation</div><div class="quiz-q-text">À 20 m de profondeur, la pression de l'eau est d'environ 304 kPa. Une bulle d'air de 12 mL s'y détache de la bouteille d'un plongeur et remonte lentement jusqu'à la surface, où la pression est de 101,3 kPa. Quel est son volume à l'arrivée?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">mL</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : V₂ = 304 × 12 / 101,3 ≈ 36 mL, trois fois plus gros. Voilà pourquoi un plongeur ne doit jamais retenir son souffle en remontant.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>V₂ = p₁V₁ / p₂ = 304 × 12 / 101,3 ≈ 36 mL. La pression est divisée par 3, donc le volume triple.</span></div></div><div class="quiz-q open-q" data-qi="8" data-type="open" data-scored="false"><div class="quiz-q-label">Réflexion — non notée</div><div class="quiz-q-text">Explique, avec le modèle particulaire, pourquoi la pression d'un gaz double quand on divise son volume par 2 à température constante.</div><textarea class="quiz-textarea" rows="3" placeholder="Écris ta réflexion ici, avec tes propres mots…" aria-label="Ta réflexion"></textarea><div class="quiz-open-row"><button class="quiz-reveal">Voir la réponse-modèle</button><span class="note">Écris ta réponse (même incomplète) pour débloquer la réponse-modèle.</span></div><div class="quiz-model"><div class="quiz-model-label">Réponse-modèle</div><p>À température constante, les particules gardent la même énergie cinétique moyenne, donc la même vitesse. Si le contenant a deux fois moins de volume, les particules parcourent des trajets plus courts entre deux parois : elles frappent chaque paroi environ deux fois plus souvent. Plus de chocs par seconde sur la même surface donne une pression deux fois plus grande.</p><div class="quiz-keypoints-title">Les idées clés — retrouves-tu les mêmes dans ta réponse ?</div><ul class="quiz-keypoints"><li><label><input type="checkbox"> Température constante : même vitesse moyenne des particules</label></li><li><label><input type="checkbox"> Volume plus petit : trajets plus courts, chocs plus fréquents</label></li><li><label><input type="checkbox"> Plus de chocs par seconde sur une paroi = pression plus élevée</label></li></ul></div></div><div class="quiz-result-msg" id="result-q31"></div><button class="quiz-reset" id="reset-q31">↺ Recommencer</button></div></div></div></div><div class="section-card" id="section-1-2"><button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)"><div class="section-header"><span class="section-num">1.2</span><span class="section-title">La relation entre le volume et la température</span><svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></button><div class="section-body"><p>Environ un siècle après Boyle et Mariotte, on s'intéresse à une autre question : que fait un gaz qui se réchauffe? En 1787, Jacques Charles, qui étudiait les ballons gonflés à l'hydrogène, constate qu'à pression constante, un gaz qui se refroidit voit son volume diminuer, et qu'un gaz qui se réchauffe prend de l'expansion. Mais combien exactement? C'est ce que tu vas mesurer.</p><div class="subsection" id="charles-experience"><div class="subsection-title">Expérimente : chauffer et refroidir un gaz</div><p>Le cylindre contient 26 particules (n constant) sous un piston libre qui porte un poids fixe : la pression ne bouge donc pas. Tu règles la température; le piston se positionne tout seul. Observe la vitesse des particules, puis la colonne V / T du tableau.</p><figure class="fig-block"><div class="fig-inner sim"><canvas id="sim2-cv" width="600" height="200" role="img" aria-label="Cylindre à piston libre sous un poids constant : le gaz se dilate quand on le chauffe"></canvas><div class="sim-ctrl"><label for="sim2-t">Température : <b id="sim2-tt">25 °C (298 K)</b></label><input type="range" id="sim2-t" min="-200" max="300" step="1" value="25"><span>Volume : <b id="sim2-vv">2,98 L</b></span></div><div class="sim-ctrl"><button class="quiz-submit" id="sim2-add">Noter cette mesure</button><button class="quiz-reset" id="sim2-clr" style="display:inline-block">Effacer</button><span class="sim-note">Le piston est libre sous un poids fixe : la pression reste constante. n est constant aussi.</span></div><div class="sim-out"><div style="overflow-x:auto"><table class="data-table" id="sim2-tbl"><thead><tr><th>t (°C)</th><th>T (K)</th><th>V (L)</th><th>V / T (L/K)</th></tr></thead><tbody></tbody></table></div><svg viewBox="0 0 270 210" role="img" aria-label="Graphique de V en fonction de la température en degrés Celsius"><line x1="40" y1="180" x2="262" y2="180" stroke="#6f6480"/><line x1="40" y1="10" x2="40" y2="180" stroke="#6f6480"/><line x1="150" y1="10" x2="150" y2="180" stroke="#ddd6e6" stroke-dasharray="3 3"/><text x="40" y="196" font-size="10" text-anchor="middle">−300</text><text x="150" y="196" font-size="10" text-anchor="middle">0</text><text x="260" y="196" font-size="10" text-anchor="middle">300</text><text x="262" y="207" font-size="10" text-anchor="end">t (°C)</text><text x="36" y="184" font-size="10" text-anchor="end">0</text><text x="36" y="99" font-size="10" text-anchor="end">3</text><text x="36" y="22" font-size="10" text-anchor="end">6</text><text x="4" y="10" font-size="10" text-anchor="start">V (L)</text><g id="g3p"></g></svg><svg viewBox="0 0 270 210" role="img" aria-label="Graphique de V en fonction de la température absolue en kelvins"><line x1="40" y1="180" x2="262" y2="180" stroke="#6f6480"/><line x1="40" y1="10" x2="40" y2="180" stroke="#6f6480"/><text x="40" y="196" font-size="10" text-anchor="middle">0</text><text x="150" y="196" font-size="10" text-anchor="middle">300</text><text x="260" y="196" font-size="10" text-anchor="middle">600</text><text x="262" y="207" font-size="10" text-anchor="end">T (K)</text><text x="36" y="184" font-size="10" text-anchor="end">0</text><text x="36" y="99" font-size="10" text-anchor="end">3</text><text x="36" y="22" font-size="10" text-anchor="end">6</text><text x="4" y="10" font-size="10" text-anchor="start">V (L)</text><g id="g4p"></g></svg></div><figcaption class="sim-cap">Figure 3.2 — Un gaz sous un piston libre. Note au moins trois mesures, dont une très froide : la droite pointillée du graphique de gauche se prolonge toute seule vers le zéro de volume.</figcaption></div></figure><div class="quiz-block mini" data-quiz="c3-m12a"><button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)"><svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span class="quiz-block-title">Prédis avant de calculer<span class="quiz-block-subtitle">2 questions · clique pour t'essayer</span></span><svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="quiz-body"><p class="quiz-intro">Utilise le simulateur, puis réfléchis à l'échelle de température.</p><div class="quiz-score-bar"><span class="quiz-score-label">0 / 1</span><progress class="quiz-progress" value="0" max="1"></progress></div><div class="quiz-q" data-qi="0" data-type="num" data-answer="4.0" data-tol="0.05"><div class="quiz-q-label">Réponse numérique</div><div class="quiz-q-text">Le simulateur affiche 2,0 L à −73 °C. Quel volume affichera-t-il à 127 °C? (Attention à l'échelle de température.)</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">L</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : −73 °C = 200 K et 127 °C = 400 K. La température absolue double, donc le volume double.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Convertis en kelvins : 200 K → 400 K. La température absolue double, donc V double : 4,0 L. En °C, −73 → 127 n'a pas de rapport simple, et c'est justement le piège.</span></div></div><div class="quiz-q open-q" data-qi="1" data-type="open" data-scored="false"><div class="quiz-q-label">Réflexion — non notée</div><div class="quiz-q-text">Tu notes trois mesures puis tu regardes la droite pointillée sur le graphique de V en fonction de t (°C). Où coupe-t-elle l'axe du volume nul, et que signifie ce point?</div><textarea class="quiz-textarea" rows="3" placeholder="Écris ta réflexion ici, avec tes propres mots…" aria-label="Ta réflexion"></textarea><div class="quiz-open-row"><button class="quiz-reveal">Voir la réponse-modèle</button><span class="note">Écris ta réponse (même incomplète) pour débloquer la réponse-modèle.</span></div><div class="quiz-model"><div class="quiz-model-label">Réponse-modèle</div><p>La droite coupe l'axe à environ −273 °C. Si on prolonge les mesures, le volume tendrait vers zéro à cette température, qu'on appelle le zéro absolu (0 K) : le point où l'agitation des particules serait nulle. Un gaz réel se liquéfie bien avant, mais l'extrapolation donne un repère naturel pour l'échelle Kelvin.</p><div class="quiz-keypoints-title">Les idées clés — retrouves-tu les mêmes dans ta réponse ?</div><ul class="quiz-keypoints"><li><label><input type="checkbox"> Intersection vers −273 °C</label></li><li><label><input type="checkbox"> Volume nul extrapolé = zéro absolu (0 K)</label></li><li><label><input type="checkbox"> Un gaz réel se liquéfie avant d'y arriver</label></li></ul></div></div><div class="quiz-result-msg" id="result-c3-m12a"></div><button class="quiz-reset" id="reset-c3-m12a">↺ Recommencer</button></div></div></div><div class="subsection" id="charles-kelvin"><div class="subsection-title">Le zéro absolu et l'échelle Kelvin</div><p>Sur le graphique de V en fonction de t (°C), les points s'alignent, mais la droite ne passe pas par l'origine. Charles a remarqué que, peu importe la quantité de gaz et la pression choisies, toutes les droites prolongées vers le bas se rejoignent au même endroit sur l'axe des températures : à environ −273 °C, le volume extrapolé est nul. Des mesures plus précises donnent −273,15 °C.</p><p>En 1848, William Thomson (Lord Kelvin) propose d'en tirer une échelle dont le zéro serait ce point : le <strong>zéro absolu</strong>, où l'énergie cinétique des particules s'annulerait. L'intervalle d'un kelvin est le même que celui d'un degré Celsius; seule la position du zéro change.</p><div class="def-box"><div class="def-label">Conversion</div><p>T (K) = t (°C) + 273,15 &nbsp;&nbsp;·&nbsp;&nbsp; t (°C) = T (K) − 273,15</p><p>Un thermomètre en kelvins n'affiche jamais de valeur négative. Dans les calculs, on arrondit souvent à 273.</p></div></div><div class="subsection" id="charles-loi"><div class="subsection-title">La loi de Charles</div><p>En kelvins, le volume est directement proportionnel à la température : si T triple, V triple.</p><div class="def-box"><div class="def-label">Énoncé de la loi</div><p>Pour une quantité de gaz donnée, à pression constante, le volume est directement proportionnel à la température absolue : le rapport <strong>V / T reste constant</strong>.</p></div><p>Pour comparer deux états d'un même échantillon :</p><div class="formula">V<sub>1</sub> / T<sub>1</sub> = V<sub>2</sub> / T<sub>2</sub></div><div class="formula-caption">V₁, V₂ : volumes initial et final (même unité des deux côtés) · T₁, T₂ : températures <strong>absolues</strong>, en kelvins, jamais en °C · valable seulement si p et n sont constants</div><p>La loi est parfois appelée « loi de Gay-Lussac », parce que ce chimiste français la publie en 1802 et en reconnaît la paternité à Charles. Contrairement à la loi de Boyle-Mariotte, qui est une proportion <em>inverse</em>, celle-ci est <em>directe</em> : V et T varient dans le même sens.</p><div class="example-box"><div class="example-box-header"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 4-4 5v6h-4v-6L4 7z"/></svg> Exemple résolu</div><div class="example-body"><p class="example-statement">Un ballon de fête contient 3,00 L d'air à 20 °C. On le dépose dans un congélateur à −18 °C. En supposant que la pression et la quantité d'air ne changent pas, quel volume occupera le ballon une fois refroidi?</p><div class="example-step"><span class="step-num">1</span><strong>Données.</strong> V₁ = 3,00 L; t₁ = 20 °C; t₂ = −18 °C; V₂ = ? (p et n constants : la loi de Charles s'applique).</div><div class="example-step"><span class="step-num">2</span><strong>Convertir en kelvins, toujours en premier.</strong> T₁ = 20 + 273,15 = 293,15 K; T₂ = −18 + 273,15 = 255,15 K.</div><div class="example-step"><span class="step-num">3</span><strong>Isoler et calculer.</strong> De V₁/T₁ = V₂/T₂, on tire V₂ = V₁ × T₂ / T₁ = 3,00 L × 255,15 K / 293,15 K ≈ 2,61 L.</div><div class="example-step"><span class="step-num">4</span><strong>Vérifier.</strong> Le gaz se refroidit, donc son volume diminue (3,00 → 2,61 L), mais de seulement 13 %, pas de moitié : la température absolue n'a baissé que de 293 à 255 K. Avec les degrés Celsius, le rapport −18/20 aurait donné un volume négatif, ce qui est absurde.</div><div class="example-answer">V₂ ≈ 2,61 L</div></div></div><div class="quiz-block mini" data-quiz="c3-m12b"><button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)"><svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span class="quiz-block-title">Vérifie ta compréhension<span class="quiz-block-subtitle">2 questions rapides · clique pour t'essayer</span></span><svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="quiz-body"><p class="quiz-intro">À toi d'utiliser l'équation de Charles.</p><div class="quiz-score-bar"><span class="quiz-score-label">0 / 2</span><progress class="quiz-progress" value="0" max="2"></progress></div><div class="quiz-q" data-qi="0" data-type="num" data-answer="3.0" data-tol="0.05"><div class="quiz-q-label">Réponse numérique</div><div class="quiz-q-text">Un gaz occupe 2,0 L à 300 K. On le chauffe à 450 K, à pression constante. Quel est son volume final?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">L</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : V₂ = 2,0 × 450 / 300 = 3,0 L.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>V₂ = V₁ × T₂ / T₁ = 2,0 × 450 / 300 = 3,0 L. La température absolue est multipliée par 1,5; le volume aussi.</span></div></div><div class="quiz-q" data-qi="1" data-type="selects"><div class="quiz-q-label">Association</div><div class="quiz-q-text">Pour chaque changement de température absolue (p et n constants), choisis l'effet sur le volume.</div><div class="quiz-match"><div class="quiz-match-term">La température absolue double</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="0" aria-label="La température absolue double"><option value="">…</option><option value="0">Le volume double</option><option value="1">Le volume est divisé par 3</option><option value="2">Le volume est multiplié par 1,25</option></select></div><div class="quiz-match-term">La température absolue est divisée par 3</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="1" aria-label="La température absolue est divisée par 3"><option value="">…</option><option value="0">Le volume double</option><option value="1">Le volume est divisé par 3</option><option value="2">Le volume est multiplié par 1,25</option></select></div><div class="quiz-match-term">La température passe de 200 K à 250 K</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="2" aria-label="La température passe de 200 K à 250 K"><option value="">…</option><option value="0">Le volume double</option><option value="1">Le volume est divisé par 3</option><option value="2">Le volume est multiplié par 1,25</option></select></div></div><button class="quiz-submit block">Valider</button><div class="quiz-partial" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : le volume varie par le même facteur que la température absolue.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Ici, même facteur : T × 2 → V × 2; T ÷ 3 → V ÷ 3; 250/200 = 1,25 → V × 1,25.</span></div></div><div class="quiz-result-msg" id="result-c3-m12b"></div><button class="quiz-reset" id="reset-c3-m12b">↺ Recommencer</button></div></div></div><div class="subsection" id="charles-cinetique"><div class="subsection-title">Pourquoi ça marche : le regard des particules</div><div class="def-box"><div class="def-label">Explication cinétique</div><p>Quand la température monte, les particules vont plus vite : elles heurtent les parois plus souvent et plus fort, et la pression du gaz augmente. Si le contenant peut se déformer (piston libre, ballon souple), le gaz repousse sa paroi et son volume augmente. Les chocs se répartissent alors sur une surface plus grande et la pression baisse, jusqu'à égaler la pression extérieure, qui n'a jamais changé. Voilà pourquoi la pression reste constante.</p></div><div class="note-box"><button class="note-bar" aria-expanded="false" onclick="toggleNote(this)"><span class="note-label"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Pour aller plus loin<span class="note-subtitle">Pourquoi une montgolfière monte-t-elle?</span></span><svg class="chevron-n" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="note-body"><p>Le brûleur réchauffe l'air de l'enveloppe. Comme celle-ci est ouverte en bas, la pression y reste égale à celle de l'extérieur (p constante), et l'air chaud se dilate : une partie sort par l'ouverture. L'enveloppe contient donc moins d'air, donc moins de masse, pour le même volume. Elle est ainsi plus légère que l'air froid qui l'entoure, et la poussée de l'air ambiant la soulève. Ici, n ne reste pas constant : la loi de Charles explique la dilatation, mais pas à elle seule la montée.</p></div></div><div class="activity-block"><button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)"><svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion<svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="activity-content"><p class="activity-question">On plonge un ballon fermé, gonflé d'air, dans l'azote liquide (−196 °C) : il se ratatine, puis regonfle en se réchauffant. A-t-il perdu de l'air? Et la loi de Charles prédit-elle exactement l'ampleur du rétrécissement?</p><button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button><div class="activity-hint">Non, il n'a rien perdu : le ballon est étanche, donc n est constant, et le volume suit la température. La loi prédit un volume d'environ 77/293 ≈ 26 % du volume initial. Mais à −196 °C l'oxygène et l'azote de l'air commencent à se liquéfier : le gaz réel s'éloigne du modèle et le ballon rétrécit encore plus que prévu. La loi de Charles est une bonne approximation tant que le gaz reste bien gazeux.</div></div></div><div class="activity-block"><button class="activity-bar" aria-expanded="false" onclick="toggleActivity(this)"><svg class="activity-icon icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.3"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor" stroke="none"/></svg> Question de réflexion<svg class="chevron-a" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="activity-content"><p class="activity-question">Sur le graphique de V en fonction de t (°C), les points sont parfaitement alignés, mais la droite ne passe pas par l'origine. Pourtant, on dit que V est « directement proportionnel » à la température. Où est le piège?</p><button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button><div class="activity-hint">La relation est linéaire en °C, mais la proportionnalité n'existe qu'avec une échelle qui part du vrai zéro. Le 0 °C est un repère choisi pour l'eau (sa congélation), pas le point où l'agitation des particules s'annule. En kelvins, dont le zéro est le zéro absolu, la droite passe par l'origine : V/T est alors constant.</div></div></div></div><div class="def-box"><div class="def-label">Synthèse de la sous-section 1.2</div><p>• À p et n constants : V / T = constante, donc V₁/T₁ = V₂/T₂.<br>• T doit être en kelvins : T (K) = t (°C) + 273,15. Doubler les °C n'est pas doubler les kelvins.<br>• Relation directe : T × 2 → V × 2. Droite par l'origine en V–T (K).<br>• Le prolongement des droites V–t mène à −273,15 °C : le zéro absolu.<br>• Explication : particules plus rapides → pression plus forte → le gaz repousse sa paroi.</p></div></div></div><div class="section-card" id="chap3-ex2"><button class="section-toggle" aria-expanded="false" onclick="toggleSection(this)"><div class="section-header"><span class="section-num">Ex.</span><span class="section-title">Exercices — 1.2</span><svg class="chevron" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div></button><div class="section-body"><div class="quiz-block" data-quiz="q32"><button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)"><svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2-2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Sous-section 1.2<span class="quiz-block-subtitle">Conversion, calcul, données et raisonnement · clique pour t'exercer</span></span><svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="quiz-body"><p class="quiz-intro">Chaque énoncé contient toutes les données. Suppose que p et n sont constants, sauf indication contraire. Convertis toujours en kelvins avant de calculer.</p><div class="quiz-score-bar"><span class="quiz-score-label">0 / 8</span><progress class="quiz-progress" value="0" max="8"></progress></div><div class="quiz-q" data-qi="0" data-type="num" data-answer="5.33" data-tol="0.05"><div class="quiz-q-label">Calcul direct</div><div class="quiz-q-text">Un gaz occupe 4,0 L à 27 °C. On le chauffe à 127 °C sous pression constante. Quel est son volume final?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">L</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : 300 K → 400 K, donc V₂ = 4,0 × 400 / 300 ≈ 5,3 L.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>T₁ = 27 + 273 = 300 K; T₂ = 127 + 273 = 400 K. V₂ = 4,0 × 400 / 300 ≈ 5,3 L. Avec des °C (127/27), on aurait obtenu un résultat faux d'un facteur 4,7.</span></div></div><div class="quiz-q" data-qi="1" data-type="num" data-answer="177" data-tol="0.5"><div class="quiz-q-label">Chercher une température</div><div class="quiz-q-text">Un échantillon de 500 mL à 27 °C se dilate jusqu'à 750 mL, à pression constante. À quelle température, en °C, est-il rendu?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">°C</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : T₂ = 300 × 750 / 500 = 450 K, soit 177 °C.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>T₂ = T₁ × V₂ / V₁ = 300 × 750 / 500 = 450 K. Il reste à revenir en °C : 450 − 273 ≈ 177 °C.</span></div></div><div class="quiz-q" data-qi="2" data-type="num" data-answer="1.6" data-tol="0.02"><div class="quiz-q-label">Refroidissement</div><div class="quiz-q-text">Un gaz de 2,00 L à 100 °C refroidit jusqu'à 25 °C, à pression constante. Quel est son volume final?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">L</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : V₂ = 2,00 × 298 / 373 ≈ 1,60 L.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>T₁ = 373 K; T₂ = 298 K. V₂ = 2,00 × 298 / 373 ≈ 1,60 L.</span></div></div><div class="quiz-q" data-qi="3" data-type="num" data-answer="2.7" data-tol="0.03"><div class="quiz-q-label">Mise en situation</div><div class="quiz-q-text">Un ballon de 3,00 L, gonflé à l'intérieur à 22 °C, est sorti dehors où il fait −8 °C. Quel est son volume dehors? (La pression et la quantité d'air ne changent pas.)</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">L</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : 295 K → 265 K, donc V₂ = 3,00 × 265 / 295 ≈ 2,69 L : un ballon visiblement plus petit.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>V₂ = 3,00 × 265 / 295 ≈ 2,69 L (2,70 avec 273,15). Le ballon rapetisse d'environ 10 %.</span></div></div><div class="quiz-q" data-qi="4" data-type="num" data-answer="-273" data-tol="1.5"><div class="quiz-q-label">Extrapolation</div><div class="quiz-q-text">Voici deux mesures d'un même gaz à pression constante : <table class="data-table"><thead><tr><th>t (°C)</th><th>27</th><th>127</th></tr></thead><tbody><tr><td>V (L)</td><td>3,0</td><td>4,0</td></tr></tbody></table> En prolongeant la droite, à quelle température, en °C, le volume serait-il nul?</div><div class="quiz-input-row"><input class="quiz-num" type="text" inputmode="decimal" autocomplete="off" placeholder="Ta réponse" aria-label="Ta réponse"><span class="quiz-unit">°C</span><button class="quiz-submit">Valider</button></div><div class="quiz-hint-msg" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : la pente est 0,010 L par °C; il faut descendre de 300 °C depuis 27 °C, soit −273 °C : c'est le zéro absolu.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Pente = (4,0 − 3,0) / (127 − 27) = 0,010 L/°C. Pour passer de 3,0 L à 0 L, il faut 300 °C de moins : 27 − 300 = −273 °C.</span></div></div><div class="quiz-q" data-qi="5" data-type="selects"><div class="quiz-q-label">Vrai ou faux</div><div class="quiz-q-text">Pour chacun de ces énoncés (p et n constants), indique s'il est vrai ou faux.</div><div class="quiz-match"><div class="quiz-match-term">Si on double la température en kelvins, le volume double</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="0" aria-label="Si on double la température en kelvins, le volume double"><option value="">…</option><option value="0">Vrai</option><option value="1">Faux</option></select></div><div class="quiz-match-term">Si on double la température en °C, le volume double</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="1" aria-label="Si on double la température en °C, le volume double"><option value="">…</option><option value="0">Vrai</option><option value="1">Faux</option></select></div><div class="quiz-match-term">Le volume extrapolé est nul à 0 K</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="0" aria-label="Le volume extrapolé est nul à 0 K"><option value="">…</option><option value="0">Vrai</option><option value="1">Faux</option></select></div><div class="quiz-match-term">Un gaz réel peut être refroidi à 0 K tout en restant un gaz</div><div class="quiz-match-cell"><select class="quiz-blank" data-answer="1" aria-label="Un gaz réel peut être refroidi à 0 K tout en restant un gaz"><option value="">…</option><option value="0">Vrai</option><option value="1">Faux</option></select></div></div><button class="quiz-submit block">Valider</button><div class="quiz-partial" role="status"></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : seule la température absolue est proportionnelle au volume, et le gaz réel se liquéfie bien avant 0 K.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Seule l'échelle Kelvin donne la proportionnalité. À 0 K le volume extrapolé est nul, mais aucun gaz réel n'y arrive : tous se liquéfient avant.</span></div></div><div class="quiz-q" data-qi="6" data-type="multi"><div class="quiz-q-label">Plusieurs réponses possibles</div><div class="quiz-q-text">Dans lesquelles de ces situations la loi de Charles s'applique-t-elle (p et n à peu près constants)? <em style="font-weight:400;color:var(--muted);">(Coche toutes les bonnes réponses.)</em></div><div class="quiz-options"><button class="quiz-option" data-correct="true" aria-pressed="false"><span class="opt-box">✓</span> On chauffe un gaz sous un piston libre de coulisser, avec un poids fixe dessus</button><button class="quiz-option" data-correct="false" aria-pressed="false"><span class="opt-box">✓</span> On chauffe un gaz dans une bouteille d'acier rigide et scellée</button><button class="quiz-option" data-correct="true" aria-pressed="false"><span class="opt-box">✓</span> On laisse un ballon de baudruche souple se réchauffer à l'air libre</button><button class="quiz-option" data-correct="false" aria-pressed="false"><span class="opt-box">✓</span> On gonfle un pneu avec une pompe, à température ambiante</button></div><button class="quiz-submit block">Valider ma sélection</button><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : piston libre et ballon souple (la pression reste celle de l'extérieur). Dans l'acier rigide c'est V qui est fixe, et dans le pneu n change.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Il faut que le contenant puisse se déformer pour garder p constante et qu'aucun gaz ne soit ajouté ni retiré.</span></div></div><div class="quiz-q" data-qi="7"><div class="quiz-q-label">Vrai ou faux — justifie mentalement</div><div class="quiz-q-text">Un gaz à 20 °C qu'on chauffe jusqu'à 40 °C voit son volume doubler (p et n constants).</div><div class="quiz-options"><button class="quiz-option" data-correct="false"><span class="opt-letter">V</span> Vrai</button><button class="quiz-option" data-correct="true"><span class="opt-letter">F</span> Faux</button></div><div class="quiz-feedback ok"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg><span>Exact : en kelvins, la température passe de 293 à 313 K, une hausse de 7 % seulement.</span></div><div class="quiz-feedback ko"><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>Doubler les °C n'est pas doubler les kelvins : 293 K → 313 K, soit environ +7 % de volume.</span></div></div><div class="quiz-q open-q" data-qi="8" data-type="open" data-scored="false"><div class="quiz-q-label">Réflexion — non notée</div><div class="quiz-q-text">Explique, avec le modèle particulaire, pourquoi le volume d'un gaz augmente quand on le chauffe sous pression constante.</div><textarea class="quiz-textarea" rows="3" placeholder="Écris ta réflexion ici, avec tes propres mots…" aria-label="Ta réflexion"></textarea><div class="quiz-open-row"><button class="quiz-reveal">Voir la réponse-modèle</button><span class="note">Écris ta réponse (même incomplète) pour débloquer la réponse-modèle.</span></div><div class="quiz-model"><div class="quiz-model-label">Réponse-modèle</div><p>Quand la température monte, les particules se déplacent plus vite : elles frappent plus souvent et plus fort les parois, ce qui augmente la pression du gaz. Comme le piston est libre et que la pression extérieure ne change pas, le gaz le repousse et son volume augmente. Les particules ont alors plus de chemin à faire entre les chocs, la fréquence des chocs baisse, et le mouvement s'arrête quand la pression du gaz égale de nouveau celle de l'extérieur.</p><div class="quiz-keypoints-title">Les idées clés — retrouves-tu les mêmes dans ta réponse ?</div><ul class="quiz-keypoints"><li><label><input type="checkbox"> Température plus élevée : particules plus rapides</label></li><li><label><input type="checkbox"> Chocs plus nombreux et plus forts : le gaz repousse le piston</label></li><li><label><input type="checkbox"> Équilibre rétabli quand p du gaz = p extérieure</label></li></ul></div></div><div class="quiz-result-msg" id="result-q32"></div><button class="quiz-reset" id="reset-q32">↺ Recommencer</button></div></div></div></div>
+  </div>
+</main>
+<button id="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">↑</button>
+<script>
+// ── Toggle sections ────────────────────────────────────────
+function toggleSection(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+  btn.parentElement.querySelector('.section-body').classList.toggle('open', !expanded);
+}
+
+// ── Toggle activités suggérées ─────────────────────────────
+function toggleActivity(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+function toggleHint(btn) {
+  const hint = btn.nextElementSibling;
+  hint.classList.toggle('show');
+  btn.textContent = hint.classList.contains('show') ? '▾ Cacher la piste de réponse' : '▸ Voir une piste de réponse';
+}
+
+// ── Toggle blocs d'exercices ────────────────────────────────
+function toggleQuiz(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+// ── Toggle bulles de note ────────────────────────────────────
+function toggleNote(btn) {
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+}
+
+// ── Sidebar active link ────────────────────────────────────
+const tocLinks = document.querySelectorAll('.toc-link');
+const sectionIds = ['rappel','section-1','section-1-1','chap3-ex1','section-1-2','chap3-ex2'];
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 130) current = id;
+  });
+  tocLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+  document.getElementById('to-top').classList.toggle('visible', window.scrollY > 300);
+}, {passive: true});
+
+// ── Smooth scroll from TOC ─────────────────────────────────
+tocLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    if (link.classList.contains('disabled')) { e.preventDefault(); return; }
+    e.preventDefault();
+    const id = link.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    const toggle = target.querySelector('.section-toggle');
+    if (toggle && toggle.getAttribute('aria-expanded') === 'false') toggleSection(toggle);
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+    document.getElementById('sidebar').classList.remove('open');
+  });
+});
+
+// ── Table des matières (page-toc) : ouvre la bonne section, puis défile ────
+document.querySelectorAll('.page-toc-pills a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const id = link.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    const card = target.closest('.section-card');
+    const toggle = card ? card.querySelector('.section-toggle') : null;
+    if (toggle && toggle.getAttribute('aria-expanded') === 'false') toggleSection(toggle);
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+// ── Search ─────────────────────────────────────────────────
+const contentEl = document.querySelector('.content');
+
+let lastQuery = '';
+let matchIndex = -1;
+
+function clearMarks() {
+  contentEl.querySelectorAll('span.sh-wrap').forEach(w => {
+    const p = w.parentNode;
+    w.replaceWith(document.createTextNode(w.textContent));
+    p.normalize();
+  });
+}
+
+// Éléments exclus de la recherche : contenus masqués ou non textuels
+const SEARCH_SKIP = 'script,style,textarea,select,option,svg,.quiz-feedback,.quiz-model,.quiz-partial,.quiz-hint-msg,.quiz-open-row,.quiz-reveal,.quiz-score-label,.quiz-result-msg,.activity-hint-toggle,.activity-answer';
+
+// Ouvre automatiquement les blocs repliés qui contiennent un résultat
+function revealMark(m) {
+  const act = m.closest('.activity-block');
+  if (act) {
+    const b = act.querySelector('.activity-bar');
+    if (b && b.getAttribute('aria-expanded') !== 'true') toggleActivity(b);
+    const h = m.closest('.activity-hint');
+    if (h && !h.classList.contains('show')) toggleHint(h.previousElementSibling);
+  }
+  const note = m.closest('.note-box');
+  if (note) { const b = note.querySelector('.note-bar'); if (b && b.getAttribute('aria-expanded') !== 'true') toggleNote(b); }
+  const qz = m.closest('.quiz-block');
+  if (qz) { const b = qz.querySelector('.quiz-block-bar'); if (b && b.getAttribute('aria-expanded') !== 'true') toggleQuiz(b); }
+  const card = m.closest('.section-card');
+  if (card) { const t = card.querySelector('.section-toggle'); if (t && t.getAttribute('aria-expanded') === 'false') toggleSection(t); }
+}
+
+// La recherche n'écrase plus le contenu : elle entoure les résultats de <mark>
+// et les retire ensuite, ce qui conserve les réponses des quiz et leurs boutons.
+function doSearch(query) {
+  clearMarks();
+  const countEl = document.getElementById('search-count');
+  matchIndex = -1;
+  lastQuery = query;
+
+  if (!query.trim()) { countEl.textContent = ''; return 0; }
+
+  const esc = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const reG = new RegExp(esc, 'gi'), reT = new RegExp(esc, 'i');
+  const walker = document.createTreeWalker(contentEl, NodeFilter.SHOW_TEXT, {
+    acceptNode: n => (n.parentElement && !n.parentElement.closest(SEARCH_SKIP) && reT.test(n.nodeValue))
+      ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+  });
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  let count = 0;
+  nodes.forEach(node => {
+    const txt = node.nodeValue, wrap = document.createElement('span');
+    wrap.className = 'sh-wrap';
+    let last = 0, m;
+    reG.lastIndex = 0;
+    while ((m = reG.exec(txt)) !== null) {
+      if (m[0] === '') { reG.lastIndex++; continue; }
+      wrap.appendChild(document.createTextNode(txt.slice(last, m.index)));
+      const mk = document.createElement('mark');
+      mk.className = 'sh'; mk.textContent = m[0];
+      wrap.appendChild(mk);
+      count++;
+      last = m.index + m[0].length;
+    }
+    wrap.appendChild(document.createTextNode(txt.slice(last)));
+    node.parentNode.replaceChild(wrap, node);
+  });
+
+  countEl.textContent = count ? `${count} résultat${count>1?'s':''}` : 'Aucun résultat';
+  contentEl.querySelectorAll('mark.sh').forEach(revealMark);
+  return count;
+}
+
+function goToMatch(step) {
+  const marks = contentEl.querySelectorAll('mark.sh');
+  if (!marks.length) return;
+  if (matchIndex >= 0 && marks[matchIndex]) marks[matchIndex].classList.remove('current');
+  matchIndex = (matchIndex + step + marks.length) % marks.length;
+  const m = marks[matchIndex];
+  m.classList.add('current');
+  m.scrollIntoView({behavior:'smooth', block:'center'});
+  const countEl = document.getElementById('search-count');
+  countEl.textContent = `${matchIndex+1} / ${marks.length} résultats`;
+}
+
+function runSearchAndJump(query, step) {
+  if (query !== lastQuery || !contentEl.querySelector('mark.sh')) {
+    const count = doSearch(query);
+    if (count > 0) goToMatch(0);
+  } else {
+    goToMatch(step);
+  }
+}
+
+document.getElementById('search-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    runSearchAndJump(e.target.value, e.shiftKey ? -1 : 1);
+  }
+});
+
+// Ctrl+F → recherche interne
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+    const inp = document.getElementById('search-input');
+    inp.focus(); inp.select();
+  }
+});
+
+// Fermer la bulle d'attribution au clic à l'extérieur
+document.addEventListener('click', e => {
+  const pop = document.getElementById('attrib-pop');
+  if (pop && !pop.contains(e.target) && !e.target.closest('.sidebar-footer button')) {
+    pop.classList.remove('visible');
+  }
+});
+
+// === MOTEUR DE QUIZ INTERACTIFS (types de questions variés) ===
+// Types : choix multiple / vrai-faux (par défaut), réponse numérique (num), menus déroulants
+// (selects : texte à trous, association, remise en ordre), cases à cocher (multi) et
+// réflexion écrite avec réponse-modèle (open — non notée).
+function parseNum(s) {
+  const t = String(s).replace(/\s/g, '').replace(',', '.');
+  const m = t.match(/-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?/);
+  return m ? parseFloat(m[0]) : NaN;
+}
+
+function initQuizBlock(block) {
+  const questions = Array.from(block.querySelectorAll('.quiz-q'));
+  const scored = questions.filter(q => q.dataset.scored !== 'false');
+  const total = scored.length;
+  const scoreLabel = block.querySelector('.quiz-score-label');
+  const progressBar = block.querySelector('.quiz-progress');
+  const resultMsg = block.querySelector('.quiz-result-msg');
+  const resetBtn = block.querySelector('.quiz-reset');
+  const resets = [];
+  progressBar.max = total;
+
+  function updateScore() {
+    const answered = scored.filter(q => q.classList.contains('answered'));
+    const correct = answered.filter(q => q.dataset.gotCorrect === 'true').length;
+    scoreLabel.textContent = `${correct} / ${total}`;
+    progressBar.value = answered.length;
+
+    if (answered.length === total) {
+      resultMsg.classList.add('show');
+      const pct = Math.round((correct / total) * 100);
+      resultMsg.classList.remove('great', 'good', 'poor');
+      const starIcon = '<svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3l2.6 5.8 6.2.6-4.7 4.2 1.4 6.1L12 16.9 6.5 19.7l1.4-6.1-4.7-4.2 6.2-.6Z"/></svg>';
+      const upIcon = '<svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 13l3-3 2 2 3-3.5"/></svg>';
+      const bookIcon = '<svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5.5A2 2 0 0 1 6 4h6v16H6a2 2 0 0 1-2-2Z"/><path d="M20 5.5A2 2 0 0 0 18 4h-6v16h6a2 2 0 0 0 2-2Z"/></svg>';
+      let icon, msg, variant;
+      if (pct === 100) { icon = starIcon; msg = `Parfait ! ${correct} / ${total} — la section est maîtrisée.`; variant = 'great'; }
+      else if (pct >= 70) { icon = upIcon; msg = `Bon travail : ${correct} / ${total}. Relis les explications des questions manquées.`; variant = 'good'; }
+      else { icon = bookIcon; msg = `${correct} / ${total} — il serait utile de revoir cette section avant de continuer.`; variant = 'poor'; }
+      resultMsg.classList.add(variant);
+      resultMsg.innerHTML = `${icon}<span>${msg}</span>`;
+      resetBtn.style.display = 'inline-block';
+    } else {
+      resultMsg.classList.remove('show', 'great', 'good', 'poor');
+      resetBtn.style.display = 'none';
+    }
+  }
+
+  function finish(q, isCorrect) {
+    q.classList.add('answered');
+    q.dataset.gotCorrect = isCorrect ? 'true' : 'false';
+    const fb = q.querySelector(isCorrect ? '.quiz-feedback.ok' : '.quiz-feedback.ko');
+    if (fb) fb.classList.add('show');
+    updateScore();
+  }
+
+  // — Choix multiple et vrai/faux —
+  function setupChoice(q) {
+    const options = Array.from(q.querySelectorAll('.quiz-option'));
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        if (q.classList.contains('answered')) return;
+        const isCorrect = opt.dataset.correct === 'true';
+        options.forEach(o => {
+          o.disabled = true;
+          if (o.dataset.correct === 'true') o.classList.add(o === opt ? 'correct' : 'reveal');
+          else if (o === opt) o.classList.add('wrong');
+        });
+        finish(q, isCorrect);
+      });
+    });
+    return () => options.forEach(o => { o.disabled = false; o.classList.remove('correct', 'wrong', 'reveal'); });
+  }
+
+  // — Plusieurs bonnes réponses (cases à cocher) —
+  function setupMulti(q) {
+    const options = Array.from(q.querySelectorAll('.quiz-option'));
+    const btn = q.querySelector('.quiz-submit');
+    const refresh = () => { btn.disabled = !options.some(o => o.classList.contains('selected')); };
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        if (q.classList.contains('answered')) return;
+        opt.classList.toggle('selected');
+        opt.setAttribute('aria-pressed', String(opt.classList.contains('selected')));
+        refresh();
+      });
+    });
+    btn.addEventListener('click', () => {
+      if (q.classList.contains('answered')) return;
+      let ok = true;
+      options.forEach(o => {
+        const should = o.dataset.correct === 'true';
+        const did = o.classList.contains('selected');
+        if (should !== did) ok = false;
+        o.classList.remove('selected');
+        o.disabled = true;
+        const box = o.querySelector('.opt-box');
+        if (should && did) { o.classList.add('correct'); if (box) box.textContent = '✓'; }
+        else if (!should && did) { o.classList.add('wrong'); if (box) box.textContent = '✕'; }
+        else if (should && !did) { o.classList.add('reveal'); if (box) box.textContent = '✓'; }
+      });
+      btn.disabled = true;
+      finish(q, ok);
+    });
+    refresh();
+    return () => {
+      options.forEach(o => {
+        o.disabled = false;
+        o.classList.remove('selected', 'correct', 'wrong', 'reveal');
+        o.setAttribute('aria-pressed', 'false');
+        const box = o.querySelector('.opt-box'); if (box) box.textContent = '✓';
+      });
+      refresh();
+    };
+  }
+
+  // — Réponse numérique —
+  function setupNum(q) {
+    const input = q.querySelector('.quiz-num');
+    const btn = q.querySelector('.quiz-submit');
+    const msg = q.querySelector('.quiz-hint-msg');
+    const ans = parseFloat(q.dataset.answer);
+    const tol = q.dataset.tol !== undefined ? parseFloat(q.dataset.tol) : Math.abs(ans) * parseFloat(q.dataset.rtol || '0.01');
+    const submit = () => {
+      if (q.classList.contains('answered')) return;
+      const v = parseNum(input.value);
+      if (isNaN(v)) { msg.textContent = 'Entre un nombre (par exemple : 2,65).'; return; }
+      msg.textContent = '';
+      const ok = Math.abs(v - ans) <= tol + 1e-9;
+      input.classList.add(ok ? 'correct' : 'wrong');
+      input.disabled = true;
+      btn.disabled = true;
+      finish(q, ok);
+    };
+    btn.addEventListener('click', submit);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); submit(); } });
+    return () => { input.value = ''; input.disabled = false; input.classList.remove('correct', 'wrong'); btn.disabled = false; msg.textContent = ''; };
+  }
+
+  // — Menus déroulants : texte à trous, association, remise en ordre —
+  function setupSelects(q) {
+    const sels = Array.from(q.querySelectorAll('select[data-answer]'));
+    const btn = q.querySelector('.quiz-submit');
+    const partial = q.querySelector('.quiz-partial');
+    const notes = [];
+    const refresh = () => { btn.disabled = sels.some(s => s.value === ''); };
+    sels.forEach(s => s.addEventListener('change', refresh));
+    btn.addEventListener('click', () => {
+      if (q.classList.contains('answered')) return;
+      let good = 0;
+      sels.forEach(s => {
+        const ok = s.value === s.dataset.answer;
+        if (ok) good++;
+        s.classList.add(ok ? 'right' : 'wrong');
+        s.disabled = true;
+        if (!ok) {
+          const opt = Array.from(s.options).find(o => o.value === s.dataset.answer);
+          const span = document.createElement('span');
+          span.className = 'quiz-correction';
+          span.textContent = '→ ' + (opt ? opt.textContent : '');
+          s.insertAdjacentElement('afterend', span);
+          notes.push(span);
+        }
+      });
+      btn.disabled = true;
+      if (partial) { partial.textContent = `${good} / ${sels.length} correct${good > 1 ? 'es' : 'e'}`; partial.classList.add('show'); }
+      finish(q, good === sels.length);
+    });
+    refresh();
+    return () => {
+      sels.forEach(s => { s.value = ''; s.disabled = false; s.classList.remove('right', 'wrong'); });
+      notes.splice(0).forEach(n => n.remove());
+      if (partial) partial.classList.remove('show');
+      refresh();
+    };
+  }
+
+  // — Réflexion écrite (non notée) —
+  function setupOpen(q) {
+    const ta = q.querySelector('.quiz-textarea');
+    const btn = q.querySelector('.quiz-reveal');
+    const model = q.querySelector('.quiz-model');
+    const note = q.querySelector('.quiz-open-row .note');
+    const refresh = () => { btn.disabled = model.classList.contains('show') || ta.value.trim().length < 12; };
+    ta.addEventListener('input', refresh);
+    btn.addEventListener('click', () => {
+      model.classList.add('show');
+      ta.readOnly = true;
+      btn.disabled = true;
+      q.classList.add('answered');
+      if (note) note.textContent = 'Compare avec ta propre réponse : coche les idées que tu avais déjà.';
+    });
+    refresh();
+    return () => {
+      ta.value = ''; ta.readOnly = false;
+      model.classList.remove('show');
+      model.querySelectorAll('input[type=checkbox]').forEach(c => { c.checked = false; });
+      if (note) note.textContent = 'Écris ta réponse (même incomplète) pour débloquer la réponse-modèle.';
+      refresh();
+    };
+  }
+
+  questions.forEach(q => {
+    const type = q.dataset.type || 'choice';
+    let reset;
+    if (type === 'num') reset = setupNum(q);
+    else if (type === 'selects') reset = setupSelects(q);
+    else if (type === 'multi') reset = setupMulti(q);
+    else if (type === 'open') reset = setupOpen(q);
+    else reset = setupChoice(q);
+    resets.push([q, reset]);
+  });
+
+  resetBtn.addEventListener('click', () => {
+    resets.forEach(([q, reset]) => {
+      q.classList.remove('answered');
+      delete q.dataset.gotCorrect;
+      q.querySelectorAll('.quiz-feedback').forEach(f => f.classList.remove('show'));
+      reset();
+    });
+    updateScore();
+  });
+
+  updateScore();
+}
+
+// — Activités « Question de réflexion » : l'élève écrit sa réflexion avant de voir la piste —
+function initActivities() {
+  document.querySelectorAll('.activity-content').forEach(content => {
+    const q = content.querySelector('.activity-question');
+    const hintBtn = content.querySelector('.activity-hint-toggle');
+    if (!q || !hintBtn || content.querySelector('.activity-answer')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'activity-answer';
+    wrap.innerHTML = '<label>Ta réflexion</label><textarea rows="3" placeholder="Écris ici ce que tu en penses, avec tes propres mots…"></textarea><div class="activity-answer-note">Écris ta réponse — même incomplète — pour débloquer la piste de réponse.</div>';
+    q.insertAdjacentElement('afterend', wrap);
+    const ta = wrap.querySelector('textarea');
+    const note = wrap.querySelector('.activity-answer-note');
+    hintBtn.disabled = true;
+    ta.addEventListener('input', () => {
+      const enough = ta.value.trim().length >= 12;
+      hintBtn.disabled = !enough;
+      note.textContent = enough ? 'Tu peux maintenant comparer ta réflexion avec la piste de réponse.' : 'Écris ta réponse — même incomplète — pour débloquer la piste de réponse.';
+    });
+  });
+}
+
+function initInteractive() {
+  document.querySelectorAll('.quiz-block').forEach(initQuizBlock);
+  initActivities();
+}
+
+initInteractive();
+
+(function(){
+const cv=document.getElementById('sim-cv'); if(!cv) return;
+const c=cv.getContext('2d'), K=400, sl=document.getElementById('sim-v'), vv=document.getElementById('sim-vv'), pp=document.getElementById('sim-pp'), hh=document.getElementById('sim-h');
+const f=(x,d)=>x.toLocaleString('fr-CA',{minimumFractionDigits:d,maximumFractionDigits:d});
+const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+let V=+sl.value, rows=[], hits=0;
+const ps=Array.from({length:26},()=>{const a=Math.random()*6.283;return{x:20+Math.random()*300,y:20+Math.random()*140,vx:2.4*Math.cos(a),vy:2.4*Math.sin(a)}});
+const W=()=>30+V*50;
+function draw(){const x1=10+W();c.clearRect(0,0,600,180);c.fillStyle='#f1ecfa';c.fillRect(10,10,W(),160);c.strokeStyle='#3d2d72';c.lineWidth=4;c.beginPath();c.moveTo(x1,10);c.lineTo(10,10);c.lineTo(10,170);c.lineTo(x1,170);c.stroke();c.fillStyle='#e8a93b';c.fillRect(x1,6,10,168);c.fillStyle='#b8842a';c.fillRect(x1+10,86,Math.max(0,596-x1-10),8);c.fillStyle='#d5472d';ps.forEach(p=>{c.beginPath();c.arc(p.x,p.y,4,0,6.283);c.fill()})}
+function step(){const R=10+W()-6;ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<16){p.x=16;p.vx=-p.vx}if(p.x>R){p.x=R;p.vx=-Math.abs(p.vx);hits++}if(p.y<16){p.y=16;p.vy=-p.vy}if(p.y>164){p.y=164;p.vy=-p.vy}});draw()}
+function upd(){V=+sl.value;vv.textContent=f(V,1)+' L';pp.textContent=f(K/V,0)+' kPa';const R=10+W()-6;ps.forEach(p=>{if(p.x>R)p.x=R});draw()}
+function g(){const g1=document.getElementById('g1p'),g2=document.getElementById('g2p');const X1=v=>40+v*21,X2=u=>40+u*210,Y=p=>180-p*0.4;let a='',b='';const s=rows.slice().sort((m,n)=>m.V-n.V);if(s.length>=4){a='<polyline fill="none" stroke="#b8842a" stroke-width="1.5" points="'+s.map(r=>X1(r.V)+','+Y(r.p)).join(' ')+'"/>';b='<line x1="40" y1="180" x2="'+X2(1)+'" y2="'+Y(K)+'" stroke="#b8842a" stroke-width="1.5"/>'}rows.forEach(r=>{a+='<circle cx="'+X1(r.V)+'" cy="'+Y(r.p)+'" r="4" fill="#d5472d"/>';b+='<circle cx="'+X2(1/r.V)+'" cy="'+Y(r.p)+'" r="4" fill="#d5472d"/>'});g1.innerHTML=a;g2.innerHTML=b;document.querySelector('#sim-tbl tbody').innerHTML=rows.map(r=>'<tr><td>'+f(r.V,1)+'</td><td>'+f(r.p,0)+'</td><td>'+f(r.V*r.p,0)+'</td><td>'+f(1/r.V,2)+'</td></tr>').join('')}
+sl.addEventListener('input',upd);
+document.getElementById('sim-add').addEventListener('click',()=>{if(!rows.some(r=>r.V===V)){rows.push({V:V,p:K/V});g()}});
+document.getElementById('sim-clr').addEventListener('click',()=>{rows=[];g()});
+upd();
+if(!reduce){setInterval(step,16);setInterval(()=>{hh.textContent=hits;hits=0},1000)}
+})();
+
+(function(){
+const cv=document.getElementById('sim2-cv'); if(!cv) return;
+const c=cv.getContext('2d'), sl=document.getElementById('sim2-t'), tt=document.getElementById('sim2-tt'), vv=document.getElementById('sim2-vv');
+const f=(x,d)=>x.toLocaleString('fr-CA',{minimumFractionDigits:d,maximumFractionDigits:d});
+const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+let t=+sl.value, rows=[];
+const TK=()=>t+273.15, VL=()=>0.01*TK();
+const ps=Array.from({length:26},()=>({x:210+Math.random()*180,y:120+Math.random()*60,a:Math.random()*6.283}));
+const lerp=(a,b,u)=>Math.round(a+(b-a)*u);
+function draw(){const H=VL()*30,top=190-H,u=(t+200)/500;c.clearRect(0,0,600,200);c.fillStyle='#f1ecfa';c.fillRect(200,top,200,H);c.strokeStyle='#3d2d72';c.lineWidth=4;c.beginPath();c.moveTo(200,top);c.lineTo(200,190);c.lineTo(400,190);c.lineTo(400,top);c.stroke();c.fillStyle='rgb('+lerp(74,213,u)+','+lerp(123,71,u)+','+lerp(208,45,u)+')';c.fillRect(196,190,208,9);c.fillStyle='#e8a93b';c.fillRect(196,top-8,208,8);c.fillStyle='#b8842a';c.fillRect(260,top-34,80,26);c.fillStyle='#fff';c.font='12px sans-serif';c.textAlign='center';c.fillText('poids fixe',300,top-16);c.fillStyle='#d5472d';ps.forEach(p=>{c.beginPath();c.arc(p.x,p.y,4,0,6.283);c.fill()})}
+function step(){const s=2.4*Math.sqrt(TK()/300),top=190-VL()*30;ps.forEach(p=>{p.x+=s*Math.cos(p.a);p.y+=s*Math.sin(p.a);if(p.x<206){p.x=206;p.a=Math.PI-p.a}if(p.x>394){p.x=394;p.a=Math.PI-p.a}if(p.y<top+12){p.y=top+12;p.a=-p.a}if(p.y>184){p.y=184;p.a=-p.a}});draw()}
+function upd(){t=+sl.value;tt.textContent=f(t,0)+' °C ('+f(TK(),0)+' K)';vv.textContent=f(VL(),2)+' L';const top=190-VL()*30;ps.forEach(p=>{if(p.y<top+12)p.y=top+12});draw()}
+function g(){const X1=a=>150+a*0.3667,X2=a=>40+a*0.3667,Y=v=>180-v*27;let a='',b='';if(rows.length>=3){a='<line x1="'+X1(-273.15)+'" y1="180" x2="'+X1(300)+'" y2="'+Y(0.01*573.15)+'" stroke="#b8842a" stroke-width="1.5" stroke-dasharray="5 3"/><circle cx="'+X1(-273.15)+'" cy="180" r="4" fill="#e8a93b"/><text x="'+(X1(-273.15)+6)+'" y="172" font-size="10">−273 °C</text>';b='<line x1="40" y1="180" x2="'+X2(600)+'" y2="'+Y(6)+'" stroke="#b8842a" stroke-width="1.5"/>'}rows.forEach(r=>{a+='<circle cx="'+X1(r.t)+'" cy="'+Y(r.V)+'" r="4" fill="#d5472d"/>';b+='<circle cx="'+X2(r.t+273.15)+'" cy="'+Y(r.V)+'" r="4" fill="#d5472d"/>'});document.getElementById('g3p').innerHTML=a;document.getElementById('g4p').innerHTML=b;document.querySelector('#sim2-tbl tbody').innerHTML=rows.map(r=>'<tr><td>'+f(r.t,0)+'</td><td>'+f(r.t+273.15,0)+'</td><td>'+f(r.V,2)+'</td><td>'+f(r.V/(r.t+273.15),4)+'</td></tr>').join('')}
+sl.addEventListener('input',upd);
+document.getElementById('sim2-add').addEventListener('click',()=>{if(!rows.some(r=>r.t===t)){rows.push({t:t,V:VL()});g()}});
+document.getElementById('sim2-clr').addEventListener('click',()=>{rows=[];g()});
+upd();if(!reduce)setInterval(step,16);
+})();
+</script>
+</body>
+</html>
