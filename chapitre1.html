@@ -374,6 +374,76 @@
   .hyp-body p:last-child { margin-bottom: 0; }
   .hyp-key { font-size: 12.5px !important; color: var(--indigo-mid) !important; font-weight: 600; border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 4px !important; }
   @media (max-width: 768px) { .hyp-grid { grid-template-columns: 1fr; } }
+
+  /* ── Outils interactifs, accessibilité, téléphone ── */
+  .sim canvas{width:100%;max-width:600px;height:auto;display:block;margin:0 auto;background:#fff;border-radius:6px}
+  .sim-ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:12px 0;font-size:14px}
+  .sim-ctrl input[type=range]{flex:1;min-width:160px;accent-color:var(--indigo-mid)}
+  .sim-ctrl b{font-family:var(--mono)}
+  .sim-note{font-size:12.5px;color:var(--muted)}
+  .sim-out{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+  .sim-out svg{width:100%;height:auto;background:#fff;border:1px solid var(--border);border-radius:6px}
+  .sim-cap{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+  @media(max-width:860px){.sim-out{grid-template-columns:1fr}}
+  #main{min-width:0}
+  .data-table{max-width:100%}
+  .fig-inner,.quiz-body,.section-body{min-width:0}
+  canvas{max-width:100%;height:auto}
+  @media(max-width:768px){.search-bar-wrap{flex-wrap:wrap}.search-bar-wrap input{min-width:0;flex:1 1 100%;width:100%;box-sizing:border-box}.data-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+
+/* ── Arbre de décision, cartes mémoire, accessibilité ── */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.ar-sit{background:#fff;border:1.5px solid var(--indigo-light);border-radius:10px;padding:14px 16px;text-align:left;font-size:15px;line-height:1.55;margin:10px 0;font-weight:500}
+.ar-ql{text-align:left;font-weight:600;font-size:14.5px;margin:12px 0 4px}
+.ar-opts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;justify-content:flex-start}
+.ar-opt{padding:9px 16px;border-radius:8px;border:1.5px solid var(--indigo-mid);background:#fff;color:var(--indigo-dark);font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;transition:background .15s;text-align:left}
+.ar-opt:hover:not(:disabled){background:#f1eef8}
+.ar-opt:focus-visible,#fc-card:focus-visible{outline:3px solid rgba(125,99,184,.45);outline-offset:2px}
+.ar-opt:disabled{cursor:default}
+.ar-opt.ok{background:#e6f4ec;border-color:#2da262;color:#1a6640}
+.ar-opt.ok::before{content:"✓ "}
+.ar-opt.no{background:#fbe9e6;border-color:#d5472d;color:#8b2218;text-decoration:line-through}
+.ar-fb{min-height:20px;text-align:left;font-size:13.5px;line-height:1.5;margin:4px 0}
+.ar-fb.good{color:#1a6640}
+.ar-fb.bad{color:#8b2218}
+#ar-res .def-box{text-align:left}
+.ar-tree,.ar-tree ul{list-style:none;text-align:left;font-size:13px}
+.ar-tree ul{margin-left:12px;padding-left:12px;border-left:2px solid var(--border)}
+.ar-tree li{margin:5px 0}
+.ar-node{display:inline-block;padding:3px 9px;border-radius:6px;border:1px solid var(--border);background:#fff;color:var(--muted)}
+.ar-node.law{border-color:var(--amber-dim)}
+.ar-node.on{background:var(--indigo-dark);border-color:var(--indigo-dark);color:#fff;font-weight:600}
+.ar-node.on::before{content:"▶ ";font-size:10px}
+.ar-node.law.on{background:var(--amber);border-color:var(--amber-dim);color:var(--indigo-dark)}
+
+  /* ── Chapitre 1 : outils interactifs (triangle, pictogrammes, classement, usages, molécules, cartes) ── */
+  .ar-opt{display:inline-flex;align-items:center;gap:8px}
+  .ar-opt svg{width:26px;height:26px;flex-shrink:0}
+  .ar-opt.sel{background:var(--indigo-dark);border-color:var(--indigo-dark);color:#fff}
+  .ar-opt.sel:hover:not(:disabled){background:var(--indigo-mid)}
+  .tf-v{cursor:pointer}
+  .tf-v .tf-c{stroke:transparent;stroke-width:3;transition:fill .2s,stroke .2s}
+  .tf-v:hover .tf-c{stroke:var(--indigo-dark)}
+  .tf-v:focus{outline:none}
+  .tf-v:focus-visible .tf-c{stroke:var(--indigo-dark);stroke-width:4}
+  .tf-v.off .tf-c{fill:#fff;stroke:var(--muted);stroke-dasharray:5 4;stroke-width:2.5}
+  .tf-v.off .tf-ic{opacity:.3}
+  .tf-v.off .tf-main{text-decoration:line-through}
+  .tf-st{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700}
+  .tf-flame{transition:opacity .25s}
+  .tf-flame.out{opacity:0}
+  .mol-svg{width:100%;max-width:380px;height:auto;display:block;margin:6px auto;background:#fff;border:1px solid var(--border);border-radius:6px}
+  .mol-count{font-family:var(--mono);font-size:13px}
+  .bd-row{display:grid;grid-template-columns:minmax(96px,150px) minmax(0,1fr) auto;gap:10px;align-items:center;margin:8px 0;text-align:left;font-size:13.5px}
+  .bd-name{font-weight:600;color:var(--indigo-dark)}
+  .bd-track{background:#ece8f5;border-radius:6px;height:20px;overflow:hidden}
+  .bd-bar{height:100%;background:var(--indigo-mid);border-radius:6px;transition:width .35s}
+  .bd-bar.lo{background:var(--flame)}
+  .bd-val{font-family:var(--mono);font-weight:700;font-size:13px;white-space:nowrap}
+  #fc1-card:focus-visible{outline:3px solid rgba(125,99,184,.45);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){.tf-flame,.bd-bar,.tf-v .tf-c{transition:none}}
+  @media (max-width:520px){.bd-row{grid-template-columns:1fr auto}.bd-row .bd-track{grid-column:1/-1;order:3}}
+
 </style>
 </head>
 <body>
@@ -425,10 +495,18 @@
     </button>
     <div class="page-toc-body">
       <div class="page-toc-group">
+        <div class="page-toc-group-label">Section 1 — Les symboles de danger</div>
+        <div class="page-toc-pills">
+          <a href="#pic-outil"><span class="toc-num">Outil</span>Quel pictogramme?</a>
+        </div>
+      </div>
+      <div class="page-toc-group">
         <div class="page-toc-group-label">1.1 — Les causes de la réactivité chimique des gaz</div>
         <div class="page-toc-pills">
           <a href="#comportement-electronique-atomes"><span class="toc-num">1.1.1</span>Comportement électronique des atomes</a>
+          <a href="#mol-outil"><span class="toc-num">Outil</span>Construire une molécule</a>
           <a href="#force-liaisons-chimiques"><span class="toc-num">1.1.2</span>Force des liaisons chimiques</a>
+          <a href="#bd-outil"><span class="toc-num">Outil</span>Duel des liaisons</a>
         </div>
       </div>
       <div class="page-toc-group">
@@ -436,6 +514,7 @@
         <div class="page-toc-pills">
           <a href="#rend-substance-combustible"><span class="toc-num">1.2.1</span>Qu'est-ce qui rend combustible?</a>
           <a href="#triangle-du-feu"><span class="toc-num">1.2.2</span>Triangle du feu</a>
+          <a href="#tf-outil"><span class="toc-num">Outil</span>Allumer et éteindre le triangle</a>
           <a href="#hydrocarbures-gazeux"><span class="toc-num">1.2.3</span>Hydrocarbures gazeux</a>
           <a href="#dihydrogene-combustible"><span class="toc-num">1.2.4</span>Le dihydrogène</a>
         </div>
@@ -446,18 +525,21 @@
           <a href="#dioxygene-comburant-universel"><span class="toc-num">1.3.1</span>Dioxygène : comburant universel</a>
           <a href="#ozone-deux-visages"><span class="toc-num">1.3.2</span>L'ozone, deux visages</a>
           <a href="#comburants-inattendus"><span class="toc-num">1.3.3</span>Comburants inattendus</a>
+          <a href="#cls-outil"><span class="toc-num">Outil</span>Combustible ou comburant?</a>
         </div>
       </div>
       <div class="page-toc-group">
         <div class="page-toc-group-label">Section 2</div>
         <div class="page-toc-pills">
           <a href="#section-2"><span class="toc-num">2</span>Utilisation des gaz au quotidien</a>
+          <a href="#usg-outil"><span class="toc-num">Jeu</span>Quel gaz, et pourquoi?</a>
         </div>
       </div>
       <div class="page-toc-group">
         <div class="page-toc-group-label">Synthèse</div>
         <div class="page-toc-pills">
           <a href="#chap1-recap"><span class="toc-num">✓</span>Exercices de fin de chapitre</a>
+          <a href="#fc1-cartes"><span class="toc-num">✓</span>Cartes mémoire</a>
         </div>
       </div>
     </div>
@@ -620,7 +702,22 @@
           </div>
         </div>
 
-        <div class="quiz-block mini" data-quiz="c1-m1">
+                <div class="subsection" id="pic-outil">
+          <div class="subsection-title">Outil : à chaque situation, son pictogramme</div>
+          <p>Sur une bonbonne, le pictogramme se lit en un coup d'œil : il faut donc faire le lien entre un danger et le bon symbole sans hésiter. Lis la situation, puis clique sur le pictogramme qui convient. Après une erreur, un indice apparaît; après deux, la réponse est révélée. Les situations arrivent dans un ordre aléatoire et ne se répètent pas avant que tu aies fait le tour.</p>
+          <figure class="fig-block">
+            <div class="fig-inner sim">
+              <div class="sim-ctrl"><button type="button" class="quiz-submit" id="pic-next">Une autre situation</button><span class="sim-note" id="pic-n"></span></div>
+              <div class="ar-sit" id="pic-sit"></div>
+              <div class="ar-ql" id="pic-q">Quel pictogramme correspond à cette situation?</div>
+              <div class="ar-opts" id="pic-opts" role="group" aria-label="Les six pictogrammes de danger"></div>
+              <div class="ar-fb" id="pic-fb" role="status" aria-live="polite"></div>
+              <div id="pic-res"></div>
+            </div>
+          </figure>
+        </div>
+
+<div class="quiz-block mini" data-quiz="c1-m1">
           <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
             <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span class="quiz-block-title">Vérifie ta compréhension<span class="quiz-block-subtitle">2 questions rapides · clique pour t'essayer</span></span>
             <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -846,7 +943,21 @@
 
         </div>
 
-        <div class="quiz-block mini" data-quiz="c1-m11a">
+                <div class="subsection" id="mol-outil">
+          <div class="subsection-title">Outil : construis une molécule diatomique</div>
+          <p>Choisis un élément, puis partage des paires d'électrons entre deux atomes identiques, une à la fois. Chaque atome vise une couche de valence complète. Observe combien de paires il faut — et ce qui se passe pour les éléments qui n'ont rien à partager.</p>
+          <figure class="fig-block">
+            <div class="fig-inner sim">
+              <div class="ar-opts" id="mol-pick" role="group" aria-label="Choisis un élément gazeux" style="justify-content:center"></div>
+              <svg id="mol-svg" class="mol-svg" viewBox="0 0 320 160" role="img" aria-label="Schéma de la molécule en construction"></svg>
+              <div class="sim-ctrl" style="justify-content:center"><button type="button" class="quiz-submit" id="mol-add">Partager une paire d'électrons</button><button type="button" class="quiz-reset" id="mol-reset" style="display:inline-block;margin-top:0">Recommencer</button></div>
+              <div class="ar-fb mol-count" id="mol-info" role="status" aria-live="polite" style="text-align:center"></div>
+            </div>
+            <figcaption>Les points sont des électrons de valence. Ceux qui sont partagés se placent au milieu, entre les deux atomes : chacun les compte dans sa propre couche.</figcaption>
+          </figure>
+        </div>
+
+<div class="quiz-block mini" data-quiz="c1-m11a">
           <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
             <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span class="quiz-block-title">Vérifie ta compréhension<span class="quiz-block-subtitle">3 questions rapides · clique pour t'essayer</span></span>
             <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -983,7 +1094,20 @@
 
         </div>
 
-        <div class="quiz-block mini" data-quiz="c1-m11b">
+                <div class="subsection" id="bd-outil">
+          <div class="subsection-title">Outil : le duel des liaisons</div>
+          <p>Compare la force de la liaison de deux gaz moléculaires pour prédire lequel réagit le plus facilement. Attention : seul un facteur est retenu ici, l'énergie de liaison. C'est un bon indice, mais il ne dit pas tout sur la réactivité d'un gaz.</p>
+          <figure class="fig-block">
+            <div class="fig-inner sim">
+              <div class="sim-ctrl" style="justify-content:center"><label for="bd-a">Gaz A :</label><select id="bd-a" class="quiz-blank"></select><label for="bd-b">Gaz B :</label><select id="bd-b" class="quiz-blank"></select></div>
+              <div id="bd-bars"></div>
+              <div class="ar-fb" id="bd-out" role="status" aria-live="polite" style="font-size:14.5px"></div>
+            </div>
+            <figcaption>Plus la barre est courte, moins il faut d'énergie pour briser la liaison : le gaz réagit plus facilement. Les valeurs sont celles données dans les notes de 1.1.2.</figcaption>
+          </figure>
+        </div>
+
+<div class="quiz-block mini" data-quiz="c1-m11b">
           <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
             <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span class="quiz-block-title">Vérifie ta compréhension<span class="quiz-block-subtitle">3 questions rapides · clique pour t'essayer</span></span>
             <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1261,7 +1385,61 @@
 
         <p>Le <strong>comburant</strong> que l'on rencontre le plus souvent est le dioxygène (O₂) — celui-là même dont on a vu, à la section précédente, qu'il existe sous forme de <a href="#section-1-1" onclick="var t=document.getElementById('section-1-1');var btn=t.querySelector('.section-toggle');if(btn.getAttribute('aria-expanded')==='false')btn.click();setTimeout(()=>t.scrollIntoView({behavior:'smooth',block:'start'}),80);return false;" style="color:var(--indigo-mid);font-weight:600;">molécule diatomique →</a>, et qui compose environ 21 % de l'atmosphère terrestre. Le <strong>point d'ignition</strong>, quant à lui, varie d'un combustible à l'autre : le butane s'enflamme à une température beaucoup plus basse que le méthane, par exemple, ce qui explique pourquoi on le retrouve dans les briquets plutôt que le méthane.</p>
 
-        <div class="quiz-block mini" data-quiz="c1-m12a">
+                <div class="subsection" id="tf-outil">
+          <div class="subsection-title">Outil : allume et éteins le triangle du feu</div>
+          <p>Clique sur un sommet pour le retirer ou le remettre : tu verras que la flamme n'existe que si les trois sont réunis. Ensuite, relève le défi : pour chaque situation, trouve ce que le geste retire du triangle — ou découvre qu'il n'éteint rien du tout.</p>
+          <figure class="fig-block">
+            <div class="fig-inner sim">
+              <svg id="tf-svg" viewBox="0 0 320 320" style="width:330px;max-width:100%;height:auto;" role="group" aria-label="Triangle du feu interactif. Trois interrupteurs, un par sommet : combustible, comburant et chaleur. Un sommet allumé signifie qu'il est présent.">
+                <line x1="160" y1="75" x2="66" y2="225" stroke="var(--border)" stroke-width="2.5"/>
+                <line x1="160" y1="75" x2="254" y2="225" stroke="var(--border)" stroke-width="2.5"/>
+                <line x1="66" y1="225" x2="254" y2="225" stroke="var(--border)" stroke-width="2.5"/>
+
+                <g id="tf-flame" class="tf-flame" aria-hidden="true">
+                  <g transform="translate(160,172) scale(2.7)"><path d="M0,-13 C5,-6 6,1 3,6 C4,-1 0,-3 0,2 C-3,-1 -4,-6 0,-13Z" fill="var(--flame)"/></g>
+                  <g transform="translate(160,176) scale(1.3)"><path d="M0,-13 C5,-6 6,1 3,6 C4,-1 0,-3 0,2 C-3,-1 -4,-6 0,-13Z" fill="var(--amber)"/></g>
+                </g>
+                <text id="tf-core" x="160" y="204" text-anchor="middle" class="triangle-label-sub" fill="var(--muted)" letter-spacing="0.08em">COMBUSTION</text>
+
+                <g id="tf-v-heat" class="tf-v" role="switch" tabindex="0" aria-checked="true" aria-label="Chaleur (point d'ignition atteint)">
+                  <circle class="tf-c" cx="160" cy="75" r="32" fill="var(--amber)"/>
+                  <g class="tf-ic" transform="translate(160,75)" fill="#fff"><path d="M-3,-11 L2,-2 L-1,-2 L3,11 L-4,1 L-1,1 Z"/></g>
+                  <text class="triangle-label-main tf-main" x="160" y="16" text-anchor="middle" fill="var(--indigo-dark)">CHALEUR</text>
+                  <text class="triangle-label-sub" x="160" y="30" text-anchor="middle" fill="var(--muted)">Point d'ignition atteint</text>
+                  <text class="tf-st" id="tf-st-heat" x="200" y="79" fill="var(--indigo-dark)">✓ présent</text>
+                </g>
+
+                <g id="tf-v-fuel" class="tf-v" role="switch" tabindex="0" aria-checked="true" aria-label="Combustible">
+                  <circle class="tf-c" cx="66" cy="225" r="32" fill="var(--indigo-mid)"/>
+                  <g class="tf-ic" transform="translate(66,225)" fill="#fff"><path d="M0,-13 C5,-6 6,1 3,6 C4,-1 0,-3 0,2 C-3,-1 -4,-6 0,-13Z"/></g>
+                  <text class="triangle-label-main tf-main" x="66" y="275" text-anchor="middle" fill="var(--indigo-dark)">COMBUSTIBLE</text>
+                  <text class="triangle-label-sub" x="66" y="289" text-anchor="middle" fill="var(--muted)">La substance qui brûle</text>
+                  <text class="tf-st" id="tf-st-fuel" x="66" y="305" text-anchor="middle" fill="var(--indigo-dark)">✓ présent</text>
+                </g>
+
+                <g id="tf-v-ox" class="tf-v" role="switch" tabindex="0" aria-checked="true" aria-label="Comburant">
+                  <circle class="tf-c" cx="254" cy="225" r="32" fill="var(--flame)"/>
+                  <g class="tf-ic"><circle cx="247" cy="225" r="5.5" fill="#fff"/><circle cx="261" cy="225" r="5.5" fill="#fff"/><line x1="252.5" y1="225" x2="255.5" y2="225" stroke="#fff" stroke-width="2"/></g>
+                  <text class="triangle-label-main tf-main" x="254" y="275" text-anchor="middle" fill="var(--indigo-dark)">COMBURANT</text>
+                  <text class="triangle-label-sub" x="254" y="289" text-anchor="middle" fill="var(--muted)">Permet la combustion</text>
+                  <text class="tf-st" id="tf-st-ox" x="254" y="305" text-anchor="middle" fill="var(--indigo-dark)">✓ présent</text>
+                </g>
+              </svg>
+              <div id="tf-status" class="ar-fb" role="status" aria-live="polite"></div>
+
+              <div class="sim-note" style="text-align:left;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:16px">Défi d'extinction</div>
+              <div class="ar-sit" id="tf-sit"></div>
+              <div class="ar-ql" id="tf-q">Que retire ce geste au triangle du feu?</div>
+              <div class="ar-opts" id="tf-opts" role="group" aria-label="Réponses possibles"></div>
+              <div class="ar-fb" id="tf-fb" role="status" aria-live="polite"></div>
+              <div id="tf-res"></div>
+              <div class="sim-ctrl"><button type="button" class="quiz-submit" id="tf-next">Une autre situation</button><button type="button" class="quiz-reset" id="tf-reset" style="display:inline-block;margin-top:0">Tout remettre</button><span class="sim-note" id="tf-n"></span></div>
+            </div>
+            <figcaption>Un feu ne s'éteint que si un sommet disparaît. Deux situations du défi sont des pièges : le geste n'enlève rien, ou il ajoute un comburant.</figcaption>
+          </figure>
+        </div>
+
+<div class="quiz-block mini" data-quiz="c1-m12a">
           <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
             <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span class="quiz-block-title">Vérifie ta compréhension<span class="quiz-block-subtitle">3 questions rapides · clique pour t'essayer</span></span>
             <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1887,7 +2065,22 @@
           </div>
         </div>
 
-        <div class="subsection">
+                <div class="subsection" id="cls-outil">
+          <div class="subsection-title">Atelier : combustible, comburant… ou ni l'un ni l'autre?</div>
+          <p>Un même gaz n'a pas un rôle fixé pour toujours : tout dépend de la substance en face de lui et de ce qu'il fait réellement dans la situation. Pour chaque cas, décide du rôle du gaz nommé, puis lis la raison. À la fin, tu verras quels gaz se retrouvent toujours dans la même case.</p>
+          <figure class="fig-block">
+            <div class="fig-inner sim">
+              <div class="sim-ctrl"><button type="button" class="quiz-submit" id="cls-next">Une autre situation</button><span class="sim-note" id="cls-n"></span></div>
+              <div class="ar-sit" id="cls-sit"></div>
+              <div class="ar-ql" id="cls-q">Quel rôle joue ce gaz dans la situation?</div>
+              <div class="ar-opts" id="cls-opts" role="group" aria-label="Rôle du gaz"></div>
+              <div class="ar-fb" id="cls-fb" role="status" aria-live="polite"></div>
+              <div id="cls-res"></div>
+            </div>
+          </figure>
+        </div>
+
+<div class="subsection">
           <div class="subsection-title">Synthèse — Section 1.3</div>
           <div class="def-box">
             <div class="def-label">À retenir</div>
@@ -2081,7 +2274,22 @@
 
         </div>
 
-        <div class="flash-box">
+                <div class="subsection" id="usg-outil">
+          <div class="subsection-title">Jeu : quel gaz, et pourquoi lui?</div>
+          <p>Choisir un gaz, c'est toujours choisir une propriété. Pour chaque usage, trouve d'abord le gaz qui convient, puis la raison de ce choix. Un même gaz peut être choisi pour des raisons très différentes — c'est le piège du diazote!</p>
+          <figure class="fig-block">
+            <div class="fig-inner sim">
+              <div class="sim-ctrl"><button type="button" class="quiz-submit" id="usg-next">Un autre usage</button><span class="sim-note" id="usg-n"></span></div>
+              <div class="ar-sit" id="usg-sit"></div>
+              <div class="ar-ql" id="usg-q"></div>
+              <div class="ar-opts" id="usg-opts" role="group" aria-label="Réponses possibles"></div>
+              <div class="ar-fb" id="usg-fb" role="status" aria-live="polite"></div>
+              <div id="usg-res"></div>
+            </div>
+          </figure>
+        </div>
+
+<div class="flash-box">
           <div class="flash-tag"><span class="f1">Flash</span><span class="f2">Chimie</span></div>
           <h4>Argon et néon : deux gaz nobles, deux destins bien différents</h4>
           <p>Le tableau ci-dessus fait appel à l'argon pour le soudage, le vitrage isolant et les ampoules — mais réserve le néon aux enseignes lumineuses. Les deux sont pourtant des gaz nobles chimiquement presque identiques, avec une couche de valence déjà complète (section 1.1). Ce qui les distingue vraiment, c'est leur abondance : l'argon représente environ 0,93 % de l'atmosphère — le 3<sup>e</sup> gaz en importance, juste derrière le diazote et le dioxygène —, alors que le néon n'en occupe qu'environ 0,0018 % (18 ppm). L'argon est donc quelque 500 fois plus abondant dans l'air que le néon.</p>
@@ -2342,7 +2550,18 @@
           </div>
         </div>
 
-        <div class="quiz-block" data-quiz="qfin">
+                <div class="subsection" id="fc1-cartes">
+          <div class="subsection-title">Cartes mémoire</div>
+          <p>Lis la question, réponds dans ta tête, puis retourne la carte. Les cartes marquées « À revoir » reviennent à la fin de la pile jusqu'à ce que tu les saches. Prends le temps de formuler ta réponse avant de regarder.</p>
+          <div class="fig-block"><div class="fig-inner sim">
+            <div id="fc1-card" role="button" tabindex="0" aria-label="Question. Appuie pour voir la réponse" style="cursor:pointer;min-height:140px;padding:18px;border:2px solid var(--indigo-light);border-radius:10px;background:#fcfbfe;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;line-height:1.5"></div>
+            <div class="sim-ctrl" style="margin-top:8px;justify-content:center"><button type="button" class="quiz-reset" id="fc1-flip" style="display:inline-block;margin-top:0">Retourner la carte</button><button type="button" class="quiz-submit" id="fc1-ok" disabled>Je la savais</button><button type="button" class="quiz-reset" id="fc1-ko" style="display:inline-block;margin-top:0" disabled>À revoir</button></div>
+            <div class="sim-note" id="fc1-n"></div>
+            <div id="fc1-live" class="sr-only" role="status" aria-live="polite"></div>
+          </div></div>
+        </div>
+
+<div class="quiz-block" data-quiz="qfin">
           <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
             <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices récapitulatifs — Chapitre 1<span class="quiz-block-subtitle">Niveau plus relevé — clique pour t'exercer</span></span>
             <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -2662,7 +2881,7 @@ function clearMarks() {
 }
 
 // Éléments exclus de la recherche : contenus masqués ou non textuels
-const SEARCH_SKIP = 'script,style,textarea,select,option,svg,.quiz-feedback,.quiz-model,.quiz-partial,.quiz-hint-msg,.quiz-open-row,.quiz-reveal,.quiz-score-label,.quiz-result-msg,.activity-hint-toggle,.activity-answer';
+const SEARCH_SKIP = 'script,style,textarea,select,option,svg,.sim,.quiz-feedback,.quiz-model,.quiz-partial,.quiz-hint-msg,.quiz-open-row,.quiz-reveal,.quiz-score-label,.quiz-result-msg,.activity-hint-toggle,.activity-answer';
 
 // Ouvre automatiquement les blocs repliés qui contiennent un résultat
 function revealMark(m) {
@@ -3021,6 +3240,501 @@ function initInteractive() {
 }
 
 initInteractive();
+</script>
+<script>
+/* ───────── Chapitre 1 : outils interactifs ───────── */
+(function(){
+const shuffle=a=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+const $=id=>document.getElementById(id);
+
+/* Moteur commun : une situation, une ou deux questions, indice après 1 erreur, réponse après 2.
+   Les situations sont tirées au hasard sans répétition jusqu'à ce que tout ait été réussi. */
+function Drill(c){
+  const E=c.el;
+  let queue=[],cur=null,stages=[],si=0,errs=0,solved=0,first=0,firstTry=true;
+  const N=c.items.length;
+  function counter(){E.n.textContent=(c.counterLabel||'Résolues')+' : '+solved+' / '+N+' · du premier coup : '+first}
+  function start(){
+    queue=shuffle(c.items.map((_,i)=>i));solved=0;first=0;cur=null;
+    E.res.innerHTML='';E.next.textContent=c.nextLabel;counter();nextItem();
+  }
+  function nextItem(){
+    if(cur&&!cur.done) queue.push(cur.i);
+    if(!queue.length){start();return}
+    const i=queue.shift();
+    cur={i:i,item:c.items[i],done:false};
+    stages=c.stages(cur.item);si=0;firstTry=true;
+    E.res.innerHTML='';E.fb.textContent='';E.fb.className='ar-fb';
+    E.sit.innerHTML=c.sit(cur.item);
+    if(c.onItem) c.onItem(cur.item);
+    showStage(false);
+  }
+  function showStage(focus){
+    const s=stages[si];errs=0;
+    E.q.textContent=s.q;E.opts.innerHTML='';
+    s.opts.forEach(o=>{
+      const b=document.createElement('button');
+      b.type='button';b.className='ar-opt';b.dataset.k=o.k;b.innerHTML=o.html;
+      b.addEventListener('click',()=>answer(b,o));
+      E.opts.appendChild(b);
+    });
+    if(focus){const f=E.opts.querySelector('button');if(f)f.focus()}
+  }
+  function mark(btn,cls,word){
+    btn.classList.add(cls);btn.disabled=true;
+    const sp=document.createElement('span');sp.className='sr-only';sp.textContent=' ('+word+')';btn.appendChild(sp);
+  }
+  function answer(btn,o){
+    const s=stages[si];
+    if(o.k===s.ans){mark(btn,'ok','bonne réponse');endStage(s,false);return}
+    errs++;firstTry=false;mark(btn,'no','incorrect');
+    if(errs===1){E.fb.className='ar-fb bad';E.fb.innerHTML='✗ Pas tout à fait. '+s.hint;return}
+    const good=E.opts.querySelector('button[data-k="'+s.ans+'"]');
+    if(good){mark(good,'ok','bonne réponse')}
+    endStage(s,true);
+  }
+  function endStage(s,revealed){
+    E.opts.querySelectorAll('button').forEach(b=>{b.disabled=true});
+    const o=s.opts.find(x=>x.k===s.ans);
+    E.fb.className='ar-fb '+(revealed?'bad':'good');
+    E.fb.innerHTML=(revealed?'✗ La bonne réponse est « '+o.label+' ». ':'✓ Exact. ')+s.why;
+    if(c.onStage) c.onStage(cur.item,si,revealed);
+    if(si<stages.length-1){si++;showStage(true);return}
+    cur.done=true;solved++;if(firstTry) first++;counter();
+    if(c.onResolve) c.onResolve(cur.item,firstTry);
+    if(solved===N){E.res.innerHTML=c.end();E.next.textContent='Recommencer'}
+    E.next.focus();
+  }
+  E.next.addEventListener('click',()=>{if(solved===N) start(); else nextItem()});
+  start();
+  return {restart:start};
+}
+
+/* ═════════ 1. Triangle du feu ═════════ */
+(function(){
+  const svg=$('tf-svg');if(!svg) return;
+  const K=['fuel','ox','heat'];
+  const V={fuel:$('tf-v-fuel'),ox:$('tf-v-ox'),heat:$('tf-v-heat')};
+  const ST={fuel:$('tf-st-fuel'),ox:$('tf-st-ox'),heat:$('tf-st-heat')};
+  const full={fuel:'le combustible',ox:'le comburant',heat:'la chaleur (le point d\'ignition)'};
+  const st={fuel:true,ox:true,heat:true};
+  const flame=$('tf-flame'),core=$('tf-core'),status=$('tf-status');
+  function explain(){
+    const miss=K.filter(k=>!st[k]);
+    if(!miss.length) return 'Les trois sommets sont réunis : la combustion s\'amorce. C\'est une réaction exothermique d\'oxydation entre le combustible et le comburant.';
+    if(miss.length===1) return {
+      fuel:'Sans combustible, il n\'y a rien à oxyder : pas de combustion.',
+      ox:'Sans comburant (le plus souvent le dioxygène de l\'air), rien n\'oxyde le combustible : même très chaud, il ne brûle pas.',
+      heat:'Sans chaleur suffisante, le mélange n\'atteint pas son point d\'ignition : la réaction ne s\'amorce pas.'
+    }[miss[0]];
+    if(miss.length===3) return 'Il ne reste plus aucun sommet du triangle : pas de combustion.';
+    return 'Il manque '+miss.map(k=>full[k]).join(' et ')+'. Un seul sommet manquant suffirait déjà à empêcher la combustion.';
+  }
+  function render(msg){
+    K.forEach(k=>{
+      V[k].classList.toggle('off',!st[k]);
+      V[k].setAttribute('aria-checked',String(st[k]));
+      ST[k].textContent=st[k]?'✓ présent':'✗ retiré';
+    });
+    const on=st.fuel&&st.ox&&st.heat;
+    flame.classList.toggle('out',!on);
+    core.textContent=on?'COMBUSTION':'PAS DE COMBUSTION';
+    status.textContent=msg||explain();
+  }
+  K.forEach(k=>{
+    const flip=()=>{st[k]=!st[k];render()};
+    V[k].addEventListener('click',flip);
+    V[k].addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}});
+  });
+  function setAll(){K.forEach(k=>{st[k]=true})}
+  $('tf-reset').addEventListener('click',()=>{setAll();render()});
+
+  const S=[
+    {t:'Une cuisinière au gaz brûle à pleine flamme. On ferme le robinet qui l\'alimente.',a:'fuel',
+     hint:'Qu\'est-ce qui cesse d\'arriver quand on ferme le robinet?',
+     why:'Sans arrivée de gaz, il n\'y a plus de combustible : la flamme s\'éteint, même si l\'air et la chaleur sont toujours là.'},
+    {t:'De l\'huile prend feu dans une poêle. On dépose un couvercle bien ajusté dessus.',a:'ox',
+     hint:'Un couvercle ne refroidit presque rien. Que bloque-t-il?',
+     why:'Le couvercle coupe l\'accès au dioxygène de l\'air, le comburant. L\'huile est toujours là et encore chaude, mais elle ne peut plus brûler.'},
+    {t:'Un feu de camp en bois est arrosé abondamment avec de l\'eau.',a:'heat',
+     hint:'Que fait l\'eau en s\'évaporant? Pense à l\'énergie qu\'elle absorbe.',
+     why:'L\'eau absorbe de la chaleur et fait redescendre la température sous le point d\'ignition. Le bois et l\'air sont toujours présents : c\'est la chaleur qui disparaît.'},
+    {t:'Un feu de bois ordinaire est attaqué avec un extincteur à CO₂, dont le gaz s\'étend autour des flammes.',a:'ox',
+     hint:'Le CO₂ prend de la place autour du combustible. Qui doit lui céder cette place?',
+     why:'Le CO₂ déplace le dioxygène qui entoure le combustible : le comburant disparaît. Face au bois, il ne réagit pas avec lui.'},
+    {t:'Un feu de magnésium se déclare au laboratoire, et quelqu\'un décharge un extincteur à CO₂ dessus.',a:'none',
+     hint:'Rappelle-toi la section 1.3 : devant un métal très réactif, le CO₂ peut changer de rôle.',
+     why:'Le magnésium arrache l\'oxygène au CO₂ : le CO₂ devient lui-même un comburant (2 Mg + CO₂ → 2 MgO + C). On n\'a retiré aucun sommet, on en a ajouté un : le feu peut s\'intensifier.'},
+    {t:'Une friture prend feu. Par réflexe, quelqu\'un verse de l\'eau dessus.',a:'none',
+     hint:'Compare la température de l\'huile à celle de l\'ébullition de l\'eau.',
+     why:'L\'huile est bien au-dessus de 100 °C : l\'eau se vaporise d\'un coup et projette de l\'huile enflammée, ce qui aggrave l\'incendie. Pour un feu de graisse, il faut plutôt couper le comburant (couvercle, extincteur à mousse).'},
+    {t:'Un extincteur à mousse étend une pellicule sur une flaque d\'huile enflammée.',a:'ox',
+     hint:'La pellicule recouvre la surface. Qu\'est-ce qu\'elle empêche d\'atteindre l\'huile?',
+     why:'La mousse forme une barrière entre l\'huile et l\'air : le dioxygène n\'atteint plus le combustible. C\'est le comburant qui est retiré.'},
+    {t:'Le feu d\'une prairie atteint une zone déjà entièrement brûlée et s\'arrête.',a:'fuel',
+     hint:'Qu\'est-ce qui manque dans cette zone, alors que l\'air et la chaleur sont là?',
+     why:'Il ne reste plus rien à brûler : le combustible a disparu, et la combustion s\'arrête d\'elle-même.'},
+    {t:'Une petite poubelle en feu est noyée sous un seau d\'eau.',a:'heat',
+     hint:'Le contenu de la poubelle et l\'air sont toujours là. Qu\'est-ce qui change?',
+     why:'L\'eau absorbe la chaleur et ramène la température sous le point d\'ignition : c\'est la chaleur qui est retirée.'}
+  ];
+  const OPTS=[{k:'fuel',label:'Le combustible',html:'Le combustible'},{k:'ox',label:'Le comburant',html:'Le comburant'},
+    {k:'heat',label:'La chaleur (le point d\'ignition)',html:'La chaleur (le point d\'ignition)'},
+    {k:'none',label:'Aucun : le feu ne s\'éteint pas',html:'Aucun : le feu ne s\'éteint pas'}];
+  function quiet(msg){status.setAttribute('aria-live','off');render(msg);setTimeout(()=>status.setAttribute('aria-live','polite'),400)}
+  Drill({
+    items:S,nextLabel:'Une autre situation',counterLabel:'Situations réussies',
+    el:{sit:$('tf-sit'),q:$('tf-q'),opts:$('tf-opts'),fb:$('tf-fb'),next:$('tf-next'),n:$('tf-n'),res:$('tf-res')},
+    sit:it=>it.t,
+    stages:it=>[{q:'Que retire ce geste au triangle du feu?',opts:OPTS,ans:it.a,hint:it.hint,why:it.why}],
+    onItem:()=>{setAll();quiet('Le feu brûle : les trois sommets sont réunis.')},
+    onStage:it=>{
+      setAll();
+      if(it.a==='none') quiet('Aucun sommet n\'a été retiré : le feu continue.');
+      else{st[it.a]=false;quiet()}
+    },
+    end:()=>'<div class="def-box"><div class="def-label">Bilan du défi</div><p>Éteindre un feu, c\'est retirer un sommet du triangle : fermer le gaz (combustible), étouffer avec un couvercle, une mousse ou du CO₂ (comburant), ou refroidir avec de l\'eau (chaleur).</p><p>Retiens aussi les deux pièges : l\'eau sur une friture projette l\'huile enflammée, et le CO₂ devient un comburant devant un métal très réactif comme le magnésium. Un bon geste dépend toujours de ce qui brûle.</p></div>'
+  });
+  render();
+})();
+
+/* ═════════ 2. Quel pictogramme? ═════════ */
+(function(){
+  const sit=$('pic-sit');if(!sit) return;
+  const keys=[['explo','explosifs'],['press','sous pression'],['inflam','inflammables'],['tox','toxicité'],['corr','corrosive'],['comb','comburants']];
+  const label={explo:'Explosif instable',press:'Gaz sous pression',inflam:'Inflammable',tox:'Toxicité aiguë',corr:'Corrosif',comb:'Comburant'};
+  const icon={};
+  document.querySelectorAll('.hazard-card').forEach(card=>{
+    const title=(card.querySelector('.hazard-title')||{textContent:''}).textContent.toLowerCase();
+    const svg=card.querySelector('svg');
+    keys.forEach(([k,frag])=>{
+      if(svg&&title.indexOf(frag)>-1&&!icon[k]){
+        const c=svg.cloneNode(true);c.removeAttribute('class');c.setAttribute('aria-hidden','true');c.setAttribute('focusable','false');
+        icon[k]=c.outerHTML;
+      }
+    });
+  });
+  const OPTS=keys.map(([k])=>({k:k,label:label[k],html:(icon[k]||'')+'<span>'+label[k]+'</span>'}));
+  const S=[
+    {t:'Sur une bonbonne, on lit : « Ouvrir doucement la valve; ne pas perforer ». Ce danger tient au contenant lui-même, pas à ce qu\'il contient.',a:'press',
+     hint:'Quel danger naît du seul fait qu\'un gaz est comprimé dans un contenant?',
+     why:'Le gaz est comprimé : la pression elle-même peut faire éclater le contenant, d\'où ces précautions.'},
+    {t:'Une bonbonne d\'hélium sert à gonfler des ballons. Le gaz ne brûle pas, n\'est pas toxique et ne ronge rien. Quel pictogramme devrait pourtant y figurer?',a:'press',
+     hint:'Même si le contenu est très peu réactif, qu\'est-ce qui reste dangereux dans la bonbonne?',
+     why:'Un gaz inerte peut tout de même être sous pression : ce pictogramme ne dit rien sur l\'inflammabilité du contenu.'},
+    {t:'Une fuite de ce gaz, mélangée à l\'air, s\'enflammerait au contact d\'une étincelle. L\'étiquette exige un endroit ventilé.',a:'inflam',
+     hint:'Ce gaz a besoin du dioxygène de l\'air, puis d\'une source d\'ignition.',
+     why:'Gaz inflammable : il brûle à l\'air dès qu\'une étincelle ou une flamme l\'allume. On le ventile pour qu\'il ne s\'accumule pas.'},
+    {t:'Sur la bonbonne de propane d\'un barbecue, une mention dit : « tenir loin de la chaleur, des flammes et des étincelles ». À quel danger renvoie-t-elle?',a:'inflam',
+     hint:'Le propane est un hydrocarbure gazeux. Que fait-il en présence d\'une flamme?',
+     why:'Le propane est un combustible gazeux : il brûle. (La même bonbonne porte aussi « gaz sous pression » : un contenant peut avoir plusieurs pictogrammes.)'},
+    {t:'Un produit éclabousse tes yeux et ronge la peau au contact. Pour le manipuler, on exige lunettes, gants et sarrau, et un rinçage abondant à l\'eau.',a:'corr',
+     hint:'L\'attaque est directe et en surface : le produit n\'a pas besoin de pénétrer dans le corps.',
+     why:'Matière corrosive : elle détruit les tissus (peau, yeux) dès le contact, d\'où l\'équipement de protection et le rinçage.'},
+    {t:'On renverse de l\'acide chlorhydrique sur un comptoir, et quelqu\'un en reçoit sur la main.',a:'corr',
+     hint:'Ni l\'inhalation ni l\'ingestion ne sont en cause ici : c\'est le contact qui blesse.',
+     why:'L\'acide chlorhydrique est un exemple de matière corrosive : il ronge directement la peau.'},
+    {t:'Une bonbonne de dioxygène médical doit être rangée loin du bois, de l\'essence et des solvants : le gaz ne brûle pas, mais il rendrait un incendie bien pire.',a:'comb',
+     hint:'Dans le triangle du feu, ce gaz occupe le sommet qui permet la combustion.',
+     why:'Comburant : il alimente et aggrave un incendie, d\'où la consigne de garder toute matière combustible à distance.'},
+    {t:'Au chalumeau, le dioxygène est mélangé à l\'acétylène. Quel pictogramme s\'attend-on à voir sur la bonbonne de dioxygène?',a:'comb',
+     hint:'Le dioxygène ne brûle pas lui-même : quel rôle joue-t-il dans la flamme?',
+     why:'Il est le comburant de la flamme : il oxyde l\'acétylène. Le pictogramme prévient qu\'il entretient et aggrave un feu.'},
+    {t:'Un appareil de chauffage mal ventilé libère du monoxyde de carbone. Quelques respirations suffisent pour provoquer des maux de tête, puis un évanouissement.',a:'tox',
+     hint:'Le gaz doit entrer dans l\'organisme pour agir : il perturbe les organes de l\'intérieur.',
+     why:'Toxicité aiguë : le monoxyde de carbone est absorbé par inhalation et intoxique rapidement. Le symbole couvre aussi l\'ingestion et le contact avec la peau.'},
+    {t:'« Éviter tout contact avec le produit; laisser une personne compétente le manipuler. » Le produit peut intoxiquer par ingestion, par contact avec la peau ou par inhalation.',a:'tox',
+     hint:'Cherche le symbole qui couvre les trois voies d\'exposition.',
+     why:'C\'est la toxicité aiguë : le danger vient de l\'absorption dans le corps, par l\'une ou l\'autre de ces trois voies.'},
+    {t:'Une substance renferme déjà en elle-même de quoi réagir violemment : un choc ou une vibration peut déclencher sa décomposition, même sans air.',a:'explo',
+     hint:'Aucun comburant externe n\'est nécessaire ici. Quel symbole évoque une décomposition très rapide?',
+     why:'Explosif instable : tout ce qu\'il faut pour réagir est dans la substance, et un choc suffit. Un gaz inflammable, lui, a besoin de l\'air et d\'une source d\'ignition.'},
+    {t:'Une étiquette exige d\'éviter les vibrations, de tenir le produit loin de la lumière vive et de ne jamais le perforer.',a:'explo',
+     hint:'Ces précautions visent un produit très sensible aux chocs et à la lumière.',
+     why:'Ce sont les précautions des explosifs instables, très sensibles aux contraintes physiques.'}
+  ];
+  Drill({
+    items:S,nextLabel:'Une autre situation',counterLabel:'Situations réussies',
+    el:{sit:sit,q:$('pic-q'),opts:$('pic-opts'),fb:$('pic-fb'),next:$('pic-next'),n:$('pic-n'),res:$('pic-res')},
+    sit:it=>it.t,
+    stages:it=>[{q:'Quel pictogramme correspond à cette situation?',opts:OPTS,ans:it.a,hint:it.hint,why:it.why}],
+    end:()=>'<div class="def-box"><div class="def-label">Bilan</div><p>Deux paires de pictogrammes se confondent facilement. <strong>Explosif instable</strong> : il réagit de lui-même sous un choc, sans air; <strong>inflammable</strong> : il brûle grâce à l\'air, une fois allumé. <strong>Toxicité aiguë</strong> : le danger agit de l\'intérieur, après absorption; <strong>corrosif</strong> : il détruit en surface, dès le contact.</p></div>'
+  });
+})();
+
+/* ═════════ 3. Atelier : combustible, comburant ou ni l'un ni l'autre? ═════════ */
+(function(){
+  const sit=$('cls-sit');if(!sit) return;
+  const OPTS=[{k:'fuel',label:'Combustible',html:'Combustible'},{k:'ox',label:'Comburant',html:'Comburant'},{k:'none',label:'Ni l\'un ni l\'autre',html:'Ni l\'un ni l\'autre'}];
+  const S=[
+    {t:'Le méthane qui alimente la flamme bleue d\'une cuisinière.',a:'fuel',hint:'Il brûle en présence de dioxygène : cède-t-il ou prend-il des électrons?',
+     why:'Le méthane cède des électrons au dioxygène, qui l\'oxyde : il est combustible. Sa combustion complète donne du CO₂ et de l\'eau.'},
+    {t:'Le dioxygène de l\'air qui entretient cette même flamme.',a:'ox',hint:'C\'est lui qui prend les électrons du méthane.',
+     why:'Il oxyde le méthane en lui prenant des électrons : c\'est le comburant le plus courant (environ 21 % de l\'air).'},
+    {t:'Le butane d\'un briquet.',a:'fuel',hint:'C\'est un hydrocarbure gazeux : que fait-il quand on l\'allume?',
+     why:'Hydrocarbure gazeux, il brûle : avec assez de dioxygène, il ne donne que du CO₂ et de l\'eau.'},
+    {t:'Le dihydrogène qui brûle dans le moteur d\'une fusée.',a:'fuel',hint:'Il réagit avec le dioxygène en libérant de l\'énergie.',
+     why:'Le dihydrogène est un combustible : sa combustion ne produit que de l\'eau.'},
+    {t:'Le protoxyde d\'azote qui se décompose dans l\'admission d\'un moteur de course.',a:'ox',hint:'Que libère sa décomposition (2 N₂O → 2 N₂ + O₂)?',
+     why:'En se décomposant, il libère du dioxygène supplémentaire : il agit comme comburant et permet de brûler plus de carburant.'},
+    {t:'Le dioxyde de carbone d\'un extincteur, lancé sur un feu de bois.',a:'none',hint:'Face au bois, réagit-il avec lui? Que fait-il autour du combustible?',
+     why:'Face au bois, le CO₂ ne réagit pas : il déplace le dioxygène autour du combustible et prive la flamme de son comburant.'},
+    {t:'Le dioxyde de carbone qui enveloppe un ruban de magnésium en flammes.',a:'ox',hint:'Le magnésium est très réactif : que peut-il arracher au CO₂?',
+     why:'Le magnésium arrache l\'oxygène au CO₂ (2 Mg + CO₂ → 2 MgO + C) : le CO₂ joue ici le rôle de comburant. Le rôle dépend toujours du partenaire.'},
+    {t:'L\'argon qui entoure une soudure en cours.',a:'none',hint:'Que dit-on de la couche de valence de l\'argon?',
+     why:'Gaz noble à couche de valence complète, l\'argon ne réagit avec rien : il forme une atmosphère inerte qui éloigne le dioxygène du métal chaud.'},
+    {t:'L\'hélium d\'un ballon, tout près d\'une flamme.',a:'none',hint:'Rappelle-toi ce qu\'on a dit de l\'hélium en 1.1 : a-t-il déjà formé un composé stable?',
+     why:'L\'hélium ne brûle pas et ne fait pas brûler. C\'est ce qui le rend plus sûr que le dihydrogène pour gonfler un ballon.'},
+    {t:'Le diazote qui gonfle un pneu de voiture.',a:'none',hint:'Regarde la liaison entre les deux atomes de N.',
+     why:'Sa liaison triple N≡N (environ 945 kJ/mol) est très difficile à briser : la molécule reste intacte et ne réagit presque avec rien.'},
+    {t:'L\'ozone qui fissure un pneu de caoutchouc exposé longtemps à l\'air.',a:'ox',hint:'L\'ozone est plus réactif que le dioxygène. Que fait-il au caoutchouc?',
+     why:'Comburant beaucoup plus réactif que le dioxygène, l\'ozone dégrade certains matériaux, dont le caoutchouc.'},
+    {t:'L\'acétylène d\'un chalumeau de soudage.',a:'fuel',hint:'Il est mélangé au dioxygène pour produire une flamme très chaude.',
+     why:'C\'est le combustible du chalumeau : mélangé au dioxygène, il produit une flamme très chaude.'},
+    {t:'Le difluor mis en présence d\'eau.',a:'ox',hint:'Rappelle-toi l\'oxydant le plus puissant vu en 1.1.',
+     why:'Le difluor arrache des électrons même à l\'eau (2 F₂ + 2 H₂O → 4 HF + O₂) : il ne peut jouer que le rôle de comburant, jamais celui de combustible.'},
+    {t:'La vapeur d\'eau qui touche du magnésium en feu.',a:'ox',hint:'Pense au CO₂ et au magnésium : la vapeur d\'eau peut-elle faire pareil?',
+     why:'Comme le CO₂, la vapeur d\'eau peut agir comme comburant face à un métal très réactif comme le magnésium.'},
+    {t:'Le néon d\'une enseigne lumineuse.',a:'none',hint:'Quelle propriété du néon utilise-t-on ici : sa réactivité ou sa lumière?',
+     why:'Gaz noble, il ne réagit pas : on l\'utilise pour la lumière qu\'il émet une fois ionisé, pas pour une réaction chimique.'}
+  ];
+  Drill({
+    items:S,nextLabel:'Une autre situation',counterLabel:'Situations réussies',
+    el:{sit:sit,q:$('cls-q'),opts:$('cls-opts'),fb:$('cls-fb'),next:$('cls-next'),n:$('cls-n'),res:$('cls-res')},
+    sit:it=>it.t,
+    stages:it=>[{q:'Quel rôle joue ce gaz dans la situation?',opts:OPTS,ans:it.a,hint:it.hint,why:it.why}],
+    end:()=>'<div class="def-box"><div class="def-label">Bilan de l\'atelier</div><p>L\'hélium, l\'argon, le néon et le diazote sont toujours tombés dans « ni l\'un ni l\'autre » : ce sont les gaz « passe-partout » de la section 2, choisis précisément parce qu\'ils réagissent très peu.</p><p>À l\'inverse, le CO₂ a changé de rôle selon son partenaire : sans effet sur le bois, comburant devant le magnésium. Être combustible ou comburant n\'est jamais une étiquette absolue.</p></div>'
+  });
+})();
+
+/* ═════════ 4. Quel gaz, et pourquoi lui? ═════════ */
+(function(){
+  const sit=$('usg-sit');if(!sit) return;
+  const G={He:'Hélium (He)',H2:'Dihydrogène (H₂)',O2:'Dioxygène (O₂)',N2:'Diazote (N₂)',Ar:'Argon (Ar)',Ne:'Néon (Ne)',Xe:'Xénon (Xe)',
+    C3H8:'Propane (C₃H₈)',C2H2:'Acétylène (C₂H₂)',CH4:'Méthane (CH₄)',N2O:'Protoxyde d\'azote (N₂O)'};
+  const R=[['inert','Il réagit très peu (inerte)'],['fuel','Il brûle bien (combustible)'],['ox','Il entretient la combustion (comburant)'],
+    ['light','Il produit de la lumière'],['isol','Il isole bien de la chaleur'],['react','Il doit être transformé en autre chose']];
+  const RL={};R.forEach(r=>RL[r[0]]=r[1]);
+  const S=[
+    {t:'On doit gonfler un ballon-sonde pour mesurer la météo en altitude.',g:'He',d:['H2','O2','C3H8'],r:'inert',
+     hg:'Il faut un gaz qui ne risque ni de brûler ni de faire brûler quoi que ce soit.',
+     wg:'L\'hélium, un gaz noble, ne réagit à peu près jamais : c\'est le choix sûr pour la majorité des ballons-sondes. Le dihydrogène et le propane, eux, brûlent.',
+     hr:'Que sait-on de la couche de valence de l\'hélium?',wr:'C\'est sa très faible réactivité qui motive le choix.'},
+    {t:'On veut protéger le métal chaud d\'une soudure contre l\'oxydation par l\'air.',g:'Ar',d:['O2','C3H8','N2O'],r:'inert',
+     hg:'Il faut un gaz qui n\'attaque pas le métal chaud et qui tient l\'air à distance.',
+     wg:'L\'argon crée une atmosphère inerte autour du métal : il ne réagit avec rien et empêche le dioxygène d\'atteindre la soudure. Le dioxygène et le protoxyde d\'azote, des comburants, oxyderaient le métal.',
+     hr:'Le gaz doit empêcher des réactions, pas en provoquer.',wr:'On le choisit pour sa très faible réactivité : il n\'entre dans aucune réaction.'},
+    {t:'Une enseigne doit briller d\'un rouge-orangé dans la vitrine d\'un restaurant.',g:'Ne',d:['N2','CH4','O2'],r:'light',
+     hg:'Parmi les gaz nobles, lequel est associé aux enseignes lumineuses?',
+     wg:'Une fois ionisé dans un tube, le néon émet une lumière rouge-orangé caractéristique. Rare et coûteux, il est réservé aux usages où cette lumière est irremplaçable.',
+     hr:'Ici, ce n\'est pas la réactivité qui compte.',wr:'C\'est la lumière qu\'il émet qui motive le choix.'},
+    {t:'Des phares de voiture doivent produire une lumière très blanche.',g:'Xe',d:['N2','H2','CH4'],r:'light',
+     hg:'Un gaz noble lourd est utilisé dans certains phares.',
+     wg:'Le xénon est utilisé dans certains phares pour la lumière très blanche qu\'il permet de produire.',
+     hr:'Qu\'est-ce qu\'un phare doit faire?',wr:'Là encore, c\'est la lumière produite qui compte, pas la réactivité.'},
+    {t:'On veut mieux isoler une maison : on remplit l\'espace entre les deux vitres d\'une fenêtre.',g:'Ar',d:['H2','O2','CH4'],r:'isol',
+     hg:'Il faut un gaz qui ne brûle pas et ne fait pas brûler, parmi les gaz nobles.',
+     wg:'L\'argon (comme le xénon) occupe l\'espace entre les deux vitres. Le dihydrogène et le méthane brûleraient; le dioxygène entretiendrait un feu.',
+     hr:'Pense à ce qu\'on veut empêcher de traverser la fenêtre.',wr:'L\'argon est un bon isolant : c\'est cette propriété qu\'on exploite ici.'},
+    {t:'On doit chauffer l\'air d\'une montgolfière.',g:'C3H8',d:['He','N2','Ar'],r:'fuel',
+     hg:'Il faut un gaz qui libère de l\'énergie en brûlant.',
+     wg:'Le propane est un bon combustible : sa flamme chauffe l\'air du ballon. L\'hélium, le diazote et l\'argon ne brûlent pas.',
+     hr:'Que fait la flamme avec ce gaz?',wr:'Il brûle bien : c\'est un combustible.'},
+    {t:'Au chalumeau de soudage, on cherche le gaz qui entretient la flamme très chaude.',g:'O2',d:['Ar','N2','He'],r:'ox',
+     hg:'Quel gaz doit être présent pour que le combustible brûle?',
+     wg:'Le dioxygène est le comburant : mélangé à l\'acétylène, il produit la flamme très chaude du chalumeau. L\'argon, le diazote et l\'hélium ne font pas brûler le combustible.',
+     hr:'Dans le triangle du feu, de quel sommet s\'agit-il?',wr:'Il entretient la combustion : c\'est un comburant.'},
+    {t:'Toujours au chalumeau, on cherche cette fois le gaz qui brûle.',g:'C2H2',d:['O2','Ar','Ne'],r:'fuel',
+     hg:'Parmi ces gaz, un seul peut servir de combustible.',
+     wg:'L\'acétylène est le combustible du chalumeau. Le dioxygène ne brûle pas : il fait brûler.',
+     hr:'Que lui arrive-t-il dans la flamme?',wr:'Il brûle : c\'est un combustible.'},
+    {t:'Une voiture électrique doit alimenter sa pile à combustible.',g:'H2',d:['He','N2','Xe'],r:'fuel',
+     hg:'Le gaz doit réagir avec le dioxygène de l\'air pour produire de l\'électricité.',
+     wg:'Le dihydrogène est un combustible : la pile le combine au dioxygène de l\'air et ne rejette que de l\'eau à l\'usage.',
+     hr:'Que fait-on réagir avec le dioxygène de l\'air?',wr:'C\'est un combustible : il réagit avec le dioxygène.'},
+    {t:'On remplit les pneus d\'une voiture.',g:'N2',d:['O2','C2H2','H2'],r:'inert',
+     hg:'Le gaz ne doit pas réagir avec le caoutchouc.',
+     wg:'Le diazote est très peu réactif (liaison triple N≡N très forte). Le dioxygène, l\'acétylène et le dihydrogène réagiraient bien plus facilement.',
+     hr:'Que sait-on de la liaison N≡N?',wr:'Sa faible réactivité motive le choix : le gaz ne réagit pas avec ce qui l\'entoure.'},
+    {t:'On fabrique un engrais à base d\'ammoniac (NH₃).',g:'N2',d:['Ar','He','Ne'],r:'react',
+     hg:'Un seul de ces gaz contient l\'élément azote, dont les plantes ont besoin.',
+     wg:'Le diazote est la source d\'azote de l\'ammoniac. L\'argon, l\'hélium et le néon sont des gaz nobles : ils ne forment pas d\'ammoniac.',
+     hr:'Cette fois, le gaz ne doit surtout pas rester intact.',
+     wr:'Ici, on ne veut pas qu\'il reste inerte : sa triple liaison est brisée industriellement pour former l\'ammoniac, une forme que les plantes assimilent. Le N₂ est consommé. C\'est le même gaz que pour les pneus, mais pour la raison opposée!'},
+    {t:'À l\'hôpital, une personne a de la difficulté à respirer.',g:'O2',d:['N2','Ar','Xe'],r:'ox',
+     hg:'C\'est un gaz de l\'air, essentiel à la respiration.',
+     wg:'On administre du dioxygène. Le diazote, l\'argon et le xénon ne jouent pas ce rôle.',
+     hr:'Quel rôle le tableau de la section 2 attribue-t-il au dioxygène en médecine?',
+     wr:'Dans le tableau de la section 2, le dioxygène est décrit comme le comburant de la combustion cellulaire : voilà la propriété mise à profit.'},
+    {t:'On veut sceller un sachet de croustilles et retarder l\'oxydation des aliments.',g:'N2',d:['O2','CH4','C3H8'],r:'inert',
+     hg:'Il faut un gaz qui prend la place de l\'air sans réagir avec les aliments.',
+     wg:'Le diazote remplace l\'air : sans dioxygène, l\'oxydation est beaucoup plus lente. Le dioxygène, au contraire, la favoriserait.',
+     hr:'Le gaz ne doit réagir ni avec les croustilles ni avec le sachet.',wr:'C\'est sa faible réactivité qui est mise à profit.'},
+    {t:'Une famille prépare le souper sur une cuisinière au gaz naturel.',g:'CH4',d:['N2','He','O2'],r:'fuel',
+     hg:'Le gaz naturel est surtout un hydrocarbure.',
+     wg:'Le gaz naturel est composé surtout de méthane, un hydrocarbure gazeux qui brûle.',
+     hr:'Que fait la flamme avec ce gaz?',wr:'Il brûle : c\'est un combustible.'},
+    {t:'On veut ralentir l\'usure du filament d\'une ampoule incandescente.',g:'Ar',d:['O2','H2','CH4'],r:'inert',
+     hg:'Il faut un gaz qui n\'attaque pas le filament très chaud.',
+     wg:'L\'argon remplit l\'ampoule : il limite la dégradation du filament et prolonge ainsi sa durée de vie.',
+     hr:'Le gaz ne doit pas réagir avec le filament chaud.',wr:'C\'est sa faible réactivité qui est mise à profit.'}
+  ];
+  Drill({
+    items:S,nextLabel:'Un autre usage',counterLabel:'Usages réussis',
+    el:{sit:sit,q:$('usg-q'),opts:$('usg-opts'),fb:$('usg-fb'),next:$('usg-next'),n:$('usg-n'),res:$('usg-res')},
+    sit:it=>it.t,
+    stages:it=>[
+      {q:'Quel gaz choisit-on?',ans:it.g,hint:it.hg,why:it.wg,
+       opts:shuffle([it.g].concat(it.d)).map(k=>({k:k,label:G[k],html:G[k]}))},
+      {q:'Pourquoi ce gaz convient-il? Quelle propriété met-on à profit?',ans:it.r,hint:it.hr,why:it.wr,
+       opts:R.map(r=>({k:r[0],label:r[1],html:r[1]}))}
+    ],
+    end:()=>{
+      const cnt={};S.forEach(s=>{cnt[s.r]=(cnt[s.r]||0)+1});
+      return '<div class="def-box"><div class="def-label">Bilan du jeu</div><p>Sur ces '+S.length+' usages, '+cnt.inert+' reposent sur la faible réactivité d\'un gaz : c\'est la raison qui revient le plus souvent, parce qu\'on veut très souvent un gaz qui ne réagit pas avec ce qu\'il entoure.</p><p>Les autres exploitent au contraire une propriété précise : brûler, entretenir la combustion, produire de la lumière, isoler, ou être transformé comme le diazote des engrais.</p></div>';
+    }
+  });
+})();
+
+/* ═════════ 5. Constructeur de molécules diatomiques (1.1.1) ═════════ */
+(function(){
+  const pickEl=$('mol-pick');if(!pickEl) return;
+  const svg=$('mol-svg'),add=$('mol-add'),reset=$('mol-reset'),info=$('mol-info');
+  const EL=[{s:'H',n:'Hydrogène',v:1,t:2,e:null},{s:'He',n:'Hélium',v:2,t:2,e:null},{s:'F',n:'Fluor',v:7,t:8,e:159},{s:'Cl',n:'Chlore',v:7,t:8,e:242},
+    {s:'O',n:'Oxygène',v:6,t:8,e:null},{s:'N',n:'Azote',v:5,t:8,e:945},{s:'Ne',n:'Néon',v:8,t:8,e:null},{s:'Ar',n:'Argon',v:8,t:8,e:null}];
+  const LIA={1:'simple',2:'double',3:'triple'};
+  let cur=EL[2],pairs=0;
+  const btns=EL.map(el=>{
+    const b=document.createElement('button');b.type='button';b.className='ar-opt';b.textContent=el.s;
+    b.setAttribute('aria-label',el.n+' ('+el.s+')');b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',()=>{cur=el;pairs=0;draw()});
+    pickEl.appendChild(b);return b;
+  });
+  function arc(cx,cy,R,k,a0,a1,cls,r){
+    let h='';
+    for(let i=0;i<k;i++){
+      const a=(k===1?(a0+a1)/2:a0+i*(a1-a0)/(k-1))*Math.PI/180;
+      h+='<circle cx="'+(cx+R*Math.cos(a)).toFixed(1)+'" cy="'+(cy-R*Math.sin(a)).toFixed(1)+'" r="'+r+'" class="'+cls+'" fill="'+(cls==='sh'?'var(--flame)':'var(--indigo-dark)')+'"/>';
+    }
+    return h;
+  }
+  function atom(cx,cy,sym,k,a0,a1,R,full){
+    return '<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="#f7f4fc" fill-opacity=".8" stroke="var(--indigo-light)" stroke-width="2"/>'+
+      '<text x="'+cx+'" y="'+(cy+7)+'" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="22" fill="var(--indigo-dark)">'+sym+'</text>'+
+      arc(cx,cy,R-14,k,a0,a1,'ow',3.5);
+  }
+  function draw(){
+    const need=cur.t-cur.v,own=cur.v-pairs,around=own+2*pairs;
+    btns.forEach((b,i)=>{const on=EL[i]===cur;b.classList.toggle('sel',on);b.setAttribute('aria-pressed',String(on))});
+    let h='';
+    if(need===0){
+      h+=atom(160,80,cur.s,cur.v,90,90+360-360/cur.v,56);
+      h+='<text x="160" y="152" text-anchor="middle" font-size="13" font-family="Inter,sans-serif" fill="var(--indigo-dark)">'+cur.t+' / '+cur.t+' ✓ couche déjà complète</text>';
+    }else{
+      const lx=118,rx=202,R=56;
+      h+=atom(lx,80,cur.s,own,135,225,R)+atom(rx,80,cur.s,own,-45,45,R);
+      const ys={0:[],1:[80],2:[67,93],3:[54,80,106]}[pairs];
+      ys.forEach(y=>{h+='<circle cx="156.5" cy="'+y+'" r="3.2" fill="var(--flame)"/><circle cx="163.5" cy="'+y+'" r="3.2" fill="var(--flame)"/>'});
+      const ok=around===cur.t;
+      [lx,rx].forEach(x=>{h+='<text x="'+x+'" y="152" text-anchor="middle" font-size="13" font-family="Inter,sans-serif" fill="var(--indigo-dark)">'+around+' / '+cur.t+(ok?' ✓':'')+'</text>'});
+    }
+    svg.innerHTML=h;
+    svg.setAttribute('aria-label',need===0?cur.n+' : un atome seul, couche de valence complète'
+      :'Deux atomes de '+cur.n.toLowerCase()+' avec '+pairs+' paire'+(pairs>1?'s':'')+' d\'électrons partagée'+(pairs>1?'s':'')+'; '+around+' électrons sur '+cur.t+' autour de chaque atome');
+    add.disabled=pairs>=need;
+    let m;
+    if(need===0){
+      m=cur.n+' ('+cur.s+') a déjà '+cur.v+' électrons de valence : sa couche est complète. Aucune tendance à gagner, céder ou partager des électrons, donc il reste à l\'état d\'atomes libres.';
+    }else if(pairs===0){
+      m=cur.n+' ('+cur.s+') : '+cur.v+' électron'+(cur.v>1?'s':'')+' de valence; il en faut '+cur.t+' pour une couche complète. Il en manque '+need+' à chaque atome.';
+    }else if(pairs<need){
+      m='Paires partagées : '+pairs+'. Autour de chaque atome : '+around+' électrons sur '+cur.t+'. Il en manque encore '+(need-pairs)+'.';
+    }else{
+      m='Couche complète pour les deux atomes! Molécule '+cur.s+'₂ : '+pairs+' paire'+(pairs>1?'s':'')+' partagée'+(pairs>1?'s':'')+', donc une liaison '+LIA[pairs]+' ('+(pairs===1?cur.s+'–'+cur.s:pairs===2?cur.s+'='+cur.s:cur.s+'≡'+cur.s)+').';
+      if(cur.e) m+=' Énergie de liaison : environ '+cur.e+' kJ/mol'+(cur.s==='N'?' — l\'une des liaisons covalentes les plus fortes, donc très difficile à briser.':cur.s==='F'?' — une liaison faible, qui cède facilement : le difluor est très réactif.':'.');
+    }
+    info.textContent=m;
+  }
+  reset.addEventListener('click',()=>{pairs=0;draw()});
+  add.addEventListener('click',()=>{if(pairs<cur.t-cur.v){pairs++;draw()}});
+  draw();
+})();
+
+/* ═════════ 6. Duel des liaisons (1.1.2) ═════════ */
+(function(){
+  const sa=$('bd-a');if(!sa) return;
+  const sb=$('bd-b'),bars=$('bd-bars'),out=$('bd-out');
+  const G=[{n:'Difluor, F₂',l:'liaison simple',e:159},{n:'Dibrome, Br₂',l:'liaison simple',e:193},{n:'Dichlore, Cl₂',l:'liaison simple',e:242},{n:'Diazote, N₂',l:'liaison triple',e:945}];
+  const MAX=945;
+  const fmt=x=>x.toLocaleString('fr-CA',{maximumFractionDigits:1});
+  G.forEach((g,i)=>{sa.add(new Option(g.n,i));sb.add(new Option(g.n,i))});
+  sa.value='0';sb.value='3';
+  function draw(){
+    const a=G[+sa.value],b=G[+sb.value];
+    bars.innerHTML=[a,b].map((g,i)=>{
+      const lo=(a.e!==b.e)&&g.e===Math.min(a.e,b.e);
+      return '<div class="bd-row"><span class="bd-name">'+(i?'Gaz B':'Gaz A')+' : '+g.n+' <span class="sim-note">('+g.l+')</span></span><div class="bd-track" aria-hidden="true"><div class="bd-bar'+(lo?' lo':'')+'" style="width:'+(g.e/MAX*100).toFixed(1)+'%"></div></div><span class="bd-val">'+g.e+' kJ/mol</span></div>';
+    }).join('');
+    if(a===b){out.textContent='Choisis deux gaz différents pour les comparer.';return}
+    const lo=a.e<b.e?a:b,hi=a.e<b.e?b:a;
+    out.textContent='Le plus réactif, selon ce seul facteur : '+lo.n+'. Sa liaison ('+lo.e+' kJ/mol) est plus facile à briser que celle de '+hi.n+' ('+hi.e+' kJ/mol) : il faut environ '+fmt(hi.e/lo.e)+' fois moins d\'énergie.';
+  }
+  sa.addEventListener('change',draw);sb.addEventListener('change',draw);draw();
+})();
+
+/* ═════════ 7. Cartes mémoire ═════════ */
+(function(){
+  const fc=$('fc1-card');if(!fc) return;
+  const C=[
+    ['Qu\'est-ce que la réactivité chimique d\'un gaz?','Sa tendance à se transformer sous l\'effet d\'un facteur externe : la chaleur, la lumière ou le contact avec une autre substance.'],
+    ['Quels trois facteurs expliquent la réactivité d\'un gaz?','L\'attraction entre le noyau et les électrons de valence, la tendance de l\'atome à gagner ou à céder des électrons, et la force des liaisons de la molécule (son énergie de liaison).'],
+    ['Pourquoi les gaz nobles sont-ils très peu réactifs? Sous quelle forme existent-ils?','Leur couche de valence est déjà complète (8 électrons, 2 pour l\'hélium) : ils n\'ont aucune tendance à gagner, céder ou partager des électrons. Ils existent à l\'état d\'atomes libres.'],
+    ['Pourquoi H₂, N₂, O₂, F₂ et Cl₂ sont-ils des molécules diatomiques?','Chaque atome a une couche de valence incomplète. Deux atomes identiques partagent des électrons (liaison covalente) et complètent ainsi leur couche.'],
+    ['Combien de paires d\'électrons deux atomes d\'azote, d\'oxygène ou de fluor partagent-ils?','Azote : 3 paires (liaison triple, N≡N). Oxygène : 2 paires (liaison double, O=O). Fluor : 1 paire (liaison simple). Il manque à chaque atome 8 moins son nombre d\'électrons de valence.'],
+    ['Quel lien y a-t-il entre l\'énergie de liaison et la réactivité?','Plus l\'énergie nécessaire pour briser la liaison est faible, plus le gaz est réactif. Exemple : F₂ (environ 159 kJ/mol) est très réactif; N₂ (environ 945 kJ/mol) est très stable.'],
+    ['Au sens chimique, qu\'est-ce qu\'un combustible? un comburant?','Combustible : une substance capable de céder des électrons à un comburant (elle est oxydée). Comburant : une espèce qui oxyde le combustible en lui prenant des électrons. Ces rôles dépendent de la substance qu\'on met en face.'],
+    ['Quels sont les trois sommets du triangle du feu? Comment éteindre un feu?','Combustible, comburant et chaleur (le point d\'ignition atteint). Il suffit d\'en retirer un seul : fermer le gaz, étouffer (couvercle, mousse) ou refroidir (eau).'],
+    ['Combustion complète ou incomplète d\'un hydrocarbure : quelle différence?','Complète (assez de dioxygène) : seulement du CO₂ et de l\'eau. Incomplète (manque de dioxygène) : il se forme du monoxyde de carbone (CO), un gaz incolore, inodore et très toxique.'],
+    ['Le dihydrogène est-il vraiment un « combustible propre »?','À l\'utilisation, oui : sa combustion ne produit que de l\'eau. Mais sa production (extraction du méthane, électrolyse) demande beaucoup d\'énergie et peut libérer du CO₂.'],
+    ['L\'ozone est-il bon ou mauvais pour nous?','Cela dépend de l\'altitude. Entre 20 et 50 km, il absorbe une grande partie des rayons ultraviolets du Soleil. Près du sol, c\'est un polluant : comburant très réactif, il irrite les voies respiratoires et dégrade le caoutchouc.'],
+    ['Pourquoi un extincteur à CO₂ est-il dangereux sur un feu de magnésium?','Le magnésium, très réactif, arrache l\'oxygène au CO₂ : le CO₂ devient lui-même un comburant (2 Mg + CO₂ → 2 MgO + C). Au lieu de retirer un sommet du triangle, on en ajoute un.'],
+    ['Toxicité aiguë ou corrosif : comment les distinguer?','Toxicité aiguë : la substance doit pénétrer dans l\'organisme (inhalation, ingestion, peau) et agit de l\'intérieur. Corrosif : il détruit en surface, dès le contact (peau, yeux, certains métaux).'],
+    ['Explosif instable ou gaz inflammable : comment les distinguer?','Explosif instable : il renferme déjà de quoi réagir et se décompose violemment sous un choc ou la chaleur, sans air. Gaz inflammable : il a besoin du dioxygène de l\'air et d\'une source d\'ignition.'],
+    ['Pourquoi retrouve-t-on souvent le diazote, l\'argon et l\'hélium dans les usages courants?','On les choisit pour leur très faible réactivité : ils ne réagissent pas avec ce qu\'ils entourent (aliments, métal chaud, caoutchouc d\'un pneu).'],
+    ['Le diazote sert à l\'emballage, aux pneus et aux engrais. Qu\'est-ce qui distingue les engrais?','Emballage et pneus : on compte sur son inertie. Engrais : sa triple liaison est brisée pour former l\'ammoniac, une forme assimilable par les plantes; le N₂ est alors consommé.']
+  ];
+  const flip=$('fc1-flip'),okB=$('fc1-ok'),koB=$('fc1-ko'),n=$('fc1-n'),live=$('fc1-live');
+  let q,back,missed,firstTry;
+  const plain=h=>{const e=document.createElement('div');e.innerHTML=h;return e.textContent};
+  function init(){q=C.map((_,i)=>i);back=false;missed=new Set();firstTry=0;render()}
+  function render(){
+    if(!q.length){
+      fc.style.background='#fdf6e6';
+      fc.innerHTML='<span><b>Terminé!</b><br>Cartes sues du premier coup : '+firstTry+' sur '+C.length+'.<br>'+(missed.size?'Cartes à retravailler : '+missed.size+'.':'Aucune carte à retravailler.')+'</span>';
+      live.textContent='Terminé. Cartes sues du premier coup : '+firstTry+' sur '+C.length+'.';
+      okB.disabled=true;koB.disabled=true;flip.textContent='Recommencer';n.textContent='';
+      fc.setAttribute('aria-label','Pile terminée. Appuie sur Recommencer pour rejouer.');
+      return;
+    }
+    const i=q[0];
+    fc.style.background=back?'#fdf6e6':'#fcfbfe';
+    fc.innerHTML='<span><span class="sim-note" style="display:block;margin-bottom:6px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">'+(back?'Réponse':'Question')+'</span>'+C[i][back?1:0]+'</span>';
+    fc.setAttribute('aria-label',back?'Réponse. Appuie pour revoir la question':'Question. Appuie pour voir la réponse');
+    live.textContent=(back?'Réponse : ':'Question : ')+plain(C[i][back?1:0]);
+    okB.disabled=!back;koB.disabled=!back;
+    flip.textContent=back?'Revoir la question':'Retourner la carte';
+    n.textContent='Il reste '+q.length+' carte'+(q.length>1?'s':'')+(missed.size?' · à revoir : '+missed.size:'');
+  }
+  function toggle(){if(!q.length){init();return}back=!back;render()}
+  fc.addEventListener('click',()=>{if(q.length) toggle()});
+  fc.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();if(q.length) toggle()}});
+  flip.addEventListener('click',toggle);
+  okB.addEventListener('click',()=>{const i=q.shift();if(!missed.has(i)) firstTry++;back=false;render();fc.focus()});
+  koB.addEventListener('click',()=>{const i=q.shift();missed.add(i);q.push(i);back=false;render();fc.focus()});
+  init();
+})();
+})();
+
 </script>
 </body>
 </html>
