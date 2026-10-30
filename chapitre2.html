@@ -368,6 +368,121 @@
   .flash-box h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--indigo-dark); margin-bottom: 12px; }
   .flash-box p { font-size: 13.5px; line-height: 1.65; margin-bottom: 10px; color: var(--text); }
   .flash-box p:last-child { margin-bottom: 0; }
+
+  /* ── Outils interactifs, accessibilité, téléphone ── */
+  .sim canvas{width:100%;max-width:600px;height:auto;display:block;margin:0 auto;background:#fff;border-radius:6px}
+  .sim-ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:12px 0;font-size:14px}
+  .sim-ctrl input[type=range]{flex:1;min-width:160px;accent-color:var(--indigo-mid)}
+  .sim-ctrl b{font-family:var(--mono)}
+  .sim-note{font-size:12.5px;color:var(--muted)}
+  .sim-out{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+  .sim-out svg{width:100%;height:auto;background:#fff;border:1px solid var(--border);border-radius:6px}
+  .sim-cap{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+  @media(max-width:860px){.sim-out{grid-template-columns:1fr}}
+  #main{min-width:0}
+  .data-table{max-width:100%}
+  .fig-inner,.quiz-body,.section-body{min-width:0}
+  canvas{max-width:100%;height:auto}
+  @media(max-width:768px){.search-bar-wrap{flex-wrap:wrap}.search-bar-wrap input{min-width:0;flex:1 1 100%;width:100%;box-sizing:border-box}.data-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+
+/* ── Arbre de décision, cartes mémoire, accessibilité ── */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.ar-sit{background:#fff;border:1.5px solid var(--indigo-light);border-radius:10px;padding:14px 16px;text-align:left;font-size:15px;line-height:1.55;margin:10px 0;font-weight:500}
+.ar-ql{text-align:left;font-weight:600;font-size:14.5px;margin:12px 0 4px}
+.ar-opts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;justify-content:flex-start}
+.ar-opt{padding:9px 16px;border-radius:8px;border:1.5px solid var(--indigo-mid);background:#fff;color:var(--indigo-dark);font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;transition:background .15s;text-align:left}
+.ar-opt:hover:not(:disabled){background:#f1eef8}
+.ar-opt:focus-visible,#fc-card:focus-visible{outline:3px solid rgba(125,99,184,.45);outline-offset:2px}
+.ar-opt:disabled{cursor:default}
+.ar-opt.ok{background:#e6f4ec;border-color:#2da262;color:#1a6640}
+.ar-opt.ok::before{content:"✓ "}
+.ar-opt.no{background:#fbe9e6;border-color:#d5472d;color:#8b2218;text-decoration:line-through}
+.ar-fb{min-height:20px;text-align:left;font-size:13.5px;line-height:1.5;margin:4px 0}
+.ar-fb.good{color:#1a6640}
+.ar-fb.bad{color:#8b2218}
+#ar-res .def-box{text-align:left}
+.ar-tree,.ar-tree ul{list-style:none;text-align:left;font-size:13px}
+.ar-tree ul{margin-left:12px;padding-left:12px;border-left:2px solid var(--border)}
+.ar-tree li{margin:5px 0}
+.ar-node{display:inline-block;padding:3px 9px;border-radius:6px;border:1px solid var(--border);background:#fff;color:var(--muted)}
+.ar-node.law{border-color:var(--amber-dim)}
+.ar-node.on{background:var(--indigo-dark);border-color:var(--indigo-dark);color:#fff;font-weight:600}
+.ar-node.on::before{content:"▶ ";font-size:10px}
+.ar-node.law.on{background:var(--amber);border-color:var(--amber-dim);color:var(--indigo-dark)}
+
+  /* ── Chapitre 2 : outils interactifs (phases, Graham, pression, manomètre, chocs, cartes) ── */
+  .ar-opt{display:inline-flex;align-items:center;gap:8px}
+  .ar-opt.sel{background:var(--indigo-dark);border-color:var(--indigo-dark);color:#fff}
+  .ar-opt.sel:hover:not(:disabled){background:var(--indigo-mid)}
+  .sim-ctrl label{font-weight:600;color:var(--indigo-dark)}
+  .sim-ctrl .quiz-blank,.sim-ctrl .quiz-num{max-width:100%}
+  .sim-ctrl .quiz-num{width:110px}
+  .sim-ctrl .quiz-submit,.sim-ctrl .quiz-reset{margin-top:0}
+  .sim-ctrl .quiz-reset{display:inline-block}
+  .sim-ctrl .quiz-submit:disabled{opacity:.5;cursor:default}
+
+  /* phases */
+  .ph-dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:12px 0;text-align:left}
+  .ph-dl>div{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+  .ph-dl dt{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+  .ph-dl dd{margin:0;font-size:14px;line-height:1.45;color:var(--indigo-dark);font-weight:600}
+  .ph-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .ph-chip{font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:12px;border:1.5px solid var(--border);background:#f6f4fa;color:var(--muted)}
+  .ph-chip.on{background:var(--indigo-dark);border-color:var(--indigo-dark);color:#fff}
+  .ph-chip.weak{background:#fdf6e6;border-color:var(--amber-dim);color:#7a5614}
+  .ph-chg{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0}
+  .ph-chg .ar-opt{font-size:13px;padding:7px 12px}
+  .ph-chg .ar-opt.up{border-color:var(--flame)}
+  .ph-chg .ar-opt.dn{border-color:var(--indigo-light)}
+  .ph-chg .ar-opt.sel.up{background:var(--flame);border-color:var(--flame)}
+  .ph-lab{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;margin:10px 0 2px}
+
+  /* Graham */
+  .gr-lane{position:relative;height:40px;background:#ece8f5;border-radius:20px;margin:10px 0}
+  .gr-lane::after{content:"";position:absolute;right:10px;top:5px;bottom:5px;width:7px;border-radius:2px;background:repeating-linear-gradient(0deg,var(--indigo-dark) 0 4px,#fff 4px 8px)}
+  .gr-run{position:absolute;left:6px;top:7px;min-width:34px;height:26px;padding:0 9px;border-radius:13px;color:#fff;font:700 12px/26px var(--mono);text-align:center;white-space:nowrap;transition-property:left;transition-timing-function:linear}
+  .gr-run.a{background:var(--indigo-mid)}
+  .gr-run.b{background:var(--flame)}
+  .gr-sub{font-size:15px;font-weight:700;color:var(--indigo-dark);text-align:left;margin:16px 0 4px}
+  .gr-calc .formula{margin:8px 0;font-size:14px;text-align:left}
+  .gr-calc p{text-align:left;margin:8px 0}
+  .gr-inv{text-align:left;font-size:14px;line-height:1.6}
+  .gr-inv .formula{font-size:14px;text-align:left;margin:8px 0}
+
+  /* convertisseur de pression */
+  .pc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+  .pc-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;text-align:left}
+  .pc-card.from{border-color:var(--indigo-light);background:#f7f4fc}
+  .pc-card .pc-v{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--indigo-dark);word-break:break-word}
+  .pc-card .pc-u{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .pc-card .pc-s{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.45;font-family:var(--mono)}
+  .pc-pre{justify-content:center}
+  .pc-pre .ar-opt{font-size:12.5px;padding:6px 11px}
+
+  /* manomètre */
+  .mn-svg{width:100%;max-width:460px;height:auto;display:block;margin:6px auto;background:#fff;border:1px solid var(--border);border-radius:6px}
+  .mn-out{text-align:left;font-size:14px;line-height:1.6;min-height:48px}
+  .mn-out b{color:var(--indigo-dark)}
+  .mn-rng{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:10px 0;font-size:14px;text-align:left}
+  .mn-rng input[type=range]{flex:1;min-width:150px;accent-color:var(--indigo-mid)}
+  .mn-rng b{font-family:var(--mono);min-width:92px;display:inline-block}
+  .mn-sep{border:0;border-top:1px solid var(--border);margin:18px 0}
+
+  /* chocs */
+  .ch-bars{display:grid;gap:12px;margin:12px 0;text-align:left}
+  .ch-row .ch-t{font-size:13px;font-weight:700;color:var(--indigo-dark);margin-bottom:4px}
+  .ch-line{display:grid;grid-template-columns:minmax(64px,92px) minmax(0,1fr) minmax(48px,auto);gap:8px;align-items:center;margin:3px 0;font-size:13px}
+  .ch-trk{background:#ece8f5;border-radius:6px;height:16px;overflow:hidden}
+  .ch-fill{height:100%;border-radius:6px;transition:width .25s}
+  .ch-fill.a{background:var(--indigo-mid)}
+  .ch-fill.b{background:var(--flame)}
+  .ch-n{font-family:var(--mono);font-weight:700;font-size:12.5px;text-align:right;white-space:nowrap}
+  .ch-ratio{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .ch-verdict{font-size:14px;font-weight:600;color:var(--indigo-dark);text-align:left;min-height:22px}
+  #fc2-card:focus-visible{outline:3px solid rgba(125,99,184,.45);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){.gr-run,.ch-fill{transition:none}}
+  @media (max-width:520px){.ch-line{grid-template-columns:70px minmax(0,1fr) auto}.sim-ctrl .quiz-num{width:96px}}
+
 </style>
 </head>
 <body>
@@ -426,6 +541,7 @@
           <a href="#modele-particulaire-mouvements"><span class="toc-num">1.1.1</span>Le modèle particulaire et les mouvements des particules</a>
           <a href="#trois-phases-matiere"><span class="toc-num">1.1.2</span>Les trois phases de la matière</a>
           <a href="#changements-de-phase"><span class="toc-num">1.1.3</span>Les changements de phase</a>
+            <a href="#ph-outil"><span class="toc-num">Outil</span>Chauffe, refroidis, observe</a>
         </div>
       </div>
       <div class="page-toc-group">
@@ -441,13 +557,16 @@
           <a href="#compressibilite-expansion"><span class="toc-num">1.3.1</span>La compressibilité et l'expansion</a>
           <a href="#diffusion-effusion"><span class="toc-num">1.3.2</span>La diffusion et l'effusion</a>
           <a href="#loi-graham"><span class="toc-num">1.3.3</span>La loi de Graham</a>
+            <a href="#gr-outil"><span class="toc-num">Outil</span>La course des gaz</a>
         </div>
       </div>
       <div class="page-toc-group">
         <div class="page-toc-group-label">Section 2 — La pression</div>
         <div class="page-toc-pills">
           <a href="#section-2"><span class="toc-num">2</span>Qu'est-ce que la pression?</a>
+            <a href="#ch-outil"><span class="toc-num">Outil</span>Chocs fréquents ou violents?</a>
           <a href="#section-2-1"><span class="toc-num">2.1</span>La pression atmosphérique et le baromètre</a>
+            <a href="#pc-outil"><span class="toc-num">Outil</span>Convertisseur de pression</a>
         </div>
       </div>
       <div class="page-toc-group">
@@ -456,6 +575,7 @@
           <a href="#manometre-ferme"><span class="toc-num">2.2.1</span>Le manomètre à bout fermé (pression absolue)</a>
           <a href="#pression-relative"><span class="toc-num">2.2.2</span>Les instruments à pression relative</a>
           <a href="#manometre-ouvert"><span class="toc-num">2.2.3</span>Le manomètre à bout ouvert</a>
+            <a href="#mn-outil"><span class="toc-num">Outil</span>Lis le manomètre</a>
           <a href="#magdebourg"><span class="toc-num">Zoom</span>Les hémisphères de Magdebourg</a>
         </div>
       </div>
@@ -463,6 +583,7 @@
         <div class="page-toc-group-label">Fin de chapitre</div>
         <div class="page-toc-pills">
           <a href="#chap2-recap"><span class="toc-num">Ch. 2</span>Exercices de fin de chapitre</a>
+            <a href="#fc2-cartes"><span class="toc-num">✓</span>Cartes mémoire</a>
         </div>
       </div>
     </div>
@@ -1048,6 +1169,33 @@
           <button class="quiz-reset" id="reset-c2-m113">↺ Recommencer</button>
           </div>
         </div>
+
+      <div class="subsection" id="ph-outil">
+        <div class="subsection-title">Outil : chauffe, refroidis, observe</div>
+        <p>Le curseur règle l'énergie cinétique moyenne des particules. Déplace-le lentement et guette le moment où les mouvements changent : c'est là qu'une substance change de phase. Active le suivi pour tracer le chemin d'une seule particule, et déclenche chacun des six changements de phase pour voir ce qu'il fait aux particules.</p>
+        <figure class="fig-block">
+          <div class="fig-inner sim">
+            <canvas id="ph-cv" width="600" height="300" role="img" aria-label="Simulation de particules dans un contenant"></canvas>
+            <div class="sim-ctrl"><label for="ph-e">Énergie cinétique moyenne</label><input type="range" id="ph-e" min="0" max="100" value="20" step="1"><b id="ph-ev">faible</b></div>
+            <div class="sim-ctrl" style="justify-content:center">
+              <button type="button" class="quiz-submit" id="ph-heat">Chauffer</button>
+              <button type="button" class="quiz-reset" id="ph-cool">Refroidir</button>
+              <button type="button" class="quiz-reset" id="ph-play">Pause</button>
+              <label style="font-weight:500"><input type="checkbox" id="ph-trace"> Suivre une particule</label>
+            </div>
+            <div class="ph-lab">Ou déclenche un changement de phase</div>
+            <div class="ph-chg" id="ph-chg" role="group" aria-label="Changements de phase"></div>
+            <div class="ar-fb" id="ph-msg" role="status" aria-live="polite" style="text-align:left;min-height:44px"></div>
+            <dl class="ph-dl">
+              <div><dt>Phase</dt><dd id="ph-name">Solide</dd></div>
+              <div><dt>Mouvements possibles</dt><dd><span class="ph-chips" id="ph-chips"></span></dd></div>
+              <div><dt>Interaction entre les particules</dt><dd id="ph-int"></dd></div>
+              <div><dt>Forme et volume</dt><dd id="ph-fv"></dd></div>
+            </dl>
+          </div>
+          <figcaption>Modèle simplifié à deux dimensions : chaque particule est une molécule diatomique, pour que la rotation soit visible. Les phases changent à des niveaux d'énergie fixés d'avance; l'échelle est arbitraire. Le contenu des mouvements suit le tableau de la section 1.1.2.</figcaption>
+        </figure>
+      </div>
 
         <div class="subsection">
           <div class="subsection-title">Synthèse — Section 1.1</div>
@@ -1809,6 +1957,32 @@
           </div>
         </div>
 
+        <div class="subsection" id="gr-outil">
+          <div class="subsection-title">Outil : la course des gaz (loi de Graham)</div>
+          <p>Choisis deux gaz à la même température. L'outil applique la loi de Graham et montre le calcul, puis fait courir une particule de chaque gaz. La piste n'est qu'une représentation : seule la comparaison des vitesses compte, pas les distances réelles.</p>
+          <figure class="fig-block">
+            <div class="fig-inner sim">
+              <div class="sim-ctrl"><label for="gr-a">Gaz 1 :</label><select id="gr-a" class="quiz-blank"></select><label for="gr-b">Gaz 2 :</label><select id="gr-b" class="quiz-blank"></select></div>
+              <div class="sim-ctrl pc-pre" id="gr-pre" role="group" aria-label="Exemples de comparaisons"></div>
+              <div class="gr-calc" id="gr-calc" aria-live="polite"></div>
+              <div id="gr-track" aria-hidden="true">
+                <div class="gr-lane"><span class="gr-run a" id="gr-ra"></span></div>
+                <div class="gr-lane"><span class="gr-run b" id="gr-rb"></span></div>
+              </div>
+              <div class="sim-ctrl" style="justify-content:center"><button type="button" class="quiz-submit" id="gr-go">Lancer la course</button></div>
+              <div class="ar-fb" id="gr-res" role="status" aria-live="polite" style="text-align:center;min-height:24px"></div>
+              <div class="gr-sub">Et dans l'autre sens : trouve la masse molaire d'un gaz inconnu</div>
+              <div class="sim-ctrl">
+                <label for="gr-k">Le gaz X diffuse</label><input id="gr-k" class="quiz-num" type="text" inputmode="decimal" value="3,16" aria-label="Facteur de vitesse">
+                <label for="gr-dir" class="sr-only">plus vite ou plus lentement</label><select id="gr-dir" class="quiz-blank"><option value="slow">fois plus lentement</option><option value="fast">fois plus vite</option></select>
+                <label for="gr-ref">que</label><select id="gr-ref" class="quiz-blank"></select>
+              </div>
+              <div class="gr-inv" id="gr-inv" aria-live="polite"></div>
+            </div>
+            <figcaption>Les masses molaires sont arrondies. L'air est un mélange : on utilise sa masse molaire moyenne. À une même température, tous les gaz ont la même énergie cinétique moyenne, ce qui oblige les particules légères à aller plus vite.</figcaption>
+          </figure>
+        </div>
+
         <div class="subsection">
           <div class="subsection-title">Synthèse — Section 1.3</div>
           <div class="def-box">
@@ -1947,6 +2121,35 @@
         </div>
 
         <p>Ces deux effets s'annulent exactement l'un l'autre. Au final, pour un même nombre de particules (même quantité de gaz en moles, et non la même masse), à la même température et dans le même volume, <strong>différents gaz exercent donc la même pression, peu importe leur masse molaire</strong> — une conséquence directe de la théorie cinétique qui sera reprise plus loin dans ce module, lorsqu'il sera question des lois des gaz.</p>
+
+                <div class="subsection" id="ch-outil">
+          <div class="subsection-title">Outil : chocs fréquents ou chocs violents?</div>
+          <p>Deux contenants de même volume, à la même température, avec le même nombre de particules : l'un renferme un gaz léger, l'autre un gaz plus lourd. Compte les chocs sur les parois, estime la force de chacun, puis regarde la pression qui en résulte. Laisse tourner quelques secondes : la mesure se stabilise.</p>
+          <figure class="fig-block">
+            <div class="fig-inner sim">
+              <canvas id="ch-cv" width="600" height="300" role="img" aria-label="Deux contenants de gaz : à gauche un gaz léger, à droite un gaz plus lourd"></canvas>
+              <div class="sim-ctrl"><label for="ch-a">Gaz 1 (violet) :</label><select id="ch-a" class="quiz-blank"></select><label for="ch-b">Gaz 2 (rouge) :</label><select id="ch-b" class="quiz-blank"></select></div>
+              <div class="sim-ctrl"><label for="ch-t">Température</label><input type="range" id="ch-t" min="200" max="500" step="10" value="300"><b id="ch-tv">300 K</b></div>
+              <div class="sim-ctrl" style="justify-content:center"><button type="button" class="quiz-reset" id="ch-play">Pause</button><button type="button" class="quiz-reset" id="ch-reset">Recommencer la mesure</button></div>
+              <div class="ch-bars" id="ch-bars" aria-live="off">
+                <div class="ch-row"><div class="ch-t">1. Chocs par seconde sur les parois</div>
+                  <div class="ch-line"><span id="ch-na1"></span><span class="ch-trk"><span class="ch-fill a" id="ch-fa1" style="display:block;width:0"></span></span><span class="ch-n" id="ch-va1"></span></div>
+                  <div class="ch-line"><span id="ch-nb1"></span><span class="ch-trk"><span class="ch-fill b" id="ch-fb1" style="display:block;width:0"></span></span><span class="ch-n" id="ch-vb1"></span></div>
+                  <div class="ch-ratio" id="ch-r1"></div></div>
+                <div class="ch-row"><div class="ch-t">2. Force moyenne d'un choc (unités arbitraires)</div>
+                  <div class="ch-line"><span id="ch-na2"></span><span class="ch-trk"><span class="ch-fill a" id="ch-fa2" style="display:block;width:0"></span></span><span class="ch-n" id="ch-va2"></span></div>
+                  <div class="ch-line"><span id="ch-nb2"></span><span class="ch-trk"><span class="ch-fill b" id="ch-fb2" style="display:block;width:0"></span></span><span class="ch-n" id="ch-vb2"></span></div>
+                  <div class="ch-ratio" id="ch-r2"></div></div>
+                <div class="ch-row"><div class="ch-t">3. Pression (chocs × force de chaque choc)</div>
+                  <div class="ch-line"><span id="ch-na3"></span><span class="ch-trk"><span class="ch-fill a" id="ch-fa3" style="display:block;width:0"></span></span><span class="ch-n" id="ch-va3"></span></div>
+                  <div class="ch-line"><span id="ch-nb3"></span><span class="ch-trk"><span class="ch-fill b" id="ch-fb3" style="display:block;width:0"></span></span><span class="ch-n" id="ch-vb3"></span></div>
+                  <div class="ch-ratio" id="ch-r3"></div></div>
+              </div>
+              <div class="ch-verdict" id="ch-verdict" role="status" aria-live="polite"></div>
+            </div>
+            <figcaption>Les particules sont traitées comme des points qui n'interagissent pas, et les deux contenants ont la même énergie cinétique moyenne par particule, puisque la température est la même (hypothèses de la théorie cinétique). Les taches jaunes marquent les chocs : plus ils sont gros, plus le choc est fort. La force d'un choc est proportionnelle à la masse de la particule et à sa vitesse; les nombres sont des moyennes sur quelques secondes, donc un peu de hasard s'y glisse.</figcaption>
+          </figure>
+        </div>
 
         <div class="quiz-block mini" data-quiz="c2-m2">
           <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
@@ -2146,6 +2349,26 @@
             <button class="activity-hint-toggle" onclick="toggleHint(this)">▸ Voir une piste de réponse</button>
             <div class="activity-hint">Le mercure est environ 13,6 fois plus dense que l'eau (13,6 g/mL contre 1,0 g/mL). Puisque c'est le poids de la colonne de liquide qui doit équilibrer la pression atmosphérique, un liquide moins dense comme l'eau doit former une colonne beaucoup plus haute pour exercer la même pression — environ 13,6 fois plus haute que le mercure. C'est justement pour cette raison qu'on utilise le mercure dans les baromètres : un baromètre à eau devrait mesurer plus de 10 mètres de hauteur pour fonctionner au niveau de la mer!</div>
           </div>
+        </div>
+
+                <div class="subsection" id="pc-outil">
+          <div class="subsection-title">Outil : convertisseur de pression</div>
+          <p>Entre une valeur dans l'unité de ton choix : les trois autres s'affichent avec le calcul. Le nombre change d'une unité à l'autre, mais la pression, elle, reste exactement la même. Plus l'unité est petite, plus le nombre est grand.</p>
+          <figure class="fig-block">
+            <div class="fig-inner sim">
+              <div class="sim-ctrl"><label for="pc-x">Je connais :</label><input id="pc-x" class="quiz-num" type="text" inputmode="decimal" value="772" aria-label="Valeur de la pression"><select id="pc-u" class="quiz-blank" aria-label="Unité de départ"></select></div>
+              <div class="sim-ctrl pc-pre" id="pc-pre" role="group" aria-label="Exemples de pressions"></div>
+              <div class="pc-grid" id="pc-out" aria-live="polite"></div>
+              <div class="sim-note" id="pc-note" style="text-align:left">Équivalences utilisées : 760 mm Hg = 101,3 kPa = 1 atm = 1,013 bar.</div>
+              <hr class="mn-sep">
+              <div class="ar-ql">Défi éclair</div>
+              <div class="ar-sit" id="pc-q"></div>
+              <div class="sim-ctrl"><input id="pc-a" class="quiz-num" type="text" inputmode="decimal" autocomplete="off" aria-label="Ta réponse"><b id="pc-au"></b><button type="button" class="quiz-submit" id="pc-chk">Vérifier</button><button type="button" class="quiz-reset" id="pc-new">Un autre défi</button></div>
+              <div class="ar-fb" id="pc-fb" role="status" aria-live="polite"></div>
+              <div class="sim-note" id="pc-n" style="text-align:left"></div>
+            </div>
+            <figcaption>Le calcul est toujours une règle de trois : valeur × (équivalent de l'unité visée) ÷ (équivalent de l'unité de départ).</figcaption>
+          </figure>
         </div>
 
         <div class="quiz-block mini" data-quiz="c2-m21">
@@ -2580,6 +2803,32 @@
           </div>
         </div>
 
+                <div class="subsection" id="mn-outil">
+          <div class="subsection-title">Outil : lis le manomètre</div>
+          <p>Règle la pression du gaz et regarde le mercure bouger. Compare les deux types de manomètres : au bout fermé, le mercure monte de l'écart <em>h</em> qui correspond à la pression du gaz; au bout ouvert, il se place là où la poussée du gaz et celle de l'atmosphère s'équilibrent. Passe ensuite au défi : lis les deux repères sur la règle et trouve la pression du gaz.</p>
+          <figure class="fig-block">
+            <div class="fig-inner sim">
+              <div class="ar-opts" id="mn-mode" role="group" aria-label="Type de manomètre" style="justify-content:center">
+                <button type="button" class="ar-opt sel" data-m="open" aria-pressed="true">Bout ouvert</button>
+                <button type="button" class="ar-opt" data-m="closed" aria-pressed="false">Bout fermé</button>
+              </div>
+              <svg id="mn-svg" class="mn-svg" viewBox="0 0 440 360" role="img" aria-label="Manomètre à tube en U"></svg>
+              <div class="mn-rng" id="mn-rpa"><label for="mn-pa">Pression atmosphérique</label><input type="range" id="mn-pa" min="740" max="780" step="1" value="758"><b id="mn-pav">758 mm Hg</b></div>
+              <div class="mn-rng"><label for="mn-pg">Pression du gaz</label><input type="range" id="mn-pg" min="620" max="900" step="1" value="843"><b id="mn-pgv">843 mm Hg</b></div>
+              <div class="mn-out ar-fb" id="mn-out" role="status" aria-live="polite"></div>
+              <hr class="mn-sep">
+              <div class="ar-ql">Défi : lis ce manomètre à bout ouvert</div>
+              <svg id="mn-svg2" class="mn-svg" viewBox="0 0 440 360" role="img" aria-label="Manomètre à bout ouvert à lire"></svg>
+              <div class="ar-sit" id="mn-cq"></div>
+              <div class="ar-opts" id="mn-copts"></div>
+              <div class="sim-ctrl" id="mn-cnum" style="display:none"><input id="mn-ca" class="quiz-num" type="text" inputmode="decimal" autocomplete="off" aria-label="Ta réponse"><b id="mn-cu"></b><button type="button" class="quiz-submit" id="mn-cchk">Vérifier</button></div>
+              <div class="ar-fb" id="mn-cfb" role="status" aria-live="polite" style="text-align:left"></div>
+              <div class="sim-ctrl"><button type="button" class="quiz-submit" id="mn-cnext">Un autre manomètre</button><span class="sim-note" id="mn-cn"></span></div>
+            </div>
+            <figcaption>Le mercure descend du côté qui reçoit la plus forte poussée. Sur la règle, 1 cm de mercure correspond à 10 mm Hg. Dans le défi, les nombres sur la règle sont les lectures des deux surfaces de mercure, en centimètres.</figcaption>
+          </figure>
+        </div>
+
         <div class="quiz-block mini" data-quiz="c2-m22b">
           <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
             <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span class="quiz-block-title">Vérifie ta compréhension<span class="quiz-block-subtitle">3 questions rapides · clique pour t'essayer</span></span>
@@ -2814,7 +3063,18 @@
         <p>Ce dernier bloc couvre l'ensemble du chapitre 2 : la théorie cinétique, les comportements des gaz et la pression. Les questions mélangent plusieurs notions et varient les formats — calcul, association, texte à trous, réflexion écrite. Prends le temps d'écrire tes réponses : c'est en les formulant qu'on voit ce qu'on a vraiment compris.</p>
 
         <div class="subsection"><div class="subsection-title">Synthèse du chapitre 2</div><div class="def-box"><div class="def-label">À retenir</div><p>• Les particules d'une substance peuvent vibrer, tourner ou se déplacer (translation). Dans un gaz, elles sont très espacées et interagissent à peine : un gaz n'a ni forme ni volume propres.</p><p>• Les particules d'un échantillon n'ont pas toutes la même énergie cinétique (<em>E</em><sub>c</sub> = ½<em>mv</em>²); on parle donc d'énergie cinétique <strong>moyenne</strong> et de vitesse <strong>moyenne</strong>.</p><p>• Le modèle cinétique repose sur quatre idées : particules minuscules, mouvement continu et désordonné, aucune force entre elles, énergie cinétique moyenne proportionnelle à la température en kelvins.</p><p>• Conséquences : un gaz se comprime, se dilate, diffuse et s'échappe par effusion. Loi de Graham (deux gaz à même température et même pression) : <strong>v<sub>1</sub>/v<sub>2</sub> = √(M<sub>2</sub>/M<sub>1</sub>)</strong>; le gaz le plus léger est le plus rapide.</p><p>• La pression d'un gaz vient de la somme des chocs de ses particules sur les surfaces; deux gaz de masses molaires différentes exercent la même pression dans les mêmes conditions. Pression atmosphérique normale : <strong>760 mm Hg = 101,3 kPa = 1 atm</strong>.</p><p>• Manomètre à bout fermé : pression absolue, <em>p</em><sub>gaz</sub> = <em>h</em>. Manomètre à bout ouvert et jauge : pression relative, <em>p</em><sub>gaz</sub> = <em>p</em><sub>atm</sub> ± <em>h</em> (plus si le mercure est plus haut côté ouvert, moins s'il est plus haut côté gaz).</p></div></div>
-<div class="quiz-block" data-quiz="qfin2">
+        <div class="subsection" id="fc2-cartes">
+          <div class="subsection-title">Cartes mémoire</div>
+          <p>Lis la question, réponds dans ta tête, puis retourne la carte. Les cartes marquées « À revoir » reviennent à la fin de la pile jusqu'à ce que tu les saches. Prends le temps de formuler ta réponse avant de regarder.</p>
+          <div class="fig-block"><div class="fig-inner sim">
+            <div id="fc2-card" role="button" tabindex="0" aria-label="Question. Appuie pour voir la réponse" style="cursor:pointer;min-height:140px;padding:18px;border:2px solid var(--indigo-light);border-radius:10px;background:#fcfbfe;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;line-height:1.5"></div>
+            <div class="sim-ctrl" style="margin-top:8px;justify-content:center"><button type="button" class="quiz-reset" id="fc2-flip" style="display:inline-block;margin-top:0">Retourner la carte</button><button type="button" class="quiz-submit" id="fc2-ok" disabled>Je la savais</button><button type="button" class="quiz-reset" id="fc2-ko" style="display:inline-block;margin-top:0" disabled>À revoir</button></div>
+            <div class="sim-note" id="fc2-n"></div>
+            <div id="fc2-live" class="sr-only" role="status" aria-live="polite"></div>
+          </div></div>
+        </div>
+
+        <div class="quiz-block" data-quiz="qfin2">
           <button class="quiz-block-bar" aria-expanded="false" onclick="toggleQuiz(this)">
             <svg class="quiz-block-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8.5 13.5l2 2 4-4.5"/></svg><span class="quiz-block-title">Exercices — Fin du chapitre 2<span class="quiz-block-subtitle">Clique pour t'exercer</span></span>
             <svg class="chevron-q" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -3056,7 +3316,7 @@ function clearMarks() {
 }
 
 // Éléments exclus de la recherche : contenus masqués ou non textuels
-const SEARCH_SKIP = 'script,style,textarea,select,option,svg,.quiz-feedback,.quiz-model,.quiz-partial,.quiz-hint-msg,.quiz-open-row,.quiz-reveal,.quiz-score-label,.quiz-result-msg,.activity-hint-toggle,.activity-answer';
+const SEARCH_SKIP = 'script,style,textarea,select,option,svg,.sim,.quiz-feedback,.quiz-model,.quiz-partial,.quiz-hint-msg,.quiz-open-row,.quiz-reveal,.quiz-score-label,.quiz-result-msg,.activity-hint-toggle,.activity-answer';
 
 // Ouvre automatiquement les blocs repliés qui contiennent un résultat
 function revealMark(m) {
@@ -3415,6 +3675,751 @@ function initInteractive() {
 }
 
 initInteractive();
+</script>
+<script>
+/* ───────── Chapitre 2 : outils interactifs ───────── */
+(function(){
+const $=id=>document.getElementById(id);
+const shuffle=a=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+const num=s=>parseFloat(String(s).replace(/\s/g,'').replace(',','.'));
+const fr=(x,d)=>x.toLocaleString('fr-CA',{minimumFractionDigits:d,maximumFractionDigits:d});
+/* x avec n chiffres significatifs, au format français */
+const sig=(x,n)=>{if(!isFinite(x)||x===0)return '0';const d=Math.max(0,n-1-Math.floor(Math.log10(Math.abs(x))));return fr(x,d)};
+const RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+const css=getComputedStyle(document.documentElement);
+const COL=n=>css.getPropertyValue(n).trim();
+/* n'anime que lorsque l'outil est à l'écran */
+function onScreen(el,cb){
+  if(!('IntersectionObserver' in window)){cb(true);return}
+  new IntersectionObserver(es=>cb(es[0].isIntersecting),{threshold:.05}).observe(el);
+}
+/* gaz communs à Graham et aux chocs : masses molaires (g/mol) */
+const GASES=[
+  {k:'H₂',n:'dihydrogène',M:2.02,s:'2,02'},{k:'He',n:'hélium',M:4.00,s:'4,00'},{k:'CH₄',n:'méthane',M:16.0,s:'16,0'},
+  {k:'N₂',n:'diazote',M:28.0,s:'28,0'},{k:'air',n:'air (moyenne)',o:'Air',M:29.0,s:'29,0'},{k:'O₂',n:'dioxygène',M:32.0,s:'32,0'},
+  {k:'Ar',n:'argon',M:39.9,s:'39,9'},{k:'CO₂',n:'dioxyde de carbone',o:'CO₂',M:44.0,s:'44,0'},{k:'Cl₂',n:'dichlore',M:71.0,s:'71,0'}
+];
+const fillGases=(sel,i)=>{GASES.forEach((g,j)=>sel.add(new Option((g.o||g.k+' — '+g.n)+' ('+g.s+' g/mol)',j)));sel.value=String(i)};
+
+/* ═════════ 1. Phases de la matière (1.1) ═════════ */
+(function(){
+const cv=$('ph-cv');if(!cv) return;
+const W=600,H=300,N=30;
+const dpr=Math.min(window.devicePixelRatio||1,2);
+cv.width=W*dpr;cv.height=H*dpr;
+const ctx=cv.getContext('2d');ctx.scale(dpr,dpr);
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const cDark=COL('--indigo-dark')||'#241b45',cMid=COL('--indigo-mid')||'#3d2d72',cLight=COL('--indigo-light')||'#7d63b8',cFlame=COL('--flame')||'#d5472d';
+
+function grid(cols,rows,sx,sy){const a=[];const x0=W/2-(cols-1)*sx/2,y0=H-26-(rows-1)*sy;for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)a.push({x:x0+c*sx,y:y0+r*sy});return a}
+const SH=grid(6,5,34,30),LH=grid(10,3,40,34);
+const P=[];for(let i=0;i<N;i++)P.push({x:0,y:0,vx:0,vy:0,th:0,om:0,hx:0,hy:0,jx:0,jy:0,f1:rnd(.6,1.3),f2:rnd(.5,1.1),p1:rnd(0,6.28),p2:rnd(0,6.28)});
+const TR=14,trail=[];
+function assign(homes,cols){
+  const ps=P.slice().sort((a,b)=>a.y-b.y);
+  for(let r=0;r<homes.length/cols;r++){
+    const row=ps.slice(r*cols,(r+1)*cols).sort((a,b)=>a.x-b.x);
+    row.forEach((p,i)=>{const h=homes[r*cols+i];p.hx=h.x;p.hy=h.y});
+  }
+}
+let phase='solid',E=20,t=0,playing=!RM,vis=false,quiet=false,target=null,tspeed=12,seq=null;
+assign(SH,6);P.forEach(p=>{p.x=p.hx;p.y=p.hy});
+
+const gasSpeed=e=>55+(e-64)*2.6;
+const phaseFor=(e,cur)=>{
+  if(cur==='solid') return e>=68?'gas':(e>=35?'liquid':'solid');
+  if(cur==='liquid') return e>=68?'gas':(e<=31?'solid':'liquid');
+  return e<=31?'solid':(e<=64?'liquid':'gas');
+};
+const INFO={
+  solid:{name:'Solide',rot:'off',tra:'off',trt:'absente',inter:'Très élevée : structure et orientation fixes',fv:'Forme et volume déterminés',lab:'Les molécules vibrent sur place, dans une structure fixe. Ni rotation ni translation.'},
+  liquid:{name:'Liquide',rot:'on',tra:'weak',trt:'négligeable',inter:'Plus faible que dans le solide',fv:'Volume déterminé, forme variable',lab:'Les molécules vibrent et tournent, mais restent proches les unes des autres : la translation est négligeable.'},
+  gas:{name:'Gaz',rot:'on',tra:'on',trt:'dominante',inter:'Négligeable',fv:'Ni forme ni volume déterminés',lab:'Les molécules vibrent, tournent et surtout voyagent en ligne droite d\'une collision à l\'autre : la translation domine.'}
+};
+const NAMES={
+  'solid>liquid':['Fusion','solide → liquide','gain','les particules gagnent assez d\'énergie cinétique pour vaincre une partie des forces qui les retiennent : la structure fixe se défait et la rotation devient possible.'],
+  'liquid>gas':['Vaporisation','liquide → gaz','gain','les particules s\'arrachent aux forces qui les retiennent : elles se mettent à voyager librement et la translation devient dominante.'],
+  'solid>gas':['Sublimation','solide → gaz','gain','le solide passe directement à l\'état gazeux, sans phase liquide intermédiaire.'],
+  'liquid>solid':['Solidification','liquide → solide','perte','en perdant de l\'énergie cinétique, les particules se rapprochent; les forces d\'attraction reprennent le dessus et figent une structure.'],
+  'gas>liquid':['Condensation','gaz → liquide','perte','les particules ralentissent assez pour que les forces d\'attraction les rapprochent : le gaz devient liquide.'],
+  'gas>solid':['Déposition','gaz → solide','perte','le gaz passe directement à l\'état solide, sans phase liquide intermédiaire.']
+};
+const CH=[
+  {id:'solid>liquid',from:22,to:50},{id:'liquid>gas',from:50,to:88},{id:'solid>gas',from:22,to:88,jump:true},
+  {id:'liquid>solid',from:50,to:22},{id:'gas>liquid',from:88,to:50},{id:'gas>solid',from:88,to:22,jump:true}
+];
+const el={e:$('ph-e'),ev:$('ph-ev'),msg:$('ph-msg'),name:$('ph-name'),chips:$('ph-chips'),int:$('ph-int'),fv:$('ph-fv'),heat:$('ph-heat'),cool:$('ph-cool'),play:$('ph-play'),trace:$('ph-trace'),chg:$('ph-chg')};
+
+function say(txt){el.msg.textContent=txt}
+function elabel(e){return e<34?'faible':(e<67?'moyenne':'élevée')}
+function updateInfo(){
+  const I=INFO[phase];
+  el.name.textContent=I.name;
+  el.chips.innerHTML='<span class="ph-chip on">Vibration : oui</span><span class="ph-chip '+(I.rot==='on'?'on':'')+'">Rotation : '+(I.rot==='on'?'oui':'non')+'</span><span class="ph-chip '+(I.tra==='on'?'on':I.tra==='weak'?'weak':'')+'">Translation : '+I.trt+'</span>';
+  el.int.textContent=I.inter;el.fv.textContent=I.fv;
+  cv.setAttribute('aria-label','Simulation de particules : phase '+I.name.toLowerCase()+'. '+I.lab);
+  el.ev.textContent=elabel(E);
+  el.e.setAttribute('aria-valuetext','Énergie cinétique '+elabel(E)+', phase '+I.name.toLowerCase());
+}
+function changePhase(np){
+  const old=phase;if(np===old) return;
+  phase=np;
+  if(np==='gas'){
+    const sp=gasSpeed(E);
+    P.forEach(p=>{const a=rnd(0,6.283),s=sp*rnd(.6,1.4);p.vx=Math.cos(a)*s;p.vy=Math.sin(a)*s;p.om=rnd(-3,3)});
+  }else if(np==='solid'){assign(SH,6)}
+  else{assign(LH,10);P.forEach(p=>{p.om=(Math.random()<.5?-1:1)*rnd(1,3)})}
+  if(!quiet){
+    const n=NAMES[old+'>'+np];
+    say(n[0]+' : '+n[1]+'. '+(n[2]==='gain'?'Gain':'Perte')+' d\'énergie cinétique : '+n[3]);
+    document.querySelectorAll('#ph-chg .ar-opt').forEach(b=>b.classList.toggle('sel',b.dataset.id===old+'>'+np));
+  }
+  updateInfo();
+}
+function setE(v,silent){
+  E=Math.max(0,Math.min(100,v));
+  el.e.value=String(Math.round(E));
+  const np=phaseFor(E,phase);
+  if(silent) quiet=true;
+  changePhase(np);
+  quiet=false;
+  updateInfo();
+}
+function cancelAuto(){
+  target=null;if(seq){clearTimeout(seq);seq=null}
+  el.heat.textContent='Chauffer';el.cool.textContent='Refroidir';
+}
+
+/* ───── physique ───── */
+function step(dt){
+  t+=dt;
+  const I=INFO[phase];
+  if(phase==='gas'){
+    const tg=gasSpeed(E);let s=0;
+    P.forEach(p=>{s+=Math.hypot(p.vx,p.vy)});s/=N;
+    const f=s>0?1+(tg/s-1)*Math.min(1,dt*3):1;
+    P.forEach(p=>{
+      p.vx*=f;p.vy*=f;p.x+=p.vx*dt;p.y+=p.vy*dt;p.th+=p.om*dt;
+      if(p.x<16){p.x=16;p.vx=Math.abs(p.vx)}if(p.x>W-16){p.x=W-16;p.vx=-Math.abs(p.vx)}
+      if(p.y<16){p.y=16;p.vy=Math.abs(p.vy)}if(p.y>H-16){p.y=H-16;p.vy=-Math.abs(p.vy)}
+    });
+    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){
+      const a=P[i],b=P[j],dx=b.x-a.x,dy=b.y-a.y,d2=dx*dx+dy*dy;
+      if(d2<400&&d2>0.01){
+        const d=Math.sqrt(d2),nx=dx/d,ny=dy/d,rv=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;
+        if(rv<0){a.vx+=rv*nx;a.vy+=rv*ny;b.vx-=rv*nx;b.vy-=rv*ny}
+        const ov=(20-d)/2;a.x-=nx*ov;a.y-=ny*ov;b.x+=nx*ov;b.y+=ny*ov;
+      }
+    }
+  }else{
+    const k=Math.min(1,dt*5),A=phase==='solid'?.6+E*.07:2+(E-33)*.08,sm=Math.min(1,dt*18);
+    P.forEach(p=>{
+      p.jx+=(rnd(-1,1)*A-p.jx)*sm;p.jy+=(rnd(-1,1)*A-p.jy)*sm;
+      let wx=0,wy=0;
+      if(phase==='liquid'){wx=4.5*Math.sin(t*p.f1+p.p1);wy=3.5*Math.sin(t*p.f2+p.p2);
+        p.om+=rnd(-1,1)*dt*4;p.om=Math.max(-3.5,Math.min(3.5,p.om));p.th+=p.om*dt*(.4+E/80)}
+      else{const tg=Math.round(p.th/Math.PI)*Math.PI;p.th+=(tg-p.th)*Math.min(1,dt*6)}
+      p.x+=(p.hx+wx+p.jx-p.x)*k;p.y+=(p.hy+wy+p.jy-p.y)*k;
+    });
+  }
+  if(el.trace.checked){
+    const p=P[TR];trail.push([p.x,p.y]);if(trail.length>140)trail.shift();
+  }
+}
+function draw(){
+  const Z=(cv.clientWidth&&cv.clientWidth<460)?1.3:1;   /* atomes plus gros quand le canevas est réduit */
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle=cLight;ctx.lineWidth=2;ctx.strokeRect(6,6,W-12,H-12);
+  if(phase==='liquid'){ctx.fillStyle='rgba(125,99,184,.09)';ctx.fillRect(7,H-26-2*34-26,W-14,26+2*34+19)}
+  if(el.trace.checked&&trail.length>1){
+    ctx.strokeStyle='rgba(213,71,45,.75)';ctx.lineWidth=1.6;ctx.beginPath();
+    trail.forEach((q,i)=>{i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1])});ctx.stroke();
+  }
+  P.forEach((p,i)=>{
+    const c=Math.cos(p.th),s=Math.sin(p.th),col=(i===TR&&el.trace.checked)?cFlame:cMid;
+    ctx.strokeStyle=cDark;ctx.lineWidth=2*Z;ctx.beginPath();
+    ctx.moveTo(p.x-6.5*Z*c,p.y-6.5*Z*s);ctx.lineTo(p.x+6.5*Z*c,p.y+6.5*Z*s);ctx.stroke();
+    ctx.fillStyle=col;
+    [-1,1].forEach(d=>{ctx.beginPath();ctx.arc(p.x+d*6.5*Z*c,p.y+d*6.5*Z*s,5.4*Z,0,6.283);ctx.fill()});
+  });
+}
+let last=0;
+function loop(ts){
+  requestAnimationFrame(loop);
+  if(!last) last=ts;
+  const dt=Math.min(.05,(ts-last)/1000);last=ts;
+  if(!vis||document.hidden) return;
+  if(target!==null){
+    const d=target-E;
+    if(Math.abs(d)<=tspeed*dt){setE(target);cancelAuto()}else setE(E+Math.sign(d)*tspeed*dt);
+  }
+  if(playing){step(dt)}
+  draw();
+}
+onScreen(cv,v=>{vis=v;last=0});
+
+/* ───── commandes ───── */
+el.e.addEventListener('input',()=>{cancelAuto();setE(+el.e.value)});
+el.heat.addEventListener('click',()=>{
+  if(target===100){cancelAuto();return}
+  cancelAuto();target=100;tspeed=12;el.heat.textContent='Arrêter de chauffer';
+});
+el.cool.addEventListener('click',()=>{
+  if(target===0){cancelAuto();return}
+  cancelAuto();target=0;tspeed=12;el.cool.textContent='Arrêter de refroidir';
+});
+el.play.textContent=playing?'Pause':'Lecture';
+el.play.addEventListener('click',()=>{playing=!playing;el.play.textContent=playing?'Pause':'Lecture';draw()});
+el.trace.addEventListener('change',()=>{trail.length=0;draw()});
+CH.forEach(c=>{
+  const n=NAMES[c.id],b=document.createElement('button');
+  b.type='button';b.className='ar-opt '+(n[2]==='gain'?'up':'dn');b.dataset.id=c.id;
+  b.textContent=(n[2]==='gain'?'▲ ':'▼ ')+n[0];
+  b.title=n[1]+' ('+(n[2]==='gain'?'gain':'perte')+' d\'énergie cinétique)';
+  b.setAttribute('aria-label',n[0]+' : '+n[1]+', '+(n[2]==='gain'?'gain':'perte')+' d\'énergie cinétique');
+  b.addEventListener('click',()=>{
+    cancelAuto();
+    document.querySelectorAll('#ph-chg .ar-opt').forEach(x=>x.classList.remove('sel'));
+    const startPhase=c.id.split('>')[0];
+    setE(c.from,true);
+    say('Départ : '+INFO[startPhase].name.toLowerCase()+'. Observe ce qui va se passer…');
+    seq=setTimeout(()=>{
+      seq=null;
+      if(c.jump) setE(c.to); else {target=c.to;tspeed=14}
+      b.classList.add('sel');
+    },1500);
+  });
+  el.chg.appendChild(b);
+});
+setE(20,true);
+say('Phase actuelle : solide. Déplace le curseur ou clique sur « Chauffer » pour changer l\'énergie cinétique des particules.');
+draw();
+requestAnimationFrame(loop);
+})();
+
+/* ═════════ 2. Loi de Graham (1.3.3) ═════════ */
+(function(){
+const sa=$('gr-a');if(!sa) return;
+const sb=$('gr-b'),calc=$('gr-calc'),ra=$('gr-ra'),rb=$('gr-rb'),res=$('gr-res'),go=$('gr-go'),pre=$('gr-pre');
+const ik=$('gr-k'),idir=$('gr-dir'),iref=$('gr-ref'),inv=$('gr-inv');
+const idx=k=>GASES.findIndex(g=>g.k===k);
+fillGases(sa,idx('He'));fillGases(sb,idx('N₂'));fillGases(iref,idx('He'));
+let timer=null;
+
+function ratio(){const A=GASES[+sa.value],B=GASES[+sb.value];return {A,B,r:Math.sqrt(B.M/A.M)}}
+function reset(){
+  clearTimeout(timer);
+  [ra,rb].forEach(r=>{r.style.transitionDuration='0s';r.style.left='6px'});
+  res.textContent='';
+}
+function render(){
+  const {A,B,r}=ratio();
+  ra.textContent=A.k;rb.textContent=B.k;
+  const q=B.M/A.M;
+  let h='<div class="formula">v₁ / v₂ = √(M₂ / M₁)</div>'+
+    '<div class="formula">v('+A.k+') / v('+B.k+') = √('+B.s+' / '+A.s+') = √'+sig(q,3)+' ≈ '+sig(r,3)+'</div>';
+  if(A===B) h+='<p>Même gaz des deux côtés : le rapport vaut 1, aucune particule ne devance l\'autre.</p>';
+  else if(r>1) h+='<p>Les particules de <strong>'+A.k+'</strong> se déplacent environ <strong>'+sig(r,3)+' fois plus vite</strong> que celles de '+B.k+', parce qu\'elles sont plus légères : à la même énergie cinétique moyenne, la masse la plus petite doit aller plus vite.</p>';
+  else h+='<p>Les particules de <strong>'+A.k+'</strong> se déplacent environ <strong>'+sig(1/r,3)+' fois plus lentement</strong> que celles de '+B.k+', parce qu\'elles sont plus lourdes : à la même énergie cinétique moyenne, la masse la plus grande va moins vite.</p>';
+  calc.innerHTML=h;
+  reset();
+}
+function race(){
+  reset();
+  const {A,B,r}=ratio();
+  const slow=5,tA=r>=1?slow/r:slow,tB=r>=1?slow:slow*r;
+  void ra.offsetWidth;
+  const d=RM?0:1;
+  ra.style.transitionDuration=(tA*d)+'s';rb.style.transitionDuration=(tB*d)+'s';
+  ra.style.left='calc(100% - 58px)';rb.style.left='calc(100% - 58px)';
+  timer=setTimeout(()=>{
+    if(A===B) res.textContent='Égalité : même gaz, même vitesse.';
+    else if(r>1) res.textContent=A.k+' arrive en premier : ses particules vont environ '+sig(r,3)+' fois plus vite que celles de '+B.k+'.';
+    else res.textContent=B.k+' arrive en premier : ses particules vont environ '+sig(1/r,3)+' fois plus vite que celles de '+A.k+'.';
+  },Math.max(tA,tB)*1000*d+60);
+}
+function inverse(){
+  const k=num(ik.value),R=GASES[+iref.value],slow=idir.value==='slow';
+  if(!(k>0)){inv.textContent='Entre un nombre positif (par exemple 2,5).';return}
+  const M=slow?R.M*k*k:R.M/(k*k);
+  let h;
+  if(slow) h='<div class="formula">v('+R.k+') / v(X) = '+sig(k,3)+' = √(M(X) / '+R.s+')</div><div class="formula">M(X) = '+R.s+' × '+sig(k,3)+'² = '+sig(M,3)+' g/mol</div>';
+  else h='<div class="formula">v(X) / v('+R.k+') = '+sig(k,3)+' = √('+R.s+' / M(X))</div><div class="formula">M(X) = '+R.s+' ÷ '+sig(k,3)+'² = '+sig(M,3)+' g/mol</div>';
+  let best=null,be=1;GASES.forEach(g=>{const e=Math.abs(g.M-M)/M;if(e<be){be=e;best=g}});
+  if(best&&be<=.04) h+='<p>Cette masse molaire est très proche de celle du <strong>'+best.n+' ('+best.k+', '+best.s+' g/mol)</strong>.</p>';
+  else h+='<p>Aucun gaz de la liste n\'a une masse molaire proche de cette valeur : essaie une autre valeur.</p>';
+  inv.innerHTML=h;
+}
+[['He vs air : le ballon d\'hélium','He','air'],['H₂ vs O₂','H₂','O₂'],['CO₂ vs N₂','CO₂','N₂'],['CH₄ vs Cl₂','CH₄','Cl₂']].forEach(p=>{
+  const b=document.createElement('button');b.type='button';b.className='ar-opt';b.textContent=p[0];
+  b.addEventListener('click',()=>{sa.value=String(idx(p[1]));sb.value=String(idx(p[2]));render()});
+  pre.appendChild(b);
+});
+sa.addEventListener('change',render);sb.addEventListener('change',render);
+go.addEventListener('click',race);
+[ik,idir,iref].forEach(e=>{e.addEventListener('input',inverse);e.addEventListener('change',inverse)});
+render();inverse();
+})();
+
+/* ═════════ 3. Convertisseur de pression (2.1) ═════════ */
+(function(){
+const ix=$('pc-x');if(!ix) return;
+const iu=$('pc-u'),out=$('pc-out'),pre=$('pc-pre');
+const U={mmHg:{n:'mm Hg',e:760},kPa:{n:'kPa',e:101.3},atm:{n:'atm',e:1},bar:{n:'bar',e:1.013}};
+const KEYS=['mmHg','kPa','atm','bar'];
+const eqs={mmHg:'760',kPa:'101,3',atm:'1',bar:'1,013'};
+KEYS.forEach(k=>iu.add(new Option(U[k].n,k)));
+iu.value='mmHg';
+
+function conv(x,from,to){return x*U[to].e/U[from].e}
+function render(){
+  const x=num(ix.value),from=iu.value;
+  if(!(x>=0)||!isFinite(x)){out.innerHTML='<div class="pc-card"><div class="pc-s">Entre un nombre positif, par exemple 772 ou 98,5.</div></div>';return}
+  out.innerHTML=KEYS.map(k=>{
+    if(k===from) return '<div class="pc-card from"><div class="pc-v">'+sig(x,3)+'</div><div class="pc-u">'+U[k].n+' (départ)</div></div>';
+    const v=conv(x,from,k);
+    return '<div class="pc-card"><div class="pc-v">'+sig(v,3)+'</div><div class="pc-u">'+U[k].n+'</div><div class="pc-s">'+fr(x,x%1?2:0).replace(/,00$/,'')+' × '+eqs[k]+' ÷ '+eqs[from]+'</div></div>';
+  }).join('');
+}
+[['Pression normale',760,'mmHg'],['Beau temps : 772 mm Hg',772,'mmHg'],['Bonbonne : 2,50 atm',2.5,'atm'],['Cadran : 3,0 bar',3,'bar'],['Vide partiel : 40 kPa',40,'kPa']].forEach(p=>{
+  const b=document.createElement('button');b.type='button';b.className='ar-opt';b.textContent=p[0];
+  b.addEventListener('click',()=>{iu.value=p[2];ix.value=fr(p[1],p[1]%1?2:0);render()});
+  pre.appendChild(b);
+});
+ix.addEventListener('input',render);iu.addEventListener('change',render);
+render();
+
+/* ───── défi éclair ───── */
+const q=$('pc-q'),ia=$('pc-a'),au=$('pc-au'),fb=$('pc-fb'),nn=$('pc-n'),chk=$('pc-chk'),nw=$('pc-new');
+let cur=null,errs=0,solved=0,first=0,ft=true,doneItem=false;
+const rnd=(a,b)=>a+Math.random()*(b-a);
+function roundFor(k,v){return k==='mmHg'?Math.round(v):(k==='kPa'?Math.round(v*10)/10:Math.round(v*100)/100)}
+function fmt(k,v){return fr(v,k==='mmHg'?0:(k==='kPa'?1:2))}
+function counter(){nn.textContent='Défis réussis : '+solved+' · du premier coup : '+first}
+function newQ(){
+  let from,to;
+  do{from=KEYS[Math.floor(Math.random()*4)];to=KEYS[Math.floor(Math.random()*4)]}while(from===to||(from==='atm'&&to==='bar')||(from==='bar'&&to==='atm')&&Math.random()<.5);
+  const atm=rnd(.35,3.4);
+  let x=roundFor(from,atm*U[from].e);
+  if(x<=0) x=roundFor(from,U[from].e);
+  const ans=conv(x,from,to);
+  cur={from,to,x,ans};errs=0;ft=true;doneItem=false;
+  q.textContent='Convertis '+fmt(from,x)+' '+U[from].n+' en '+U[to].n+'.';
+  au.textContent=U[to].n;ia.value='';ia.disabled=false;chk.disabled=false;fb.textContent='';fb.className='ar-fb';ia.focus();
+}
+function why(){
+  const c=cur;
+  return fmt(c.from,c.x)+' '+U[c.from].n+' × '+eqs[c.to]+' ÷ '+eqs[c.from]+' ≈ '+sig(c.ans,3)+' '+U[c.to].n+'.';
+}
+function check(){
+  if(doneItem||!cur) return;
+  const v=num(ia.value);
+  if(!isFinite(v)){fb.className='ar-fb bad';fb.textContent='Entre un nombre.';return}
+  const tol=Math.abs(cur.ans)*.015+(cur.to==='mmHg'?.6:0);
+  if(Math.abs(v-cur.ans)<=tol){
+    fb.className='ar-fb good';fb.textContent='✓ Exact. '+why();
+    doneItem=true;solved++;if(ft)first++;counter();ia.disabled=true;chk.disabled=true;nw.focus();
+  }else{
+    errs++;ft=false;
+    if(errs===1){fb.className='ar-fb bad';fb.textContent='✗ Pas tout à fait. Écris la règle de trois : valeur × (équivalent de l\'unité visée) ÷ (équivalent de l\'unité de départ). Rappel : '+eqs.mmHg+' mm Hg = '+eqs.kPa+' kPa = 1 atm = '+eqs.bar+' bar.'+(U[cur.to].e>U[cur.from].e?' L\'unité visée est plus petite : le nombre doit grossir.':' L\'unité visée est plus grande : le nombre doit rapetisser.')}
+    else{fb.className='ar-fb bad';fb.textContent='✗ La bonne réponse est '+sig(cur.ans,3)+' '+U[cur.to].n+'. '+why();doneItem=true;counter();ia.disabled=true;chk.disabled=true;nw.focus()}
+  }
+}
+chk.addEventListener('click',check);
+ia.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();check()}});
+nw.addEventListener('click',newQ);
+counter();newQ();
+})();
+
+/* ═════════ 4. Manomètre à tube en U (2.2) ═════════ */
+(function(){
+const svg=$('mn-svg');if(!svg) return;
+const svg2=$('mn-svg2');
+const cD=COL('--indigo-dark')||'#241b45',cM=COL('--indigo-mid')||'#3d2d72',cF=COL('--flame')||'#d5472d',cMu=COL('--muted')||'#6b6580',cB=COL('--border')||'#ddd8e8';
+const HG='#9aa1ae',HGD='#6f7685';
+const TX=(x,y,t,o)=>{o=o||{};return '<text x="'+x+'" y="'+y+'" text-anchor="'+(o.a||'middle')+'" style="font:'+(o.w||600)+' '+(o.s||13)+'px Inter,system-ui,sans-serif;fill:'+(o.c||cD)+'">'+t+'</text>'};
+const arrDown=(x,y1,y2,c)=>'<line x1="'+x+'" y1="'+y1+'" x2="'+x+'" y2="'+(y2-6)+'" stroke="'+c+'" stroke-width="2.5"/><polygon points="'+(x-6)+','+(y2-8)+' '+(x+6)+','+(y2-8)+' '+x+','+y2+'" fill="'+c+'"/>';
+function vdim(x,ya,yb,c){ /* double flèche verticale entre ya (haut) et yb (bas) */
+  const d=yb-ya;
+  if(d<18) return '<line x1="'+(x-6)+'" y1="'+ya+'" x2="'+(x+6)+'" y2="'+ya+'" stroke="'+c+'" stroke-width="2"/><line x1="'+(x-6)+'" y1="'+yb+'" x2="'+(x+6)+'" y2="'+yb+'" stroke="'+c+'" stroke-width="2"/><line x1="'+x+'" y1="'+ya+'" x2="'+x+'" y2="'+yb+'" stroke="'+c+'" stroke-width="2"/>';
+  return '<line x1="'+x+'" y1="'+(ya+7)+'" x2="'+x+'" y2="'+(yb-7)+'" stroke="'+c+'" stroke-width="2"/>'+
+    '<polygon points="'+(x-5)+','+(ya+9)+' '+(x+5)+','+(ya+9)+' '+x+','+ya+'" fill="'+c+'"/>'+
+    '<polygon points="'+(x-5)+','+(yb-9)+' '+(x+5)+','+(yb-9)+' '+x+','+yb+'" fill="'+c+'"/>';
+}
+/* tube en U : le trait de verre, l'intérieur, puis le mercure (même ligne centrale, trois épaisseurs) */
+function tube(g,yL,yR){
+  const base=' '+g.bend+' A'+g.rx+','+g.ry+' 0 0 0 '+g.cx2+','+g.bend;
+  const dg='M'+g.cx1+','+g.top+' V'+base+' V'+g.top;
+  const dm='M'+g.cx1+','+yL+' V'+base+' V'+yR;
+  const hw=(g.w-6)/2;
+  return '<path d="'+dg+'" fill="none" stroke="'+cB+'" stroke-width="'+(g.w+4)+'"/>'+
+    '<path d="'+dg+'" fill="none" stroke="#fff" stroke-width="'+g.w+'"/>'+
+    '<path d="'+dm+'" fill="none" stroke="'+HG+'" stroke-width="'+(g.w-6)+'"/>'+
+    '<line x1="'+(g.cx1-hw)+'" y1="'+yL+'" x2="'+(g.cx1+hw)+'" y2="'+yL+'" stroke="'+HGD+'" stroke-width="2.5"/>'+
+    '<line x1="'+(g.cx2-hw)+'" y1="'+yR+'" x2="'+(g.cx2+hw)+'" y2="'+yR+'" stroke="'+HGD+'" stroke-width="2.5"/>';
+}
+const kpa=v=>sig(v*101.3/760,3);
+
+/* ───── 1. manomètre libre ───── */
+const G1={cx1:100,cx2:260,rx:80,ry:50,top:40,bend:300,w:38},YMID=170;
+const bOpen=document.querySelector('#mn-mode [data-m="open"]'),bClosed=document.querySelector('#mn-mode [data-m="closed"]');
+const iPa=$('mn-pa'),iPg=$('mn-pg'),vPa=$('mn-pav'),vPg=$('mn-pgv'),rPa=$('mn-rpa'),out=$('mn-out');
+let mode='open';
+function drawMain(){
+  const pa=+iPa.value,pg=+iPg.value,open=mode==='open';
+  const h=open?pg-pa:pg,k=open?0.9:0.2;
+  const yL=YMID+h*k/2,yR=YMID-h*k/2;
+  let s=tube(G1,yL,yR);
+  s+=TX(G1.cx1,11,'Gaz',{c:cF})+arrDown(G1.cx1,16,38,cF);
+  if(open){
+    s+=TX(G1.cx2,11,'Air',{c:cM})+arrDown(G1.cx2,16,38,cM);
+  }else{
+    s+='<path d="M'+(G1.cx2-G1.w/2-2)+','+G1.top+' A'+(G1.w/2+2)+','+(G1.w/2+2)+' 0 0 1 '+(G1.cx2+G1.w/2+2)+','+G1.top+'" fill="#fff" stroke="'+cB+'" stroke-width="2"/>'+TX(G1.cx2,11,'Vide',{c:cMu});
+  }
+  /* repères de niveau et mesure de h */
+  const bx=326;
+  s+='<line x1="'+(G1.cx1-24)+'" y1="'+yL+'" x2="'+(bx+8)+'" y2="'+yL+'" stroke="'+cMu+'" stroke-width="1" stroke-dasharray="4 4" opacity=".75"/>';
+  s+='<line x1="'+(G1.cx2+24)+'" y1="'+yR+'" x2="'+(bx+8)+'" y2="'+yR+'" stroke="'+cMu+'" stroke-width="1" stroke-dasharray="4 4" opacity=".75"/>';
+  const hv=Math.abs(h);
+  if(open&&hv===0){
+    s+=TX(bx+14,YMID+4,'h = 0',{a:'start',s:14});
+  }else{
+    const ya=Math.min(yL,yR),yb=Math.max(yL,yR);
+    s+=vdim(bx,ya,yb,cD)+TX(bx+14,(ya+yb)/2-2,'h',{a:'start',s:15,w:700})+TX(bx+14,(ya+yb)/2+15,fr(hv,0)+' mm Hg',{a:'start',s:13});
+  }
+  svg.innerHTML=s;
+  svg.setAttribute('aria-label',open?
+    'Manomètre à bout ouvert. '+(h>0?'Le mercure est plus haut du côté ouvert de '+h+' mm Hg.':(h<0?'Le mercure est plus haut du côté du gaz de '+(-h)+' mm Hg.':'Les deux niveaux de mercure sont identiques.')):
+    'Manomètre à bout fermé. Du vide surmonte le mercure de la branche scellée; l\'écart de niveau est de '+h+' mm Hg.');
+}
+function textMain(){
+  const pa=+iPa.value,pg=+iPg.value;
+  vPa.textContent=pa+' mm Hg';vPg.textContent=pg+' mm Hg';
+  iPa.setAttribute('aria-valuetext',pa+' mm Hg');iPg.setAttribute('aria-valuetext',pg+' mm Hg');
+  let t;
+  if(mode==='closed'){
+    t='Au-dessus du mercure de la branche scellée, il y a du vide : rien n\'y pousse. L\'écart de niveau <b>h = '+pg+' mm Hg</b> donne donc directement la pression du gaz : <b>p<sub>gaz</sub> = h = '+pg+' mm Hg ≈ '+kpa(pg)+' kPa</b>. La pression de l\'atmosphère n\'entre pas dans le calcul.';
+  }else{
+    const h=pg-pa;
+    if(h>0) t='Le mercure est <b>plus haut du côté ouvert</b> : le gaz pousse plus fort que l\'atmosphère. On additionne : <b>p<sub>gaz</sub> = p<sub>atm</sub> + h = '+pa+' + '+h+' = '+pg+' mm Hg</b> ≈ '+kpa(pg)+' kPa.';
+    else if(h<0) t='Le mercure est <b>plus haut du côté du gaz</b> : l\'atmosphère pousse plus fort que le gaz. On soustrait : <b>p<sub>gaz</sub> = p<sub>atm</sub> − h = '+pa+' − '+(-h)+' = '+pg+' mm Hg</b> ≈ '+kpa(pg)+' kPa.';
+    else t='Les deux niveaux sont identiques : <b>h = 0</b>, donc <b>p<sub>gaz</sub> = p<sub>atm</sub> = '+pa+' mm Hg</b>. Le gaz pousse aussi fort que l\'atmosphère; sa pression n\'est pas nulle.';
+  }
+  out.innerHTML=t;
+}
+function renderMain(){drawMain();textMain()}
+function setMode(m){
+  mode=m;
+  [[bOpen,'open'],[bClosed,'closed']].forEach(p=>{const on=p[1]===m;p[0].classList.toggle('sel',on);p[0].setAttribute('aria-pressed',on?'true':'false')});
+  rPa.style.display=m==='open'?'':'none';
+  renderMain();
+}
+bOpen.addEventListener('click',()=>setMode('open'));
+bClosed.addEventListener('click',()=>setMode('closed'));
+iPa.addEventListener('input',renderMain);iPg.addEventListener('input',renderMain);
+setMode('open');
+
+/* ───── 2. défi : lis la règle ───── */
+if(!svg2) return;
+const G2={cx1:70,cx2:310,rx:120,ry:50,top:34,bend:300,w:38},Y0=290,KS=12,RX=178,RW=26;
+const q=$('mn-cq'),opts=$('mn-copts'),numRow=$('mn-cnum'),ia=$('mn-ca'),au=$('mn-cu'),chk=$('mn-cchk'),fb=$('mn-cfb'),nxt=$('mn-cnext'),cn=$('mn-cn');
+const r1=x=>Math.round(x*10)/10;
+const rnd=(a,b)=>a+Math.random()*(b-a);
+let C=null,stage=1,errs=0,solved=0,first=0,ft=true,fin=false;
+au.textContent='mm Hg';
+function drawC(c){
+  const yG=Y0-KS*c.rg,yO=Y0-KS*c.ro;
+  let s=tube(G2,yG,yO);
+  s+=TX(G2.cx1,11,'Gaz',{c:cF})+arrDown(G2.cx1,16,32,cF)+TX(G2.cx2,11,'Air',{c:cM})+arrDown(G2.cx2,16,32,cM);
+  /* règle graduée en cm, de 0 à 20 */
+  s+='<rect x="'+RX+'" y="'+(Y0-20*KS)+'" width="'+RW+'" height="'+(20*KS)+'" rx="2" fill="#fbf7e9" stroke="'+cMu+'" stroke-width="1"/>';
+  for(let i=0;i<=20;i++){
+    const y=Y0-i*KS,big=i%5===0;
+    s+='<line x1="'+RX+'" y1="'+y+'" x2="'+(RX+(big?15:8))+'" y2="'+y+'" stroke="'+cMu+'" stroke-width="'+(big?1.4:1)+'"/>';
+    if(big) s+=TX(RX+RW-3,y+(i===0?-3:4),String(i),{a:'end',s:10,w:600,c:cMu});
+  }
+  s+=TX(RX+RW/2,Y0-20*KS-8,'cm',{s:11,c:cMu});
+  /* lignes de lecture */
+  const gx0=G2.cx1+G2.w/2-3,ox0=G2.cx2-G2.w/2+3;
+  s+='<line x1="'+gx0+'" y1="'+yG+'" x2="'+RX+'" y2="'+yG+'" stroke="'+cF+'" stroke-width="1.8" stroke-dasharray="5 3"/>'+
+     '<polygon points="'+(RX-8)+','+(yG-5)+' '+(RX-8)+','+(yG+5)+' '+RX+','+yG+'" fill="'+cF+'"/>'+
+     TX((gx0+RX)/2,yG-6,fr(c.rg,1)+' cm',{c:cF,s:13,w:700});
+  s+='<line x1="'+ox0+'" y1="'+yO+'" x2="'+(RX+RW)+'" y2="'+yO+'" stroke="'+cM+'" stroke-width="1.8" stroke-dasharray="5 3"/>'+
+     '<polygon points="'+(RX+RW+8)+','+(yO-5)+' '+(RX+RW+8)+','+(yO+5)+' '+(RX+RW)+','+yO+'" fill="'+cM+'"/>'+
+     TX((ox0+RX+RW)/2,yO-6,fr(c.ro,1)+' cm',{c:cM,s:13,w:700});
+  svg2.innerHTML=s;
+  svg2.setAttribute('aria-label','Manomètre à bout ouvert à lire. Sur la règle graduée en centimètres, la surface du mercure se lit à '+fr(c.rg,1)+' cm du côté du gaz et à '+fr(c.ro,1)+' cm du côté ouvert.');
+}
+function counter(){cn.textContent='Défis réussis : '+solved+' · du premier coup : '+first}
+function newC(){
+  const pa=745+Math.floor(Math.random()*31);
+  let rg=r1(rnd(4,16)),ro;
+  if(Math.random()<.12){ro=rg}
+  else{
+    const d=r1(rnd(.8,9));let sg=Math.random()<.5?1:-1;
+    ro=r1(rg+sg*d);
+    if(ro<2||ro>18) ro=r1(rg-sg*d);
+  }
+  const d=Math.round((ro-rg)*10)/10,ans=Math.round(pa+10*d);
+  C={pa:pa,rg:rg,ro:ro,d:d,ans:ans,right:d>0?'more':(d<0?'less':'same')};
+  stage=1;errs=0;ft=true;fin=false;
+  drawC(C);
+  q.innerHTML='Un manomètre à bout ouvert est branché sur un gaz. Ce jour-là, la pression atmosphérique est de <b>'+pa+' mm Hg</b>. Sur la règle graduée en centimètres, la surface du mercure se lit à <b>'+fr(rg,1)+' cm</b> du côté du gaz et à <b>'+fr(ro,1)+' cm</b> du côté ouvert.<br><strong>Étape 1.</strong> Le gaz pousse-t-il plus fort ou moins fort que l\'atmosphère?';
+  opts.innerHTML='';opts.setAttribute('role','group');opts.setAttribute('aria-label','Étape 1 : comparer le gaz et l\'atmosphère');
+  [['more','Plus fort que l\'atmosphère'],['less','Moins fort que l\'atmosphère'],['same','Autant que l\'atmosphère']].forEach(o=>{
+    const b=document.createElement('button');b.type='button';b.className='ar-opt';b.dataset.v=o[0];b.textContent=o[1];
+    b.addEventListener('click',()=>step1(b));opts.appendChild(b);
+  });
+  numRow.style.display='none';ia.value='';ia.disabled=false;chk.disabled=false;
+  fb.textContent='';fb.className='ar-fb';
+  counter();
+}
+function sameSide(){return C.d>0?'le mercure est plus haut du côté ouvert (' +fr(C.ro,1)+' cm contre '+fr(C.rg,1)+' cm), donc c\'est le gaz qui pousse le plus fort':(C.d<0?'le mercure est plus haut du côté du gaz ('+fr(C.rg,1)+' cm contre '+fr(C.ro,1)+' cm), donc c\'est l\'atmosphère qui pousse le plus fort':'les deux surfaces sont à la même hauteur, donc le gaz et l\'atmosphère poussent aussi fort l\'un que l\'autre')}
+function goStage2(){
+  stage=2;errs=0;
+  opts.querySelectorAll('button').forEach(b=>{b.disabled=true;if(b.dataset.v===C.right){b.classList.add('ok')}});
+  q.innerHTML=q.innerHTML.replace(/<br><strong>Étape 1\.<\/strong>.*$/,'<br><strong>Étape 2.</strong> Calcule la pression du gaz, en mm Hg. Attention : la règle est en centimètres, mais l\'équation attend h en mm Hg (1 cm = 10 mm Hg).');
+  numRow.style.display='flex';ia.focus();
+}
+function step1(b){
+  if(stage!==1) return;
+  const v=b.dataset.v;
+  if(v===C.right){
+    fb.className='ar-fb good';fb.textContent='✓ Exact : '+sameSide()+'.';goStage2();
+  }else{
+    errs++;ft=false;
+    if(errs===1){
+      b.classList.add('no');b.disabled=true;
+      fb.className='ar-fb bad';fb.textContent='✗ Pas tout à fait. Repère où le mercure est le plus haut : il monte du côté qui reçoit la plus faible pression.';
+    }else{
+      fb.className='ar-fb bad';fb.textContent='✗ La bonne réponse est « '+opts.querySelector('[data-v="'+C.right+'"]').textContent.toLowerCase()+' » : '+sameSide()+'. Passe à l\'étape 2.';goStage2();
+    }
+  }
+}
+function explain(){
+  const h=Math.abs(Math.round(C.d*10));
+  if(C.d===0) return 'h = 0, donc p<sub>gaz</sub> = p<sub>atm</sub> = '+C.pa+' mm Hg.';
+  return 'h = '+fr(Math.abs(C.d),1)+' cm = '+h+' mm Hg; p<sub>gaz</sub> = p<sub>atm</sub> '+(C.d>0?'+':'−')+' h = '+C.pa+' '+(C.d>0?'+':'−')+' '+h+' = '+C.ans+' mm Hg.';
+}
+function check2(){
+  if(stage!==2||fin) return;
+  const v=num(ia.value);
+  if(!isFinite(v)){fb.className='ar-fb bad';fb.textContent='Entre un nombre.';return}
+  if(Math.abs(v-C.ans)<=1){
+    fb.className='ar-fb good';fb.innerHTML='✓ Exact. '+explain()+' (≈ '+kpa(C.ans)+' kPa)';
+    fin=true;solved++;if(ft)first++;counter();ia.disabled=true;chk.disabled=true;nxt.focus();
+  }else{
+    errs++;ft=false;
+    if(errs===1){
+      let hint='Convertis d\'abord l\'écart en mm Hg (1 cm = 10 mm Hg), puis '+(C.d>0?'additionne':(C.d<0?'soustrais':'rappelle-toi que h = 0'))+(C.d===0?'.':' à p<sub>atm</sub>.');
+      if(C.d!==0&&Math.abs(v-(C.pa+(C.d>0?1:-1)*Math.abs(C.d)))<=1.2) hint='Tu as utilisé les centimètres tels quels : convertis h en mm Hg (× 10) avant de '+(C.d>0?'l\'additionner':'le soustraire')+'.';
+      else if(C.d!==0&&Math.abs(v-(C.pa-10*C.d))<=1.2) hint='Vérifie le signe : '+sameSide()+'. Il faut donc '+(C.d>0?'additionner':'soustraire')+' h.';
+      fb.className='ar-fb bad';fb.innerHTML='✗ Pas tout à fait. '+hint;
+    }else{
+      fb.className='ar-fb bad';fb.innerHTML='✗ La bonne réponse est <b>'+C.ans+' mm Hg</b>. '+explain();
+      fin=true;counter();ia.disabled=true;chk.disabled=true;nxt.focus();
+    }
+  }
+}
+chk.addEventListener('click',check2);
+ia.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();check2()}});
+nxt.addEventListener('click',newC);
+newC();
+})();
+
+/* ═════════ 5. Chocs sur les parois : gaz léger et gaz lourd (Section 2) ═════════ */
+(function(){
+const cv=$('ch-cv');if(!cv) return;
+const W=600,H=300,N=36,DPR=Math.min(window.devicePixelRatio||1,2);
+cv.width=W*DPR;cv.height=H*DPR;
+const ctx=cv.getContext('2d');ctx.scale(DPR,DPR);
+const cA=COL('--indigo-mid')||'#3d2d72',cB=COL('--flame')||'#d5472d',cD=COL('--indigo-dark')||'#241b45',cMu=COL('--muted')||'#6b6580',cBd=COL('--border')||'#ddd8e8',cAm=COL('--amber')||'#e8a41c';
+const BOX=[{x0:20,x1:280},{x0:320,x1:580}],Y0=34,Y1=294,L=260;
+const sa=$('ch-a'),sb=$('ch-b'),st=$('ch-t'),stv=$('ch-tv'),play=$('ch-play'),rst=$('ch-reset'),verdict=$('ch-verdict');
+const idx=k=>GASES.findIndex(g=>g.k===k);
+fillGases(sa,idx('He'));fillGases(sb,idx('CO₂'));
+const KE=T=>274428*T/300;                 /* énergie cinétique moyenne d'une particule (u.a.), proportionnelle à T */
+const REF=4*N*KE(300)/(L*1000);           /* pression de référence : 300 K = 100 */
+const G=[{col:cA,hits:0,imp:0,P:[],M:1,r:5,j:0},{col:cB,hits:0,imp:0,P:[],M:1,r:5,j:0}];
+let T=+st.value,tm=0,said=0,acc=0,last=0,vis=false,playing=!RM,flashes=[];
+const FT=.3;
+function gauss(){let u=0;while(!u)u=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*Math.random())}
+const imp=(M,v)=>2*M*Math.abs(v)/1000;
+function fill(gi,j){
+  const g=G[gi],b=BOX[gi],gas=GASES[j];
+  g.j=j;g.M=gas.M;g.r=2.5+1.4*Math.cbrt(gas.M);g.P=[];
+  const sg=99*Math.sqrt((T/300)*(28/g.M));let ke=0;
+  for(let i=0;i<N;i++){
+    const p={x:b.x0+g.r+Math.random()*(L-2*g.r),y:Y0+g.r+Math.random()*(L-2*g.r),vx:gauss()*sg,vy:gauss()*sg};
+    ke+=.5*g.M*(p.vx*p.vx+p.vy*p.vy);g.P.push(p);
+  }
+  /* même énergie cinétique moyenne à la même température : on ajuste l'échantillon pour que ce soit exact */
+  const k=Math.sqrt(KE(T)*N/ke);
+  g.P.forEach(p=>{p.vx*=k;p.vy*=k});
+}
+function flash(gi,x,y,I){if(flashes.length<140) flashes.push({x:x,y:y,t:FT,r:2+Math.min(I,12)*1.5,gi:gi})}
+function step(dt){
+  tm+=dt;
+  G.forEach((g,gi)=>{
+    const b=BOX[gi],r=g.r;
+    g.P.forEach(p=>{
+      p.x+=p.vx*dt;p.y+=p.vy*dt;
+      if(p.x<b.x0+r){p.x=2*(b.x0+r)-p.x;const I=imp(g.M,p.vx);g.imp+=I;g.hits++;p.vx=-p.vx;flash(gi,b.x0,p.y,I)}
+      else if(p.x>b.x1-r){p.x=2*(b.x1-r)-p.x;const I=imp(g.M,p.vx);g.imp+=I;g.hits++;p.vx=-p.vx;flash(gi,b.x1,p.y,I)}
+      if(p.y<Y0+r){p.y=2*(Y0+r)-p.y;const I=imp(g.M,p.vy);g.imp+=I;g.hits++;p.vy=-p.vy;flash(gi,p.x,Y0,I)}
+      else if(p.y>Y1-r){p.y=2*(Y1-r)-p.y;const I=imp(g.M,p.vy);g.imp+=I;g.hits++;p.vy=-p.vy;flash(gi,p.x,Y1,I)}
+    });
+  });
+}
+function draw(){
+  const Z=(cv.clientWidth&&cv.clientWidth<460)?1.4:1;   /* particules plus grosses quand le canevas est réduit */
+  ctx.clearRect(0,0,W,H);
+  G.forEach((g,gi)=>{
+    const b=BOX[gi],gas=GASES[g.j];
+    ctx.lineWidth=2.5;ctx.strokeStyle=cBd;ctx.strokeRect(b.x0,Y0,L,L);
+    ctx.fillStyle=g.col;ctx.font='700 13px Inter,system-ui,sans-serif';ctx.textAlign='left';
+    ctx.fillText('Gaz '+(gi+1)+' : '+gas.k+' ('+gas.s+' g/mol)',b.x0,22);
+  });
+  flashes.forEach(f=>{
+    ctx.globalAlpha=Math.max(0,f.t/FT)*.7;ctx.fillStyle=cAm;
+    ctx.beginPath();ctx.arc(f.x,f.y,f.r*Z,0,6.2832);ctx.fill();
+  });
+  ctx.globalAlpha=1;
+  G.forEach(g=>{
+    ctx.fillStyle=g.col;ctx.strokeStyle='rgba(255,255,255,.85)';ctx.lineWidth=1;
+    g.P.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,g.r*Z,0,6.2832);ctx.fill();ctx.stroke()});
+  });
+}
+const nm=gi=>'<b style="color:'+G[gi].col+'">●</b> '+GASES[G[gi].j].k;
+const fx=(x,d)=>fr(x,d);
+/* compare a (gaz 1) et b (gaz 2); same = phrase si égal, tpl(gaz le plus élevé, l'autre, rapport) sinon */
+const ratioTxt=(a,b,same,tpl)=>{
+  if(Math.abs(a/b-1)<.1) return same;
+  const hi=a>b?0:1,r=a>b?a/b:b/a;
+  return tpl(GASES[G[hi].j].k,GASES[G[1-hi].j].k,fx(r,r<10?1:0));
+};
+function setBar(id,v,m){$(id).style.width=(m>0?Math.max(2,v/m*100):0)+'%'}
+function refresh(){
+  const a=G[0],b=G[1];
+  [1,2,3].forEach(n=>{$('ch-na'+n).innerHTML=nm(0);$('ch-nb'+n).innerHTML=nm(1)});
+  if(tm<.4){['ch-va1','ch-vb1','ch-va2','ch-vb2','ch-va3','ch-vb3'].forEach(i=>$(i).textContent='…');
+    ['ch-fa1','ch-fb1','ch-fa2','ch-fb2','ch-fa3','ch-fb3'].forEach(i=>$(i).style.width='0');
+    ['ch-r1','ch-r2','ch-r3'].forEach(i=>$(i).textContent='');return}
+  const hA=a.hits/tm,hB=b.hits/tm,fA=a.imp/Math.max(1,a.hits),fB=b.imp/Math.max(1,b.hits),pA=a.imp/tm/REF*100,pB=b.imp/tm/REF*100;
+  $('ch-va1').textContent=fx(hA,0)+' /s';$('ch-vb1').textContent=fx(hB,0)+' /s';
+  $('ch-va2').textContent=fx(fA,1);$('ch-vb2').textContent=fx(fB,1);
+  $('ch-va3').textContent=fx(pA,0);$('ch-vb3').textContent=fx(pB,0);
+  const m1=Math.max(hA,hB),m2=Math.max(fA,fB),m3=Math.max(pA,pB);
+  setBar('ch-fa1',hA,m1);setBar('ch-fb1',hB,m1);setBar('ch-fa2',fA,m2);setBar('ch-fb2',fB,m2);setBar('ch-fa3',pA,m3);setBar('ch-fb3',pB,m3);
+  $('ch-r1').textContent=ratioTxt(hA,hB,'À peu près autant de chocs par seconde pour les deux gaz.',(hi,lo,r)=>hi+' : environ '+r+' fois plus de chocs par seconde que '+lo+'.');
+  $('ch-r2').textContent=ratioTxt(fA,fB,'À peu près la même force par choc pour les deux gaz.',(hi,lo,r)=>hi+' : chaque choc est environ '+r+' fois plus fort que celui de '+lo+'.');
+  $('ch-r3').textContent=tm<3?'Mesure en cours…':'Écart entre les deux : '+fx(Math.abs(pA-pB)/((pA+pB)/2)*100,0)+' %'+(tm<10?' (le hasard s\'atténue avec le temps).':'.');
+  /* conclusion : annoncée une seule fois (à 6 s), sans chiffre qui change, pour ne pas encombrer les lecteurs d'écran */
+  if(tm>=6&&said<1){
+    said=1;
+    const ga=GASES[a.j],gb=GASES[b.j];
+    if(ga.M===gb.M){
+      verdict.textContent='Même gaz des deux côtés, même température, même nombre de particules : tout est semblable, au hasard près. Choisis deux gaz différents pour voir les deux effets se contrarier.';
+    }else{
+      const li=ga.M<gb.M?0:1,L_=GASES[G[li].j],H_=GASES[G[1-li].j],q=Math.sqrt(H_.M/L_.M);
+      verdict.textContent=L_.k+' (le plus léger) frappe plus souvent, et '+H_.k+' frappe plus fort à chaque choc, dans la même proportion (environ '+fx(q,1)+' fois, soit √(M₂ / M₁) comme dans la loi de Graham). Les deux effets se compensent : les pressions sont pratiquement égales, et le petit écart qui reste est dû au hasard.';
+    }
+  }
+}
+function resetMeasure(){
+  G.forEach(g=>{g.hits=0;g.imp=0});tm=0;said=0;acc=0;flashes=[];verdict.textContent=RM&&!playing?'Appuie sur « Lecture » pour lancer la simulation.':'';
+  refresh();draw();
+}
+function describe(){
+  cv.setAttribute('aria-label','Deux contenants de même volume, à '+T+' K. À gauche : '+GASES[G[0].j].k+' ('+GASES[G[0].j].s+' g/mol), à droite : '+GASES[G[1].j].k+' ('+GASES[G[1].j].s+' g/mol). Chaque contenant renferme '+N+' particules qui rebondissent sur les parois.');
+}
+function loop(ts){
+  requestAnimationFrame(loop);
+  if(!vis||!playing){last=0;return}
+  if(!last){last=ts;return}
+  const dt=Math.min(.05,(ts-last)/1000);last=ts;
+  step(dt);
+  flashes.forEach(f=>f.t-=dt);flashes=flashes.filter(f=>f.t>0);
+  acc+=dt;if(acc>.25){acc=0;refresh()}
+  draw();
+}
+onScreen(cv,v=>{vis=v;last=0});
+sa.addEventListener('change',()=>{fill(0,+sa.value);describe();resetMeasure()});
+sb.addEventListener('change',()=>{fill(1,+sb.value);describe();resetMeasure()});
+st.addEventListener('input',()=>{
+  const Tn=+st.value,k=Math.sqrt(Tn/T);
+  G.forEach(g=>g.P.forEach(p=>{p.vx*=k;p.vy*=k}));
+  T=Tn;stv.textContent=T+' K';st.setAttribute('aria-valuetext',T+' kelvins');
+  describe();resetMeasure();
+});
+play.textContent=playing?'Pause':'Lecture';
+play.addEventListener('click',()=>{playing=!playing;play.textContent=playing?'Pause':'Lecture';if(playing&&verdict.textContent.indexOf('Appuie')===0) verdict.textContent=''});
+rst.addEventListener('click',resetMeasure);
+stv.textContent=T+' K';
+fill(0,+sa.value);fill(1,+sb.value);describe();resetMeasure();
+requestAnimationFrame(loop);
+})();
+
+/* ═════════ 6. Cartes mémoire (révision du chapitre) ═════════ */
+(function(){
+const fc=$('fc2-card');if(!fc) return;
+const C=[
+['Quels sont les trois mouvements possibles pour une particule?','<b>Vibration</b> : osciller autour d\'une position fixe. <b>Rotation</b> : tourner sur soi-même. <b>Translation</b> : se déplacer en ligne droite jusqu\'à la prochaine collision.'],
+['Quels mouvements trouve-t-on dans un solide? un liquide? un gaz?','Solide : seulement la vibration. Liquide : vibration et rotation, translation négligeable. Gaz : vibration, rotation et surtout translation, qui domine.'],
+['Pourquoi un gaz n\'a-t-il ni forme ni volume déterminés?','Ses particules sont très éloignées les unes des autres et interagissent à peine : rien ne les retient ensemble, elles se dispersent dans tout l\'espace disponible.'],
+['Qu\'est-ce qui détermine la phase d\'une substance?','L\'équilibre entre l\'interaction qui retient les particules ensemble et leur énergie cinétique, qui tend à les disperser.'],
+['Quels changements de phase absorbent de l\'énergie, et lesquels en libèrent?','Absorbent (gain d\'énergie cinétique) : fusion, vaporisation, sublimation. Libèrent (perte) : solidification, condensation (gaz → liquide), déposition (gaz → solide).'],
+['Quelle est l\'équation de l\'énergie cinétique d\'une particule, et avec quelles unités?','E<sub>c</sub> = ½ · m · v², avec E<sub>c</sub> en joules (J), m en kilogrammes (la masse d\'<em>une seule</em> particule) et v en mètres par seconde.'],
+['La vitesse d\'une particule double. Que devient son énergie cinétique?','Elle est multipliée par 4, parce que la vitesse est élevée au carré. (Doubler la masse, elle, ne fait que doubler E<sub>c</sub>.)'],
+['Quelles sont les quatre hypothèses de la théorie cinétique des gaz?','1) Le volume des particules est négligeable. 2) Elles bougent sans arrêt, en ligne droite et au hasard. 3) Elles n\'exercent aucune force les unes sur les autres. 4) Leur énergie cinétique moyenne est proportionnelle à la température en kelvins.'],
+['La température passe de 20 °C à 40 °C. L\'énergie cinétique moyenne double-t-elle?','Non. Il faut des kelvins : 293 K → 313 K, soit environ 7 % de plus. Elle ne doublerait que si la température <em>en kelvins</em> doublait.'],
+['Compressibilité et expansion : quelle différence?','Compressibilité : le volume diminue sous l\'effet d\'une force, car les particules se rapprochent. Expansion : un gaz se dilate pour occuper tout l\'espace qui lui est offert. Les deux viennent de la grande distance entre les particules.'],
+['Diffusion ou effusion : définis chacune.','Diffusion : des gaz se mélangent grâce au mouvement aléatoire de leurs particules. Effusion : un gaz s\'échappe d\'un contenant par une petite ouverture.'],
+['Pourquoi un gaz léger va-t-il plus vite qu\'un gaz lourd, à la même température?','À la même température, l\'énergie cinétique moyenne est la même (½mv²). Si la masse m est plus petite, la vitesse v doit être plus grande.'],
+['Énonce la loi de Graham.','À mêmes T et p, le rapport des vitesses de diffusion (ou d\'effusion) est égal à la racine carrée de l\'inverse du rapport des masses molaires : v<sub>1</sub> / v<sub>2</sub> = √(M<sub>2</sub> / M<sub>1</sub>).'],
+['D\'où vient la pression d\'un gaz?','Des chocs de ses particules sur les surfaces : chaque choc pousse un tout petit peu, et la pression est la somme de toutes ces poussées. Plus les chocs sont nombreux ou violents, plus elle est grande.'],
+['Même nombre de particules, même température, même volume : un gaz léger ou un gaz lourd exerce-t-il la plus grande pression?','Aucun : la pression est la même. Le gaz léger frappe plus souvent mais moins fort; le gaz lourd, moins souvent mais plus fort. Les deux effets s\'annulent.'],
+['Pourquoi la pression atmosphérique diminue-t-elle avec l\'altitude?','Il y a moins d\'air au-dessus : la colonne d\'air est plus courte et l\'air moins dense. Moins de particules par unité de volume, donc moins de collisions.'],
+['Comment un baromètre à mercure mesure-t-il la pression atmosphérique?','L\'air pousse sur le mercure du bassin et soutient une colonne de mercure dans le tube, au-dessus de laquelle il y a du vide. La hauteur de la colonne reflète la pression : environ 760 mm Hg au niveau de la mer.'],
+['Quelles sont les équivalences de la pression atmosphérique normale?','760 mm Hg = 101,3 kPa = 1 atm = 1,013 bar.'],
+['Manomètre à bout fermé : que lit-on?','Il y a du vide au-dessus du mercure de la branche scellée : l\'écart de hauteur h donne directement la pression du gaz (pression absolue). p<sub>gaz</sub> = h.'],
+['Manomètre à bout ouvert : quelle équation, et comment choisir + ou −?','Mercure plus haut du côté ouvert : p<sub>gaz</sub> = p<sub>atm</sub> + h. Mercure plus haut du côté du gaz : p<sub>gaz</sub> = p<sub>atm</sub> − h. Le mercure monte du côté de la plus faible pression. h doit être en mm Hg (1 cm = 10 mm Hg).'],
+['Une jauge à cadran branchée sur une bonbonne indique 0 bar. La bonbonne est-elle vide?','Non. Une jauge à pression relative compare le gaz à l\'atmosphère : 0 signifie que le gaz est à la pression atmosphérique, pas qu\'il est absent.'],
+['Pourquoi les deux hémisphères de Magdebourg restaient-ils collés?','Une fois l\'intérieur presque vidé, très peu de particules poussaient de l\'intérieur, alors que l\'air extérieur pressait la sphère de partout : la pression atmosphérique maintenait les deux moitiés.']
+];
+const flip=$('fc2-flip'),okB=$('fc2-ok'),koB=$('fc2-ko'),n=$('fc2-n'),live=$('fc2-live');
+let q,back,missed,firstTry;
+const plain=h=>{const e=document.createElement('div');e.innerHTML=h;return e.textContent};
+function init(){q=C.map((_,i)=>i);back=false;missed=new Set();firstTry=0;render()}
+function render(){
+  if(!q.length){
+    fc.style.background='#fdf6e6';
+    fc.innerHTML='<span><b>Terminé!</b><br>Cartes sues du premier coup : '+firstTry+' sur '+C.length+'.<br>'+(missed.size?'Cartes à retravailler : '+missed.size+'.':'Aucune carte à retravailler.')+'</span>';
+    live.textContent='Terminé. Cartes sues du premier coup : '+firstTry+' sur '+C.length+'.';
+    fc.setAttribute('aria-label','Pile terminée');
+    okB.disabled=true;koB.disabled=true;flip.textContent='Recommencer';n.textContent='';
+    return;
+  }
+  const i=q[0];
+  fc.style.background=back?'#fdf6e6':'#fcfbfe';
+  fc.innerHTML='<span><span class="sim-note" style="display:block;margin-bottom:6px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">'+(back?'Réponse':'Question')+'</span>'+C[i][back?1:0]+'</span>';
+  fc.setAttribute('aria-label',back?'Réponse. Appuie pour revoir la question':'Question. Appuie pour voir la réponse');
+  live.textContent=(back?'Réponse : ':'Question : ')+plain(C[i][back?1:0]);
+  okB.disabled=!back;koB.disabled=!back;
+  flip.textContent=back?'Revoir la question':'Retourner la carte';
+  n.textContent='Il reste '+q.length+' carte'+(q.length>1?'s':'')+(missed.size?' · à revoir : '+missed.size:'');
+}
+function toggle(){if(!q.length){init();return}back=!back;render()}
+fc.addEventListener('click',()=>{if(q.length) toggle()});
+fc.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();if(q.length) toggle()}});
+flip.addEventListener('click',toggle);
+okB.addEventListener('click',()=>{const i=q.shift();if(!missed.has(i)) firstTry++;back=false;render();fc.focus()});
+koB.addEventListener('click',()=>{const i=q.shift();missed.add(i);q.push(i);back=false;render();fc.focus()});
+init();
+})();
+
+})();
 </script>
 </body>
 </html>
